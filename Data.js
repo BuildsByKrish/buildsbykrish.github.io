@@ -198,5 +198,86 @@ const seriesData = [
     country: "India",
     description: "Two brothers find themselves caught in the violent power struggle of Mirzapur’s crime-ridden mafia world.",
     rating: 5
+  },
+  {
+    title: "Criminal Justice",
+    platform: "Disney+ Hotstar",
+    genres: ["Crime", "Legal", "Drama"],
+    country: "India",
+    description: "A cab driver’s life turns upside down when he becomes the prime suspect in a murder case, leading to a gripping courtroom battle and a deep dive into the criminal justice system.",
+    rating: 4
+  },
+  {
+    title: "Lucifer",
+    platform: "Netflix",
+    genres: ["Supernatural", "Crime", "Drama"],
+    country: "USA",
+    description: "The Devil abandons Hell to run a nightclub in Los Angeles and ends up helping the LAPD solve crimes while exploring his own redemption.",
+    rating: 5
+  },
+  {
+    title: "Saas Bahu Aur Flamingo",
+    platform: "Disney+ Hotstar",
+    genres: ["Crime", "Drama", "Action"],
+    country: "India",
+    description: "A fierce matriarch runs a covert drug cartel with her daughters-in-law, challenging stereotypes in a gritty tale of power, loyalty, and rebellion.",
+    rating: 4
+  },
+  {
+    title: "Dahaad",
+    platform: "Prime Video",
+    genres: ["Crime", "Thriller", "Mystery"],
+    country: "India",
+    description: "A female cop investigates a series of mysterious deaths in a small town, uncovering chilling secrets and a possible serial killer.",
+    rating: 4
+  },
+  {
+    title: "Panchayat",
+    platform: "Prime Video",
+    genres: ["Comedy", "Drama", "Slice of Life"],
+    country: "India",
+    description: "An engineering graduate reluctantly takes a government job in a remote village, navigating quirky locals and unexpected challenges.",
+    rating: 5
+  },
+  {
+    title: "Taj: Divided by Blood",
+    platform: "ZEE5",
+    genres: ["Historical", "Drama", "Political"],
+    country: "India",
+    description: "Set in the Mughal era, this epic saga explores the power struggles and betrayals within Emperor Akbar’s court as his sons vie for the throne.",
+    rating: 4
+  },
+  {
+    title: "The Night Manager",
+    platform: "Disney+ Hotstar",
+    genres: ["Thriller", "Espionage", "Drama"],
+    country: "India",
+    description: "A hotel night manager is recruited to infiltrate an arms dealer’s inner circle, leading to a high-stakes game of deception and danger.",
+    rating: 4
+  },
+  {
+    title: "Lucky Guy",
+    platform: "Amazon miniTV",
+    genres: ["Fantasy", "Comedy", "Drama"],
+    country: "India",
+    description: "A young man’s life changes when he receives a magical locket that brings him extraordinary luck—but at a cost he never expected.",
+    rating: 4
+  },
+  {
+    title: "Business Proposal",
+    platform: "Netflix",
+    genres: ["Romance", "Comedy", "Drama"],
+    country: "South Korea",
+    description: "A woman goes on a blind date in place of her friend, only to discover her date is her company’s CEO—leading to a hilarious and heartwarming office romance.",
+    rating: 4
+  },
+  {
+    title: "One Dollar Lawyer",
+    platform: "Disney+ Hotstar",
+    genres: ["Legal", "Comedy", "Drama"],
+    country: "South Korea",
+    description: "A quirky lawyer with unmatched skills charges only one dollar for his services, fighting for justice against the rich and powerful.",
+    rating: 4
   }
+];
 ];
