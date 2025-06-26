@@ -616,5 +616,284 @@ const seriesData = [
     description: "A power couple on the verge of divorce find themselves rediscovering love amid tragedy, betrayal, and healing across generations.",
     rating: 5
   },
-
+{
+    title: "Love to Hate You",
+    platform: "Netflix",
+    genres: ["Romantic Comedy"],
+    country: "South Korea",
+    description: "A lawyer and a top actor—both cynical about love—are forced into a fake relationship that turns all too real.",
+    rating: 4
+  },
+  {
+    title: "No Gain No Love",
+    platform: "Netflix",
+    genres: ["Romance", "Drama"],
+    country: "India",
+    description: "Two strangers meet through a boxing club and dance studio, clashing fiercely before discovering unexpected feelings.",
+    rating: 4
+  },
+  {
+    title: "Law Cafe",
+    platform: "Viki",
+    genres: ["Legal", "Romance", "Drama"],
+    country: "South Korea",
+    description: "A former prosecutor and a café owner team up to solve clients’ casual legal troubles — and maybe find love themselves.",
+    rating: 4
+  },
+  {
+    title: "Mere Humsafar",
+    platform: "ZEE5",
+    genres: ["Romance", "Drama"],
+    country: "Pakistan",
+    description: "A young woman’s world is upended when she’s forced to marry her former employer, leading to betrayal, heartbreak, and growth.",
+    rating: 4
+  },
+  {
+    title: "Kabhi Main Kabhi Tum",
+    platform: "ZEE5",
+    genres: ["Romance", "Drama"],
+    country: "India",
+    description: "Two siblings swap identities in college to escape pressure — only to fall for each other’s close friends in hilarious fashion.",
+    rating: 3
+  },
+  {
+    title: "Brinda",
+    platform: "YouTube",
+    genres: ["Drama"],
+    country: "India",
+    description: "A family reunited by fate uncovers buried secrets when a chance encounter reignites past conflicts and hidden bonds.",
+    rating: 3
+  },
+  {
+    title: "Pataal Lok",
+    platform: "Prime Video",
+    genres: ["Crime", "Thriller", "Drama"],
+    country: "India",
+    description: "A disillusioned cop investigates a high-profile assassination attempt, plunging him into the dark underworld of patriarchy and politics.",
+    rating: 5
+  },
+  {
+    title: "Pinocchio",
+    platform: "Netflix",
+    genres: ["Romance", "Drama", "Fantasy"],
+    country: "South Korea",
+    description: "A reporter who can’t lie and a TV anchor searching for the truth form an unlikely partnership to expose media corruption.",
+    rating: 4
+  },
+  {
+    title: "Destined With You",
+    platform: "Netflix",
+    genres: ["Romance", "Fantasy", "Drama"],
+    country: "South Korea",
+    description: "Two strangers discover they’re bound by a mythical talisman that draws them together through past lives and fate.",
+    rating: 4
+  },
+  {
+    title: "Better Call Saul",
+    platform: "Netflix",
+    genres: ["Legal", "Crime", "Drama"],
+    country: "USA",
+    description: "The transformation of small-time lawyer Jimmy McGill into morally challenged attorney Saul Goodman — darkly funny and tragic.",
+    rating: 5
+  },
+  {
+    title: "Mr. & Mrs. Smith",
+    platform: "Prime Video",
+    genres: ["Action", "Comedy", "Drama"],
+    country: "USA",
+    description: "A high-profile assassin couple goes cold on each other after new missions pit them on opposite sides.",
+    rating: 4
+  },
+  {
+    title: "Xo, Kitty",
+    platform: "Netflix",
+    genres: ["Romance", "Comedy", "Drama"],
+    country: "USA/Korea",
+    description: "Kitty Song-Covey navigates love and friendship at boarding school, facing all the awkwardness of teenage crushes.",
+    rating: 3
+  },
+  {
+    title: "Bank Under Siege",
+    platform: "Netflix",
+    genres: ["Action", "Thriller"],
+    country: "USA",
+    description: "A small‐town bank is overtaken by a ruthless gang on Christmas Eve, forcing employees and customers into a fight for survival.",
+    rating: 3
+  },
+  {
+    title: "Black Warrant",
+    platform: "Netflix",
+    genres: ["True Crime", "Documentary"],
+    country: "USA",
+    description: "An inside look at the high‐stakes world of federal executions through the eyes of the people who carry them out.",
+    rating: 3
+  },
+  {
+    title: "Day of the Jackal",
+    platform: "Netflix",
+    genres: ["Thriller", "Drama"],
+    country: "UK/France",
+    description: "A master assassin is hired to kill the French president, while detectives race against time to thwart his meticulous plan.",
+    rating: 4
+  },
+  {
+    title: "Lupin",
+    platform: "Netflix",
+    genres: ["Crime", "Thriller", "Drama"],
+    country: "France",
+    description: "A gentleman thief inspired by Arsène Lupin sets out to avenge his father for a crime committed by a wealthy family.",
+    rating: 5
+  },
+  {
+    title: "The Gentleman",
+    platform: "Netflix",
+    genres: ["Crime", "Comedy"],
+    country: "UK",
+    description: "An American expat tries to sell his highly profitable marijuana empire — and discovers that everyone wants a piece.",
+    rating: 4
+  },
+  {
+    title: "Marry My Husband",
+    platform: "Netflix",
+    genres: ["Romance", "Fantasy", "Drama"],
+    country: "South Korea",
+    description: "A woman wakes up in her fiancé’s former fiancée’s body and races to prevent betrayal and reclaim her happily ever after.",
+    rating: 4
+  },
+  {
+    title: "The Night Agent",
+    platform: "Netflix",
+    genres: ["Thriller", "Action", "Drama"],
+    country: "USA",
+    description: "An FBI agent answers a call that drags him into a deadly conspiracy reaching the highest levels of government.",
+    rating: 4
+  },
+  {
+    title: "The Trauma Code: Heroes On Call",
+    platform: "Netflix",
+    genres: ["Documentary", "Medical"],
+    country: "USA",
+    description: "An inside look at emergency responders tackling mass‐casualty events and the toll it takes on their lives.",
+    rating: 3
+  },
+  {
+    title: "Lincoln Lawyer",
+    platform: "Netflix",
+    genres: ["Legal", "Crime", "Drama"],
+    country: "USA",
+    description: "Defense attorney Mickey Haller runs his practice from the back of his Lincoln — taking on cases that challenge his ethics.",
+    rating: 4
+  },
+  {
+    title: "Melo Movie",
+    platform: "Netflix",
+    genres: ["Comedy", "Drama"],
+    country: "South Korea",
+    description: "A group of mismatched strangers collaborate on a low‐budget film, discovering laughter and heartbreak behind the camera.",
+    rating: 3
+  },
+  {
+    title: "When Life Gives You Tangerines",
+    platform: "Netflix",
+    genres: ["Romance", "Comedy"],
+    country: "South Korea",
+    description: "Two childhood friends reconnect on a tangerine farm, confronting past wounds and new desires amid the harvest.",
+    rating: 4
+  },
+  {
+    title: "Severance",
+    platform: "Apple TV+",
+    genres: ["Sci-Fi", "Thriller", "Drama"],
+    country: "USA",
+    description: "Employees undergo a procedure to sever work memories from personal life — until one begins to question the reality of it all.",
+    rating: 5
+  },
+  {
+    title: "Start-Up",
+    platform: "Netflix",
+    genres: ["Business", "Comedy", "Romance"],
+    country: "South Korea",
+    description: "Aspiring entrepreneurs navigate love, friendship, and fierce competition in the cutthroat world of tech start-ups.",
+    rating: 4
+  },
+  {
+    title: "A Killer Paradox",
+    platform: "Netflix",
+    genres: ["Crime", "Thriller"],
+    country: "South Korea",
+    description: "A detective races to stop a copycat killer inspired by a notorious serial murderer — but uncovers deeper conspiracies.",
+    rating: 3
+  },
+  {
+    title: "Juvenile Justice",
+    platform: "Netflix",
+    genres: ["Legal", "Drama"],
+    country: "South Korea",
+    description: "A cold-hearted judge in the juvenile court system confronts her biases as she handles cases of crime, punishment, and redemption.",
+    rating: 4
+  },
+  {
+    title: "The Heirs",
+    platform: "Netflix",
+    genres: ["Romance", "Drama", "School"],
+    country: "South Korea",
+    description: "A privileged high school girl and a tough heir from a rival family clash and fall in love amid teenage power struggles.",
+    rating: 4
+  },
+  {
+    title: "My ID Is Gangnam Beauty",
+    platform: "Netflix",
+    genres: ["Romance", "Drama", "Slice of Life"],
+    country: "South Korea",
+    description: "After plastic surgery, a shy woman struggles for acceptance on campus and finds an unexpected ally in a mysterious classmate.",
+    rating: 4
+  },
+  {
+    title: "Suspicious Partner",
+    platform: "Netflix",
+    genres: ["Romance", "Mystery", "Thriller"],
+    country: "South Korea",
+    description: "A prosecutor and a judicial trainee team up to solve a murder case while navigating budding romance and hidden secrets.",
+    rating: 4
+  },
+  {
+    title: "The Glory",
+    platform: "Netflix",
+    genres: ["Drama", "Revenge"],
+    country: "South Korea",
+    description: "A woman plots elaborate revenge against her high school bullies, sacrificing everything for justice and closure.",
+    rating: 4
+  },
+  {
+    title: "The Golden Spoon",
+    platform: "Netflix",
+    genres: ["Fantasy", "Drama", "Comedy"],
+    country: "South Korea",
+    description: "A young man from poverty finds a golden spoon that lets him swap lives — but soon discovers the cost of others’ fortunes.",
+    rating: 4
+  },
+  {
+    title: "Gyeongseong Creature",
+    platform: "Netflix",
+    genres: ["Horror", "Thriller"],
+    country: "South Korea",
+    description: "In 1945 Gyeongseong, two friends discover a terrifying creature released in the final days of colonial rule.",
+    rating: 4
+  },
+  {
+    title: "Sweet Home",
+    platform: "Netflix",
+    genres: ["Horror", "Drama"],
+    country: "South Korea",
+    description: "Residents of a shrinking apartment complex fight to survive as humans turn into monsters driven by their darkest desires.",
+    rating: 5
+  },
+  {
+    title: "Unlock My Boss",
+    platform: "Netflix",
+    genres: ["Fantasy", "Comedy", "Thriller"],
+    country: "South Korea",
+    description: "A tech CEO trapped in his own smartphone enlists a struggling young man to save both his company and his body.",
+    rating: 4
+  }
 ];
