@@ -1,4 +1,22 @@
 const seriesData = [
+{
+       title: "Hotel Del Luna",
+       platform: "Netflix",
+       genres: ["Fantasy", "Romance", "Drama"],
+       country: "South Korea",
+       description: "An elite hotel for ghosts run by a moody, centuries-old spirit and a human manager with a mysterious past.",
+       image: "images/hotelldelluna.jpg",
+       rating: 5
+     },
+     {
+       title: "Queen of Tears",
+       platform: "tvN / Netflix",
+       genres: ["Romance", "Drama"],
+       country: "South Korea",
+       description: "A chaebol heiress and her estranged husband navigate heartbreak, healing, and high-stakes family drama.",
+       image: "images/queenoftears.jpg",
+       rating: 5
+     },
   {
     title: "Farzi",
     platform: "Prime Video",
@@ -464,17 +482,7 @@ const seriesData = [
     description: "A wealthy man with dissociative identity disorder and a psychiatric resident confront trauma and healing in this emotionally intense ride.",
     rating: 5
   },
-  {
-    {
-    title: "Hotel Del Luna",
-    platform: "Netflix",
-    genres: ["Fantasy", "Romance", "Drama"],
-    country: "South Korea",
-    description: "An elite hotel for ghosts run by a moody, centuries-old spirit and a human manager with a mysterious past.",
-    image: "images/hotelldelluna.jpg",
-    rating: 5
-  },
-  {
+ {
     title: "Miss Hammurabi",
     platform: "Viki",
     genres: ["Legal", "Drama", "Slice of Life"],
@@ -610,15 +618,7 @@ const seriesData = [
     description: "A wealthy heiress and a demon who’s lost his powers form a contract marriage that blurs the lines between love and supernatural danger.",
     rating: 4
   },
-  {
-    title: "Queen of Tears",
-    platform: "tvN / Netflix",
-    genres: ["Romance", "Drama"],
-    country: "South Korea",
-    description: "A chaebol heiress and her estranged husband navigate heartbreak, healing, and high-stakes family drama.",
-    image: "images/queenoftears.jpg",
-    rating: 5
-  },
+ 
 {
     title: "Love to Hate You",
     platform: "Netflix",
