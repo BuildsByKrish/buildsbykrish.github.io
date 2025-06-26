@@ -278,6 +278,55 @@ const seriesData = [
     country: "South Korea",
     description: "A quirky lawyer with unmatched skills charges only one dollar for his services, fighting for justice against the rich and powerful.",
     rating: 4
-  }
-];
+  },
+{
+    title: "Crash Landing on You",
+    platform: "Netflix",
+    genres: ["Romance", "Drama", "Comedy"],
+    country: "South Korea",
+    description: "A South Korean heiress crash-lands in North Korea and falls for a soldier, leading to a heart-tugging story of love across borders.",
+    rating: 5
+  },
+  {
+    title: "Flower of Evil",
+    platform: "Netflix",
+    genres: ["Thriller", "Crime", "Melodrama"],
+    country: "South Korea",
+    description: "A detective wife investigates a serial murder case, only to suspect her own loving husband — a man hiding a dark secret.",
+    rating: 5
+  },
+  {
+    title: "It's Okay to Not Be Okay",
+    platform: "Netflix",
+    genres: ["Romance", "Psychological", "Drama"],
+    country: "South Korea",
+    description: "A children’s book author with antisocial traits and a caretaker for his autistic brother confront past traumas and find healing through love.",
+    rating: 5
+  },
+  {
+    title: "The King of Pigs",
+    platform: "TVING",
+    genres: ["Thriller", "Mystery", "Drama"],
+    country: "South Korea",
+    description: "Two former victims of school bullying are drawn together again when a series of murders seemingly linked to their past resurfaces.",
+    rating: 4
+  },
+  {
+    title: "Vincenzo",
+    platform: "Netflix",
+    genres: ["Crime", "Dark Comedy", "Legal Drama"],
+    country: "South Korea",
+    description: "A Korean-Italian mafia consigliere returns to Seoul, using his underworld tactics to fight a corrupt conglomerate with a quirky legal team.",
+    rating: 5
+  },
+  {
+    title: "Extraordinary Attorney Woo",
+    platform: "Netflix",
+    genres: ["Legal", "Drama", "Slice of Life"],
+    country: "South Korea",
+    description: "A brilliant attorney with autism spectrum disorder tackles complex cases and social prejudices in a law firm where every victory is earned.",
+    rating: 5
+  },
+
+
 ];
