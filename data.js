@@ -465,13 +465,14 @@ const seriesData = [
     rating: 5
   },
   {
+    {
     title: "Hotel Del Luna",
     platform: "Netflix",
-    genres: ["Fantasy", "Romance", "Mystery"],
+    genres: ["Fantasy", "Romance", "Drama"],
     country: "South Korea",
-    description: "An immortal hotel owner manages a luxurious inn for ghosts, until a young manager helps her face her past and change her future.",
+    description: "An elite hotel for ghosts run by a moody, centuries-old spirit and a human manager with a mysterious past.",
+    image: "images/hotelldelluna.jpg",
     rating: 5
-    image: "images/hotelldeluna.jpg"
   },
   {
     title: "Miss Hammurabi",
@@ -611,13 +612,12 @@ const seriesData = [
   },
   {
     title: "Queen of Tears",
-    platform: "Netflix",
-    genres: ["Romance", "Melodrama", "Family"],
+    platform: "tvN / Netflix",
+    genres: ["Romance", "Drama"],
     country: "South Korea",
-    description: "A power couple on the verge of divorce find themselves rediscovering love amid tragedy, betrayal, and healing across generations.",
+    description: "A chaebol heiress and her estranged husband navigate heartbreak, healing, and high-stakes family drama.",
+    image: "images/queenoftears.jpg",
     rating: 5
-    image: "images/queenoftears.jpg"
- 
   },
 {
     title: "Love to Hate You",
