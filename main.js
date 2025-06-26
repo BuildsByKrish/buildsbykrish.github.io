@@ -24,10 +24,12 @@ function filterByGenre(genre) {
   renderSeries();
 }
 
-// Build each card
+// Build each card (with image)
 function createCard(s) {
+  const imgSrc = s.image ? s.image : "images/placeholder.jpg";
   return `
     <div class="card">
+      <img src="${imgSrc}" alt="${s.title} poster" class="poster" />
       <h3>${s.title}</h3>
       <div class="meta">${s.platform} • ${s.country}</div>
       <div class="desc">${s.description}</div>
