@@ -1,5 +1,6 @@
 
 alert("main.js is running");
+console.log("Series Data:", seriesData);
 const container = document.getElementById("watchlistContainer");
 const searchInput = document.getElementById("search");
 const genreFilters = document.getElementById("genreFilters");
