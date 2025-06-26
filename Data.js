@@ -407,5 +407,214 @@ const seriesData = [
     country: "South Korea",
     description: "A man dissatisfied with his life makes a supernatural choice that gives him a second chance — but the new reality comes with emotional consequences.",
     rating: 4
-  }
+  },
+{
+    title: "Dhootha",
+    platform: "Prime Video",
+    genres: ["Supernatural", "Thriller", "Mystery"],
+    country: "India",
+    description: "A journalist discovers a strange pattern behind mysterious deaths foretold by possessed newspapers, plunging him into dark secrets and danger.",
+    rating: 4
+  },
+  {
+    title: "Berlin",
+    platform: "Netflix",
+    genres: ["Crime", "Thriller", "Heist"],
+    country: "Spain",
+    description: "A spin-off of Money Heist following the flamboyant thief Berlin as he assembles a new team for an ambitious jewelry heist in Paris.",
+    rating: 4
+  },
+  {
+    title: "Killer Soup",
+    platform: "Netflix",
+    genres: ["Dark Comedy", "Crime", "Drama"],
+    country: "India",
+    description: "A failing cook and her lover attempt to replace her husband with his doppelgänger, leading to a darkly funny descent into chaos and deception.",
+    rating: 4
+  },
+  {
+    title: "The K2",
+    platform: "Netflix",
+    genres: ["Action", "Political", "Romance"],
+    country: "South Korea",
+    description: "A former mercenary becomes a bodyguard to a presidential candidate’s secret daughter, uncovering corruption, revenge, and forbidden love.",
+    rating: 4
+  },
+  {
+    title: "Bring It On, Ghost",
+    platform: "Viki",
+    genres: ["Supernatural", "Romance", "Comedy"],
+    country: "South Korea",
+    description: "A high schooler who can see ghosts teams up with a sassy spirit to exorcise the undead — and maybe catch feelings along the way.",
+    rating: 4
+  },
+  {
+    title: "Catch the Ghost",
+    platform: "Netflix",
+    genres: ["Crime", "Detective", "Romance"],
+    country: "South Korea",
+    description: "A rookie detective searching for her missing sister joins the subway police squad and butts heads with her by-the-book partner.",
+    rating: 4
+  },
+  {
+    title: "Kill Me, Heal Me",
+    platform: "Viki",
+    genres: ["Psychological", "Romance", "Drama"],
+    country: "South Korea",
+    description: "A wealthy man with dissociative identity disorder and a psychiatric resident confront trauma and healing in this emotionally intense ride.",
+    rating: 5
+  },
+  {
+    title: "Hotel Del Luna",
+    platform: "Netflix",
+    genres: ["Fantasy", "Romance", "Mystery"],
+    country: "South Korea",
+    description: "An immortal hotel owner manages a luxurious inn for ghosts, until a young manager helps her face her past and change her future.",
+    rating: 5
+  },
+  {
+    title: "Miss Hammurabi",
+    platform: "Viki",
+    genres: ["Legal", "Drama", "Slice of Life"],
+    country: "South Korea",
+    description: "A passionate rookie judge teams up with a principled senior judge as they tackle tough civil cases and the gray zones of justice.",
+    rating: 4
+  },
+  {
+    title: "Angel's Last Mission: Love",
+    platform: "Viki",
+    genres: ["Fantasy", "Romance", "Drama"],
+    country: "South Korea",
+    description: "A carefree angel must help a blind ballerina find love — but ends up falling for her himself, risking everything to save her heart.",
+    rating: 4
+  },
+  {
+    title: "Boys Over Flowers",
+    platform: "Netflix",
+    genres: ["Romance", "Comedy", "School"],
+    country: "South Korea",
+    description: "A working-class girl attends an elite school and clashes with — and captures the heart of — the leader of a wealthy group of boys.",
+    rating: 4
+  },
+  {
+    title: "Sweet Sweet",
+    platform: "YouTube",
+    genres: ["Romantic Comedy", "Youth"],
+    country: "China",
+    description: "A socially awkward programmer and a cheerful designer unexpectedly become neighbors and slowly fall for each other through their quirky bond.",
+    rating: 3
+  },
+  {
+    title: "Fight for My Way",
+    platform: "Netflix",
+    genres: ["Romance", "Drama", "Slice of Life"],
+    country: "South Korea",
+    description: "Two long-time friends chase their dreams and struggle through life’s setbacks, discovering love and purpose along the way.",
+    rating: 5
+  },
+  {
+    title: "Who Are You: School 2015",
+    platform: "Viki",
+    genres: ["Mystery", "Romance", "School"],
+    country: "South Korea",
+    description: "A bullied student wakes up with no memory and is mistaken for her missing twin, sparking a mystery of identity, trauma, and healing.",
+    rating: 4
+  },
+  {
+    title: "Reacher",
+    platform: "Prime Video",
+    genres: ["Action", "Thriller", "Crime"],
+    country: "USA",
+    description: "Ex-military investigator Jack Reacher drifts into a small town and uncovers a deadly conspiracy behind a string of murders.",
+    rating: 4
+  },
+  {
+    title: "Game of Thrones",
+    platform: "HBO Max",
+    genres: ["Fantasy", "Drama", "Action"],
+    country: "USA/UK",
+    description: "Noble families vie for the Iron Throne in this epic saga of betrayal, war, and power across the mythical land of Westeros.",
+    rating: 5
+  },
+  {
+    title: "The Queen's Gambit",
+    platform: "Netflix",
+    genres: ["Drama", "Sports", "Coming-of-Age"],
+    country: "USA",
+    description: "An orphaned chess prodigy rises to global fame while battling addiction, trauma, and the pressure to stay on top.",
+    rating: 5
+  },
+  {
+    title: "A Simple Murder",
+    platform: "SonyLIV",
+    genres: ["Dark Comedy", "Crime", "Thriller"],
+    country: "India",
+    description: "A struggling man stumbles into a web of hitmen, mistaken identities, and hilarious chaos when a contract killing goes wrong.",
+    rating: 4
+  },
+  {
+    title: "The Wind Blows",
+    platform: "Viki",
+    genres: ["Romance", "Melodrama"],
+    country: "South Korea",
+    description: "A man divorces his wife without telling her he has Alzheimer’s, hoping to spare her the pain — but fate brings them back together.",
+    rating: 4
+  },
+  {
+    title: "Pill",
+    platform: "Netflix",
+    genres: ["Sci-Fi", "Thriller", "Drama"],
+    country: "India",
+    description: "An experimental drug that eliminates sleep spreads through society — exposing secrets, disrupting relationships, and unraveling lives.",
+    rating: 3
+  },
+  {
+    title: "Gyaarah Gyaaraah",
+    platform: "Zee5",
+    genres: ["Sci-Fi", "Mystery", "Thriller"],
+    country: "India",
+    description: "Three interconnected timelines in 1990, 2001, and 2023 converge through a chilling murder mystery that defies the boundaries of time.",
+    rating: 4
+  },
+  {
+    title: "Tokyo Swindlers",
+    platform: "Netflix",
+    genres: ["Crime", "Heist", "Drama"],
+    country: "Japan",
+    description: "A group of con artists poses as real estate agents in Tokyo, scamming the rich and uncovering a deeper corporate conspiracy.",
+    rating: 4
+  },
+  {
+    title: "Tribhuwan Mishra: C.A. Topper",
+    platform: "Netflix",
+    genres: ["Comedy", "Drama"],
+    country: "India",
+    description: "A small-town chartered accountant gets caught between audits, ambition, and awkward family chaos in this satirical slice of life.",
+    rating: 3
+  },
+  {
+    title: "Legend of the Blue Sea",
+    platform: "Viki",
+    genres: ["Fantasy", "Romance", "Comedy"],
+    country: "South Korea",
+    description: "A mermaid from the Joseon era ends up in modern-day Seoul, where she reunites with her reincarnated love — a con artist.",
+    rating: 4
+  },
+  {
+    title: "My Demon",
+    platform: "Netflix",
+    genres: ["Fantasy", "Romance", "Mystery"],
+    country: "South Korea",
+    description: "A wealthy heiress and a demon who’s lost his powers form a contract marriage that blurs the lines between love and supernatural danger.",
+    rating: 4
+  },
+  {
+    title: "Queen of Tears",
+    platform: "Netflix",
+    genres: ["Romance", "Melodrama", "Family"],
+    country: "South Korea",
+    description: "A power couple on the verge of divorce find themselves rediscovering love amid tragedy, betrayal, and healing across generations.",
+    rating: 5
+  },
+
 ];
