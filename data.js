@@ -471,6 +471,7 @@ const seriesData = [
     country: "South Korea",
     description: "An immortal hotel owner manages a luxurious inn for ghosts, until a young manager helps her face her past and change her future.",
     rating: 5
+    image: "images/hotelldeluna.jpg"
   },
   {
     title: "Miss Hammurabi",
@@ -615,6 +616,8 @@ const seriesData = [
     country: "South Korea",
     description: "A power couple on the verge of divorce find themselves rediscovering love amid tragedy, betrayal, and healing across generations.",
     rating: 5
+    image: "images/queenoftears.jpg"
+ 
   },
 {
     title: "Love to Hate You",
