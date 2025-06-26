@@ -1,3 +1,5 @@
+
+alert("main.js is running");
 const container = document.getElementById("watchlistContainer");
 const searchInput = document.getElementById("search");
 const genreFilters = document.getElementById("genreFilters");
