@@ -328,5 +328,84 @@ const seriesData = [
     rating: 5
   },
 
-
+{
+    title: "A Time Called You",
+    platform: "Netflix",
+    genres: ["Romance", "Mystery", "Time Travel"],
+    country: "South Korea",
+    description: "After her boyfriend's death, a woman magically travels back in time and wakes up in another body, uncovering secrets that blur time and identity.",
+    rating: 4
+  },
+  {
+    title: "She Was Pretty",
+    platform: "Viki",
+    genres: ["Romantic Comedy", "Drama"],
+    country: "South Korea",
+    description: "An unattractive woman reconnects with her childhood crush who has grown into a handsome man, but pretends not to be herself when they meet again.",
+    rating: 4
+  },
+  {
+    title: "Kill It",
+    platform: "Viki",
+    genres: ["Action", "Crime", "Thriller"],
+    country: "South Korea",
+    description: "A veterinarian with a secret past as a contract killer gets entangled with a detective investigating his past crimes — not knowing their lives are already connected.",
+    rating: 4
+  },
+  {
+    title: "The Secret Life of My Secretary",
+    platform: "Viki",
+    genres: ["Romantic Comedy", "Office", "Drama"],
+    country: "South Korea",
+    description: "After an accident leaves him unable to recognize faces, a cold-hearted boss relies on his secretary, leading to unexpected romance and hilarious misunderstandings.",
+    rating: 4
+  },
+  {
+    title: "I Am Not a Robot",
+    platform: "Viki",
+    genres: ["Sci-Fi", "Romance", "Comedy"],
+    country: "South Korea",
+    description: "A man allergic to human touch falls for a woman pretending to be an AI robot in this quirky and emotional love story.",
+    rating: 4
+  },
+  {
+    title: "Where Stars Land",
+    platform: "Disney+ Hotstar",
+    genres: ["Romance", "Drama"],
+    country: "South Korea",
+    description: "Incheon Airport employees navigate love, ambition, and hidden identities as they work behind the scenes of the busy terminal.",
+    rating: 3
+  },
+  {
+    title: "Descendants of the Sun",
+    platform: "Netflix",
+    genres: ["Military", "Romance", "Action"],
+    country: "South Korea",
+    description: "A soldier and a doctor fall in love amid perilous missions and disasters in a war-torn area. Duty, honor, and love collide in this global sensation.",
+    rating: 5
+  },
+  {
+    title: "Playful Kiss",
+    platform: "Netflix",
+    genres: ["Romantic Comedy", "Youth"],
+    country: "South Korea",
+    description: "A cheerful high school girl falls for her cold and brilliant classmate, chasing him with infectious optimism and clumsy charm.",
+    rating: 3
+  },
+  {
+    title: "Emergency Couple",
+    platform: "Netflix",
+    genres: ["Romantic Comedy", "Medical", "Drama"],
+    country: "South Korea",
+    description: "A divorced couple is forced to work together during their medical internship, rekindling sparks in chaotic hospital corridors.",
+    rating: 4
+  },
+  {
+    title: "Familiar Wife",
+    platform: "Netflix",
+    genres: ["Fantasy", "Romance", "Drama"],
+    country: "South Korea",
+    description: "A man dissatisfied with his life makes a supernatural choice that gives him a second chance — but the new reality comes with emotional consequences.",
+    rating: 4
+  }
 ];
