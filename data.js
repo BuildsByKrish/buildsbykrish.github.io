@@ -1,4 +1,77 @@
 const seriesData = [
+const seriesData = [
+  {
+    id: 101,
+    title: "Peaky Blinders",
+    genres: ["Drama", "Crime", "Historical"],
+    rating: 5,                          // 1–5 scale
+    favorite: true,                    // ❤️ status
+    platform: "Netflix",
+    country: "UK",
+    language: "English",
+    releaseYear: 2013,
+    runtime: 55,                       // average episode length in minutes
+    episodes: 30,                      // total episodes
+    bingeFactor: 9,                    // 1–10: how bingeable it is
+    rewatchable: true,                // would you watch again?
+    mood: "Intense",                   // vibe: “Chill”, “Dark”, etc.
+    themes: ["Power", "Brotherhood", "Ambition"],
+    tags: ["Stylish", "Dark", "Gritty", "Guns"],
+    vibeColor: "#bb2222",             // to style card glow/border
+    posterStyle: "vintage",           // could drive custom styling
+    imdbRating: 8.8,
+    image: "images/peaky.jpg",
+    description: "A notorious gang rises in post-WWI Birmingham, led by the ruthless Tommy Shelby."
+  },
+
+  {
+    id: 102,
+    title: "College Romance",
+    genres: ["Drama", "Romance"],
+    rating: 2,
+    favorite: false,
+    platform: "SonyLIV",
+    country: "India",
+    language: "Hindi",
+    releaseYear: 2018,
+    runtime: 25,
+    episodes: 20,
+    bingeFactor: 3,
+    rewatchable: false,
+    mood: "Light",
+    themes: ["Youth", "Relationships"],
+    tags: ["Campus", "Cheesy", "Casual"],
+    vibeColor: "#f48fb1",
+    posterStyle: "minimal",
+    imdbRating: 5.4,
+    image: "images/collegeromance.jpg",
+    description: "Three best friends navigating love, friendships, and awkward moments on campus."
+  },
+
+  {
+    id: 103,
+    title: "Dark",
+    genres: ["Sci-Fi", "Thriller", "Mystery"],
+    rating: 5,
+    favorite: true,
+    platform: "Netflix",
+    country: "Germany",
+    language: "German",
+    releaseYear: 2017,
+    runtime: 60,
+    episodes: 26,
+    bingeFactor: 10,
+    rewatchable: true,
+    mood: "Mind-Bending",
+    themes: ["Time Travel", "Family", "Free Will"],
+    tags: ["Complex", "Cinematic", "Puzzling", "Timeline Chaos"],
+    vibeColor: "#333399",
+    posterStyle: "dark",
+    imdbRating: 8.7,
+    image: "images/dark.jpg",
+    description: "Four families uncover a time-travel conspiracy that spans generations in a small German town."
+  }
+];
 {
        title: "Hotel Del Luna",
        platform: "Netflix",
