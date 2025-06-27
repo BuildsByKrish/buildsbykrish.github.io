@@ -1,27 +1,35 @@
 const posterGrid = document.getElementById("posterGrid");
+const topPicksGrid = document.getElementById("topPicksGrid");
 const watchedSet = new Set(JSON.parse(localStorage.getItem("watchedShows") || "[]"));
+
+const topPickTitles = [
+  "Peaky Blinders",
+  "Game of Thrones",
+  "Breaking Bad",
+  "When Life Gives You Tangerine",
+  "You",
+  "Lucifer"
+];
 
 function saveWatched() {
   localStorage.setItem("watchedShows", JSON.stringify(Array.from(watchedSet)));
 }
 
-function createPosterTile(show) {
+function createPosterTile(show, index, isTop = false) {
   const isWatched = watchedSet.has(show.title);
+  const genres = show.genres?.join(", ") || "Unspecified";
+  const stars = "⭐".repeat(show.rating || 0);
   const imgSrc = show.image || "images/placeholder.jpg";
-  const genres = show.genres ? show.genres.join(", ") : "Unspecified";
-  const hoverInfo = `
-    <div class="poster-info">
-      <h3>${show.title}</h3>
-      <p>${genres}</p>
-      <p>${"⭐".repeat(show.rating || 0)}</p>
-      <small>${show.platform || "Unknown Platform"}</small>
-    </div>
-  `;
-
+  const number = index + 1;
   return `
-    <div class="poster-tile ${isWatched ? "watched" : ""}" onclick="toggleWatched('${show.title}')">
+    <div class="poster-tile ${isWatched ? "watched" : ""} ${isTop ? "top-pick" : ""}" onclick="toggleWatched('${show.title}')">
       <img src="${imgSrc}" alt="${show.title}" />
-      ${hoverInfo}
+      <div class="poster-info">
+        <h3>${number}. ${show.title}</h3>
+        <p>${genres}</p>
+        <p>${stars}</p>
+        <small>${show.platform || "Unknown"}</small>
+      </div>
     </div>
   `;
 }
@@ -29,16 +37,42 @@ function createPosterTile(show) {
 function toggleWatched(title) {
   watchedSet.has(title) ? watchedSet.delete(title) : watchedSet.add(title);
   saveWatched();
-  renderPosters();
+  renderAll();
 }
 
-function renderPosters() {
-  if (!Array.isArray(seriesData)) {
-    posterGrid.innerHTML = `<p style="color: #aaa;">No shows found. Please check your data.js file.</p>`;
-    return;
-  }
-  const html = seriesData.map(createPosterTile).join("");
-  posterGrid.innerHTML = html;
+function populateGenreMenu() {
+  const genres = new Set();
+  seriesData.forEach(s => s.genres?.forEach(g => genres.add(g)));
+  const select = document.getElementById("genreFilter");
+  genres.forEach(g => {
+    const opt = document.createElement("option");
+    opt.value = g;
+    opt.textContent = g;
+    select.appendChild(opt);
+  });
 }
 
-renderPosters();
+function renderAll() {
+  const filter = document.getElementById("genreFilter").value;
+  const search = document.getElementById("searchInput").value.toLowerCase();
+
+  // Top picks only
+  const top = seriesData.filter(s => topPickTitles.includes(s.title));
+  topPicksGrid.innerHTML = top.map((s, i) => createPosterTile(s, i, true)).join("");
+
+  // Regular list (excluding top picks)
+  const filtered = seriesData.filter(s => {
+    const notTop = !topPickTitles.includes(s.title);
+    const matchesGenre = filter === "All" || s.genres?.includes(filter);
+    const matchesSearch = s.title.toLowerCase().includes(search);
+    return notTop && matchesGenre && matchesSearch;
+  });
+
+  posterGrid.innerHTML = filtered.map((s, i) => createPosterTile(s, i)).join("");
+}
+
+document.getElementById("genreFilter").addEventListener("change", renderAll);
+document.getElementById("searchInput").addEventListener("input", renderAll);
+
+populateGenreMenu();
+renderAll();
