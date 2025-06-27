@@ -2,33 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Krish's Watchlist Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Krish’s Watchlist Vault</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- 🔹 Personal Intro -->
-  <header class="hero">
-    <div class="hero-text">
-      <h1>Hi, I’m Krish 👋</h1>
-      <p>It’s my dream to watch over <strong>1,000 series</strong> before I die. I love coding, storytelling, and the sweet thrill of pressing “next episode.” This is my Watchlist Vault — a custom-built hub for everything I binge and believe in.</p>
-    </div>
-  </header>
-
-  <!-- 🔹 Suggest CTA Button -->
-  <div class="quick-actions">
-    <button onclick="scrollToSuggestion()">💌 Suggest a Show</button>
-  </div>
-
-  <!-- 🔹 Search + Genre Filters -->
-  <section class="controls">
-    <input id="search" type="text" placeholder="Search your shows..." />
-    <div id="genreFilters" class="filters"></div>
+  <!-- 🔹 Hero Intro Spotlight -->
+  <section class="intro-spotlight">
+    <h1>🎬 Krish's Watchlist Vault</h1>
+    <p>I’m Krish — developer by day, binge curator by night. My mission: to discover and catalog over <strong>1,000 legendary shows</strong>. Welcome to my cinematic sanctuary.</p>
   </section>
 
-  <!-- 🔹 Watchlist Cards -->
-  <section id="watchlistContainer"></section>
+  <!-- 🔹 Explore by Genre Button -->
+  <div class="quick-actions">
+    <a href="genres.html">
+      <button>🔍 Explore by Genre</button>
+    </a>
+  </div>
 
   <!-- 🔹 Suggestion Box -->
   <section class="suggestion-box">
@@ -41,10 +32,11 @@
     </form>
     <div id="suggestionSuccess" style="display:none;">Thanks for the suggestion, friend! ✅</div>
 
-    <!-- 🔹 View Submitted Suggestions -->
     <div id="suggestionListSection">
       <h3>Suggestions Received</h3>
       <ul id="suggestionList"></ul>
+      <button onclick="exportSuggestions()">⬇️ Export Suggestions (JSON)</button>
+      <button onclick="exportCSV()">📄 Export Suggestions (CSV)</button>
     </div>
   </section>
 
@@ -56,11 +48,5 @@
   <!-- 🔹 Scripts -->
   <script src="data.js"></script>
   <script src="main.js"></script>
-  <script>
-    function scrollToSuggestion() {
-      document.querySelector(".suggestion-box").scrollIntoView({ behavior: "smooth" });
-    }
-  </script>
-
 </body>
 </html>
