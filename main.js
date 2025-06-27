@@ -140,3 +140,28 @@ renderSuggestions();
 function scrollToSuggestion() {
   document.querySelector(".suggestion-box").scrollIntoView({ behavior: "smooth" });
 }
+// Smooth scroll for Suggest button
+function scrollToSuggestion() {
+  document.querySelector(".suggestion-box").scrollIntoView({ behavior: "smooth" });
+}
+
+// Suggestion form logic
+document.getElementById("suggestForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const title = document.getElementById("suggestTitle").value.trim();
+  const genre = document.getElementById("suggestGenre").value.trim();
+  const by = document.getElementById("suggestBy").value.trim();
+
+  const suggestion = {
+    title,
+    genre,
+    suggestedBy: by || "Anonymous",
+    timestamp: new Date().toISOString()
+  };
+
+  const prev = JSON.parse(localStorage.getItem("suggestions") || "[]");
+  prev.push(suggestion);
+  localStorage.setItem("suggestions", JSON.stringify(prev));
+
+  document.getElementBy[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/lzh-yi/Web-Fork-/tree/024b3e55587afdf9f05a677613a75f24e3d1803e/03-CSS%E8%BF%9B%E9%98%B6%2F04-%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%EF%BC%9F.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")
