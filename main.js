@@ -1,13 +1,18 @@
-
-alert("main.js is running");
-console.log("Series Data:", seriesData);
 const container = document.getElementById("watchlistContainer");
 const searchInput = document.getElementById("search");
 const genreFilters = document.getElementById("genreFilters");
 
 let activeGenre = "All";
 
-// Generate genre filter buttons
+// 🧠 Load watched shows from localStorage
+const watchedSet = new Set(JSON.parse(localStorage.getItem("watchedShows") || "[]"));
+
+// Save to localStorage
+function saveWatched() {
+  localStorage.setItem("watchedShows", JSON.stringify(Array.from(watchedSet)));
+}
+
+// Handle genre buttons
 function renderFilters() {
   const genreSet = new Set();
   seriesData.forEach(s => s.genres.forEach(g => genreSet.add(g)));
@@ -18,7 +23,6 @@ function renderFilters() {
     .join("");
 }
 
-// Handle genre filter clicks
 function filterByGenre(genre) {
   activeGenre = genre;
   document.querySelectorAll(".filters button").forEach(btn => {
@@ -27,21 +31,34 @@ function filterByGenre(genre) {
   renderSeries();
 }
 
-// Build each card (with image)
+// 💡 Create series card with checkbox
 function createCard(s) {
-  const imgSrc = s.image ? s.image : "images/placeholder.jpg";
+  const imgSrc = s.image || "images/placeholder.jpg";
+  const isWatched = watchedSet.has(s.title);
+
   return `
-    <div class="card">
+    <div class="card ${isWatched ? 'watched' : ''}">
       <img src="${imgSrc}" alt="${s.title} poster" class="poster" />
       <h3>${s.title}</h3>
       <div class="meta">${s.platform} • ${s.country}</div>
       <div class="desc">${s.description}</div>
       <div class="stars">${"⭐".repeat(s.rating)}</div>
+      <label class="watch-toggle">
+        <input type="checkbox" ${isWatched ? "checked" : ""} onchange="toggleWatched('${s.title}', this.checked)">
+        Watched
+      </label>
     </div>
   `;
 }
 
-// Render all series
+// ✨ Watched toggle handler
+function toggleWatched(title, checked) {
+  checked ? watchedSet.add(title) : watchedSet.delete(title);
+  saveWatched();
+  renderSeries();
+}
+
+// Render series grid
 function renderSeries() {
   const query = searchInput.value.toLowerCase();
   const genreGroups = {};
