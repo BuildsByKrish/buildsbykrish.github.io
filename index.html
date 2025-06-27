@@ -21,7 +21,7 @@
     </a>
   </div>
 
-  <!-- 🔹 Suggestion Box -->
+  <!-- 🔹 Suggestion Box with Admin Panel -->
   <section class="suggestion-box">
     <h2>Suggest Me a Show or Movie 🎥</h2>
     <form id="suggestForm">
@@ -32,7 +32,12 @@
     </form>
     <div id="suggestionSuccess" style="display:none;">Thanks for the suggestion, friend! ✅</div>
 
-    <div id="suggestionListSection">
+    <div style="text-align:center; margin-top:20px;">
+      <input type="password" id="adminCode" placeholder="Enter creator code" />
+      <button onclick="checkAdmin()">🔓 Unlock Suggestions</button>
+    </div>
+
+    <div id="creatorPanel" style="display:none; margin-top:30px;">
       <h3>Suggestions Received</h3>
       <ul id="suggestionList"></ul>
       <button onclick="exportSuggestions()">⬇️ Export Suggestions (JSON)</button>
