@@ -25,6 +25,26 @@ body {
   color: #ccc;
 }
 
+.quick-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.quick-actions button {
+  background: #00bcd4;
+  border: none;
+  padding: 10px 16px;
+  font-size: 15px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.quick-actions button:hover {
+  background: #0097a7;
+}
+
 .controls {
   padding: 20px;
   text-align: center;
@@ -119,7 +139,7 @@ input#search {
   font-size: 1rem;
 }
 
-/* Suggestion Form */
+/* Suggestion Box */
 .suggestion-box {
   background: #111;
   padding: 40px 20px;
@@ -158,19 +178,6 @@ input#search {
   background: #0097a7;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #777;
-  font-size: 14px;
-  border-top: 1px solid #333;
-}
-footer a {
-  color: #00bcd4;
-  text-decoration: none;
-}
-
 #suggestionListSection {
   background: #0a0a0a;
   padding: 20px;
@@ -197,22 +204,15 @@ footer a {
   color: #ccc;
   font-size: 15px;
 }
-.quick-actions {
+
+footer {
   text-align: center;
-  margin-top: 20px;
+  padding: 20px;
+  color: #777;
+  font-size: 14px;
+  border-top: 1px solid #333;
 }
-
-.quick-actions button {
-  background: #00bcd4;
-  border: none;
-  padding: 10px 16px;
-  font-size: 15px;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.quick-actions button:hover {
-  background: #0097a7;
+footer a {
+  color: #00bcd4;
+  text-decoration: none;
 }
