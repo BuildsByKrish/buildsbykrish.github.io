@@ -197,3 +197,22 @@ footer a {
   color: #ccc;
   font-size: 15px;
 }
+.quick-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.quick-actions button {
+  background: #00bcd4;
+  border: none;
+  padding: 10px 16px;
+  font-size: 15px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.quick-actions button:hover {
+  background: #0097a7;
+}
