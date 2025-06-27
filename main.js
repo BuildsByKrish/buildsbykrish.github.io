@@ -136,3 +136,7 @@ function renderSuggestions() {
 }
 
 renderSuggestions();
+
+function scrollToSuggestion() {
+  document.querySelector(".suggestion-box").scrollIntoView({ behavior: "smooth" });
+}
