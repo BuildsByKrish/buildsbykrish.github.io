@@ -8,14 +8,15 @@
 </head>
 <body>
   <header class="hero">
-<div class="quick-actions">
-  <button onclick="scrollToSuggestion()">💌 Suggest a Show</button>
-</div>
     <div class="hero-text">
       <h1>Hi, I’m Krish 👋</h1>
       <p>It’s my dream to watch over <strong>1,000 series</strong> before I die. I love coding, storytelling, and the sweet thrill of pressing “next episode.” This is my Watchlist Vault — a custom-built hub for everything I binge and believe in.</p>
     </div>
   </header>
+
+  <div class="quick-actions">
+    <button onclick="scrollToSuggestion()">💌 Suggest a Show</button>
+  </div>
 
   <section class="controls">
     <input id="search" type="text" placeholder="Search your shows..." />
@@ -32,11 +33,12 @@
       <input type="text" id="suggestBy" placeholder="Your name (optional)" />
       <button type="submit">Submit Suggestion</button>
     </form>
-<div id="suggestionListSection">
-  <h3>Suggestions Received</h3>
-  <ul id="suggestionList"></ul>
-</div>
     <div id="suggestionSuccess" style="display:none;">Thanks for the suggestion, friend! ✅</div>
+
+    <div id="suggestionListSection">
+      <h3>Suggestions Received</h3>
+      <ul id="suggestionList"></ul>
+    </div>
   </section>
 
   <footer>
@@ -45,5 +47,12 @@
 
   <script src="data.js"></script>
   <script src="main.js"></script>
+
+  <script>
+    // Scroll function for Suggest Button
+    function scrollToSuggestion() {
+      document.querySelector(".suggestion-box").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
 </body>
 </html>
