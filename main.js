@@ -97,3 +97,28 @@ searchInput.addEventListener("input", renderSeries);
 // Init
 renderFilters();
 renderSeries();
+// Suggestion box logic
+document.getElementById("suggestForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const title = document.getElementById("suggestTitle").value.trim();
+  const genre = document.getElementById("suggestGenre").value.trim();
+  const by = document.getElementById("suggestBy").value.trim();
+
+  const suggestion = {
+    title,
+    genre,
+    suggestedBy: by || "Anonymous",
+    timestamp: new Date().toISOString()
+  };
+
+  const prev = JSON.parse(localStorage.getItem("suggestions") || "[]");
+  prev.push(suggestion);
+  localStorage.setItem("suggestions", JSON.stringify(prev));
+
+  document.getElementById("suggestForm").reset();
+  document.getElementById("suggestionSuccess").style.display = "block";
+  setTimeout(() => {
+    document.getElementById("suggestionSuccess").style.display = "none";
+  }, 3000);
+});
