@@ -1,5 +1,4 @@
 const seriesData = [
-const seriesData = [
   {
     id: 101,
     title: "Peaky Blinders",
@@ -70,8 +69,7 @@ const seriesData = [
     imdbRating: 8.7,
     image: "images/dark.jpg",
     description: "Four families uncover a time-travel conspiracy that spans generations in a small German town."
-  }
-];
+  },
 {
        title: "Hotel Del Luna",
        platform: "Netflix",
