@@ -122,3 +122,17 @@ document.getElementById("suggestForm").addEventListener("submit", function (e) {
     document.getElementById("suggestionSuccess").style.display = "none";
   }, 3000);
 });
+
+// Load and show suggestion list
+function renderSuggestions() {
+  const list = document.getElementById("suggestionList");
+  const suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
+
+  list.innerHTML = suggestions.map(s => `
+    <li>
+      <strong>${s.title}</strong> (${s.genre}) — suggested by ${s.suggestedBy}
+    </li>
+  `).reverse().join("");
+}
+
+renderSuggestions();
