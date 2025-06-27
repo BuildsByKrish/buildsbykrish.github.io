@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +7,34 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Krish's Watchlist Vault</h1>
+  <header class="hero">
+    <div class="hero-text">
+      <h1>Hi, I’m Krish 👋</h1>
+      <p>It’s my dream to watch over <strong>1,000 series</strong> before I die. I love coding, storytelling, and the sweet thrill of pressing “next episode.” This is my Watchlist Vault — a custom-built hub for everything I binge and believe in.</p>
+    </div>
+  </header>
 
-  <div class="controls">
-    <input id="search" type="text" placeholder="Search by title..." />
+  <section class="controls">
+    <input id="search" type="text" placeholder="Search your shows..." />
     <div id="genreFilters" class="filters"></div>
-  </div>
+  </section>
 
-  <div id="watchlistContainer"></div>
+  <section id="watchlistContainer"></section>
+
+  <section class="suggestion-box">
+    <h2>Suggest Me a Show or Movie 🎥</h2>
+    <form id="suggestForm">
+      <input type="text" id="suggestTitle" placeholder="Title" required />
+      <input type="text" id="suggestGenre" placeholder="Genre" required />
+      <input type="text" id="suggestBy" placeholder="Your name (optional)" />
+      <button type="submit">Submit Suggestion</button>
+    </form>
+    <div id="suggestionSuccess" style="display:none;">Thanks for the suggestion, friend! ✅</div>
+  </section>
+
+  <footer>
+    <p>Designed & built with ☕️ by Krish — <a href="https://github.com/BuildsByKrish" target="_blank">GitHub</a></p>
+  </footer>
 
   <script src="data.js"></script>
   <script src="main.js"></script>
