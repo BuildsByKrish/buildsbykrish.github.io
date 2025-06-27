@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- 🔹 Personal Intro -->
   <header class="hero">
     <div class="hero-text">
       <h1>Hi, I’m Krish 👋</h1>
@@ -14,17 +16,21 @@
     </div>
   </header>
 
+  <!-- 🔹 Suggest CTA Button -->
   <div class="quick-actions">
     <button onclick="scrollToSuggestion()">💌 Suggest a Show</button>
   </div>
 
+  <!-- 🔹 Search + Genre Filters -->
   <section class="controls">
     <input id="search" type="text" placeholder="Search your shows..." />
     <div id="genreFilters" class="filters"></div>
   </section>
 
+  <!-- 🔹 Watchlist Cards -->
   <section id="watchlistContainer"></section>
 
+  <!-- 🔹 Suggestion Box -->
   <section class="suggestion-box">
     <h2>Suggest Me a Show or Movie 🎥</h2>
     <form id="suggestForm">
@@ -35,24 +41,26 @@
     </form>
     <div id="suggestionSuccess" style="display:none;">Thanks for the suggestion, friend! ✅</div>
 
+    <!-- 🔹 View Submitted Suggestions -->
     <div id="suggestionListSection">
       <h3>Suggestions Received</h3>
       <ul id="suggestionList"></ul>
     </div>
   </section>
 
+  <!-- 🔹 Footer -->
   <footer>
     <p>Designed & built with ☕️ by Krish — <a href="https://github.com/BuildsByKrish" target="_blank">GitHub</a></p>
   </footer>
 
+  <!-- 🔹 Scripts -->
   <script src="data.js"></script>
   <script src="main.js"></script>
-
   <script>
-    // Scroll function for Suggest Button
     function scrollToSuggestion() {
       document.querySelector(".suggestion-box").scrollIntoView({ behavior: "smooth" });
     }
   </script>
+
 </body>
 </html>
