@@ -2,55 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Krish’s Watchlist Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krish's Watchlist Vault</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- 🔹 Hero Intro Spotlight -->
-  <section class="intro-spotlight">
-    <h1>🎬 Krish's Watchlist Vault</h1>
-    <p>I’m Krish — developer by day, binge curator by night. My mission: to discover and catalog over <strong>1,000 legendary shows</strong>. Welcome to my cinematic sanctuary.</p>
+  <!-- 🎬 Glass Hero Intro -->
+  <section class="intro-glass">
+    <h1>🎞️ KRISH’S WATCHLIST VAULT</h1>
+    <p>Curated tales. Dark twists. Global obsessions.<br/> Step into my personal vault of 1000+ must-watch series.</p>
   </section>
 
-  <!-- 🔸 Button to Launch Poster Watchlist -->
-  <div class="quick-actions" style="text-align:center; margin: 30px 0;">
-    <a href="watchlist.html">
-      <button>🎞️ View My Watchlist</button>
-    </a>
+  <!-- 🎯 Launch Watchlist -->
+  <div class="launch-grid">
+    <a href="watchlist.html"><button class="primary-btn">🎬 View Full Watchlist</button></a>
   </div>
 
-  <!-- 🔹 Suggestion Box with Admin Panel -->
+  <!-- ✉️ Suggestion Section -->
   <section class="suggestion-box">
-    <h2>Suggest Me a Show or Movie 🎥</h2>
+    <h2>🎥 Suggest Me a Show</h2>
     <form id="suggestForm">
       <input type="text" id="suggestTitle" placeholder="Title" required />
       <input type="text" id="suggestGenre" placeholder="Genre" required />
       <input type="text" id="suggestBy" placeholder="Your name (optional)" />
-      <button type="submit">Submit Suggestion</button>
+      <button type="submit">Submit</button>
     </form>
-    <div id="suggestionSuccess" style="display:none;">Thanks for the suggestion, friend! ✅</div>
+    <div id="suggestionSuccess" style="display:none;">✅ Thanks for your suggestion!</div>
 
-    <div style="text-align:center; margin-top:20px;">
-      <input type="password" id="adminCode" placeholder="Enter creator code" />
-      <button onclick="checkAdmin()">🔓 Unlock Suggestions</button>
+    <!-- 🔐 Admin Access -->
+    <div class="admin-access">
+      <input type="password" id="adminCode" placeholder="Enter Creator Code" />
+      <button onclick="checkAdmin()">Unlock</button>
     </div>
 
-    <div id="creatorPanel" style="display:none; margin-top:30px;">
-      <h3>Suggestions Received</h3>
+    <!-- 🔓 Hidden Panel -->
+    <div id="creatorPanel" style="display:none;">
+      <h3>📜 Suggestions Received</h3>
       <ul id="suggestionList"></ul>
-      <button onclick="exportSuggestions()">⬇️ Export Suggestions (JSON)</button>
-      <button onclick="exportCSV()">📄 Export Suggestions (CSV)</button>
+      <button onclick="exportSuggestions()">⬇️ Export JSON</button>
+      <button onclick="exportCSV()">📄 Export CSV</button>
     </div>
   </section>
 
   <!-- 🔻 Footer -->
   <footer>
-    <p>Designed & built with ☕️ by Krish — <a href="https://github.com/BuildsByKrish" target="_blank">GitHub</a></p>
+    <p>Built & curated by Krish — <a href="https://github.com/BuildsByKrish" target="_blank">GitHub</a></p>
   </footer>
 
-  <!-- 🔹 Scripts -->
+  <!-- Scripts -->
   <script src="data.js"></script>
   <script src="main.js"></script>
 </body>
