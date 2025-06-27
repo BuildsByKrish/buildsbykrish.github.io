@@ -8,9 +8,20 @@
 </head>
 <body>
 
-  <!-- 🎬 Poster Wall Layout -->
+  <section class="top-picks">
+    <h2>🔥 Krish's Top Picks</h2>
+    <div id="topPicksGrid" class="poster-grid"></div>
+  </section>
+
   <section class="poster-wall">
-    <h2>🎬 My Watchlist</h2>
+    <div class="watchlist-controls">
+      <select id="genreFilter">
+        <option value="All">🎭 All Genres</option>
+      </select>
+      <input type="text" id="searchInput" placeholder="🔍 Search by title..." />
+    </div>
+
+    <h2>🎬 The Vault</h2>
     <div id="posterGrid" class="poster-grid"></div>
   </section>
 
