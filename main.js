@@ -163,3 +163,37 @@ function exportCSV() {
   a.click();
   URL.revokeObjectURL(url);
 }
+
+function exportSuggestions() {
+  const data = localStorage.getItem("suggestions") || "[]";
+  const blob = new Blob([data], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "suggestions.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function exportCSV() {
+  const suggestions = JSON.parse(localStorage.getItem("suggestions") || "[]");
+  if (!suggestions.length) {
+    alert("No suggestions to export!");
+    return;
+  }
+
+  const header = "Title,Genre,Suggested By,Timestamp\n";
+  const rows = suggestions.map(s =>
+    `"${s.title}","${s.genre}","${s.suggestedBy}","${s.timestamp}"`
+  ).join("\n");
+
+  const blob = new Blob([header + rows], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "suggestions.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
