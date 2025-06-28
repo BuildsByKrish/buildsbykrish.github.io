@@ -198,7 +198,7 @@ const seriesData = [
     platform: "Amazon Prime",
     runtime: 47,
     episodes: 19
-  }
+  },
   {
     title: "Criminal Justice",
     genres: ["Crime", "Drama", "Courtroom"],
@@ -311,7 +311,7 @@ const seriesData = [
     runtime: 47,
     episodes: 62
   },
-  {
+{
     title: "King the Land",
     genres: ["Romance", "Comedy"],
     rating: 4,
@@ -398,9 +398,7 @@ const seriesData = [
     platform: "Netflix",
     runtime: 80,
     episodes: 20
-  }
-);
-seriesData.push(
+  },
   {
     title: "Lawless Lawyer",
     genres: ["Legal", "Action", "Drama"],
@@ -585,7 +583,7 @@ seriesData.push(
     runtime: 75,
     episodes: 16
   },
-  {
+{
     title: "Miss Hammurabi",
     genres: ["Legal", "Drama"],
     rating: 4,
@@ -793,7 +791,7 @@ seriesData.push(
     runtime: 60,
     episodes: 20
   },
-  {
+{
     title: "Destined With You",
     genres: ["Fantasy", "Romance", "Mystery"],
     rating: 4,
@@ -1016,6 +1014,5 @@ seriesData.push(
     platform: "Netflix",
     runtime: 55,
     episodes: 36
-  }
-
+  },
 ];
