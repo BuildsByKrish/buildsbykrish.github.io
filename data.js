@@ -199,7 +199,6 @@ const seriesData = [
     runtime: 47,
     episodes: 19
   }
-seriesData.push(
   {
     title: "Criminal Justice",
     genres: ["Crime", "Drama", "Courtroom"],
@@ -601,9 +600,7 @@ seriesData.push(
     platform: "Viki",
     runtime: 60,
     episodes: 16
-  }
-);
-seriesData.push(
+  },
   {
     title: "Boys Over Flowers",
     genres: ["Romance", "Drama", "Comedy"],
@@ -803,9 +800,7 @@ seriesData.push(
     platform: "Netflix",
     runtime: 65,
     episodes: 16
-  }
-);
-seriesData.push(
+  },
   {
     title: "Better Call Saul",
     genres: ["Crime", "Drama"],
@@ -1022,5 +1017,5 @@ seriesData.push(
     runtime: 55,
     episodes: 36
   }
-);
+
 ];
