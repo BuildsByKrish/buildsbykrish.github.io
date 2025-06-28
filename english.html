@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>English Shows</title>
+  <title>🎥 English Series</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <header>
-    <h1>🇺🇸 English Shows</h1>
+    <h1>🎥 English Series</h1>
     <button class="main-btn" onclick="goBack()">🔙 Back to Collections</button>
   </header>
 
@@ -17,15 +18,29 @@
 
   <script src="data.js"></script>
   <script>
-    const englishOnly = seriesData.filter(s => s.language === "English");
-    const grid = document.getElementById("englishGrid");
-    grid.innerHTML = englishOnly
-      .map(s => `<div class="poster-tile"><h3>${s.title}</h3></div>`)
-      .join("");
+    function createTile(show) {
+      const genres = (show.genres || []).map(g => `<span class="tag">${g}</span>`).join("");
+      return `
+        <div class="poster-tile">
+          <div class="poster-info">
+            <h3>${show.title}</h3>
+            <p>⭐ ${show.rating || "?"} • ${show.runtime || "?"} min • ${show.episodes || "?"} ep</p>
+            <div class="tags">
+              ${genres}
+              <span class="tag">${show.platform || "Unknown"}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    const englishShows = seriesData.filter(s => s.language === "English");
+    document.getElementById("englishGrid").innerHTML = englishShows.map(createTile).join("");
 
     function goBack() {
       window.location.href = "collections.html";
     }
   </script>
+
 </body>
 </html>
