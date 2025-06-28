@@ -288,3 +288,6 @@ footer a {
   text-transform: uppercase;
   letter-spacing: 0.4px;
 }
+.poster-tile img {
+  display: none !important;
+}
