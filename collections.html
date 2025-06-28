@@ -3,47 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Collections</title>
+  <title>Krish Recommendations</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
-    <h1>My Collections</h1>
-    <button class="main-btn" onclick="goBack()">🔙 Back to Vault</button>
+    <h1>📚 Krish Recommendations</h1>
+    <button class="main-btn" onclick="goBack()">🏠 Back to Home</button>
   </header>
 
   <main>
     <section>
-      <h2>🌟 My Recommendations</h2>
+      <h2>🌟 GOATed Series</h2>
       <div id="recommendedGrid" class="grid"></div>
     </section>
 
     <section>
-      <h2>🇺🇸 English Shows</h2>
-      <div id="englishGrid" class="grid"></div>
+      <h2><a href="english.html" class="section-link">🎥 English Series</a></h2>
     </section>
 
     <section>
-      <h2>🇮🇳 Hindi Series</h2>
-      <div id="hindiGrid" class="grid"></div>
+      <h2><a href="hindi.html" class="section-link">🎭 Hindi Series</a></h2>
     </section>
 
     <section>
-      <h2>🇰🇷 Korean Dramas</h2>
-      <div id="koreanGrid" class="grid"></div>
+      <h2><a href="korean.html" class="section-link">💖 Korean Dramas</a></h2>
     </section>
 
     <section>
-      <h2>🇨🇳 Chinese Dramas</h2>
-      <div id="chineseGrid" class="grid"></div>
+      <h2><a href="chinese.html" class="section-link">🧚‍♀️ Chinese Dramas</a></h2>
     </section>
   </main>
 
-  <!-- Scripts (order matters) -->
+  <!-- Scripts -->
   <script src="data.js"></script>
   <script src="recommendations.js"></script>
-  <script src="collections.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    function createMiniTile(show) {
+      return `
+        <div class="poster-tile">
+          <div class="poster-info">
+            <h3>${show.title}</h3>
+            <p>⭐ ${show.rating || "?"} • ${show.runtime || "?"} min • ${show.episodes || "?"} ep</p>
+            <div class="tags">
+              ${(show.genres || []).map(g => `<span class="tag">${g}</span>`).join("")}
+              <span class="tag">${show.platform || "Unknown"}</span>
+              ${show.hindiDubbed ? '<span class="tag">🇮🇳 Hindi Dubbed</span>' : ""}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    const grid = document.getElementById("recommendedGrid");
+    if (typeof seriesData !== "undefined" && typeof recommendedEnglishSeries !== "undefined") {
+      const combined = recommendedEnglishSeries.map(entry => {
+        const match = seriesData.find(s => s.title === entry.title);
+        return match ? { ...match, hindiDubbed: entry.hindiDubbed } : { title: entry.title, hindiDubbed: entry.hindiDubbed };
+      });
+      grid.innerHTML = combined.map(createMiniTile).join("");
+    } else {
+      grid.innerHTML = "<p>Loading recommendations...</p>";
+    }
+  </script>
 
 </body>
 </html>
