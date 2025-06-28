@@ -1,75 +1,38 @@
-const posterGrid = document.getElementById("posterGrid");
-const topPicksGrid = document.getElementById("topPicksGrid");
-const watchedSet = new Set(JSON.parse(localStorage.getItem("watchedShows") || "[]"));
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Watchlist | Krish’s Vault</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-const topPickTitles = [
-  "Peaky Blinders",
-  "Game of Thrones",
-  "Breaking Bad",
-  "When Life Gives You Tangerine",
-  "You",
-  "Lucifer"
-];
+  <!-- 🔥 Top Picks Section -->
+  <section class="top-picks">
+    <h2>🔥 Krish's Top Picks</h2>
+    <div id="topPicksGrid" class="poster-grid"></div>
+  </section>
 
-function saveWatched() {
-  localStorage.setItem("watchedShows", JSON.stringify(Array.from(watchedSet)));
-}
-
-function createPosterTile(show, index, isTop = false) {
-  const isWatched = watchedSet.has(show.title);
-  const genres = show.genres?.join(", ") || "Unspecified";
-  const stars = "⭐".repeat(show.rating || 0);
-  const number = index + 1;
-
-  return `
-    <div class="poster-tile text-only ${isWatched ? "watched" : ""} ${isTop ? "top-pick" : ""}" onclick="toggleWatched('${show.title}')">
-      <div class="poster-info">
-        <h3>${number}. ${show.title}</h3>
-        <p>${genres}</p>
-        <p>${stars}</p>
-        <small>${show.platform || "Unknown Platform"}</small>
-      </div>
+  <!-- 📚 Main Watchlist -->
+  <section class="poster-wall">
+    <div class="watchlist-controls">
+      <select id="genreFilter">
+        <option value="All">🎭 All Genres</option>
+      </select>
+      <input type="text" id="searchInput" placeholder="🔍 Search by title..." />
     </div>
-  `;
-}
 
-function toggleWatched(title) {
-  watchedSet.has(title) ? watchedSet.delete(title) : watchedSet.add(title);
-  saveWatched();
-  renderAll();
-}
+    <h2>🎬 The Vault</h2>
+    <div id="posterGrid" class="poster-grid"></div>
+  </section>
 
-function populateGenreMenu() {
-  const genres = new Set();
-  seriesData.forEach(s => s.genres?.forEach(g => genres.add(g)));
-  const select = document.getElementById("genreFilter");
-  genres.forEach(g => {
-    const opt = document.createElement("option");
-    opt.value = g;
-    opt.textContent = g;
-    select.appendChild(opt);
-  });
-}
+  <footer>
+    <p><a href="index.html">← Back to Home</a></p>
+  </footer>
 
-function renderAll() {
-  const filter = document.getElementById("genreFilter").value;
-  const search = document.getElementById("searchInput").value.toLowerCase();
-
-  const top = seriesData.filter(s => topPickTitles.includes(s.title));
-  topPicksGrid.innerHTML = top.map((s, i) => createPosterTile(s, i, true)).join("");
-
-  const filtered = seriesData.filter(s => {
-    const notTop = !topPickTitles.includes(s.title);
-    const matchesGenre = filter === "All" || s.genres?.includes(filter);
-    const matchesSearch = s.title.toLowerCase().includes(search);
-    return notTop && matchesGenre && matchesSearch;
-  });
-
-  posterGrid.innerHTML = filtered.map((s, i) => createPosterTile(s, i)).join("");
-}
-
-document.getElementById("genreFilter").addEventListener("change", renderAll);
-document.getElementById("searchInput").addEventListener("input", renderAll);
-
-populateGenreMenu();
-renderAll();
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="watchlist.js"></script>
+</body>
+</html>
