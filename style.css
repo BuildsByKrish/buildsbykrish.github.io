@@ -209,3 +209,47 @@ footer a {
   color: #00e0ff;
   text-decoration: none;
 }
+
+.poster-tile.text-only {
+  width: 260px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px 14px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  line-height: 1.5;
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.poster-tile.text-only:hover {
+  transform: translateY(-3px);
+}
+
+.poster-tile.text-only .poster-info {
+  position: static;
+  background: none;
+  padding: 0;
+}
+
+.poster-tile.text-only h3 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.poster-tile.top-pick {
+  border: 2px solid #00e0ff;
+  box-shadow: 0 0 12px #00e0ff, 0 0 18px #00e0ff inset;
+}
+
+.poster-tile.watched::after {
+  content: "✓ Watched";
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  background: #00e676;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.7rem;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
