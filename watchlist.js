@@ -88,3 +88,6 @@ document.getElementById("searchInput").addEventListener("input", renderAll);
 
 populateGenreMenu();
 renderAll();
+function goToMain() {
+  window.location.href = "index.html"; // Or replace with your actual homepage filename
+}
