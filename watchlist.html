@@ -3,32 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Krish's Watchlist Vault</title>
+  <title>Watchlist Vault</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" />
 </head>
 <body>
+
   <header>
-    <h1>🎬 Watchlist Vault</h1>
-    <input type="text" id="searchInput" placeholder="Search titles..." />
-    <select id="genreFilter">
-      <option value="All">All Genres</option>
-    </select>
+    <h1>Watchlist Vault</h1>
+    <div class="controls">
+      <select id="genreFilter">
+        <option value="All">All</option>
+      </select>
+      <input id="searchInput" type="text" placeholder="Search series..." />
+    </div>
   </header>
 
-  <section>
-    <h2>🔥 Top Picks</h2>
-    <div id="topPicksGrid" class="poster-grid"></div>
-  </section>
-
-  <section>
-    <h2>📺 All Series</h2>
-    <div id="posterGrid" class="poster-grid"></div>
-  </section>
-
-  <footer>
-    <p>Built by <a href="https://github.com/BuildsByKrish" target="_blank">Krish</a> 🚀</p>
-  </footer>
+  <main>
+    <section>
+      <h2>Top Picks</h2>
+      <div id="topPicksGrid" class="grid"></div>
+    </section>
+    <section>
+      <h2>All Series</h2>
+      <div id="posterGrid" class="grid"></div>
+    </section>
+  </main>
 
   <script src="data.js"></script>
   <script src="watchlist.js"></script>
