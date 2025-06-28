@@ -291,3 +291,79 @@ footer a {
 .poster-tile img {
   display: none !important;
 }
+/* Gridline Background */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  padding: 20px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent,
+    transparent 259px,
+    rgba(0, 224, 255, 0.05) 260px
+  ),
+  repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 159px,
+    rgba(0, 224, 255, 0.05) 160px
+  );
+  border-top: 1px solid rgba(0, 224, 255, 0.2);
+}
+
+/* Text-only Tile Styling */
+.poster-tile.text-only {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px 14px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  line-height: 1.5;
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+  position: relative;
+  text-align: left;
+}
+
+.poster-tile.text-only:hover {
+  transform: translateY(-3px);
+}
+
+.poster-info h3 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+  color: #00e0ff;
+}
+
+.poster-tile.watched::after {
+  content: "✓ Watched";
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: #00e676;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.7rem;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.poster-tile.top-pick {
+  border: 2px solid #00e0ff;
+  box-shadow: 0 0 12px #00e0ff, 0 0 20px #00e0ff inset;
+}
+
+/* Neon Tags */
+.tag {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  margin: 2px 4px 4px 0;
+  border-radius: 4px;
+  background: rgba(0, 224, 255, 0.15);
+  border: 1px solid #00e0ff;
+  color: #00e0ff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
