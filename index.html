@@ -2,57 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Krish's Watchlist Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Watchlist Home</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #000000, #121212);
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      color: #00ffe7;
+      text-shadow: 0 0 12px #00ffe7;
+    }
+
+    .nav-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      background: linear-gradient(90deg, #00ffe7, #00ccff);
+      color: #000;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 0 15px #00ffe7;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .nav-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px #00ffff;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- 🎬 Glass Hero Intro -->
-  <section class="intro-glass">
-    <h1>🎞️ KRISH’S WATCHLIST VAULT</h1>
-    <p>Curated tales. Dark twists. Global obsessions.<br/> Step into my personal vault of 1000+ must-watch series.</p>
-  </section>
+  <h1>🎬 Welcome to Watchlist Vault</h1>
 
-  <!-- 🎯 Launch Watchlist -->
-  <div class="launch-grid">
-    <a href="watchlist.html"><button class="primary-btn">🎬 View Full Watchlist</button></a>
+  <div class="nav-grid">
+    <a href="watchlist.html" class="nav-btn">📺 Watchlist Vault</a>
+    <a href="collections.html" class="nav-btn">📚 My Collections</a>
   </div>
 
-  <!-- ✉️ Suggestion Section -->
-  <section class="suggestion-box">
-    <h2>🎥 Suggest Me a Show</h2>
-    <form id="suggestForm">
-      <input type="text" id="suggestTitle" placeholder="Title" required />
-      <input type="text" id="suggestGenre" placeholder="Genre" required />
-      <input type="text" id="suggestBy" placeholder="Your name (optional)" />
-      <button type="submit">Submit</button>
-    </form>
-    <div id="suggestionSuccess" style="display:none;">✅ Thanks for your suggestion!</div>
+  <footer>Curated by Krish ✨</footer>
 
-    <!-- 🔐 Admin Access -->
-    <div class="admin-access">
-      <input type="password" id="adminCode" placeholder="Enter Creator Code" />
-      <button onclick="checkAdmin()">Unlock</button>
-    </div>
-
-    <!-- 🔓 Hidden Panel -->
-    <div id="creatorPanel" style="display:none;">
-      <h3>📜 Suggestions Received</h3>
-      <ul id="suggestionList"></ul>
-      <button onclick="exportSuggestions()">⬇️ Export JSON</button>
-      <button onclick="exportCSV()">📄 Export CSV</button>
-    </div>
-  </section>
-
-  <!-- 🔻 Footer -->
-  <footer>
-    <p>Built & curated by Krish — <a href="https://github.com/BuildsByKrish" target="_blank">GitHub</a></p>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="data.js"></script>
-  <script src="main.js"></script>
 </body>
 </html>
