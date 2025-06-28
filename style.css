@@ -253,3 +253,38 @@ footer a {
   padding: 3px 6px;
   border-radius: 4px;
 }
+/* Gridline Glow Styling */
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  padding: 20px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent,
+    transparent 259px,
+    rgba(0, 224, 255, 0.05) 260px
+  ),
+  repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 159px,
+    rgba(0, 224, 255, 0.05) 160px
+  );
+  border-top: 1px solid rgba(0, 224, 255, 0.2);
+}
+
+/* Neon Genre & Platform Tags */
+.tag {
+  display: inline-block;
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  margin: 2px 4px 4px 0;
+  border-radius: 4px;
+  background: rgba(0, 224, 255, 0.15);
+  border: 1px solid #00e0ff;
+  color: #00e0ff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
