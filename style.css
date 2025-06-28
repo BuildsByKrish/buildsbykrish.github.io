@@ -8,11 +8,127 @@ body {
 header {
   padding: 1.5rem;
   background-color: #181818;
+  text-align: centerbody {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+}
+
+header {
+  padding: 1.5rem;
+  background-color: #181818;
   text-align: center;
   border-bottom: 2px solid #2a2a2a;
 }
 
 h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #00ffe7;
+}
+
+h2 {
+  color: #ffffff;
+}
+
+.controls {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+select, input[type="text"] {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #00ffe7;
+  border-radius: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.poster-tile {
+  background-color: #1b1b1b;
+  border: 1px solid #2e2e2e;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.3s;
+}
+
+.poster-tile:hover {
+  transform: translateY(-5px);
+  border-color: #00ffe7;
+}
+
+.poster-tile.watched {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.poster-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  color: #ffffff;
+}
+
+.poster-info p {
+  margin: 0.2rem 0 0.6rem;
+  font-size: 0.9rem;
+  color: #aaaaaa;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background-color: #242424;
+  color: #00ffe7;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: 1px solid #00ffe7;
+  transition: background 0.3s;
+}
+
+.tag:hover {
+  background-color: #00ffe7;
+  color: #000;
+}
+
+.top-pick {
+  border: 2px solid gold;
+  box-shadow: 0 0 10px gold;
+}
+
+.main-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  background: linear-gradient(90deg, #ffd700, #ffcc00);
+  border: none;
+  border-radius: 6px;
+  color: #000;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.main-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #ffd700;
+}
   margin: 0;
   font-size: 2rem;
   color: #00ffe7;
