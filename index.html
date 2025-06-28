@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Watchlist Home</title>
+  <title>Watchlist Vault</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -15,29 +15,39 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      overflow: hidden;
+      padding: 2rem;
+      min-height: 100vh;
+      text-align: center;
     }
 
     h1 {
       font-size: 3rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       color: #00ffe7;
       text-shadow: 0 0 12px #00ffe7;
     }
 
+    .intro {
+      max-width: 700px;
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
     .nav-grid {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
       justify-content: center;
+      margin-bottom: 2rem;
     }
 
     .nav-btn {
       background: linear-gradient(90deg, #00ffe7, #00ccff);
       color: #000;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       padding: 1rem 2rem;
       border-radius: 10px;
       font-weight: bold;
@@ -51,8 +61,7 @@
     }
 
     footer {
-      position: absolute;
-      bottom: 1rem;
+      margin-top: auto;
       font-size: 0.9rem;
       color: #666;
     }
@@ -62,9 +71,16 @@
 
   <h1>🎬 Welcome to Watchlist Vault</h1>
 
+  <div class="intro">
+    <p>Hey, I’m <strong>Krish</strong> — and I’ve set myself a dream: to watch <strong>100+ legendary series</strong> from around the world. This site is my personal vault to track, recommend, and celebrate the best shows out there.</p>
+    <p>Want to explore what I’ve watched? Head to <strong>My Watchlist Vault</strong>. Looking for something new by genre or language? Dive into <strong>My Recommendations</strong> — you’ll find English, Hindi, Korean, and Chinese series curated with care.</p>
+    <p>And soon, you’ll even be able to <em>submit your own recommendations</em> for me to check out!</p>
+  </div>
+
   <div class="nav-grid">
-    <a href="watchlist.html" class="nav-btn">📺 Watchlist Vault</a>
-    <a href="collections.html" class="nav-btn">📚 My Collections</a>
+    <a href="watchlist.html" class="nav-btn">📺 My Watchlist Vault</a>
+    <a href="collections.html" class="nav-btn">📚 My Recommendations</a>
+    <a href="submit.html" class="nav-btn">📝 Submit Recommendations</a> <!-- Placeholder for future -->
   </div>
 
   <footer>Curated by Krish ✨</footer>
