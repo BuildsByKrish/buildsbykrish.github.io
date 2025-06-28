@@ -1,973 +1,1026 @@
 const seriesData = [
   {
-    id: 101,
-    title: "Peaky Blinders",
-    genres: ["Drama", "Crime", "Historical"],
-    rating: 5,                          // 1–5 scale
-    favorite: true,                    // ❤️ status
-    platform: "Netflix",
-    country: "UK",
-    language: "English",
-    releaseYear: 2013,
-    runtime: 55,                       // average episode length in minutes
-    episodes: 30,                      // total episodes
-    bingeFactor: 9,                    // 1–10: how bingeable it is
-    rewatchable: true,                // would you watch again?
-    mood: "Intense",                   // vibe: “Chill”, “Dark”, etc.
-    themes: ["Power", "Brotherhood", "Ambition"],
-    tags: ["Stylish", "Dark", "Gritty", "Guns"],
-    vibeColor: "#bb2222",             // to style card glow/border
-    posterStyle: "vintage",           // could drive custom styling
-    imdbRating: 8.8,
-    image: "images/peaky.jpg",
-    description: "A notorious gang rises in post-WWI Birmingham, led by the ruthless Tommy Shelby."
-  },
-
-  {
-    id: 102,
-    title: "College Romance",
-    genres: ["Drama", "Romance"],
-    rating: 2,
-    favorite: false,
-    platform: "SonyLIV",
-    country: "India",
-    language: "Hindi",
-    releaseYear: 2018,
-    runtime: 25,
-    episodes: 20,
-    bingeFactor: 3,
-    rewatchable: false,
-    mood: "Light",
-    themes: ["Youth", "Relationships"],
-    tags: ["Campus", "Cheesy", "Casual"],
-    vibeColor: "#f48fb1",
-    posterStyle: "minimal",
-    imdbRating: 5.4,
-    image: "images/collegeromance.jpg",
-    description: "Three best friends navigating love, friendships, and awkward moments on campus."
-  },
-
-  {
-    id: 103,
-    title: "Dark",
-    genres: ["Sci-Fi", "Thriller", "Mystery"],
-    rating: 5,
-    favorite: true,
-    platform: "Netflix",
-    country: "Germany",
-    language: "German",
-    releaseYear: 2017,
-    runtime: 60,
-    episodes: 26,
-    bingeFactor: 10,
-    rewatchable: true,
-    mood: "Mind-Bending",
-    themes: ["Time Travel", "Family", "Free Will"],
-    tags: ["Complex", "Cinematic", "Puzzling", "Timeline Chaos"],
-    vibeColor: "#333399",
-    posterStyle: "dark",
-    imdbRating: 8.7,
-    image: "images/dark.jpg",
-    description: "Four families uncover a time-travel conspiracy that spans generations in a small German town."
-  },
-{
-       title: "Hotel Del Luna",
-       platform: "Netflix",
-       genres: ["Fantasy", "Romance", "Drama"],
-       country: "South Korea",
-       description: "An elite hotel for ghosts run by a moody, centuries-old spirit and a human manager with a mysterious past.",
-       image: "images/hotelldelluna.jpg",
-       rating: 5
-     },
-     {
-       title: "Queen of Tears",
-       platform: "tvN / Netflix",
-       genres: ["Romance", "Drama"],
-       country: "South Korea",
-       description: "A chaebol heiress and her estranged husband navigate heartbreak, healing, and high-stakes family drama.",
-       image: "images/queenoftears.jpg",
-       rating: 5
-     },
-  {
     title: "Farzi",
-    platform: "Prime Video",
-    genres: ["Thriller", "Crime"],
-    country: "India",
-    description: "A gifted artist finds himself pulled into the underground world of fake currency, testing the limits of his morals, skill, and survival instincts.",
-    rating: 4
+    genres: ["Crime", "Thriller"],
+    rating: 4,
+    platform: "Amazon Prime",
+    runtime: 53,
+    episodes: 8
   },
   {
     title: "Wednesday",
+    genres: ["Mystery", "Fantasy", "Drama"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Supernatural", "Mystery", "Comedy"],
-    country: "USA",
-    description: "Wednesday Addams investigates a string of murders at Nevermore Academy while mastering her emerging psychic abilities.",
-    rating: 4
+    runtime: 49,
+    episodes: 8
   },
   {
     title: "Stranger Things",
+    genres: ["Horror", "Mystery", "Sci-Fi"],
+    rating: 5,
     platform: "Netflix",
-    genres: ["Supernatural", "Thriller", "Sci-Fi"],
-    country: "USA",
-    description: "In a small town in the 1980s, kids uncover terrifying government secrets and face supernatural creatures after a boy goes missing.",
-    rating: 5
+    runtime: 51,
+    episodes: 34
   },
   {
-    title: "Rudra: The Edge of Darkness",
+    title: "Rudra",
+    genres: ["Crime", "Psychological"],
+    rating: 4,
     platform: "Disney+ Hotstar",
-    genres: ["Crime", "Drama", "Psychological"],
-    country: "India",
-    description: "A brilliant but emotionally haunted cop solves twisted cases while battling his own dark demons in this psychological crime drama.",
-    rating: 4
+    runtime: 47,
+    episodes: 6
   },
   {
     title: "Scam 1992",
+    genres: ["Biography", "Crime", "Drama"],
+    rating: 5,
     platform: "SonyLIV",
-    genres: ["Drama", "Crime", "Biography"],
-    country: "India",
-    description: "The rise and fall of Harshad Mehta, the stockbroker behind one of India's biggest financial scams. Based on true events.",
-    rating: 5
+    runtime: 55,
+    episodes: 10
   },
   {
     title: "The Family Man",
-    platform: "Prime Video",
     genres: ["Action", "Drama", "Thriller"],
-    country: "India",
-    description: "A middle-class man secretly works as an intelligence officer, balancing high-stakes missions with the chaos of family life.",
-    rating: 5
+    rating: 5,
+    platform: "Amazon Prime",
+    runtime: 42,
+    episodes: 19
   },
   {
     title: "The Boys",
-    platform: "Prime Video",
-    genres: ["Superhero", "Action", "Satire"],
-    country: "USA",
-    description: "In a world where superheroes are corrupt celebrities, a group of vigilantes rises to expose and confront them head-on.",
-    rating: 5
+    genres: ["Action", "Drama", "Superhero"],
+    rating: 5,
+    platform: "Amazon Prime",
+    runtime: 60,
+    episodes: 24
   },
   {
     title: "All of Us Are Dead",
+    genres: ["Horror", "Thriller", "Zombie"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Horror", "Zombie", "Thriller"],
-    country: "South Korea",
-    description: "A deadly virus outbreak traps students inside a high school as they fight to survive against a growing zombie horde.",
-    rating: 4
+    runtime: 58,
+    episodes: 12
   },
   {
     title: "The Last of Us",
-    platform: "HBO Max",
-    genres: ["Drama", "Horror", "Post-Apocalyptic"],
-    country: "USA",
-    description: "A hardened survivor escorts a teenage girl across a post-apocalyptic America plagued by infected creatures and human cruelty.",
-    rating: 5
+    genres: ["Drama", "Adventure", "Apocalypse"],
+    rating: 5,
+    platform: "HBO",
+    runtime: 52,
+    episodes: 9
   },
   {
     title: "Lockwood & Co.",
+    genres: ["Fantasy", "Adventure"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Supernatural", "Mystery", "Adventure"],
-    country: "UK",
-    description: "Three teens operate a ghost-hunting agency in a haunted London where spirits roam freely and danger is everywhere.",
-    rating: 4
+    runtime: 47,
+    episodes: 8
   },
   {
     title: "Dahmer – Monster: The Jeffrey Dahmer Story",
+    genres: ["Crime", "Drama", "Horror"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Crime", "Drama", "True Crime"],
-    country: "USA",
-    description: "A haunting dramatization of Jeffrey Dahmer’s crimes, exploring how he evaded justice and the impact on his victims' families.",
-    rating: 4
+    runtime: 52,
+    episodes: 10
   },
   {
     title: "Ozark",
-    platform: "Netflix",
     genres: ["Crime", "Drama", "Thriller"],
-    country: "USA",
-    description: "A financial advisor relocates his family to launder money for a drug cartel, plunging them into a dangerous criminal web.",
-    rating: 5
+    rating: 5,
+    platform: "Netflix",
+    runtime: 60,
+    episodes: 44
   },
   {
     title: "Taaza Khabar",
+    genres: ["Drama", "Fantasy"],
+    rating: 3,
     platform: "Disney+ Hotstar",
-    genres: ["Fantasy", "Drama", "Comedy"],
-    country: "India",
-    description: "A sanitation worker's life changes overnight when he discovers he can see the future through a magical newspaper.",
-    rating: 3
+    runtime: 33,
+    episodes: 6
   },
   {
     title: "1899",
+    genres: ["Mystery", "Drama", "Sci-Fi"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Mystery", "Thriller", "Sci-Fi"],
-    country: "Germany",
-    description: "Passengers aboard a migrant ship face eerie events and shifting realities as they uncover secrets on a journey to America.",
-    rating: 4
+    runtime: 50,
+    episodes: 8
   },
   {
     title: "Money Heist",
+    genres: ["Action", "Thriller", "Crime"],
+    rating: 5,
     platform: "Netflix",
-    genres: ["Crime", "Thriller", "Drama"],
-    country: "Spain",
-    description: "A mastermind known as The Professor leads a group of criminals in a daring, high-stakes heist on the Royal Mint of Spain.",
-    rating: 5
+    runtime: 45,
+    episodes: 41
   },
   {
     title: "Cobra Kai",
+    genres: ["Action", "Drama", "Sports"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Action", "Drama", "Martial Arts"],
-    country: "USA",
-    description: "Decades after the original Karate Kid films, old rivalries reignite as Johnny and Daniel reopen their dojos and clash again.",
-    rating: 4
+    runtime: 34,
+    episodes: 50
   },
   {
     title: "The Watcher",
+    genres: ["Mystery", "Drama", "Thriller"],
+    rating: 3,
     platform: "Netflix",
-    genres: ["Mystery", "Thriller", "Horror"],
-    country: "USA",
-    description: "A couple’s dream home becomes a nightmare when they receive terrifying letters from a mysterious stalker called 'The Watcher'.",
-    rating: 3
+    runtime: 48,
+    episodes: 7
   },
   {
     title: "Loki",
+    genres: ["Superhero", "Fantasy", "Drama"],
+    rating: 4,
     platform: "Disney+",
-    genres: ["Superhero", "Fantasy", "Adventure"],
-    country: "USA",
-    description: "After escaping with the Tesseract, Loki faces off against the Time Variance Authority in a multiverse-hopping journey.",
-    rating: 4
+    runtime: 51,
+    episodes: 12
   },
   {
     title: "Moon Knight",
+    genres: ["Superhero", "Mystery", "Adventure"],
+    rating: 4,
     platform: "Disney+",
-    genres: ["Superhero", "Psychological", "Action"],
-    country: "USA",
-    description: "Marc Spector, a man with dissociative identity disorder, becomes the avatar of an Egyptian moon god and battles inner demons.",
-    rating: 4
+    runtime: 45,
+    episodes: 6
   },
   {
     title: "Alice in Borderland",
+    genres: ["Sci-Fi", "Thriller", "Mystery"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Thriller", "Sci-Fi", "Survival"],
-    country: "Japan",
-    description: "Trapped in a deserted Tokyo, a group of people must compete in deadly games to survive and uncover the truth behind their world.",
-    rating: 5
+    runtime: 51,
+    episodes: 16
   },
   {
     title: "Asur",
+    genres: ["Thriller", "Mystery", "Crime"],
+    rating: 5,
     platform: "JioCinema",
-    genres: ["Thriller", "Mythology", "Crime"],
-    country: "India",
-    description: "A former forensic expert is drawn into a cat-and-mouse game with a deadly serial killer who believes he's a god in disguise.",
-    rating: 4
+    runtime: 40,
+    episodes: 16
   },
   {
     title: "College Romance",
+    genres: ["Romance", "Comedy", "Drama"],
+    rating: 3,
     platform: "SonyLIV",
-    genres: ["Comedy", "Romance", "Drama"],
-    country: "India",
-    description: "Three quirky best friends navigate college life, love triangles, and hilarious situations in this relatable youth comedy.",
-    rating: 3
+    runtime: 28,
+    episodes: 15
   },
   {
     title: "Mismatched",
+    genres: ["Romance", "Drama", "Coming-of-age"],
+    rating: 3,
     platform: "Netflix",
-    genres: ["Romance", "Drama", "Coming-of-Age"],
-    country: "India",
-    description: "Two opposites clash at a tech boot camp and unexpectedly fall into a tangled story of love, ambition, and self-discovery.",
-    rating: 3
+    runtime: 35,
+    episodes: 12
   },
   {
-    title: "Yeh Kaali Kaali Ankhen",
+    title: "Yeh Kaali Kaali Ankhein",
+    genres: ["Romantic", "Thriller", "Drama"],
+    rating: 3,
     platform: "Netflix",
-    genres: ["Thriller", "Romance", "Drama"],
-    country: "India",
-    description: "A man’s peaceful life spirals into chaos when the obsessive daughter of a powerful politician declares her love for him.",
-    rating: 4
+    runtime: 36,
+    episodes: 8
   },
   {
     title: "Mirzapur",
-    platform: "Prime Video",
-    genres: ["Crime", "Drama", "Action"],
-    country: "India",
-    description: "Two brothers find themselves caught in the violent power struggle of Mirzapur’s crime-ridden mafia world.",
-    rating: 5
-  },
+    genres: ["Action", "Crime", "Drama"],
+    rating: 5,
+    platform: "Amazon Prime",
+    runtime: 47,
+    episodes: 19
+  }
+seriesData.push(
   {
     title: "Criminal Justice",
+    genres: ["Crime", "Drama", "Courtroom"],
+    rating: 4,
     platform: "Disney+ Hotstar",
-    genres: ["Crime", "Legal", "Drama"],
-    country: "India",
-    description: "A cab driver’s life turns upside down when he becomes the prime suspect in a murder case, leading to a gripping courtroom battle and a deep dive into the criminal justice system.",
-    rating: 4
+    runtime: 45,
+    episodes: 16
   },
   {
     title: "Lucifer",
+    genres: ["Crime", "Fantasy", "Supernatural"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Supernatural", "Crime", "Drama"],
-    country: "USA",
-    description: "The Devil abandons Hell to run a nightclub in Los Angeles and ends up helping the LAPD solve crimes while exploring his own redemption.",
-    rating: 5
+    runtime: 48,
+    episodes: 93
   },
   {
     title: "Saas Bahu Aur Flamingo",
+    genres: ["Action", "Drama", "Dark Comedy"],
+    rating: 4,
     platform: "Disney+ Hotstar",
-    genres: ["Crime", "Drama", "Action"],
-    country: "India",
-    description: "A fierce matriarch runs a covert drug cartel with her daughters-in-law, challenging stereotypes in a gritty tale of power, loyalty, and rebellion.",
-    rating: 4
+    runtime: 50,
+    episodes: 8
   },
   {
     title: "Dahaad",
-    platform: "Prime Video",
     genres: ["Crime", "Thriller", "Mystery"],
-    country: "India",
-    description: "A female cop investigates a series of mysterious deaths in a small town, uncovering chilling secrets and a possible serial killer.",
-    rating: 4
+    rating: 4,
+    platform: "Amazon Prime",
+    runtime: 50,
+    episodes: 8
   },
   {
     title: "Panchayat",
-    platform: "Prime Video",
-    genres: ["Comedy", "Drama", "Slice of Life"],
-    country: "India",
-    description: "An engineering graduate reluctantly takes a government job in a remote village, navigating quirky locals and unexpected challenges.",
-    rating: 5
+    genres: ["Comedy", "Drama"],
+    rating: 5,
+    platform: "Amazon Prime",
+    runtime: 35,
+    episodes: 16
   },
   {
-    title: "Taj: Divided by Blood",
+    title: "Taj",
+    genres: ["Historical", "Drama"],
+    rating: 4,
     platform: "ZEE5",
-    genres: ["Historical", "Drama", "Political"],
-    country: "India",
-    description: "Set in the Mughal era, this epic saga explores the power struggles and betrayals within Emperor Akbar’s court as his sons vie for the throne.",
-    rating: 4
+    runtime: 48,
+    episodes: 10
   },
   {
     title: "The Night Manager",
+    genres: ["Spy", "Drama", "Action"],
+    rating: 4,
     platform: "Disney+ Hotstar",
-    genres: ["Thriller", "Espionage", "Drama"],
-    country: "India",
-    description: "A hotel night manager is recruited to infiltrate an arms dealer’s inner circle, leading to a high-stakes game of deception and danger.",
-    rating: 4
+    runtime: 45,
+    episodes: 7
   },
   {
     title: "Lucky Guy",
-    platform: "Amazon miniTV",
-    genres: ["Fantasy", "Comedy", "Drama"],
-    country: "India",
-    description: "A young man’s life changes when he receives a magical locket that brings him extraordinary luck—but at a cost he never expected.",
-    rating: 4
+    genres: ["Romance", "Drama", "Fantasy"],
+    rating: 3,
+    platform: "Viki",
+    runtime: 25,
+    episodes: 6
   },
   {
     title: "Business Proposal",
+    genres: ["Romance", "Comedy", "K-Drama"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Romance", "Comedy", "Drama"],
-    country: "South Korea",
-    description: "A woman goes on a blind date in place of her friend, only to discover her date is her company’s CEO—leading to a hilarious and heartwarming office romance.",
-    rating: 4
+    runtime: 62,
+    episodes: 12
   },
   {
     title: "One Dollar Lawyer",
-    platform: "Disney+ Hotstar",
-    genres: ["Legal", "Comedy", "Drama"],
-    country: "South Korea",
-    description: "A quirky lawyer with unmatched skills charges only one dollar for his services, fighting for justice against the rich and powerful.",
-    rating: 4
+    genres: ["Legal", "Comedy"],
+    rating: 4,
+    platform: "Disney+",
+    runtime: 60,
+    episodes: 12
   },
-{
-    title: "Crash Landing on You",
+  {
+    title: "Gen V",
+    genres: ["Superhero", "Action", "Sci-Fi"],
+    rating: 4,
+    platform: "Amazon Prime",
+    runtime: 51,
+    episodes: 8
+  },
+  {
+    title: "November Story",
+    genres: ["Thriller", "Drama", "Mystery"],
+    rating: 3,
+    platform: "Disney+ Hotstar",
+    runtime: 42,
+    episodes: 7
+  },
+  {
+    title: "Dhindora",
+    genres: ["Comedy", "Drama"],
+    rating: 4,
+    platform: "YouTube",
+    runtime: 22,
+    episodes: 8
+  },
+  {
+    title: "Breaking Bad",
+    genres: ["Crime", "Drama", "Thriller"],
+    rating: 5,
     platform: "Netflix",
-    genres: ["Romance", "Drama", "Comedy"],
-    country: "South Korea",
-    description: "A South Korean heiress crash-lands in North Korea and falls for a soldier, leading to a heart-tugging story of love across borders.",
-    rating: 5
+    runtime: 47,
+    episodes: 62
+  },
+  {
+    title: "King the Land",
+    genres: ["Romance", "Comedy"],
+    rating: 4,
+    platform: "Netflix",
+    runtime: 65,
+    episodes: 16
+  },
+  {
+    title: "The King: Eternal Monarch",
+    genres: ["Fantasy", "Romance", "Mystery"],
+    rating: 4,
+    platform: "Netflix",
+    runtime: 72,
+    episodes: 16
+  },
+  {
+    title: "Goblin: The Lonely and Great God",
+    genres: ["Fantasy", "Romance"],
+    rating: 5,
+    platform: "Viki",
+    runtime: 78,
+    episodes: 16
+  },
+  {
+    title: "What's Wrong With Secretary Kim",
+    genres: ["Romance", "Comedy"],
+    rating: 4,
+    platform: "Viki",
+    runtime: 60,
+    episodes: 16
+  },
+  {
+    title: "Behind Your Touch",
+    genres: ["Mystery", "Drama", "Comedy"],
+    rating: 4,
+    platform: "Netflix",
+    runtime: 70,
+    episodes: 16
+  },
+  {
+    title: "Crazy Love",
+    genres: ["Romance", "Comedy", "Thriller"],
+    rating: 3,
+    platform: "Disney+",
+    runtime: 60,
+    episodes: 16
+  },
+  {
+    title: "Crash Landing on You",
+    genres: ["Romance", "Drama", "Military"],
+    rating: 5,
+    platform: "Netflix",
+    runtime: 84,
+    episodes: 16
   },
   {
     title: "Flower of Evil",
+    genres: ["Thriller", "Crime", "Romance"],
+    rating: 5,
     platform: "Netflix",
-    genres: ["Thriller", "Crime", "Melodrama"],
-    country: "South Korea",
-    description: "A detective wife investigates a serial murder case, only to suspect her own loving husband — a man hiding a dark secret.",
-    rating: 5
+    runtime: 65,
+    episodes: 16
   },
   {
     title: "It's Okay to Not Be Okay",
+    genres: ["Romance", "Drama", "Mental Health"],
+    rating: 5,
     platform: "Netflix",
-    genres: ["Romance", "Psychological", "Drama"],
-    country: "South Korea",
-    description: "A children’s book author with antisocial traits and a caretaker for his autistic brother confront past traumas and find healing through love.",
-    rating: 5
+    runtime: 75,
+    episodes: 16
   },
   {
     title: "The King of Pigs",
-    platform: "TVING",
-    genres: ["Thriller", "Mystery", "Drama"],
-    country: "South Korea",
-    description: "Two former victims of school bullying are drawn together again when a series of murders seemingly linked to their past resurfaces.",
-    rating: 4
+    genres: ["Thriller", "Crime", "Psychological"],
+    rating: 4,
+    platform: "Viki",
+    runtime: 40,
+    episodes: 12
   },
   {
     title: "Vincenzo",
+    genres: ["Crime", "Comedy", "Drama"],
+    rating: 5,
     platform: "Netflix",
-    genres: ["Crime", "Dark Comedy", "Legal Drama"],
-    country: "South Korea",
-    description: "A Korean-Italian mafia consigliere returns to Seoul, using his underworld tactics to fight a corrupt conglomerate with a quirky legal team.",
-    rating: 5
+    runtime: 80,
+    episodes: 20
+  }
+);
+seriesData.push(
+  {
+    title: "Lawless Lawyer",
+    genres: ["Legal", "Action", "Drama"],
+    rating: 4,
+    platform: "Netflix",
+    runtime: 65,
+    episodes: 16
+  },
+  {
+    title: "Strong Girl Nam-soon",
+    genres: ["Superhero", "Comedy", "Drama"],
+    rating: 4,
+    platform: "Netflix",
+    runtime: 55,
+    episodes: 16
+  },
+  {
+    title: "Legal High",
+    genres: ["Comedy", "Courtroom"],
+    rating: 3,
+    platform: "Viki",
+    runtime: 60,
+    episodes: 16
+  },
+  {
+    title: "Big Mouth",
+    genres: ["Thriller", "Crime", "Mystery"],
+    rating: 4,
+    platform: "Disney+",
+    runtime: 62,
+    episodes: 16
   },
   {
     title: "Extraordinary Attorney Woo",
+    genres: ["Legal", "Drama"],
+    rating: 5,
     platform: "Netflix",
-    genres: ["Legal", "Drama", "Slice of Life"],
-    country: "South Korea",
-    description: "A brilliant attorney with autism spectrum disorder tackles complex cases and social prejudices in a law firm where every victory is earned.",
-    rating: 5
+    runtime: 70,
+    episodes: 16
   },
-
-{
+  {
     title: "A Time Called You",
-    platform: "Netflix",
     genres: ["Romance", "Mystery", "Time Travel"],
-    country: "South Korea",
-    description: "After her boyfriend's death, a woman magically travels back in time and wakes up in another body, uncovering secrets that blur time and identity.",
-    rating: 4
+    rating: 4,
+    platform: "Netflix",
+    runtime: 60,
+    episodes: 12
   },
   {
     title: "She Was Pretty",
+    genres: ["Romance", "Comedy"],
+    rating: 4,
     platform: "Viki",
-    genres: ["Romantic Comedy", "Drama"],
-    country: "South Korea",
-    description: "An unattractive woman reconnects with her childhood crush who has grown into a handsome man, but pretends not to be herself when they meet again.",
-    rating: 4
+    runtime: 58,
+    episodes: 16
   },
   {
     title: "Kill It",
+    genres: ["Thriller", "Action", "Mystery"],
+    rating: 4,
     platform: "Viki",
-    genres: ["Action", "Crime", "Thriller"],
-    country: "South Korea",
-    description: "A veterinarian with a secret past as a contract killer gets entangled with a detective investigating his past crimes — not knowing their lives are already connected.",
-    rating: 4
+    runtime: 60,
+    episodes: 12
   },
   {
     title: "The Secret Life of My Secretary",
+    genres: ["Romance", "Comedy"],
+    rating: 3,
     platform: "Viki",
-    genres: ["Romantic Comedy", "Office", "Drama"],
-    country: "South Korea",
-    description: "After an accident leaves him unable to recognize faces, a cold-hearted boss relies on his secretary, leading to unexpected romance and hilarious misunderstandings.",
-    rating: 4
+    runtime: 60,
+    episodes: 16
   },
   {
     title: "I Am Not a Robot",
+    genres: ["Romance", "Sci-Fi", "Comedy"],
+    rating: 4,
     platform: "Viki",
-    genres: ["Sci-Fi", "Romance", "Comedy"],
-    country: "South Korea",
-    description: "A man allergic to human touch falls for a woman pretending to be an AI robot in this quirky and emotional love story.",
-    rating: 4
+    runtime: 35,
+    episodes: 16
   },
   {
     title: "Where Stars Land",
-    platform: "Disney+ Hotstar",
     genres: ["Romance", "Drama"],
-    country: "South Korea",
-    description: "Incheon Airport employees navigate love, ambition, and hidden identities as they work behind the scenes of the busy terminal.",
-    rating: 3
+    rating: 3,
+    platform: "Viki",
+    runtime: 65,
+    episodes: 16
   },
   {
     title: "Descendants of the Sun",
-    platform: "Netflix",
-    genres: ["Military", "Romance", "Action"],
-    country: "South Korea",
-    description: "A soldier and a doctor fall in love amid perilous missions and disasters in a war-torn area. Duty, honor, and love collide in this global sensation.",
-    rating: 5
+    genres: ["Action", "Romance", "Military"],
+    rating: 5,
+    platform: "Viki",
+    runtime: 60,
+    episodes: 16
   },
   {
     title: "Playful Kiss",
-    platform: "Netflix",
-    genres: ["Romantic Comedy", "Youth"],
-    country: "South Korea",
-    description: "A cheerful high school girl falls for her cold and brilliant classmate, chasing him with infectious optimism and clumsy charm.",
-    rating: 3
+    genres: ["Romance", "Comedy", "School"],
+    rating: 3,
+    platform: "Viki",
+    runtime: 50,
+    episodes: 16
   },
   {
     title: "Emergency Couple",
-    platform: "Netflix",
-    genres: ["Romantic Comedy", "Medical", "Drama"],
-    country: "South Korea",
-    description: "A divorced couple is forced to work together during their medical internship, rekindling sparks in chaotic hospital corridors.",
-    rating: 4
+    genres: ["Romance", "Medical", "Comedy"],
+    rating: 3,
+    platform: "Viki",
+    runtime: 60,
+    episodes: 21
   },
   {
     title: "Familiar Wife",
-    platform: "Netflix",
-    genres: ["Fantasy", "Romance", "Drama"],
-    country: "South Korea",
-    description: "A man dissatisfied with his life makes a supernatural choice that gives him a second chance — but the new reality comes with emotional consequences.",
-    rating: 4
+    genres: ["Romance", "Fantasy", "Time Travel"],
+    rating: 4,
+    platform: "Viki",
+    runtime: 60,
+    episodes: 16
   },
-{
+  {
     title: "Dhootha",
-    platform: "Prime Video",
-    genres: ["Supernatural", "Thriller", "Mystery"],
-    country: "India",
-    description: "A journalist discovers a strange pattern behind mysterious deaths foretold by possessed newspapers, plunging him into dark secrets and danger.",
-    rating: 4
+    genres: ["Thriller", "Supernatural"],
+    rating: 4,
+    platform: "Amazon Prime",
+    runtime: 45,
+    episodes: 8
   },
   {
     title: "Berlin",
+    genres: ["Action", "Thriller"],
+    rating: 3,
     platform: "Netflix",
-    genres: ["Crime", "Thriller", "Heist"],
-    country: "Spain",
-    description: "A spin-off of Money Heist following the flamboyant thief Berlin as he assembles a new team for an ambitious jewelry heist in Paris.",
-    rating: 4
+    runtime: 45,
+    episodes: 8
   },
   {
     title: "Killer Soup",
+    genres: ["Dark Comedy", "Thriller"],
+    rating: 3,
     platform: "Netflix",
-    genres: ["Dark Comedy", "Crime", "Drama"],
-    country: "India",
-    description: "A failing cook and her lover attempt to replace her husband with his doppelgänger, leading to a darkly funny descent into chaos and deception.",
-    rating: 4
+    runtime: 52,
+    episodes: 8
   },
   {
-    title: "The K2",
-    platform: "Netflix",
+    title: "K2",
     genres: ["Action", "Political", "Romance"],
-    country: "South Korea",
-    description: "A former mercenary becomes a bodyguard to a presidential candidate’s secret daughter, uncovering corruption, revenge, and forbidden love.",
-    rating: 4
+    rating: 4,
+    platform: "Viki",
+    runtime: 60,
+    episodes: 16
   },
   {
     title: "Bring It On, Ghost",
+    genres: ["Comedy", "Horror", "Romance"],
+    rating: 3,
     platform: "Viki",
-    genres: ["Supernatural", "Romance", "Comedy"],
-    country: "South Korea",
-    description: "A high schooler who can see ghosts teams up with a sassy spirit to exorcise the undead — and maybe catch feelings along the way.",
-    rating: 4
+    runtime: 45,
+    episodes: 16
   },
   {
     title: "Catch the Ghost",
-    platform: "Netflix",
-    genres: ["Crime", "Detective", "Romance"],
-    country: "South Korea",
-    description: "A rookie detective searching for her missing sister joins the subway police squad and butts heads with her by-the-book partner.",
-    rating: 4
+    genres: ["Mystery", "Crime", "Comedy"],
+    rating: 3,
+    platform: "Viki",
+    runtime: 58,
+    episodes: 16
   },
   {
     title: "Kill Me, Heal Me",
+    genres: ["Psychological", "Romance", "Comedy"],
+    rating: 5,
     platform: "Viki",
-    genres: ["Psychological", "Romance", "Drama"],
-    country: "South Korea",
-    description: "A wealthy man with dissociative identity disorder and a psychiatric resident confront trauma and healing in this emotionally intense ride.",
-    rating: 5
+    runtime: 58,
+    episodes: 20
   },
- {
+  {
+    title: "Hotel Del Luna",
+    genres: ["Fantasy", "Romance", "Mystery"],
+    rating: 5,
+    platform: "Netflix",
+    runtime: 75,
+    episodes: 16
+  },
+  {
     title: "Miss Hammurabi",
+    genres: ["Legal", "Drama"],
+    rating: 4,
     platform: "Viki",
-    genres: ["Legal", "Drama", "Slice of Life"],
-    country: "South Korea",
-    description: "A passionate rookie judge teams up with a principled senior judge as they tackle tough civil cases and the gray zones of justice.",
-    rating: 4
+    runtime: 60,
+    episodes: 16
   },
   {
     title: "Angel's Last Mission: Love",
+    genres: ["Fantasy", "Romance", "Comedy"],
+    rating: 4,
     platform: "Viki",
-    genres: ["Fantasy", "Romance", "Drama"],
-    country: "South Korea",
-    description: "A carefree angel must help a blind ballerina find love — but ends up falling for her himself, risking everything to save her heart.",
-    rating: 4
-  },
+    runtime: 60,
+    episodes: 16
+  }
+);
+seriesData.push(
   {
     title: "Boys Over Flowers",
-    platform: "Netflix",
-    genres: ["Romance", "Comedy", "School"],
-    country: "South Korea",
-    description: "A working-class girl attends an elite school and clashes with — and captures the heart of — the leader of a wealthy group of boys.",
-    rating: 4
+    genres: ["Romance", "Drama", "Comedy"],
+    rating: 4,
+    platform: "Viki",
+    runtime: 70,
+    episodes: 25
   },
   {
     title: "Sweet Sweet",
-    platform: "YouTube",
-    genres: ["Romantic Comedy", "Youth"],
-    country: "China",
-    description: "A socially awkward programmer and a cheerful designer unexpectedly become neighbors and slowly fall for each other through their quirky bond.",
-    rating: 3
+    genres: ["Romance", "Comedy", "C-Drama"],
+    rating: 3,
+    platform: "iQIYI",
+    runtime: 42,
+    episodes: 24
   },
   {
     title: "Fight for My Way",
-    platform: "Netflix",
     genres: ["Romance", "Drama", "Slice of Life"],
-    country: "South Korea",
-    description: "Two long-time friends chase their dreams and struggle through life’s setbacks, discovering love and purpose along the way.",
-    rating: 5
+    rating: 4,
+    platform: "Viki",
+    runtime: 60,
+    episodes: 16
   },
   {
     title: "Who Are You: School 2015",
+    genres: ["School", "Drama", "Mystery"],
+    rating: 4,
     platform: "Viki",
-    genres: ["Mystery", "Romance", "School"],
-    country: "South Korea",
-    description: "A bullied student wakes up with no memory and is mistaken for her missing twin, sparking a mystery of identity, trauma, and healing.",
-    rating: 4
+    runtime: 60,
+    episodes: 16
   },
   {
     title: "Reacher",
-    platform: "Prime Video",
-    genres: ["Action", "Thriller", "Crime"],
-    country: "USA",
-    description: "Ex-military investigator Jack Reacher drifts into a small town and uncovers a deadly conspiracy behind a string of murders.",
-    rating: 4
+    genres: ["Action", "Thriller", "Drama"],
+    rating: 4,
+    platform: "Amazon Prime",
+    runtime: 50,
+    episodes: 8
   },
   {
     title: "Game of Thrones",
-    platform: "HBO Max",
     genres: ["Fantasy", "Drama", "Action"],
-    country: "USA/UK",
-    description: "Noble families vie for the Iron Throne in this epic saga of betrayal, war, and power across the mythical land of Westeros.",
-    rating: 5
+    rating: 5,
+    platform: "HBO",
+    runtime: 57,
+    episodes: 73
   },
   {
     title: "The Queen's Gambit",
+    genres: ["Drama", "Sports"],
+    rating: 5,
     platform: "Netflix",
-    genres: ["Drama", "Sports", "Coming-of-Age"],
-    country: "USA",
-    description: "An orphaned chess prodigy rises to global fame while battling addiction, trauma, and the pressure to stay on top.",
-    rating: 5
+    runtime: 55,
+    episodes: 7
   },
   {
     title: "A Simple Murder",
+    genres: ["Dark Comedy", "Crime"],
+    rating: 3,
     platform: "SonyLIV",
-    genres: ["Dark Comedy", "Crime", "Thriller"],
-    country: "India",
-    description: "A struggling man stumbles into a web of hitmen, mistaken identities, and hilarious chaos when a contract killing goes wrong.",
-    rating: 4
+    runtime: 35,
+    episodes: 7
   },
   {
     title: "The Wind Blows",
-    platform: "Viki",
     genres: ["Romance", "Melodrama"],
-    country: "South Korea",
-    description: "A man divorces his wife without telling her he has Alzheimer’s, hoping to spare her the pain — but fate brings them back together.",
-    rating: 4
+    rating: 4,
+    platform: "Netflix",
+    runtime: 62,
+    episodes: 16
   },
   {
     title: "Pill",
-    platform: "Netflix",
-    genres: ["Sci-Fi", "Thriller", "Drama"],
-    country: "India",
-    description: "An experimental drug that eliminates sleep spreads through society — exposing secrets, disrupting relationships, and unraveling lives.",
-    rating: 3
+    genres: ["Sci-Fi", "Thriller", "Short"],
+    rating: 3,
+    platform: "YouTube",
+    runtime: 15,
+    episodes: 1
   },
   {
-    title: "Gyaarah Gyaaraah",
-    platform: "Zee5",
-    genres: ["Sci-Fi", "Mystery", "Thriller"],
-    country: "India",
-    description: "Three interconnected timelines in 1990, 2001, and 2023 converge through a chilling murder mystery that defies the boundaries of time.",
-    rating: 4
+    title: "Gyaarah Gyaraah",
+    genres: ["Mystery", "Adventure", "Time Travel"],
+    rating: 4,
+    platform: "ZEE5",
+    runtime: 45,
+    episodes: 8
   },
   {
     title: "Tokyo Swindlers",
+    genres: ["Crime", "Drama"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Crime", "Heist", "Drama"],
-    country: "Japan",
-    description: "A group of con artists poses as real estate agents in Tokyo, scamming the rich and uncovering a deeper corporate conspiracy.",
-    rating: 4
+    runtime: 50,
+    episodes: 6
   },
   {
-    title: "Tribhuwan Mishra: C.A. Topper",
-    platform: "Netflix",
+    title: "Tribhuwan Mishra: C.A Topper",
     genres: ["Comedy", "Drama"],
-    country: "India",
-    description: "A small-town chartered accountant gets caught between audits, ambition, and awkward family chaos in this satirical slice of life.",
-    rating: 3
+    rating: 4,
+    platform: "Amazon miniTV",
+    runtime: 30,
+    episodes: 8
   },
   {
     title: "Legend of the Blue Sea",
-    platform: "Viki",
     genres: ["Fantasy", "Romance", "Comedy"],
-    country: "South Korea",
-    description: "A mermaid from the Joseon era ends up in modern-day Seoul, where she reunites with her reincarnated love — a con artist.",
-    rating: 4
+    rating: 4,
+    platform: "Viki",
+    runtime: 60,
+    episodes: 20
   },
   {
     title: "My Demon",
+    genres: ["Fantasy", "Romance"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Fantasy", "Romance", "Mystery"],
-    country: "South Korea",
-    description: "A wealthy heiress and a demon who’s lost his powers form a contract marriage that blurs the lines between love and supernatural danger.",
-    rating: 4
+    runtime: 65,
+    episodes: 16
   },
- 
-{
-    title: "Love to Hate You",
+  {
+    title: "Queen of Tears",
+    genres: ["Romance", "Drama"],
+    rating: 5,
     platform: "Netflix",
+    runtime: 70,
+    episodes: 16
+  },
+  {
+    title: "Love to Hate You",
     genres: ["Romantic Comedy"],
-    country: "South Korea",
-    description: "A lawyer and a top actor—both cynical about love—are forced into a fake relationship that turns all too real.",
-    rating: 4
+    rating: 3,
+    platform: "Netflix",
+    runtime: 45,
+    episodes: 10
   },
   {
     title: "No Gain No Love",
-    platform: "Netflix",
-    genres: ["Romance", "Drama"],
-    country: "India",
-    description: "Two strangers meet through a boxing club and dance studio, clashing fiercely before discovering unexpected feelings.",
-    rating: 4
+    genres: ["Comedy", "Romance"],
+    rating: 3,
+    platform: "YouTube",
+    runtime: 12,
+    episodes: 12
   },
   {
-    title: "Law Cafe",
+    title: "The Law Cafe",
+    genres: ["Romance", "Legal", "Comedy"],
+    rating: 3,
     platform: "Viki",
-    genres: ["Legal", "Romance", "Drama"],
-    country: "South Korea",
-    description: "A former prosecutor and a café owner team up to solve clients’ casual legal troubles — and maybe find love themselves.",
-    rating: 4
+    runtime: 65,
+    episodes: 16
   },
   {
     title: "Mere Humsafar",
-    platform: "ZEE5",
     genres: ["Romance", "Drama"],
-    country: "Pakistan",
-    description: "A young woman’s world is upended when she’s forced to marry her former employer, leading to betrayal, heartbreak, and growth.",
-    rating: 4
+    rating: 4,
+    platform: "ARY Digital",
+    runtime: 38,
+    episodes: 40
   },
   {
     title: "Kabhi Main Kabhi Tum",
-    platform: "ZEE5",
-    genres: ["Romance", "Drama"],
-    country: "India",
-    description: "Two siblings swap identities in college to escape pressure — only to fall for each other’s close friends in hilarious fashion.",
-    rating: 3
+    genres: ["Romance", "Drama", "Short"],
+    rating: 3,
+    platform: "YouTube",
+    runtime: 18,
+    episodes: 1
   },
   {
     title: "Brinda",
-    platform: "YouTube",
-    genres: ["Drama"],
-    country: "India",
-    description: "A family reunited by fate uncovers buried secrets when a chance encounter reignites past conflicts and hidden bonds.",
-    rating: 3
+    genres: ["Thriller", "Crime"],
+    rating: 3,
+    platform: "SonyLIV",
+    runtime: 45,
+    episodes: 8
   },
   {
-    title: "Pataal Lok",
-    platform: "Prime Video",
-    genres: ["Crime", "Thriller", "Drama"],
-    country: "India",
-    description: "A disillusioned cop investigates a high-profile assassination attempt, plunging him into the dark underworld of patriarchy and politics.",
-    rating: 5
+    title: "Paatal Lok",
+    genres: ["Crime", "Thriller", "Mystery"],
+    rating: 4,
+    platform: "Amazon Prime",
+    runtime: 47,
+    episodes: 9
   },
   {
     title: "Pinocchio",
+    genres: ["Romance", "Drama"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Romance", "Drama", "Fantasy"],
-    country: "South Korea",
-    description: "A reporter who can’t lie and a TV anchor searching for the truth form an unlikely partnership to expose media corruption.",
-    rating: 4
+    runtime: 60,
+    episodes: 20
   },
   {
     title: "Destined With You",
+    genres: ["Fantasy", "Romance", "Mystery"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Romance", "Fantasy", "Drama"],
-    country: "South Korea",
-    description: "Two strangers discover they’re bound by a mythical talisman that draws them together through past lives and fate.",
-    rating: 4
-  },
+    runtime: 65,
+    episodes: 16
+  }
+);
+seriesData.push(
   {
     title: "Better Call Saul",
+    genres: ["Crime", "Drama"],
+    rating: 5,
     platform: "Netflix",
-    genres: ["Legal", "Crime", "Drama"],
-    country: "USA",
-    description: "The transformation of small-time lawyer Jimmy McGill into morally challenged attorney Saul Goodman — darkly funny and tragic.",
-    rating: 5
+    runtime: 47,
+    episodes: 63
   },
   {
     title: "Mr. & Mrs. Smith",
-    platform: "Prime Video",
-    genres: ["Action", "Comedy", "Drama"],
-    country: "USA",
-    description: "A high-profile assassin couple goes cold on each other after new missions pit them on opposite sides.",
-    rating: 4
+    genres: ["Action", "Romance", "Drama"],
+    rating: 4,
+    platform: "Amazon Prime",
+    runtime: 45,
+    episodes: 8
   },
   {
-    title: "Xo, Kitty",
+    title: "XO, Kitty",
+    genres: ["Romantic Comedy", "Drama"],
+    rating: 3,
     platform: "Netflix",
-    genres: ["Romance", "Comedy", "Drama"],
-    country: "USA/Korea",
-    description: "Kitty Song-Covey navigates love and friendship at boarding school, facing all the awkwardness of teenage crushes.",
-    rating: 3
+    runtime: 33,
+    episodes: 10
   },
   {
     title: "Bank Under Siege",
-    platform: "Netflix",
-    genres: ["Action", "Thriller"],
-    country: "USA",
-    description: "A small‐town bank is overtaken by a ruthless gang on Christmas Eve, forcing employees and customers into a fight for survival.",
-    rating: 3
+    genres: ["Thriller", "Heist"],
+    rating: 4,
+    platform: "ZEE5",
+    runtime: 50,
+    episodes: 8
   },
   {
     title: "Black Warrant",
-    platform: "Netflix",
-    genres: ["True Crime", "Documentary"],
-    country: "USA",
-    description: "An inside look at the high‐stakes world of federal executions through the eyes of the people who carry them out.",
-    rating: 3
+    genres: ["Action", "Political"],
+    rating: 3,
+    platform: "YouTube",
+    runtime: 30,
+    episodes: 3
   },
   {
     title: "Day of the Jackal",
-    platform: "Netflix",
-    genres: ["Thriller", "Drama"],
-    country: "UK/France",
-    description: "A master assassin is hired to kill the French president, while detectives race against time to thwart his meticulous plan.",
-    rating: 4
+    genres: ["Thriller", "Crime"],
+    rating: 4,
+    platform: "Sky Atlantic",
+    runtime: 45,
+    episodes: 6
   },
   {
     title: "Lupin",
+    genres: ["Crime", "Thriller"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Crime", "Thriller", "Drama"],
-    country: "France",
-    description: "A gentleman thief inspired by Arsène Lupin sets out to avenge his father for a crime committed by a wealthy family.",
-    rating: 5
+    runtime: 45,
+    episodes: 17
   },
   {
-    title: "The Gentleman",
+    title: "The Gentlemen",
+    genres: ["Crime", "Drama", "Action"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Crime", "Comedy"],
-    country: "UK",
-    description: "An American expat tries to sell his highly profitable marijuana empire — and discovers that everyone wants a piece.",
-    rating: 4
+    runtime: 45,
+    episodes: 8
   },
   {
     title: "Marry My Husband",
-    platform: "Netflix",
-    genres: ["Romance", "Fantasy", "Drama"],
-    country: "South Korea",
-    description: "A woman wakes up in her fiancé’s former fiancée’s body and races to prevent betrayal and reclaim her happily ever after.",
-    rating: 4
+    genres: ["Romance", "Drama"],
+    rating: 4,
+    platform: "Prime Video",
+    runtime: 60,
+    episodes: 16
   },
   {
     title: "The Night Agent",
+    genres: ["Thriller", "Spy"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Thriller", "Action", "Drama"],
-    country: "USA",
-    description: "An FBI agent answers a call that drags him into a deadly conspiracy reaching the highest levels of government.",
-    rating: 4
+    runtime: 48,
+    episodes: 10
   },
   {
-    title: "The Trauma Code: Heroes On Call",
-    platform: "Netflix",
-    genres: ["Documentary", "Medical"],
-    country: "USA",
-    description: "An inside look at emergency responders tackling mass‐casualty events and the toll it takes on their lives.",
-    rating: 3
+    title: "The Trauma Code: Heroes on Call",
+    genres: ["Medical", "Drama"],
+    rating: 3,
+    platform: "MBC",
+    runtime: 60,
+    episodes: 12
   },
   {
-    title: "Lincoln Lawyer",
+    title: "The Lincoln Lawyer",
+    genres: ["Legal", "Thriller"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Legal", "Crime", "Drama"],
-    country: "USA",
-    description: "Defense attorney Mickey Haller runs his practice from the back of his Lincoln — taking on cases that challenge his ethics.",
-    rating: 4
+    runtime: 47,
+    episodes: 20
   },
   {
     title: "Melo Movie",
-    platform: "Netflix",
-    genres: ["Comedy", "Drama"],
-    country: "South Korea",
-    description: "A group of mismatched strangers collaborate on a low‐budget film, discovering laughter and heartbreak behind the camera.",
-    rating: 3
+    genres: ["Romance", "Drama"],
+    rating: 3,
+    platform: "TVING",
+    runtime: 30,
+    episodes: 10
   },
   {
     title: "When Life Gives You Tangerines",
-    platform: "Netflix",
-    genres: ["Romance", "Comedy"],
-    country: "South Korea",
-    description: "Two childhood friends reconnect on a tangerine farm, confronting past wounds and new desires amid the harvest.",
-    rating: 4
+    genres: ["Slice of Life", "Drama"],
+    rating: 4,
+    platform: "IndieVault",
+    runtime: 42,
+    episodes: 8
   },
   {
     title: "Severance",
+    genres: ["Drama", "Sci-Fi", "Thriller"],
+    rating: 5,
     platform: "Apple TV+",
-    genres: ["Sci-Fi", "Thriller", "Drama"],
-    country: "USA",
-    description: "Employees undergo a procedure to sever work memories from personal life — until one begins to question the reality of it all.",
-    rating: 5
+    runtime: 55,
+    episodes: 9
   },
   {
     title: "Start-Up",
+    genres: ["Business", "Drama", "Romance"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Business", "Comedy", "Romance"],
-    country: "South Korea",
-    description: "Aspiring entrepreneurs navigate love, friendship, and fierce competition in the cutthroat world of tech start-ups.",
-    rating: 4
+    runtime: 65,
+    episodes: 16
   },
   {
     title: "A Killer Paradox",
+    genres: ["Thriller", "Mystery"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Crime", "Thriller"],
-    country: "South Korea",
-    description: "A detective races to stop a copycat killer inspired by a notorious serial murderer — but uncovers deeper conspiracies.",
-    rating: 3
+    runtime: 50,
+    episodes: 8
   },
   {
     title: "Juvenile Justice",
+    genres: ["Legal", "Crime", "Drama"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Legal", "Drama"],
-    country: "South Korea",
-    description: "A cold-hearted judge in the juvenile court system confronts her biases as she handles cases of crime, punishment, and redemption.",
-    rating: 4
+    runtime: 60,
+    episodes: 10
   },
   {
     title: "The Heirs",
-    platform: "Netflix",
     genres: ["Romance", "Drama", "School"],
-    country: "South Korea",
-    description: "A privileged high school girl and a tough heir from a rival family clash and fall in love amid teenage power struggles.",
-    rating: 4
+    rating: 4,
+    platform: "Viki",
+    runtime: 60,
+    episodes: 20
   },
   {
-    title: "My ID Is Gangnam Beauty",
+    title: "My ID is Gangnam Beauty",
+    genres: ["Romance", "Drama"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Romance", "Drama", "Slice of Life"],
-    country: "South Korea",
-    description: "After plastic surgery, a shy woman struggles for acceptance on campus and finds an unexpected ally in a mysterious classmate.",
-    rating: 4
+    runtime: 60,
+    episodes: 16
   },
   {
     title: "Suspicious Partner",
+    genres: ["Romance", "Legal", "Comedy"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Romance", "Mystery", "Thriller"],
-    country: "South Korea",
-    description: "A prosecutor and a judicial trainee team up to solve a murder case while navigating budding romance and hidden secrets.",
-    rating: 4
+    runtime: 60,
+    episodes: 20
   },
   {
     title: "The Glory",
+    genres: ["Thriller", "Revenge", "Drama"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Drama", "Revenge"],
-    country: "South Korea",
-    description: "A woman plots elaborate revenge against her high school bullies, sacrificing everything for justice and closure.",
-    rating: 4
+    runtime: 55,
+    episodes: 16
   },
   {
     title: "The Golden Spoon",
-    platform: "Netflix",
-    genres: ["Fantasy", "Drama", "Comedy"],
-    country: "South Korea",
-    description: "A young man from poverty finds a golden spoon that lets him swap lives — but soon discovers the cost of others’ fortunes.",
-    rating: 4
+    genres: ["Drama", "Fantasy"],
+    rating: 4,
+    platform: "Disney+",
+    runtime: 60,
+    episodes: 16
   },
   {
     title: "Gyeongseong Creature",
+    genres: ["Thriller", "Fantasy", "Horror"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Horror", "Thriller"],
-    country: "South Korea",
-    description: "In 1945 Gyeongseong, two friends discover a terrifying creature released in the final days of colonial rule.",
-    rating: 4
+    runtime: 50,
+    episodes: 10
   },
   {
     title: "Sweet Home",
+    genres: ["Horror", "Thriller", "Apocalypse"],
+    rating: 4,
     platform: "Netflix",
-    genres: ["Horror", "Drama"],
-    country: "South Korea",
-    description: "Residents of a shrinking apartment complex fight to survive as humans turn into monsters driven by their darkest desires.",
-    rating: 5
+    runtime: 50,
+    episodes: 18
   },
   {
     title: "Unlock My Boss",
+    genres: ["Fantasy", "Comedy", "Office"],
+    rating: 3,
     platform: "Netflix",
-    genres: ["Fantasy", "Comedy", "Thriller"],
-    country: "South Korea",
-    description: "A tech CEO trapped in his own smartphone enlists a struggling young man to save both his company and his body.",
-    rating: 4
+    runtime: 55,
+    episodes: 12
+  },
+  {
+    title: "Peaky Blinders",
+    genres: ["Crime", "Drama", "Historical"],
+    rating: 5,
+    platform: "Netflix",
+    runtime: 55,
+    episodes: 36
   }
+);
 ];
