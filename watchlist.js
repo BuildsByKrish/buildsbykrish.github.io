@@ -6,9 +6,10 @@ const topPickTitles = [
   "Peaky Blinders",
   "Game of Thrones",
   "Breaking Bad",
-  "When Life Gives You Tangerine",
+  "When Life Gives You Tangerines",
   "You",
-  "Lucifer"
+  "Lucifer",
+  "Squid Game"
 ];
 
 function saveWatched() {
@@ -28,11 +29,16 @@ function createPosterTile(show, index, isTop = false) {
     ? `<span class="tag">${show.platform}</span>`
     : "";
 
+  const runtimeText = show.runtime ? `• ${show.runtime} min` : "";
+  const episodeText = show.episodes
+    ? `• ${show.episodes} ${show.episodes === 1 ? "episode" : "episodes"}`
+    : "";
+
   return `
     <div class="poster-tile text-only ${isWatched ? "watched" : ""} ${isTop ? "top-pick" : ""}" onclick="toggleWatched('${show.title}')">
       <div class="poster-info">
         <h3>${number}. ${show.title}</h3>
-        <p>${stars}</p>
+        <p>${stars} ${runtimeText} ${episodeText}</p>
         <div class="tags">
           ${genreTags}
           ${platformTag}
