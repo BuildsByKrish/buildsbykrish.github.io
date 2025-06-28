@@ -1,4 +1,4 @@
-/* Base Styling */
+/* Layout Base */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -6,182 +6,25 @@ body {
   color: #fff;
 }
 
-/* Hero Intro - Glass Style */
-.intro-glass {
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.3);
-  padding: 60px 30px;
-  margin: 40px auto;
-  max-width: 800px;
-  text-align: center;
-  border-radius: 18px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-  font-family: 'Bebas Neue', cursive;
-}
-
-.intro-glass h1 {
-  font-size: 3rem;
-  letter-spacing: 2px;
-  color: #00e0ff;
-  margin-bottom: 10px;
-}
-
-.intro-glass p {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  font-family: 'Inter', sans-serif;
-}
-
-/* Buttons */
-button, input[type="submit"] {
-  padding: 10px 18px;
-  font-size: 0.95rem;
+h2 {
   font-weight: 600;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.primary-btn {
-  background-color: #00e0ff;
-  color: #000;
-  font-weight: bold;
-}
-
-button:hover {
-  transform: scale(1.04);
-  opacity: 0.92;
-}
-
-/* Launch Grid */
-.launch-grid {
-  text-align: center;
-  margin: 30px 0;
-}
-
-/* Suggestion Box */
-.suggestion-box {
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(5px);
-  padding: 40px 20px;
-  margin: 40px auto;
-  border-radius: 12px;
-  max-width: 700px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.25);
-  text-align: center;
-}
-
-.suggestion-box h2 {
+  letter-spacing: 1px;
   color: #00e0ff;
+  text-align: center;
   margin-bottom: 20px;
 }
 
-.suggestion-box input {
-  padding: 10px;
-  margin: 6px;
-  border-radius: 6px;
-  border: none;
-  width: 200px;
-  text-align: center;
-}
-
-/* Admin Panel */
-.admin-access {
-  margin-top: 20px;
-}
-
-#suggestionList {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
-  max-width: 500px;
-  margin-inline: auto;
-}
-
-#suggestionList li {
-  background: #2a2a2a;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-}
-
-/* Poster Wall + Top Picks */
-.poster-wall,
+/* Top Picks Section */
 .top-picks {
   padding: 40px 20px;
   background: #0d0d0d;
 }
 
-.poster-wall h2,
 .top-picks h2 {
-  color: #00e0ff;
-  text-align: center;
-  margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 
-/* Grid Layout */
-.poster-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* Tile Styling */
-.poster-tile {
-  position: relative;
-  width: 160px;
-  height: 240px;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.poster-tile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.poster-tile:hover {
-  transform: scale(1.05);
-}
-
-.poster-info {
-  position: absolute;
-  bottom: 0;
-  background: rgba(0,0,0,0.75);
-  color: #fff;
-  font-size: 0.8rem;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Watched Ribbon */
-.poster-tile.watched::after {
-  content: "✓ Watched";
-  position: absolute;
-  top: 6px;
-  right: 8px;
-  background: #00e676;
-  color: #000;
-  font-weight: bold;
-  font-size: 0.7rem;
-  padding: 3px 6px;
-  border-radius: 4px;
-}
-
-/* Glowing Top Pick */
-.poster-tile.top-pick {
-  border: 2px solid #00e0ff;
-  box-shadow: 0 0 15px #00e0ff, 0 0 20px #00e0ff inset;
-}
-
-/* Filters */
+/* Watchlist Controls */
 .watchlist-controls {
   text-align: center;
   margin: 30px auto 20px;
@@ -197,63 +40,7 @@ button:hover {
   width: 180px;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-  background: transparent;
-}
-
-footer a {
-  color: #00e0ff;
-  text-decoration: none;
-}
-
-.poster-tile.text-only {
-  width: 260px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 16px 14px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  line-height: 1.5;
-  font-size: 0.9rem;
-  transition: transform 0.3s ease;
-}
-
-.poster-tile.text-only:hover {
-  transform: translateY(-3px);
-}
-
-.poster-tile.text-only .poster-info {
-  position: static;
-  background: none;
-  padding: 0;
-}
-
-.poster-tile.text-only h3 {
-  margin-bottom: 6px;
-  font-size: 1.05rem;
-}
-
-.poster-tile.top-pick {
-  border: 2px solid #00e0ff;
-  box-shadow: 0 0 12px #00e0ff, 0 0 18px #00e0ff inset;
-}
-
-.poster-tile.watched::after {
-  content: "✓ Watched";
-  position: absolute;
-  top: 6px;
-  right: 10px;
-  background: #00e676;
-  color: #000;
-  font-weight: bold;
-  font-size: 0.7rem;
-  padding: 3px 6px;
-  border-radius: 4px;
-}
-/* Gridline Glow Styling */
+/* Poster Grid with Dark Gridlines */
 .poster-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -274,45 +61,7 @@ footer a {
   border-top: 1px solid rgba(0, 224, 255, 0.2);
 }
 
-/* Neon Genre & Platform Tags */
-.tag {
-  display: inline-block;
-  padding: 3px 8px;
-  font-size: 0.7rem;
-  margin: 2px 4px 4px 0;
-  border-radius: 4px;
-  background: rgba(0, 224, 255, 0.15);
-  border: 1px solid #00e0ff;
-  color: #00e0ff;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-}
-.poster-tile img {
-  display: none !important;
-}
-/* Gridline Background */
-.poster-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
-  padding: 20px;
-  background: repeating-linear-gradient(
-    to right,
-    transparent,
-    transparent 259px,
-    rgba(0, 224, 255, 0.05) 260px
-  ),
-  repeating-linear-gradient(
-    to bottom,
-    transparent,
-    transparent 159px,
-    rgba(0, 224, 255, 0.05) 160px
-  );
-  border-top: 1px solid rgba(0, 224, 255, 0.2);
-}
-
-/* Text-only Tile Styling */
+/* Tile: Text-Only Layout */
 .poster-tile.text-only {
   background: rgba(255, 255, 255, 0.05);
   padding: 16px 14px;
@@ -329,12 +78,17 @@ footer a {
   transform: translateY(-3px);
 }
 
+.poster-info {
+  padding: 0;
+}
+
 .poster-info h3 {
   margin-bottom: 6px;
   font-size: 1.05rem;
   color: #00e0ff;
 }
 
+/* Watched Ribbon */
 .poster-tile.watched::after {
   content: "✓ Watched";
   position: absolute;
@@ -348,12 +102,13 @@ footer a {
   border-radius: 4px;
 }
 
+/* Glowing Border for Top Picks */
 .poster-tile.top-pick {
   border: 2px solid #00e0ff;
   box-shadow: 0 0 12px #00e0ff, 0 0 20px #00e0ff inset;
 }
 
-/* Neon Tags */
+/* Neon Tags for Genres & Platforms */
 .tag {
   display: inline-block;
   padding: 3px 8px;
@@ -366,4 +121,25 @@ footer a {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.4px;
+}
+
+/* Absolute Safety: Hide All Images If They Exist */
+.poster-tile img {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #00e0ff;
+  text-decoration: none;
 }
