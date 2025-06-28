@@ -17,18 +17,26 @@ function saveWatched() {
 
 function createPosterTile(show, index, isTop = false) {
   const isWatched = watchedSet.has(show.title);
-  const genres = show.genres?.join(", ") || "Unspecified";
   const stars = "⭐".repeat(show.rating || 0);
-  const imgSrc = show.image || "images/placeholder.jpg";
   const number = index + 1;
+
+  const genreTags = (show.genres || [])
+    .map(g => `<span class="tag">${g}</span>`)
+    .join("");
+
+  const platformTag = show.platform
+    ? `<span class="tag">${show.platform}</span>`
+    : "";
+
   return `
-    <div class="poster-tile ${isWatched ? "watched" : ""} ${isTop ? "top-pick" : ""}" onclick="toggleWatched('${show.title}')">
-      <img src="${imgSrc}" alt="${show.title}" />
+    <div class="poster-tile text-only ${isWatched ? "watched" : ""} ${isTop ? "top-pick" : ""}" onclick="toggleWatched('${show.title}')">
       <div class="poster-info">
         <h3>${number}. ${show.title}</h3>
-        <p>${genres}</p>
         <p>${stars}</p>
-        <small>${show.platform || "Unknown"}</small>
+        <div class="tags">
+          ${genreTags}
+          ${platformTag}
+        </div>
       </div>
     </div>
   `;
@@ -56,11 +64,9 @@ function renderAll() {
   const filter = document.getElementById("genreFilter").value;
   const search = document.getElementById("searchInput").value.toLowerCase();
 
-  // Top picks only
   const top = seriesData.filter(s => topPickTitles.includes(s.title));
   topPicksGrid.innerHTML = top.map((s, i) => createPosterTile(s, i, true)).join("");
 
-  // Regular list (excluding top picks)
   const filtered = seriesData.filter(s => {
     const notTop = !topPickTitles.includes(s.title);
     const matchesGenre = filter === "All" || s.genres?.includes(filter);
