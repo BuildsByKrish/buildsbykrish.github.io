@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📝 Submit Recommendations</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: linear-gradient(145deg, #000, #111);
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      color: #00ffe7;
+      text-shadow: 0 0 10px #00ffe7;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #00ffe73b;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      background: #2a2a2a;
+      color: #fff;
+    }
+
+    button {
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #00ffe7, #00ccff);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00ffe7;
+    }
+
+    button:hover {
+      box-shadow: 0 0 25px #00ffff;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📝 Submit a Series for Krish</h1>
+  <p>Know a show Krish *must* watch? Fill this out and it might make the vault!</p>
+
+  <form onsubmit="handleSubmit(event)">
+    <input type="text" id="title" placeholder="Series Title" required />
+    <input type="text" id="platform" placeholder="Platform (e.g. Netflix)" required />
+    <input type="text" id="genre" placeholder="Genre (e.g. Drama, Thriller)" required />
+    <select id="language" required>
+      <option value="">Select Language</option>
+      <option value="English">English</option>
+      <option value="Hindi">Hindi</option>
+      <option value="Korean">Korean</option>
+      <option value="Chinese">Chinese</option>
+      <option value="Other">Other</option>
+    </select>
+    <textarea id="reason" rows="4" placeholder="Why should Krish watch it? (Optional)"></textarea>
+    <button type="submit">🚀 Submit Recommendation</button>
+  </form>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const title = document.getElementById("title").value.trim();
+      alert(`Thanks for recommending "${title}"! Your suggestion is headed straight to Krish's radar. 💫`);
+      event.target.reset();
+    }
+  </script>
+
+</body>
+</html>
