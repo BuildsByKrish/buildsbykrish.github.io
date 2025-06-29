@@ -1,0 +1,118 @@
+/* ⚡ Smooth Page Fade-In */
+body {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in forwards;
+  background: linear-gradient(145deg, #000000, #121212);
+  font-family: 'Segoe UI', sans-serif;
+  color: #f0f0f0;
+  padding: 2rem;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* 🎬 Headings */
+h1 {
+  color: #00ffe7;
+  text-shadow: 0 0 10px #00ffe7;
+  animation: flicker 2s infinite;
+}
+
+h2 {
+  animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+
+/* 🧠 Poster Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.poster-tile {
+  background: #1a1a1a;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 8px #00ffe73b;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.poster-tile:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px #00ffe7aa;
+}
+
+/* 💫 Tag styling */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  background: #00ffe7;
+  color: #000;
+  padding: 0.25rem 0.6rem;
+  border-radius: 5px;
+  font-weight: bold;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 6px #00ffe7; }
+  50% { box-shadow: 0 0 12px #00ffe7; }
+}
+
+/* 🎛️ Button Styling */
+.main-btn, .nav-btn {
+  background: linear-gradient(90deg, #00ffe7, #00ccff);
+  color: #000;
+  font-weight: bold;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #00ffe7;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-btn:hover, .nav-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ffff;
+}
+
+/* 🌙 Light Mode Toggle */
+body.light-mode {
+  background: #f5f5f5;
+  color: #111;
+}
+
+body.light-mode .poster-tile {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 10px #00ccff55;
+}
+
+body.light-mode .tag {
+  background: #00ccff;
+  color: #000;
+}
