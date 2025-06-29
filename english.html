@@ -4,6 +4,82 @@
   <meta charset="UTF-8" />
   <title>🎥 English Series</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: linear-gradient(145deg, #000, #111);
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      color: #00ffe7;
+      text-shadow: 0 0 10px #00ffe7;
+    }
+
+    .main-btn {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #00ffe7, #00ccff);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 12px #00ffe7;
+    }
+
+    .main-btn:hover {
+      box-shadow: 0 0 20px #00ffff;
+      transform: scale(1.05);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .poster-tile {
+      background: #1a1a1a;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px #00ffe73b;
+    }
+
+    .poster-info h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .poster-info p {
+      margin: 0 0 0.5rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      background: #00ffe7;
+      color: #000;
+      padding: 0.25rem 0.6rem;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,30 +92,25 @@
     <div id="englishGrid" class="grid"></div>
   </main>
 
-  <script src="data.js"></script>
+  <script src="recommendations.js"></script>
   <script>
+    function goBack() {
+      window.location.href = "collections.html";
+    }
+
     function createTile(show) {
-      const genres = (show.genres || []).map(g => `<span class="tag">${g}</span>`).join("");
       return `
         <div class="poster-tile">
           <div class="poster-info">
             <h3>${show.title}</h3>
-            <p>⭐ ${show.rating || "?"} • ${show.runtime || "?"} min • ${show.episodes || "?"} ep</p>
-            <div class="tags">
-              ${genres}
-              <span class="tag">${show.platform || "Unknown"}</span>
-            </div>
+            ${show.hindiDubbed ? '<div class="tags"><span class="tag">🇮🇳 Hindi Dubbed</span></div>' : ''}
           </div>
         </div>
       `;
     }
 
-    const englishShows = seriesData.filter(s => s.language === "English");
-    document.getElementById("englishGrid").innerHTML = englishShows.map(createTile).join("");
-
-    function goBack() {
-      window.location.href = "collections.html";
-    }
+    const englishGrid = document.getElementById("englishGrid");
+    englishGrid.innerHTML = recommendedEnglishSeries.map(createTile).join("");
   </script>
 
 </body>
