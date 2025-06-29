@@ -3,36 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Watchlist Vault</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Krish's Watchlist & Recommendation Hub</title>
+  <link rel="stylesheet" href="vault-theme.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(145deg, #000000, #121212);
-      color: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      min-height: 100vh;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: #00ffe7;
-      text-shadow: 0 0 12px #00ffe7;
-    }
-
     .intro {
-      max-width: 700px;
-      font-size: 1.1rem;
+      max-width: 750px;
+      font-size: 1.15rem;
       margin-bottom: 2.5rem;
-      line-height: 1.6;
+      line-height: 1.7;
       color: #ccc;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #00ffe73b;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .intro strong {
+      color: #00ffe7;
+      text-shadow: 0 0 6px #00ffe7;
     }
 
     .nav-grid {
@@ -43,21 +32,26 @@
       margin-bottom: 2rem;
     }
 
-    .nav-btn {
-      background: linear-gradient(90deg, #00ffe7, #00ccff);
-      color: #000;
-      text-decoration: none;
-      font-size: 1.1rem;
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      font-weight: bold;
-      box-shadow: 0 0 15px #00ffe7;
-      transition: transform 0.3s, box-shadow 0.3s;
+    .quote {
+      font-size: 1.3rem;
+      color: #00ffe7;
+      text-shadow: 0 0 8px #00ffe7;
+      margin: 2rem 0 1rem;
+      font-style: italic;
+      text-align: center;
     }
 
-    .nav-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 25px #00ffff;
+    .counter {
+      font-size: 1.2rem;
+      color: #ccc;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .counter span {
+      font-weight: bold;
+      color: #00ffe7;
+      text-shadow: 0 0 6px #00ffe7;
     }
 
     footer {
@@ -69,12 +63,20 @@
 </head>
 <body>
 
-  <h1>🎬 Welcome to Watchlist Vault</h1>
+  <h1>🎬 Welcome to <strong>Krish's Watchlist & Recommendation Hub</strong></h1>
+
+  <div class="quote">“Stories are infinite — I’m chasing 1000 of them.”</div>
+
+  <div class="counter">
+    Series Watched: <span id="counter">0</span> / 1000+
+  </div>
 
   <div class="intro">
-    <p>Hey, I’m <strong>Krish</strong> — a series explorer on a mission to watch <strong>100+ legendary shows</strong> across genres and cultures. This site is my digital vault: part journal, part showcase, all passion.</p>
-    <p>Want to dive into the shows I've already conquered? Head to <strong>My Watchlist Vault</strong>. Want personal picks tailored by me? Click on <strong>Recommendations by Me</strong> — curated by genre, language, and vibes. From English thrillers to Hindi dramas, Korean heartbeats to Chinese fantasy — it’s all there.</p>
-    <p>Soon, you’ll even be able to <em>submit your own recommendations</em> for me to explore — because this journey is better when shared.</p>
+    <p>Hey, I’m <strong>Krish</strong> — a passionate explorer of stories, on a mission to watch <strong>1000+ legendary series</strong> from around the world. This hub is my personal vault — part journal, part discovery engine — where I track what I’ve watched and share what I love.</p>
+    <p>✨ Want to explore my journey? Head to <strong>My Watchlist Vault</strong>.<br>
+    🎯 Looking for something new? Dive into <strong>Recommendations by Me</strong> — curated by genre, language, and vibe.<br>
+    🌍 From English thrillers to Hindi dramas, Korean heartbeats to Chinese fantasy — it’s all here.<br>
+    🍿 <em>Movie recommendations coming soon!</em></p>
   </div>
 
   <div class="nav-grid">
@@ -84,6 +86,26 @@
   </div>
 
   <footer>Curated by Krish ✨</footer>
+
+  <script>
+    // Live counter animation
+    const counter = document.getElementById("counter");
+    let count = 0;
+    const target = 91; // Update this number as your watchlist grows
+    const speed = 30;
+
+    const updateCounter = () => {
+      if (count < target) {
+        count++;
+        counter.textContent = count;
+        setTimeout(updateCounter, speed);
+      } else {
+        counter.textContent = target;
+      }
+    };
+
+    updateCounter();
+  </script>
 
 </body>
 </html>
