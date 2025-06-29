@@ -10,7 +10,7 @@
       display: flex;
       justify-content: center;
       gap: 1.5rem;
-      margin: 1.5rem auto;
+      margin: 2rem auto;
       flex-wrap: wrap;
     }
 
@@ -29,12 +29,40 @@
       transform: scale(1.08);
       box-shadow: 0 0 20px #00ffff;
     }
+
+    header {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    h1 {
+      color: #00ffe7;
+      text-shadow: 0 0 10px #00ffe7;
+    }
+
+    .main-btn {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #00ffe7, #00ccff);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 12px #00ffe7;
+    }
+
+    .main-btn:hover {
+      box-shadow: 0 0 20px #00ffff;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>📚 Krish Recommendations</h1>
+    <h1>📚 Recommendations by Me</h1>
     <button class="main-btn" onclick="goBack()">🏠 Back to Home</button>
   </header>
 
@@ -46,45 +74,9 @@
     <a href="chinese.html">🧚‍♀️ Chinese</a>
   </nav>
 
-  <main>
-    <section>
-      <h2>🌟 GOATed Series</h2>
-      <div id="recommendedGrid" class="grid"></div>
-    </section>
-  </main>
-
-  <script src="data.js"></script>
-  <script src="recommendations.js"></script>
   <script>
     function goBack() {
       window.location.href = "index.html";
-    }
-
-    function createMiniTile(show) {
-      return `
-        <div class="poster-tile">
-          <div class="poster-info">
-            <h3>${show.title}</h3>
-            <p>⭐ ${show.rating || "?"} • ${show.runtime || "?"} min • ${show.episodes || "?"} ep</p>
-            <div class="tags">
-              ${(show.genres || []).map(g => `<span class="tag">${g}</span>`).join("")}
-              <span class="tag">${show.platform || "Unknown"}</span>
-              ${show.hindiDubbed ? '<span class="tag">🇮🇳 Hindi Dubbed</span>' : ""}
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    const grid = document.getElementById("recommendedGrid");
-    if (typeof seriesData !== "undefined" && typeof recommendedEnglishSeries !== "undefined") {
-      const combined = recommendedEnglishSeries.map(entry => {
-        const match = seriesData.find(s => s.title === entry.title);
-        return match ? { ...match, hindiDubbed: entry.hindiDubbed } : { title: entry.title, hindiDubbed: entry.hindiDubbed };
-      });
-      grid.innerHTML = combined.map(createMiniTile).join("");
-    } else {
-      grid.innerHTML = "<p>Loading recommendations...</p>";
     }
   </script>
 
