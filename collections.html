@@ -5,6 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Krish Recommendations</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .language-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem auto;
+      flex-wrap: wrap;
+    }
+
+    .language-nav a {
+      background: linear-gradient(90deg, #00ffe7, #00ccff);
+      color: #000;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 12px #00ffe7;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .language-nav a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px #00ffff;
+    }
+  </style>
 </head>
 <body>
 
@@ -13,30 +38,21 @@
     <button class="main-btn" onclick="goBack()">🏠 Back to Home</button>
   </header>
 
+  <!-- 🔝 Language Selector Bar -->
+  <nav class="language-nav">
+    <a href="english.html">🎥 English</a>
+    <a href="hindi.html">🎭 Hindi</a>
+    <a href="korean.html">💖 Korean</a>
+    <a href="chinese.html">🧚‍♀️ Chinese</a>
+  </nav>
+
   <main>
     <section>
       <h2>🌟 GOATed Series</h2>
       <div id="recommendedGrid" class="grid"></div>
     </section>
-
-    <section>
-      <h2><a href="english.html" class="section-link">🎥 English Series</a></h2>
-    </section>
-
-    <section>
-      <h2><a href="hindi.html" class="section-link">🎭 Hindi Series</a></h2>
-    </section>
-
-    <section>
-      <h2><a href="korean.html" class="section-link">💖 Korean Dramas</a></h2>
-    </section>
-
-    <section>
-      <h2><a href="chinese.html" class="section-link">🧚‍♀️ Chinese Dramas</a></h2>
-    </section>
   </main>
 
-  <!-- Scripts -->
   <script src="data.js"></script>
   <script src="recommendations.js"></script>
   <script>
