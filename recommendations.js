@@ -432,7 +432,6 @@ const recommendedHindiSeries = [
     episodes: 6,
     runtime: "25–30 min"
   },
-recommendedHindiSeries.push(
   {
     title: "Killer Soup",
     platform: "Netflix",
@@ -492,6 +491,135 @@ recommendedHindiSeries.push(
     seasons: 1,
     episodes: 8,
     runtime: "45–55 min"
-  }
-);
+  },
+  {
+    title: "Typewriter",
+    platform: "Netflix",
+    genre: "Mystery / Horror",
+    year: 2019,
+    popularity: 80,
+    seasons: 1,
+    episodes: 5,
+    runtime: "45–50 min"
+  },
+  {
+    title: "Betaal",
+    platform: "Netflix",
+    genre: "Horror / Thriller",
+    year: 2020,
+    popularity: 76,
+    seasons: 1,
+    episodes: 4,
+    runtime: "40–45 min"
+  },
+  {
+    title: "Leila",
+    platform: "Netflix",
+    genre: "Dystopian / Sci-Fi",
+    year: 2019,
+    popularity: 78,
+    seasons: 1,
+    episodes: 6,
+    runtime: "45–50 min"
+  },
+  {
+    title: "The Forgotten Army",
+    platform: "Prime Video",
+    genre: "Historical / War",
+    year: 2020,
+    popularity: 82,
+    seasons: 1,
+    episodes: 5,
+    runtime: "40–50 min"
+  },
+  {
+    title: "Pill",
+    platform: "JioCinema",
+    genre: "Medical Thriller",
+    year: 2024,
+    popularity: 79,
+    seasons: 1,
+    episodes: 8,
+    runtime: "35–45 min"
+  },
+  {
+    title: "Class",
+    platform: "Netflix",
+    genre: "Teen Drama / Mystery",
+    year: 2023,
+    popularity: 84,
+    seasons: 1,
+    episodes: 8,
+    runtime: "45–55 min"
+  },
+  {
+    title: "Made in Heaven",
+    platform: "Prime Video",
+    genre: "Drama / Anthology",
+    year: 2019,
+    popularity: 90,
+    seasons: 2,
+    episodes: 14,
+    runtime: "45–60 min"
+  },
+  {
+    title: "Ray",
+    platform: "Netflix",
+    genre: "Anthology / Psychological",
+    year: 2021,
+    popularity: 82,
+    seasons: 1,
+    episodes: 4,
+    runtime: "50–60 min"
+  },
+  {
+    title: "Kaala",
+    platform: "Hotstar",
+    genre: "Crime / Thriller",
+    year: 2023,
+    popularity: 79,
+    seasons: 1,
+    episodes: 8,
+    runtime: "40–50 min"
+  },
+  {
+    title: "Crushed",
+    platform: "Amazon miniTV",
+    genre: "Romance / Youth",
+    year: 2022,
+    popularity: 80,
+    seasons: 3,
+    episodes: 18,
+    runtime: "20–30 min"
+  },
+  {
+    title: "Bang Baaja Baaraat",
+    platform: "YouTube",
+    genre: "Romantic Comedy",
+    year: 2015,
+    popularity: 77,
+    seasons: 1,
+    episodes: 5,
+    runtime: "15–20 min"
+  },
+  {
+    title: "UNDEKHI",
+    platform: "SonyLIV",
+    genre: "Crime / Thriller",
+    year: 2020,
+    popularity: 85,
+    seasons: 2,
+    episodes: 18,
+    runtime: "35–45 min"
+  },
+  {
+    title: "Illegal",
+    platform: "Voot",
+    genre: "Legal Drama",
+    year: 2020,
+    popularity: 81,
+    seasons: 2,
+    episodes: 16,
+    runtime: "40–50 min"
+  },
 ];
