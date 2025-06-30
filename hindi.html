@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hindi Vault Viewer</title>
+  <title>Hindi Series Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="vault-theme.css" />
+  <link rel="icon" href="data:," />
   <script src="hindirecommendations.js" defer></script>
   <style>
     body {
@@ -12,8 +13,8 @@
       background: linear-gradient(145deg, #000, #111);
       color: #f0f0f0;
       padding: 2rem;
-      cursor: none;
     }
+
     h1 {
       text-align: center;
       color: #00ffe7;
@@ -21,6 +22,7 @@
       text-shadow: 0 0 8px #00ffe7;
       margin-bottom: 1rem;
     }
+
     .filters {
       display: flex;
       flex-wrap: wrap;
@@ -28,6 +30,7 @@
       justify-content: center;
       margin: 2rem auto;
     }
+
     .filters button,
     .filters select,
     .filters input {
@@ -39,11 +42,13 @@
       color: #00ffe7;
       box-shadow: 0 0 8px #00ffe7aa;
     }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
     }
+
     .poster-tile {
       background: #1a1a1a;
       padding: 1rem;
@@ -51,20 +56,24 @@
       box-shadow: 0 0 8px #00ffe73b;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .poster-tile:hover {
       transform: translateY(-6px);
       box-shadow: 0 0 20px #00ffe7aa;
     }
+
     .poster-info h3 {
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
+
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-top: 0.4rem;
     }
+
     .tag {
       background: #00ffe7;
       color: #000;
@@ -75,6 +84,7 @@
       display: flex;
       align-items: center;
     }
+
     .platform-logo {
       height: 16px;
       width: auto;
@@ -109,78 +119,80 @@
   <div id="hindiGrid" class="grid"></div>
 
   <script>
-    const grid = document.getElementById("hindiGrid");
-    let currentList = [...recommendedHindiSeries];
+    document.addEventListener("DOMContentLoaded", () => {
+      const grid = document.getElementById("hindiGrid");
+      let currentList = [...recommendedHindiSeries];
 
-    const platformLogos = {
-      "Netflix": "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
-      "Prime Video": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png",
-      "SonyLIV": "https://upload.wikimedia.org/wikipedia/en/2/2e/SonyLIV_Logo.png",
-      "JioCinema": "https://upload.wikimedia.org/wikipedia/en/3/3e/JioCinema_Logo.png",
-      "Zee5": "https://upload.wikimedia.org/wikipedia/en/2/2e/ZEE5_logo.svg",
-      "Hotstar": "https://upload.wikimedia.org/wikipedia/en/1/1e/Disney%2B_Hotstar_logo.svg",
-      "YouTube": "https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg",
-      "Voot": "https://upload.wikimedia.org/wikipedia/en/6/6e/Voot_Logo.png",
-      "Amazon miniTV": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Amazon_miniTV_logo.png"
-    };
+      const platformLogos = {
+        "Netflix": "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+        "Prime Video": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png",
+        "SonyLIV": "https://upload.wikimedia.org/wikipedia/en/2/2e/SonyLIV_Logo.png",
+        "JioCinema": "https://upload.wikimedia.org/wikipedia/en/3/3e/JioCinema_Logo.png",
+        "Zee5": "https://upload.wikimedia.org/wikipedia/en/2/2e/ZEE5_logo.svg",
+        "Hotstar": "https://upload.wikimedia.org/wikipedia/en/1/1e/Disney%2B_Hotstar_logo.svg",
+        "YouTube": "https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg",
+        "Voot": "https://upload.wikimedia.org/wikipedia/en/6/6e/Voot_Logo.png",
+        "Amazon miniTV": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Amazon_miniTV_logo.png"
+      };
 
-    function display(list) {
-      grid.innerHTML = list.map(show => `
-        <div class="poster-tile">
-          <div class="poster-info">
-            <h3>${show.title}</h3>
-            <div class="tags">
-              <span class="tag">
-                <img src="${platformLogos[show.platform] || ''}" class="platform-logo" alt="${show.platform}" />
-                ${show.platform}
-              </span>
-              <span class="tag">${show.genre}</span>
-              <span class="tag">📅 ${show.year}</span>
-            </div>
-            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #aaa;">
-              📚 Seasons: ${show.seasons} &nbsp;&nbsp; 🎞️ Episodes: ${show.episodes} &nbsp;&nbsp; ⏱️ Runtime: ${show.runtime}<br>
-              🔥 Popularity: ${show.popularity}%
+      function display(list) {
+        grid.innerHTML = list.map(show => `
+          <div class="poster-tile">
+            <div class="poster-info">
+              <h3>${show.title}</h3>
+              <div class="tags">
+                <span class="tag">
+                  <img src="${platformLogos[show.platform] || ''}" class="platform-logo" alt="${show.platform}" />
+                  ${show.platform}
+                </span>
+                <span class="tag">${show.genre}</span>
+                <span class="tag">📅 ${show.year}</span>
+              </div>
+              <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #aaa;">
+                📚 Seasons: ${show.seasons} &nbsp;&nbsp; 🎞️ Episodes: ${show.episodes} &nbsp;&nbsp; ⏱️ Runtime: ${show.runtime}<br>
+                🔥 Popularity: ${show.popularity}%
+              </div>
             </div>
           </div>
-        </div>
-      `).join("");
-    }
-
-    function filterByGenre(genre) {
-      currentList = genre === "All"
-        ? [...recommendedHindiSeries]
-        : recommendedHindiSeries.filter(s => s.genre.toLowerCase().includes(genre.toLowerCase()));
-      display(currentList);
-    }
-
-    function searchTitles(query) {
-      const filtered = recommendedHindiSeries.filter(s =>
-        s.title.toLowerCase().includes(query.toLowerCase())
-      );
-      currentList = filtered;
-      display(filtered);
-    }
-
-    function sortBy(type) {
-      const sorted = [...currentList];
-      switch (type) {
-        case "popularity":
-          sorted.sort((a, b) => b.popularity - a.popularity);
-          break;
-        case "year":
-          sorted.sort((a, b) => b.year - a.year);
-          break;
-        case "titleAsc":
-          sorted.sort((a, b) => a.title.localeCompare(b.title));
-          break;
-        case "titleDesc":
-          sorted.sort((a, b) => b.title.localeCompare(a.title));
-          break;
+        `).join("");
       }
-      display(sorted);
-    }
 
-    display(currentList);
+      function filterByGenre(genre) {
+        currentList = genre === "All"
+          ? [...recommendedHindiSeries]
+          : recommendedHindiSeries.filter(s => s.genre.toLowerCase().includes(genre.toLowerCase()));
+        display(currentList);
+      }
+
+      function searchTitles(query) {
+        const filtered = recommendedHindiSeries.filter(s =>
+          s.title.toLowerCase().includes(query.toLowerCase())
+        );
+        currentList = filtered;
+        display(filtered);
+      }
+
+      function sortBy(type) {
+        const sorted = [...currentList];
+        switch (type) {
+          case "popularity":
+            sorted.sort((a, b) => b.popularity - a.popularity);
+            break;
+          case "year":
+            sorted.sort((a, b) => b.year - a.year);
+            break;
+          case "titleAsc":
+            sorted.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+          case "titleDesc":
+            sorted.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+        }
+        display(sorted);
+      }
+
+      display(currentList);
+    });
   </script>
 
 </body>
