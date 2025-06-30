@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Hindi Series Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="vault-theme.css" />
   <link rel="icon" href="data:," />
   <script src="hindirecommendations.js" defer></script>
   <style>
@@ -105,8 +104,6 @@
     <button onclick="filterByGenre('Romance')">❤️ Romance</button>
     <button onclick="filterByGenre('Comedy')">😂 Comedy</button>
     <button onclick="filterByGenre('Mystery')">🧠 Mystery</button>
-    <button onclick="filterByGenre('Fantasy')">🦄 Fantasy</button>
-    <button onclick="filterByGenre('Historical')">🏰 Historical</button>
     <input type="text" placeholder="Search titles..." oninput="searchTitles(this.value)" />
     <select onchange="sortBy(this.value)">
       <option value="">Sort by…</option>
@@ -120,80 +117,72 @@
   <div id="hindiGrid" class="grid"></div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    const platformLogos = {
+      "Netflix": "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+      "Prime Video": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png",
+      "SonyLIV": "https://upload.wikimedia.org/wikipedia/en/2/2e/SonyLIV_Logo.png",
+      "JioCinema": "https://upload.wikimedia.org/wikipedia/en/3/3e/JioCinema_Logo.png",
+      "Zee5": "https://upload.wikimedia.org/wikipedia/en/2/2e/ZEE5_logo.svg",
+      "Hotstar": "https://upload.wikimedia.org/wikipedia/en/1/1e/Disney%2B_Hotstar_logo.svg",
+      "YouTube": "https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg",
+      "Voot": "https://upload.wikimedia.org/wikipedia/en/6/6e/Voot_Logo.png",
+      "Amazon miniTV": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Amazon_miniTV_logo.png"
+    };
+
+    let currentList = [];
+
+    function display(list) {
       const grid = document.getElementById("hindiGrid");
-      let currentList = [...recommendedHindiSeries];
-
-      const platformLogos = {
-        "Netflix": "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
-        "Prime Video": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png",
-        "SonyLIV": "https://upload.wikimedia.org/wikipedia/en/2/2e/SonyLIV_Logo.png",
-        "JioCinema": "https://upload.wikimedia.org/wikipedia/en/3/3e/JioCinema_Logo.png",
-        "Zee5": "https://upload.wikimedia.org/wikipedia/en/2/2e/ZEE5_logo.svg",
-        "Hotstar": "https://upload.wikimedia.org/wikipedia/en/1/1e/Disney%2B_Hotstar_logo.svg",
-        "YouTube": "https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg",
-        "Voot": "https://upload.wikimedia.org/wikipedia/en/6/6e/Voot_Logo.png",
-        "Amazon miniTV": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Amazon_miniTV_logo.png"
-      };
-
-      function display(list) {
-        grid.innerHTML = list.map(show => `
-          <div class="poster-tile">
-            <div class="poster-info">
-              <h3>${show.title}</h3>
-              <div class="tags">
-                <span class="tag">
-                  <img src="${platformLogos[show.platform] || ''}" class="platform-logo" alt="${show.platform}" />
-                  ${show.platform}
-                </span>
-                <span class="tag">${show.genre}</span>
-                <span class="tag">📅 ${show.year}</span>
-              </div>
-              <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #aaa;">
-                📚 Seasons: ${show.seasons} &nbsp;&nbsp; 🎞️ Episodes: ${show.episodes} &nbsp;&nbsp; ⏱️ Runtime: ${show.runtime}<br>
-                🔥 Popularity: ${show.popularity}%
-              </div>
+      grid.innerHTML = list.map(show => `
+        <div class="poster-tile">
+          <div class="poster-info">
+            <h3>${show.title}</h3>
+            <div class="tags">
+              <span class="tag">
+                <img src="${platformLogos[show.platform] || ''}" class="platform-logo" alt="${show.platform}" />
+                ${show.platform}
+              </span>
+              <span class="tag">${show.genre}</span>
+              <span class="tag">📅 ${show.year}</span>
+            </div>
+            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #aaa;">
+              📚 Seasons: ${show.seasons} &nbsp;&nbsp; 🎞️ Episodes: ${show.episodes} &nbsp;&nbsp; ⏱️ Runtime: ${show.runtime}<br>
+              🔥 Popularity: ${show.popularity}%
             </div>
           </div>
-        `).join("");
-      }
+        </div>
+      `).join("");
+    }
 
-      function filterByGenre(genre) {
-        currentList = genre === "All"
-          ? [...recommendedHindiSeries]
-          : recommendedHindiSeries.filter(s => s.genre.toLowerCase().includes(genre.toLowerCase()));
-        display(currentList);
-      }
+    function filterByGenre(genre) {
+      currentList = genre === "All"
+        ? [...recommendedHindiSeries]
+        : recommendedHindiSeries.filter(s => s.genre.toLowerCase().includes(genre.toLowerCase()));
+      display(currentList);
+    }
 
-      function searchTitles(query) {
-        currentList = recommendedHindiSeries.filter(s =>
-          s.title.toLowerCase().includes(query.toLowerCase())
-        );
-        display(currentList);
-      }
+    function searchTitles(query) {
+      currentList = recommendedHindiSeries.filter(s =>
+        s.title.toLowerCase().includes(query.toLowerCase())
+      );
+      display(currentList);
+    }
 
-      function sortBy(type) {
-        const sorted = [...currentList];
-        switch (type) {
-          case "popularity":
-            sorted.sort((a, b) => b.popularity - a.popularity);
-            break;
-          case "year":
-            sorted.sort((a, b) => b.year - a.year);
-            break;
-          case "titleAsc":
-            sorted.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-          case "titleDesc":
-            sorted.sort((a, b) => b.title.localeCompare(a.title));
-            break;
-        }
-        display(sorted);
+    function sortBy(type) {
+      const sorted = [...currentList];
+      switch (type) {
+        case "popularity": sorted.sort((a, b) => b.popularity - a.popularity); break;
+        case "year": sorted.sort((a, b) => b.year - a.year); break;
+        case "titleAsc": sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
+        case "titleDesc": sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
       }
+      display(sorted);
+    }
 
+    document.addEventListener("DOMContentLoaded", () => {
+      currentList = [...recommendedHindiSeries];
       display(currentList);
     });
   </script>
-
 </body>
 </html>
