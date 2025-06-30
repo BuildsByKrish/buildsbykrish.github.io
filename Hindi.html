@@ -14,6 +14,7 @@
       padding: 2rem;
       cursor: none;
     }
+
     h1 {
       text-align: center;
       color: #00ffe7;
@@ -21,6 +22,7 @@
       text-shadow: 0 0 8px #00ffe7;
       margin-bottom: 1rem;
     }
+
     .filters {
       display: flex;
       flex-wrap: wrap;
@@ -28,6 +30,7 @@
       justify-content: center;
       margin: 2rem auto;
     }
+
     .filters button,
     .filters select,
     .filters input {
@@ -39,11 +42,13 @@
       color: #00ffe7;
       box-shadow: 0 0 8px #00ffe7aa;
     }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
     }
+
     .poster-tile {
       background: #1a1a1a;
       padding: 1rem;
@@ -51,20 +56,24 @@
       box-shadow: 0 0 8px #00ffe73b;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .poster-tile:hover {
       transform: translateY(-6px);
       box-shadow: 0 0 20px #00ffe7aa;
     }
+
     .poster-info h3 {
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
+
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-top: 0.4rem;
     }
+
     .tag {
       background: #00ffe7;
       color: #000;
@@ -72,10 +81,13 @@
       border-radius: 4px;
       font-size: 0.75rem;
       font-weight: bold;
+      display: flex;
+      align-items: center;
     }
+
     .platform-logo {
-      height: 20px;
-      vertical-align: middle;
+      height: 16px;
+      width: auto;
       margin-right: 6px;
       border-radius: 3px;
     }
@@ -178,7 +190,6 @@
       display(sorted);
     }
 
-    // Initial load
     display(currentList);
   </script>
 
