@@ -415,10 +415,6 @@ const recommendedChineseSeries = [
     year: 2025,
     popularity
   },
-  {
-    // …continue through id: 65 exactly as above…
-  }
+  
 ];
-
-// close the array first, then console
 console.log("🧧 Chinese recommendations loaded:", recommendedChineseSeries.length, "entries");
