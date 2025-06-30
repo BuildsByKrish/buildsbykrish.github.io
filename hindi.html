@@ -105,7 +105,8 @@
     <button onclick="filterByGenre('Romance')">❤️ Romance</button>
     <button onclick="filterByGenre('Comedy')">😂 Comedy</button>
     <button onclick="filterByGenre('Mystery')">🧠 Mystery</button>
-    <button onclick="filterByGenre('Sci-Fi')">🚀 Sci-Fi</button>
+    <button onclick="filterByGenre('Fantasy')">🦄 Fantasy</button>
+    <button onclick="filterByGenre('Historical')">🏰 Historical</button>
     <input type="text" placeholder="Search titles..." oninput="searchTitles(this.value)" />
     <select onchange="sortBy(this.value)">
       <option value="">Sort by…</option>
@@ -165,11 +166,10 @@
       }
 
       function searchTitles(query) {
-        const filtered = recommendedHindiSeries.filter(s =>
+        currentList = recommendedHindiSeries.filter(s =>
           s.title.toLowerCase().includes(query.toLowerCase())
         );
-        currentList = filtered;
-        display(filtered);
+        display(currentList);
       }
 
       function sortBy(type) {
