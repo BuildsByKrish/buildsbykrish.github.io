@@ -111,3 +111,67 @@ const recommendedEnglishSeries = [
   { title: "Outer Banks", hindiDubbed: true },
   { title: "The Night Of", hindiDubbed: true }
 ];
+const recommendedHindiSeries = [
+  // 🔫 Crime / Thriller / Action
+  { title: "Scam 1992", platform: "SonyLIV" },
+  { title: "Mirzapur", platform: "Prime Video" },
+  { title: "Paatal Lok", platform: "Prime Video" },
+  { title: "Sacred Games", platform: "Netflix" },
+  { title: "Rudra: The Edge of Darkness", platform: "Hotstar" },
+  { title: "Dahaad", platform: "Prime Video" },
+  { title: "Asur", platform: "JioCinema" },
+  { title: "Criminal Justice", platform: "Hotstar" },
+  { title: "The Night Manager", platform: "Hotstar" },
+  { title: "Delhi Crime", platform: "Netflix" },
+  { title: "Breathe: Into the Shadows", platform: "Prime Video" },
+  { title: "Hostages", platform: "Hotstar" },
+  { title: "Arya", platform: "Hotstar" },
+  { title: "Mumbai Diaries", platform: "Prime Video" },
+  { title: "Taj: Divided by Blood", platform: "Zee5" },
+  { title: "Farzi", platform: "Prime Video" },
+  { title: "Yeh Kaali Kaali Ankhein", platform: "Netflix" },
+
+  // 🎭 Drama / Biographical
+  { title: "Rocket Boys", platform: "SonyLIV" },
+  { title: "The Family Man", platform: "Prime Video" },
+  { title: "November Story", platform: "Hotstar" },
+  { title: "Trial by Fire", platform: "Netflix" },
+  { title: "Gyaarah Gyaarah", platform: "Zee5" },
+  { title: "Tribhuwan Mishra: CA Topper", platform: "JioCinema" },
+  { title: "Taaza Khabar", platform: "Hotstar" },
+  { title: "Brinda", platform: "SonyLIV" },
+  { title: "Dhootha", platform: "Prime Video" },
+
+  // ❤️ Romance / Youth / Feel-Good
+  { title: "College Romance", platform: "SonyLIV / TVF" },
+  { title: "Mismatched", platform: "Netflix" },
+  { title: "Flames", platform: "Prime Video / TVF" },
+  { title: "Bandish Bandits", platform: "Prime Video" },
+  { title: "Little Things", platform: "Netflix" },
+  { title: "Feels Like Ishq", platform: "Netflix" },
+
+  // 🧠 Dark Comedy / Satire / Experimental
+  { title: "Killer Soup", platform: "Netflix" },
+  { title: "TVF Pitchers", platform: "Zee5" },
+  { title: "TVF Aspirants", platform: "Prime Video" },
+  { title: "TVF Gullak", platform: "SonyLIV" },
+  { title: "Dhindora", platform: "YouTube" },
+  { title: "Saas Bahu Aur Flamingo", platform: "Hotstar" },
+
+  // 🕵️‍♂️ Mystery / Sci-Fi / Experimental
+  { title: "Typewriter", platform: "Netflix" },
+  { title: "Betaal", platform: "Netflix" },
+  { title: "Leila", platform: "Netflix" },
+  { title: "The Forgotten Army", platform: "Prime Video" },
+  { title: "Pill", platform: "JioCinema" },
+  { title: "Class", platform: "Netflix" },
+
+  // 🎯 Bonus Mini-Series / Anthologies
+  { title: "Made in Heaven", platform: "Prime Video" },
+  { title: "Ray", platform: "Netflix" },
+  { title: "Kaala", platform: "Hotstar" },
+  { title: "Crushed", platform: "Amazon miniTV" },
+  { title: "Bang Baaja Baaraat", platform: "YouTube" },
+  { title: "UNDEKHI", platform: "SonyLIV" },
+  { title: "Illegal", platform: "Voot" }
+];
