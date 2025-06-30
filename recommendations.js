@@ -130,6 +130,8 @@ const recommendedHindiSeries = [
   { title: "Taj: Divided by Blood", platform: "Zee5" },
   { title: "Farzi", platform: "Prime Video" },
   { title: "Yeh Kaali Kaali Ankhein", platform: "Netflix" },
+  { title: "Kohrra", platform: "Netflix" },
+  { title: "CAT", platform: "Netflix" },
 
   // 🎭 Drama / Biographical
   { title: "Rocket Boys", platform: "SonyLIV" },
@@ -141,6 +143,7 @@ const recommendedHindiSeries = [
   { title: "Taaza Khabar", platform: "Hotstar" },
   { title: "Brinda", platform: "SonyLIV" },
   { title: "Dhootha", platform: "Prime Video" },
+  { title: "Scoop", platform: "Netflix" },
 
   // ❤️ Romance / Youth / Feel-Good
   { title: "College Romance", platform: "SonyLIV / TVF" },
@@ -157,6 +160,7 @@ const recommendedHindiSeries = [
   { title: "TVF Gullak", platform: "SonyLIV" },
   { title: "Dhindora", platform: "YouTube" },
   { title: "Saas Bahu Aur Flamingo", platform: "Hotstar" },
+  { title: "Panchayat", platform: "Prime Video" },
 
   // 🕵️‍♂️ Mystery / Sci-Fi / Experimental
   { title: "Typewriter", platform: "Netflix" },
@@ -165,6 +169,9 @@ const recommendedHindiSeries = [
   { title: "The Forgotten Army", platform: "Prime Video" },
   { title: "Pill", platform: "JioCinema" },
   { title: "Class", platform: "Netflix" },
+  { title: "Inside Edge", platform: "Prime Video" },
+  { title: "Avrodh", platform: "SonyLIV" },
+  { title: "Jamtara", platform: "Netflix" },
 
   // 🎯 Bonus Mini-Series / Anthologies
   { title: "Made in Heaven", platform: "Prime Video" },
