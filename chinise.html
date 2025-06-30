@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Chinese Series Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="chineserecommendations.js"></script>
   <style>
     body { font-family: sans-serif; background: #111; color: #fff; padding: 2rem; }
     h1 { text-align: center; color: #ff6347; margin-bottom: 2rem; }
@@ -42,10 +41,14 @@
 
   <div id="chineseGrid" class="grid"></div>
 
+  <!-- 1) data file -->
+  <script src="./chineserecommendations.js"></script>
+  <!-- 2) vault logic -->
   <script>
     let currentList = [];
 
     function display(list) {
+      console.log("📺 Rendering", list.length, "shows");
       const grid = document.getElementById("chineseGrid");
       grid.innerHTML = list.map(show => `
         <div class="poster-tile">
@@ -58,7 +61,7 @@
               <span class="tag">🔥 ${show.popularity}%</span>
               <span class="tag">🌐 ${show.language}</span>
             </div>
-            <p style="font-size: 0.85rem; margin-top: 0.5rem;">
+            <p style="font-size:0.85rem; margin-top:0.5rem;">
               Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
             </p>
           </div>
@@ -69,7 +72,9 @@
     function filterByGenre(genre) {
       currentList = genre === "All"
         ? [...recommendedChineseSeries]
-        : recommendedChineseSeries.filter(s => s.genre.toLowerCase().includes(genre.toLowerCase()));
+        : recommendedChineseSeries.filter(s =>
+            s.genre.toLowerCase().includes(genre.toLowerCase())
+          );
       display(currentList);
     }
 
@@ -83,10 +88,10 @@
     function sortBy(type) {
       const sorted = [...currentList];
       switch (type) {
-        case "popularity": sorted.sort((a, b) => b.popularity - a.popularity); break;
-        case "year": sorted.sort((a, b) => b.year - a.year); break;
-        case "titleAsc": sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
-        case "titleDesc": sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
+        case "popularity": sorted.sort((a,b)=>b.popularity - a.popularity); break;
+        case "year": sorted.sort((a,b)=>b.year - a.year); break;
+        case "titleAsc": sorted.sort((a,b)=>a.title.localeCompare(b.title)); break;
+        case "titleDesc": sorted.sort((a,b)=>b.title.localeCompare(a.title)); break;
       }
       display(sorted);
     }
