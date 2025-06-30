@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Korean Series Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="koreanrecommendations.js"></script>
+  <style>
+    body { font-family: sans-serif; background: #111; color: #fff; padding: 2rem; }
+    h1 { text-align: center; color: #00ffe7; margin-bottom: 2rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
+    .filters button, .filters input, .filters select {
+      padding: 0.5rem 1rem; border: none; border-radius: 6px;
+      background: #1a1a1a; color: #00ffe7; font-weight: bold;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .poster-tile { background: #1a1a1a; padding: 1rem; border-radius: 8px; box-shadow: 0 0 8px #00ffe755; }
+    .poster-info h3 { margin: 0 0 0.5rem 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .tag { background: #00ffe7; color: #000; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+  <h1>🌸 Korean Series Vault</h1>
+
+  <div class="filters">
+    <button onclick="filterByGenre('All')">All</button>
+    <button onclick="filterByGenre('Romance')">Romance</button>
+    <button onclick="filterByGenre('Thriller')">Thriller</button>
+    <button onclick="filterByGenre('Drama')">Drama</button>
+    <button onclick="filterByGenre('Action')">Action</button>
+    <input type="text" placeholder="Search..." oninput="searchTitles(this.value)">
+    <select onchange="sortBy(this.value)">
+      <option value="">Sort by…</option>
+      <option value="popularity">Popularity</option>
+      <option value="year">Year</option>
+      <option value="titleAsc">A–Z</option>
+      <option value="titleDesc">Z–A</option>
+    </select>
+  </div>
+
+  <div id="koreanGrid" class="grid"></div>
+
+  <script>
+    let currentList = [];
+
+    function display(list) {
+      const grid = document.getElementById("koreanGrid");
+      grid.innerHTML = list.map(show => `
+        <div class="poster-tile">
+          <div class="poster-info">
+            <h3>${show.id}. ${show.title}</h3>
+            <div class="tags">
+              <span class="tag">${show.platform}</span>
+              <span class="tag">${show.genre}</span>
+              <span class="tag">📅 ${show.year}</span>
+              <span class="tag">🔥 ${show.popularity}%</span>
+              <span class="tag">🌐 ${show.language}</span>
+            </div>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;">
+              Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
+            </p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function filterByGenre(genre) {
+      currentList = genre === "All"
+        ? [...recommendedKoreanSeries]
+        : recommendedKoreanSeries.filter(s => s.genre.toLowerCase().includes(genre.toLowerCase()));
+      display(currentList);
+    }
+
+    function searchTitles(query) {
+      currentList = recommendedKoreanSeries.filter(s =>
+        s.title.toLowerCase().includes(query.toLowerCase())
+      );
+      display(currentList);
+    }
+
+    function sortBy(type) {
+      const sorted = [...currentList];
+      switch (type) {
+        case "popularity": sorted.sort((a, b) => b.popularity - a.popularity); break;
+        case "year": sorted.sort((a, b) => b.year - a.year); break;
+        case "titleAsc": sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
+        case "titleDesc": sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
+      }
+      display(sorted);
+    }
+
+    window.onload = () => {
+      currentList = [...recommendedKoreanSeries];
+      display(currentList);
+      console.log("💮 Korean Vault Loaded:", recommendedKoreanSeries.length, "entries");
+    };
+  </script>
+</body>
+</html>
