@@ -413,7 +413,7 @@ const recommendedChineseSeries = [
     platform: "Youku",
     genre: "Historical / Romance / Drama",
     year: 2025,
-    popularity
+    popularity:90,
   },
   
 ];
