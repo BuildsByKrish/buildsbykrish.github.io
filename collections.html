@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Series Collections</title>
+  <title>Collections</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -17,208 +17,55 @@
       color: #f39c12;
       margin: 2rem 0 1rem;
     }
-    .intro {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #ccc;
-      font-size: 1.1rem;
-    }
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-    .filters button,
-    .filters select {
-      background: #222;
-      color: #f39c12;
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 6px;
-    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
+      padding-bottom: 3rem;
     }
     .collection-card {
       background: #1c1c1c;
       border-radius: 10px;
       padding: 1rem;
       box-shadow: 0 0 10px #f39c1270;
-      position: relative;
-    }
-    .collection-card:hover {
-      box-shadow: 0 0 12px #f39c12aa;
-      transform: translateY(-4px);
-      transition: all 0.3s ease;
     }
     .collection-title {
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
-    }
-    .badge {
-      display: inline-block;
-      background: #f39c12;
-      color: #111;
-      font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      margin-right: 0.5rem;
+      color: #f1c40f;
     }
     .desc {
       font-size: 0.9rem;
       color: #aaa;
-      margin: 0.5rem 0;
-    }
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1rem;
-    }
-    .actions button {
-      font-size: 0.8rem;
-      background: #f39c12;
-      color: #111;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .actions span {
-      font-size: 0.8rem;
-      color: #ccc;
-    }
-    .section-label {
-      font-size: 1rem;
-      margin: 2rem 0 0.5rem;
-      border-bottom: 1px solid #333;
-      color: #f1c40f;
     }
   </style>
 </head>
 <body>
 
-  <h1>Series Collections</h1>
-  <p class="intro">Curated collections for every mood and genre. Add to your list and rediscover greatness.</p>
+  <h1>Collections</h1>
 
-  <div class="filters">
-    <select onchange="filterByGenre(this.value)">
-      <option value="all">All Genres</option>
-      <option value="Crime">Crime</option>
-      <option value="Drama">Drama</option>
-      <option value="Thriller">Thriller</option>
-      <option value="Fantasy">Fantasy</option>
-      <option value="Romance">Romance</option>
-      <option value="Sci-Fi">Sci-Fi</option>
-      <option value="Mystery">Mystery</option>
-    </select>
-    <button onclick="sortCollections('name')">Sort: A–Z</button>
-    <button onclick="sortCollections('count')">Sort: Size</button>
-    <button onclick="showMyList()">📂 My List</button>
+  <div class="grid">
+    <div class="collection-card">
+      <div class="collection-title">Crime Elite</div>
+      <p class="desc">Elite dramas with suspense, heists, and detectives.</p>
+    </div>
+    <div class="collection-card">
+      <div class="collection-title">Fantasy Core</div>
+      <p class="desc">Magic, dragons, and worlds beyond imagination.</p>
+    </div>
+    <div class="collection-card">
+      <div class="collection-title">Netflix Bangers</div>
+      <p class="desc">Flagship thrillers and viral hits straight from Netflix.</p>
+    </div>
+    <div class="collection-card">
+      <div class="collection-title">One-Season Gems</div>
+      <p class="desc">Miniseries that nailed it in one shot.</p>
+    </div>
+    <div class="collection-card">
+      <div class="collection-title">Romantic Vault</div>
+      <p class="desc">Heartfelt stories across timelines and languages.</p>
+    </div>
   </div>
-
-  <div id="collectionsGrid" class="grid"></div>
-
-  <script>
-    const collections = [
-      {
-        id: "crime-elite",
-        title: "Crime Elite",
-        genre: "Crime",
-        count: 18,
-        desc: "Elite dramas with suspense, heists, and detectives.",
-        tags: ["Crime", "Thriller", "Popular"]
-      },
-      {
-        id: "fantasy-core",
-        title: "Fantasy Core",
-        genre: "Fantasy",
-        count: 15,
-        desc: "Magic, dragons, and worlds beyond imagination.",
-        tags: ["Fantasy", "Adventure", "Top Rated"]
-      },
-      {
-        id: "netflix-bangers",
-        title: "Netflix Bangers",
-        genre: "Mixed",
-        count: 24,
-        desc: "Flagship thrillers and viral hits straight from Netflix.",
-        tags: ["Trending", "Netflix", "Drama"]
-      },
-      {
-        id: "one-season-gems",
-        title: "One-Season Gems",
-        genre: "Drama",
-        count: 12,
-        desc: "Miniseries that nailed it in one shot.",
-        tags: ["Drama", "Mini-Series"]
-      },
-      {
-        id: "romantic-vault",
-        title: "Romantic Vault",
-        genre: "Romance",
-        count: 10,
-        desc: "Heartfelt stories across timelines and languages.",
-        tags: ["Romance", "Emotion"]
-      }
-    ];
-
-    let myList = JSON.parse(localStorage.getItem("myCollections") || "[]");
-    let activeList = [...collections];
-
-    function renderCollections(list) {
-      const grid = document.getElementById("collectionsGrid");
-      grid.innerHTML = list.map(col => `
-        <div class="collection-card">
-          <div class="collection-title">${col.title}</div>
-          ${col.tags.map(tag => `<span class="badge">${tag}</span>`).join(" ")}
-          <p class="desc">${col.desc}</p>
-          <div class="actions">
-            <span>📚 ${col.count} Titles</span>
-            <button onclick="toggleList('${col.id}')">
-              ${myList.includes(col.id) ? "✔ Added" : "➕ Add"}
-            </button>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function toggleList(id) {
-      if (myList.includes(id)) {
-        myList = myList.filter(x => x !== id);
-      } else {
-        myList.push(id);
-      }
-      localStorage.setItem("myCollections", JSON.stringify(myList));
-      renderCollections(activeList);
-    }
-
-    function filterByGenre(genre) {
-      activeList = genre === "all" ? [...collections] : collections.filter(c => c.genre === genre);
-      renderCollections(activeList);
-    }
-
-    function sortCollections(type) {
-      if (type === "name") {
-        activeList.sort((a, b) => a.title.localeCompare(b.title));
-      } else if (type === "count") {
-        activeList.sort((a, b) => b.count - a.count);
-      }
-      renderCollections(activeList);
-    }
-
-    function showMyList() {
-      const myItems = collections.filter(c => myList.includes(c.id));
-      renderCollections(myItems.length ? myItems : []);
-    }
-
-    window.onload = () => renderCollections(activeList);
-  </script>
 
 </body>
 </html>
