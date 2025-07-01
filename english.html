@@ -2,202 +2,192 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>🎥 English Series</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="vault-theme.css" />
-  <script src="englishrecommendations.js"></script>
+  <title>English Series Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      opacity: 0;
-      animation: fadeIn 0.8s ease-in forwards;
-      background: linear-gradient(145deg, #000, #111);
-      font-family: 'Segoe UI', sans-serif;
-      color: #f0f0f0;
-      padding: 2rem;
-      cursor: none;
+      font-family: sans-serif;
+      background: #111;
+      color: #fff;
+      margin: 0;
+      padding: 0 1rem 3rem;
+      scroll-behavior: smooth;
     }
-
     h1 {
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: #00ffe7;
       text-align: center;
-      text-shadow: 0 0 10px #00ffe7;
-      margin-bottom: 1rem;
+      color: #00d2ff;
+      margin: 2rem 0 1rem;
     }
-
-    h1::after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 3px;
-      background: #00ffe7;
-      margin: 0.6rem auto 0;
-      border-radius: 2px;
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
     }
-
-    .main-btn {
-      display: block;
-      margin: 1rem auto 2rem;
-      background: linear-gradient(90deg, #00ffe7, #00ccff);
-      color: #000;
+    .filters button,
+    .filters select,
+    .filters input {
+      background: #222;
+      color: #00d2ff;
       font-weight: bold;
-      padding: 0.7rem 1.5rem;
       border: none;
-      border-radius: 8px;
-      box-shadow: 0 0 12px #00ffe7;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
     }
-
-    .main-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffff;
-    }
-
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
+      padding-bottom: 3rem;
     }
-
     .poster-tile {
-      background: #1a1a1a;
-      padding: 1rem;
+      background: #1c1c1c;
       border-radius: 10px;
-      box-shadow: 0 0 8px #00ffe73b;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 1rem;
+      box-shadow: 0 0 10px #00d2ff44;
     }
-
-    .poster-tile:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 20px #00ffe7aa;
-    }
-
     .poster-info h3 {
-      margin-bottom: 0.4rem;
-      font-size: 1.1rem;
-      color: #fff;
+      margin: 0 0 0.5rem;
     }
-
-    .poster-info p {
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
     }
-
     .tag {
-      font-size: 0.75rem;
-      background: #00ffe7;
-      color: #000;
-      padding: 0.25rem 0.6rem;
-      border-radius: 5px;
-      font-weight: bold;
+      background: #00d2ff;
+      color: #111;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
     }
-
-    /* Scroll Button */
-    #scrollBtn {
-      display: none;
+    .top-btn,
+    .home-btn {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
       z-index: 99;
-      background: linear-gradient(90deg, #00ffe7, #00ccff);
-      color: #000;
-      padding: 0.8rem 1rem;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      box-shadow: 0 0 12px #00ffe7;
+      right: 20px;
+      padding: 0.7rem 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      background-color: #00d2ff;
+      color: #111;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: opacity 0.3s ease;
     }
-
-    #scrollBtn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #00ffff;
+    .top-btn {
+      bottom: 80px;
+      display: none;
     }
-
-    .cursor-dot {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 12px;
-      height: 12px;
-      background: #00ffe7;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      box-shadow: 0 0 10px #00ffe7;
-      transform: translate(-50%, -50%);
-    }
-
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      color: #666;
+    .home-btn {
+      bottom: 20px;
     }
   </style>
 </head>
 <body>
 
-  <h1>🎥 English Series</h1>
-  <button class="main-btn" onclick="goBack()">🔙 Back to Collections</button>
+  <h1>🇬🇧 English Series Vault</h1>
 
-  <main>
-    <div id="englishGrid" class="grid"></div>
-  </main>
+  <div class="filters">
+    <button onclick="filterHindiDub('all')">All</button>
+    <button onclick="filterHindiDub('yes')">Hindi Dubbed ✅</button>
+    <button onclick="filterHindiDub('no')">English Only ❌</button>
+    <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
+    <select onchange="sortBy(this.value)">
+      <option value="">Sort by…</option>
+      <option value="popularity">Popularity</option>
+      <option value="year">Year</option>
+      <option value="titleAsc">A–Z</option>
+      <option value="titleDesc">Z–A</option>
+    </select>
+  </div>
 
-  <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">⬆</button>
-  <div class="cursor-dot"></div>
+  <div id="englishGrid" class="grid"></div>
 
-  <footer>Curated by Krish 🌍</footer>
-
+  <script src="./englishrecommendations.js"></script>
   <script>
-    function goBack() {
-      window.location.href = "collections.html";
-    }
+    let currentList = [];
 
-    const grid = document.getElementById("englishGrid");
-
-    function createTile(show) {
-      return `
+    function display(list) {
+      const grid = document.getElementById("englishGrid");
+      grid.innerHTML = list.map((show, i) => `
         <div class="poster-tile">
           <div class="poster-info">
-            <h3>${show.title}</h3>
-            ${show.hindiDubbed ? '<div class="tags"><span class="tag">🇮🇳 Hindi Dubbed</span></div>' : ''}
+            <h3>${i + 1}. ${show.title}</h3>
+            <div class="tags">
+              <span class="tag">${show.platform}</span>
+              <span class="tag">${show.genre}</span>
+              <span class="tag">📅 ${show.year}</span>
+              <span class="tag">🔥 ${show.popularity}%</span>
+              <span class="tag">${show.hindiDubbed ? "🔁 Hindi Dubbed" : "🎧 English Only"}</span>
+            </div>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;">
+              Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
+            </p>
           </div>
         </div>
-      `;
+      `).join("");
     }
 
-    if (typeof recommendedEnglishSeries !== "undefined") {
-      grid.innerHTML = recommendedEnglishSeries.map(createTile).join("");
-    } else {
-      grid.innerHTML = "<p>No shows found.</p>";
+    function filterHindiDub(option) {
+      switch (option) {
+        case 'yes':
+          currentList = recommendedEnglishSeries.filter(s => s.hindiDubbed); break;
+        case 'no':
+          currentList = recommendedEnglishSeries.filter(s => !s.hindiDubbed); break;
+        default:
+          currentList = [...recommendedEnglishSeries]; break;
+      }
+      display(currentList);
     }
 
-    // Scroll-to-top button
-    const scrollBtn = document.getElementById("scrollBtn");
-    window.onscroll = () => {
-      scrollBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    function searchTitles(query) {
+      currentList = recommendedEnglishSeries.filter(s =>
+        s.title.toLowerCase().includes(query.toLowerCase())
+      );
+      display(currentList);
+    }
+
+    function sortBy(type) {
+      const sorted = [...currentList];
+      switch (type) {
+        case "popularity":
+          sorted.sort((a, b) => b.popularity - a.popularity); break;
+        case "year":
+          sorted.sort((a, b) => b.year - a.year); break;
+        case "titleAsc":
+          sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
+        case "titleDesc":
+          sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
+      }
+      display(sorted);
+    }
+
+    window.onload = () => {
+      currentList = [...recommendedEnglishSeries];
+      display(currentList);
+      console.log("🎬 English Vault Loaded:", currentList.length, "entries");
     };
-    function scrollToTop() {
+
+    window.onscroll = function () {
+      document.getElementById("topBtn").style.display =
+        document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
+          ? "block" : "none";
+    };
+
+    function scrollTopSmooth() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Custom cursor
-    const dot = document.querySelector(".cursor-dot");
-    document.addEventListener("mousemove", e => {
-      dot.style.top = `${e.clientY}px`;
-      dot.style.left = `${e.clientX}px`;
-    });
+    function goHome() {
+      window.location.href = "index.html";
+    }
   </script>
+
+  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
+  <button onclick="goHome()" class="home-btn">🏠 Home</button>
 
 </body>
 </html>
