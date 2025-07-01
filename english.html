@@ -21,7 +21,7 @@
     .filters {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.75rem;
       justify-content: center;
       margin-bottom: 2rem;
     }
@@ -125,6 +125,10 @@
 
     function display(list) {
       const grid = document.getElementById("englishGrid");
+      if (!list || !list.length) {
+        grid.innerHTML = "<p style='text-align:center;'>No shows to display. Check filters or data file.</p>";
+        return;
+      }
       grid.innerHTML = list.map((show, i) => `
         <div class="poster-tile">
           <div class="poster-info">
@@ -158,4 +162,60 @@
     function filterHindiDub(option) {
       switch (option) {
         case 'yes':
-          currentList = recommendedEnglishSeries.filter
+          currentList = recommendedEnglishSeries.filter(s => s.hindiDubbed); break;
+        case 'no':
+          currentList = recommendedEnglishSeries.filter(s => !s.hindiDubbed); break;
+        default:
+          currentList = [...recommendedEnglishSeries]; break;
+      }
+      display(currentList);
+    }
+
+    function searchTitles(query) {
+      currentList = recommendedEnglishSeries.filter(s =>
+        s.title.toLowerCase().includes(query.toLowerCase())
+      );
+      display(currentList);
+    }
+
+    function sortBy(type) {
+      const sorted = [...currentList];
+      switch (type) {
+        case "popularity":
+          sorted.sort((a, b) => b.popularity - a.popularity); break;
+        case "year":
+          sorted.sort((a, b) => b.year - a.year); break;
+        case "titleAsc":
+          sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
+        case "titleDesc":
+          sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
+      }
+      display(sorted);
+    }
+
+    window.onload = () => {
+      currentList = [...recommendedEnglishSeries];
+      display(currentList);
+      console.log("✅ English Vault Loaded:", currentList.length);
+    };
+
+    window.onscroll = function () {
+      document.getElementById("topBtn").style.display =
+        document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
+          ? "block" : "none";
+    };
+
+    function scrollTopSmooth() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
+  <button onclick="goHome()" class="home-btn">🏠 Home</button>
+
+</body>
+</html>
