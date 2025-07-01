@@ -129,7 +129,7 @@ const recommendedHindiSeries = [
     language: "Hindi",
     ref: "H10"
   },
-{
+  {
     id: 11,
     title: "TVF Pitchers",
     platform: "TVF Play / ZEE5",
@@ -389,7 +389,7 @@ const recommendedHindiSeries = [
     language: "Hindi",
     ref: "H30"
   },
-{
+  {
     id: 31,
     title: "Bhaukaal",
     platform: "MX Player",
