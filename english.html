@@ -6,29 +6,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
+      font-family: sans-serif;
       background: #111;
       color: #fff;
-      font-family: sans-serif;
       margin: 0;
       padding: 0 1rem 3rem;
+      scroll-behavior: smooth;
     }
     h1 {
       text-align: center;
-      margin: 2rem 0 1rem;
       color: #00d2ff;
+      margin: 2rem 0 1rem;
     }
-    .home-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .filters button,
+    .filters select,
+    .filters input {
+      background: #222;
+      color: #00d2ff;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding-bottom: 3rem;
+    }
+    .poster-tile {
+      background: #1c1c1c;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px #00d2ff44;
+    }
+    .poster-info h3 {
+      margin: 0 0 0.5rem;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .tag {
       background: #00d2ff;
       color: #111;
-      border: none;
-      border-radius: 50px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    .top-btn,
+    .home-btn {
+      position: fixed;
+      z-index: 99;
+      right: 20px;
       padding: 0.7rem 1.2rem;
       font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      background-color: #00d2ff;
+      color: #111;
       cursor: pointer;
-      box-shadow: 0 0 10px #00d2ff88;
+      transition: opacity 0.3s ease;
+    }
+    .top-btn {
+      bottom: 80px;
+      display: none;
+    }
+    .home-btn {
+      bottom: 20px;
     }
   </style>
 </head>
@@ -36,19 +90,132 @@
 
   <h1>English Series Vault</h1>
 
-  <!-- Your English vault content goes here -->
-  <div id="englishGrid">Loading English series...</div>
+  <div class="filters">
+    <!-- Genre Filters -->
+    <button onclick="filterByGenre('All')">All Genres</button>
+    <button onclick="filterByGenre('Crime')">Crime</button>
+    <button onclick="filterByGenre('Thriller')">Thriller</button>
+    <button onclick="filterByGenre('Drama')">Drama</button>
+    <button onclick="filterByGenre('Fantasy')">Fantasy</button>
+    <button onclick="filterByGenre('Sci-Fi')">Sci-Fi</button>
+    <button onclick="filterByGenre('Mystery')">Mystery</button>
+    <button onclick="filterByGenre('Comedy')">Comedy</button>
 
-  <button onclick="goHome()" class="home-btn">🏠 Home</button>
+    <!-- Hindi Dubbed Toggle -->
+    <button onclick="filterHindiDub('all')">All</button>
+    <button onclick="filterHindiDub('yes')">Hindi Dubbed ✅</button>
+    <button onclick="filterHindiDub('no')">English Only ❌</button>
+
+    <!-- Search + Sort -->
+    <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
+    <select onchange="sortBy(this.value)">
+      <option value="">Sort by…</option>
+      <option value="popularity">Popularity</option>
+      <option value="year">Year</option>
+      <option value="titleAsc">A–Z</option>
+      <option value="titleDesc">Z–A</option>
+    </select>
+  </div>
+
+  <div id="englishGrid" class="grid"></div>
 
   <script src="./englishrecommendations.js"></script>
   <script>
+    let currentList = [];
+
+    function display(list) {
+      const grid = document.getElementById("englishGrid");
+      if (!list || !list.length) {
+        grid.innerHTML = "<p style='text-align:center;'>No shows to display. Check filters or data file.</p>";
+        return;
+      }
+      grid.innerHTML = list.map((show, i) => `
+        <div class="poster-tile">
+          <div class="poster-info">
+            <h3>${i + 1}. ${show.title}</h3>
+            <div class="tags">
+              <span class="tag">${show.platform}</span>
+              <span class="tag">${show.genre}</span>
+              <span class="tag">📅 ${show.year}</span>
+              <span class="tag">🔥 ${show.popularity}%</span>
+              <span class="tag">${show.hindiDubbed ? "🔁 Hindi Dubbed" : "🎧 English Only"}</span>
+            </div>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;">
+              Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
+            </p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function filterByGenre(selectedGenre) {
+      if (selectedGenre === "All") {
+        currentList = [...recommendedEnglishSeries];
+      } else {
+        currentList = recommendedEnglishSeries.filter(s =>
+          s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
+        );
+      }
+      display(currentList);
+    }
+
+    function filterHindiDub(option) {
+      switch (option) {
+        case 'yes':
+          currentList = recommendedEnglishSeries.filter(s => s.hindiDubbed); break;
+        case 'no':
+          currentList = recommendedEnglishSeries.filter(s => !s.hindiDubbed); break;
+        default:
+          currentList = [...recommendedEnglishSeries]; break;
+      }
+      display(currentList);
+    }
+
+    function searchTitles(query) {
+      currentList = recommendedEnglishSeries.filter(s =>
+        s.title.toLowerCase().includes(query.toLowerCase())
+      );
+      display(currentList);
+    }
+
+    function sortBy(type) {
+      const sorted = [...currentList];
+      switch (type) {
+        case "popularity":
+          sorted.sort((a, b) => b.popularity - a.popularity); break;
+        case "year":
+          sorted.sort((a, b) => b.year - a.year); break;
+        case "titleAsc":
+          sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
+        case "titleDesc":
+          sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
+      }
+      display(sorted);
+    }
+
+    window.onload = () => {
+      currentList = [...recommendedEnglishSeries];
+      display(currentList);
+      console.log("✅ English Vault Loaded:", currentList.length);
+    };
+
+    window.onscroll = function () {
+      document.getElementById("topBtn").style.display =
+        document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
+          ? "block" : "none";
+    };
+
+    function scrollTopSmooth() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     function goHome() {
       window.location.href = "collection.html";
     }
-
-    // Your JavaScript to render the English vault goes here
   </script>
+
+  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
+  <button onclick="goHome()" class="home-btn">🏠 Home</button>
 
 </body>
 </html>
