@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Hindi Series Vault</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: sans-serif;
@@ -25,7 +25,9 @@
       justify-content: center;
       margin-bottom: 2rem;
     }
-    .filters button, .filters select, .filters input {
+    .filters button,
+    .filters select,
+    .filters input {
       background: #222;
       color: #f5b041;
       font-weight: bold;
@@ -61,7 +63,8 @@
       border-radius: 4px;
       font-size: 0.8rem;
     }
-    .top-btn, .home-btn {
+    .top-btn,
+    .home-btn {
       position: fixed;
       z-index: 99;
       right: 20px;
@@ -105,19 +108,17 @@
 
   <div id="hindiGrid" class="grid"></div>
 
-  <!-- JS: Recommendations -->
   <script src="./hindirecommendations.js"></script>
 
-  <!-- JS: Display Logic -->
   <script>
     let currentHindiList = [];
 
     function display(list) {
       const grid = document.getElementById("hindiGrid");
-      grid.innerHTML = list.map(show => `
+      grid.innerHTML = list.map((show, i) => `
         <div class="poster-tile">
           <div class="poster-info">
-            <h3>${show.ref}. ${show.title}</h3>
+            <h3>${i + 1}. ${show.title}</h3>
             <div class="tags">
               <span class="tag">${show.platform}</span>
               <span class="tag">${show.genre}</span>
@@ -169,17 +170,18 @@
       console.log("📘 Hindi Vault Loaded:", recommendedHindiSeries.length, "entries");
     };
 
-    // Go to top button logic
     window.onscroll = function () {
       document.getElementById("topBtn").style.display =
         document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
           ? "block" : "none";
     };
+
     function scrollTopSmooth() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
     function goHome() {
-      window.location.href = "index.html"; // 👈 Edit this if your homepage is named differently
+      window.location.href = "index.html";
     }
   </script>
 
