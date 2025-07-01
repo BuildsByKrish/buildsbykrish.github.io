@@ -15,13 +15,13 @@
     }
     h1 {
       text-align: center;
-      color: #f5b041;
+      color: #ffc107;
       margin: 2rem 0 1rem;
     }
     .filters {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.75rem;
       justify-content: center;
       margin-bottom: 2rem;
     }
@@ -29,7 +29,7 @@
     .filters select,
     .filters input {
       background: #222;
-      color: #f5b041;
+      color: #ffc107;
       font-weight: bold;
       border: none;
       border-radius: 6px;
@@ -45,7 +45,7 @@
       background: #1c1c1c;
       border-radius: 10px;
       padding: 1rem;
-      box-shadow: 0 0 10px #f5b04155;
+      box-shadow: 0 0 10px #ffc10744;
     }
     .poster-info h3 {
       margin: 0 0 0.5rem;
@@ -57,7 +57,7 @@
       margin-top: 0.5rem;
     }
     .tag {
-      background: #f5b041;
+      background: #ffc107;
       color: #111;
       padding: 0.2rem 0.6rem;
       border-radius: 4px;
@@ -72,7 +72,7 @@
       font-weight: bold;
       border: none;
       border-radius: 50px;
-      background-color: #f5b041;
+      background-color: #ffc107;
       color: #111;
       cursor: pointer;
       transition: opacity 0.3s ease;
@@ -88,15 +88,26 @@
 </head>
 <body>
 
-  <h1>🇮🇳 Hindi Series Vault</h1>
+  <h1>Hindi Series Vault</h1>
 
   <div class="filters">
-    <button onclick="filterByGenre('All')">All</button>
+    <!-- Genre Filters -->
+    <button onclick="filterByGenre('All')">All Genres</button>
     <button onclick="filterByGenre('Crime')">Crime</button>
-    <button onclick="filterByGenre('Drama')">Drama</button>
-    <button onclick="filterByGenre('Comedy')">Comedy</button>
     <button onclick="filterByGenre('Thriller')">Thriller</button>
-    <input type="text" placeholder="Search..." oninput="searchTitles(this.value)">
+    <button onclick="filterByGenre('Drama')">Drama</button>
+    <button onclick="filterByGenre('Fantasy')">Fantasy</button>
+    <button onclick="filterByGenre('Sci-Fi')">Sci-Fi</button>
+    <button onclick="filterByGenre('Mystery')">Mystery</button>
+    <button onclick="filterByGenre('Comedy')">Comedy</button>
+
+    <!-- Hindi Dubbed Toggle -->
+    <button onclick="filterHindiDub('all')">All</button>
+    <button onclick="filterHindiDub('yes')">Hindi Dubbed ✅</button>
+    <button onclick="filterHindiDub('no')">Original Only ❌</button>
+
+    <!-- Search + Sort -->
+    <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
     <select onchange="sortBy(this.value)">
       <option value="">Sort by…</option>
       <option value="popularity">Popularity</option>
@@ -109,12 +120,15 @@
   <div id="hindiGrid" class="grid"></div>
 
   <script src="./hindirecommendations.js"></script>
-
   <script>
-    let currentHindiList = [];
+    let currentList = [];
 
     function display(list) {
       const grid = document.getElementById("hindiGrid");
+      if (!list || !list.length) {
+        grid.innerHTML = "<p style='text-align:center;'>No shows to display. Check filters or data file.</p>";
+        return;
+      }
       grid.innerHTML = list.map((show, i) => `
         <div class="poster-tile">
           <div class="poster-info">
@@ -124,6 +138,7 @@
               <span class="tag">${show.genre}</span>
               <span class="tag">📅 ${show.year}</span>
               <span class="tag">🔥 ${show.popularity}%</span>
+              <span class="tag">${show.hindiDubbed ? "🔁 Hindi Dubbed" : "🎧 Original Only"}</span>
             </div>
             <p style="font-size: 0.85rem; margin-top: 0.5rem;">
               Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
@@ -133,24 +148,38 @@
       `).join("");
     }
 
-    function filterByGenre(genre) {
-      currentHindiList = genre === "All"
-        ? [...recommendedHindiSeries]
-        : recommendedHindiSeries.filter(s =>
-            s.genre.toLowerCase().includes(genre.toLowerCase())
-          );
-      display(currentHindiList);
+    function filterByGenre(selectedGenre) {
+      if (selectedGenre === "All") {
+        currentList = [...recommendedHindiSeries];
+      } else {
+        currentList = recommendedHindiSeries.filter(s =>
+          s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
+        );
+      }
+      display(currentList);
+    }
+
+    function filterHindiDub(option) {
+      switch (option) {
+        case 'yes':
+          currentList = recommendedHindiSeries.filter(s => s.hindiDubbed); break;
+        case 'no':
+          currentList = recommendedHindiSeries.filter(s => !s.hindiDubbed); break;
+        default:
+          currentList = [...recommendedHindiSeries]; break;
+      }
+      display(currentList);
     }
 
     function searchTitles(query) {
-      currentHindiList = recommendedHindiSeries.filter(s =>
+      currentList = recommendedHindiSeries.filter(s =>
         s.title.toLowerCase().includes(query.toLowerCase())
       );
-      display(currentHindiList);
+      display(currentList);
     }
 
     function sortBy(type) {
-      const sorted = [...currentHindiList];
+      const sorted = [...currentList];
       switch (type) {
         case "popularity":
           sorted.sort((a, b) => b.popularity - a.popularity); break;
@@ -165,9 +194,9 @@
     }
 
     window.onload = () => {
-      currentHindiList = [...recommendedHindiSeries];
-      display(currentHindiList);
-      console.log("📘 Hindi Vault Loaded:", recommendedHindiSeries.length, "entries");
+      currentList = [...recommendedHindiSeries];
+      display(currentList);
+      console.log("✅ Hindi Vault Loaded:", currentList.length);
     };
 
     window.onscroll = function () {
@@ -181,7 +210,7 @@
     }
 
     function goHome() {
-      window.location.href = "index.html";
+      window.location.href = "collection.html";
     }
   </script>
 
