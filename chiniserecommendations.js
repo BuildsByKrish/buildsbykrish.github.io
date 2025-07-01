@@ -414,7 +414,7 @@ const recommendedChineseSeries = [
     genre: "Historical / Romance / Drama",
     year: 2025,
     popularity:90,
-  },
+  }
   
 ];
 console.log("🧧 Chinese recommendations loaded:", recommendedChineseSeries.length, "entries");
