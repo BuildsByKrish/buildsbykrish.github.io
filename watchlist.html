@@ -57,7 +57,7 @@
 
     .progress-bar-fill {
       height: 100%;
-      width: 12.5%;
+      width: 0%;
       background: #00d2ff;
       transition: width 1s ease-in-out;
     }
@@ -146,7 +146,7 @@
     const progressFill = document.getElementById("progressFill");
 
     const totalGoal = 1000;
-    const list = myWatchlist; // from data.js
+    const list = typeof myWatchlist !== "undefined" ? myWatchlist : [];
     const total = list.length;
 
     liveCount.textContent = `📺 ${total}/1000 Series Watched`;
