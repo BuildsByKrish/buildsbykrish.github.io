@@ -7,6 +7,9 @@ const genreButtons = document.getElementById("genreButtons");
 const backToTopBtn = document.getElementById("backToTop");
 
 const totalGoal = 1000;
+
+// Filter for Hindi originals only (if needed)
+// const filteredVault = myWatchlist.filter(item => item.language === "Hindi" && !item.hindiDubbed);
 let filteredList = [...myWatchlist];
 let activeGenre = null;
 
@@ -30,6 +33,7 @@ function render(list) {
         <span class="tag">${show.genre}</span>
         <span class="tag">📅 ${show.year}</span>
         <span class="tag">🔥 ${show.popularity}%</span>
+        <span class="tag">⭐ ${show.imdbRating}</span>
         <span class="tag">${show.hindiDubbed ? "🔁 Hindi Dubbed" : "🎧 Original"}</span>
       </div>
       <p style="font-size: 0.85rem; margin-top: 0.5rem;">
@@ -49,7 +53,7 @@ function toggleDescription(id) {
   desc.classList.toggle("hidden");
 }
 
-// Genre buttons
+// Generate genre buttons
 function generateGenres() {
   const genres = [...new Set(myWatchlist.map(item => item.genre))].sort();
   genres.forEach(genre => {
