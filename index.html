@@ -11,14 +11,14 @@
       padding: 0;
       font-family: 'Poppins', sans-serif;
       color: #fff;
-      text-align: center;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #111, #222);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
     }
 
     @keyframes gradientShift {
@@ -28,15 +28,30 @@
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-top: 3rem;
       color: #00d2ff;
       letter-spacing: 1px;
+      animation: flicker 2s infinite alternate;
     }
 
-    .intro {
+    @keyframes flicker {
+      0% { opacity: 1; text-shadow: 0 0 10px #00d2ff; }
+      100% { opacity: 0.85; text-shadow: 0 0 20px #00d2ff88; }
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 1rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px #00d2ff33;
       max-width: 700px;
-      margin: 1rem auto 2rem;
+    }
+
+    .glass-card p {
       font-size: 1.1rem;
       color: #ccc;
       line-height: 1.6;
@@ -46,6 +61,7 @@
       color: #00d2ff;
       font-weight: 600;
       margin-top: 1rem;
+      font-size: 1.1rem;
     }
 
     .vault-buttons {
@@ -53,27 +69,28 @@
       flex-direction: column;
       gap: 1.2rem;
       width: 90%;
-      max-width: 400px;
+      max-width: 500px;
       margin-bottom: 3rem;
     }
 
     .vault-buttons button {
-      background: #111;
+      background: rgba(0, 210, 255, 0.1);
       color: #00d2ff;
       border: 2px solid #00d2ff;
-      padding: 0.9rem 1.5rem;
+      padding: 1rem 1.5rem;
       font-size: 1rem;
       font-weight: 600;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
     }
 
     .vault-buttons button:hover {
       background: #00d2ff;
       color: #111;
       transform: scale(1.05);
-      box-shadow: 0 0 12px #00d2ff88;
+      box-shadow: 0 0 16px #00d2ffaa;
     }
 
     footer {
@@ -99,13 +116,16 @@
 
   <h1>Welcome to the Series Vault</h1>
 
-  <div class="intro">
-    ✨ First time here? Welcome to Krish’s personal vault — a curated portal into stories that move, inspire, and thrill.<br />
-    🎬 From English thrillers to Hindi epics, Korean heartbeats to Chinese legends — all handpicked on my mission to watch <strong>1000+ legendary series</strong> from around the world.<br />
-    🍿 Movie vault launching soon — stay tuned for cinematic gems!
+  <div class="glass-card">
+    <p>
+      ✨ First time here? Welcome to Krish’s personal vault — a curated portal into stories that move, inspire, and thrill.<br />
+      🎬 From English thrillers to Hindi epics, Korean heartbeats to Chinese legends — all handpicked on my mission to watch <strong>1000+ legendary series</strong> from around the world.<br />
+      🍿 Movie vault launching soon — stay tuned for cinematic gems!
+    </p>
+    <p id="watchlistCount">
+      📺 My Watchlist: <span id="countUp" style="padding: 0.2rem 0.6rem; background: #00d2ff33; border-radius: 6px; box-shadow: 0 0 8px #00d2ffaa;">0</span>/1000 ✅
+    </p>
   </div>
-
-  <p id="watchlistCount">📺 Loading watchlist count...</p>
 
   <div class="vault-buttons">
     <button onclick="location.href='english.html'">📂 My Watchlist</button>
@@ -117,13 +137,22 @@
     Crafted with ❤️ by Krish • Always evolving 🚀
   </footer>
 
-  <script src="englishrecommendations.js"></script>
   <script>
-    window.onload = () => {
-      const count = recommendedEnglishSeries.length;
-      document.getElementById("watchlistCount").textContent =
-        `📺 My Watchlist currently has ${count} series and counting!`;
+    const target = 125;
+    let count = 0;
+    const counter = document.getElementById("countUp");
+
+    const animateCount = () => {
+      if (count < target) {
+        count++;
+        counter.textContent = count;
+        requestAnimationFrame(animateCount);
+      } else {
+        counter.textContent = target;
+      }
     };
+
+    window.addEventListener("load", animateCount);
   </script>
 
 </body>
