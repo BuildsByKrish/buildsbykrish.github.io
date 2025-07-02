@@ -41,17 +41,6 @@
       margin: 0;
     }
 
-    #homeBtn {
-      background: transparent;
-      border: 1px solid #00d2ff;
-      color: #00d2ff;
-      padding: 0.3rem 0.8rem;
-      font-size: 0.8rem;
-      border-radius: 6px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
     #liveCount {
       font-weight: bold;
       font-size: 1rem;
@@ -182,21 +171,6 @@
       display: none;
     }
 
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 0.5rem 0.8rem;
-      font-size: 0.9rem;
-      background: #00d2ff;
-      color: #111;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      display: none;
-      z-index: 100;
-    }
-
     footer {
       text-align: center;
       padding: 2rem 1rem;
@@ -231,7 +205,11 @@
 
   <div class="grid" id="watchlistGrid"></div>
 
-  <button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝 Top</button>
+  <!-- Floating Home + Top buttons -->
+  <div style="position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 0.5rem; z-index: 100;">
+    <a href="collections.html" id="homeBtn" style="background: #00d2ff; color: #111; padding: 0.5rem 0.8rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; text-align: center;">🏠 Home</a>
+    <button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" style="background: #00d2ff; color: #111; border: none; padding: 0.5rem 0.8rem; border-radius: 6px; font-size: 0.9rem; cursor: pointer;">🔝 Top</button>
+  </div>
 
   <footer>
     Built with ❤️ by Krish • 125/1000 and counting 🚀
