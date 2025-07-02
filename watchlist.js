@@ -7,9 +7,6 @@ const genreButtons = document.getElementById("genreButtons");
 const backToTopBtn = document.getElementById("backToTop");
 
 const totalGoal = 1000;
-
-// Filter for Hindi originals only (if needed)
-// const filteredVault = myWatchlist.filter(item => item.language === "Hindi" && !item.hindiDubbed);
 let filteredList = [...myWatchlist];
 let activeGenre = null;
 
@@ -53,9 +50,11 @@ function toggleDescription(id) {
   desc.classList.toggle("hidden");
 }
 
-// Generate genre buttons
+// Generate major genre buttons only
 function generateGenres() {
-  const genres = [...new Set(myWatchlist.map(item => item.genre))].sort();
+  const majorGenres = ["Action", "Romance", "Thriller", "Comedy", "Fantasy", "Crime", "Drama", "Mystery", "Horror"];
+  const genres = [...new Set(myWatchlist.map(item => item.genre))].filter(g => majorGenres.includes(g)).sort();
+
   genres.forEach(genre => {
     const btn = document.createElement("button");
     btn.textContent = genre;
