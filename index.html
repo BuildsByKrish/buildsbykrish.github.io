@@ -36,10 +36,16 @@
 
     .intro {
       max-width: 700px;
-      margin: 1rem auto 2.5rem;
+      margin: 1rem auto 2rem;
       font-size: 1.1rem;
       color: #ccc;
       line-height: 1.6;
+    }
+
+    #watchlistCount {
+      color: #00d2ff;
+      font-weight: 600;
+      margin-top: 1rem;
     }
 
     .vault-buttons {
@@ -94,10 +100,12 @@
   <h1>Welcome to the Series Vault</h1>
 
   <div class="intro">
-    ✨ First time here? Explore handpicked series by genre, language & vibe.<br />
-    🎬 From English thrillers to Hindi epics, Korean heartbeats to Chinese legends — it’s all curated for you.<br />
-    🍿 Movie vault launching soon — stay tuned!
+    ✨ First time here? Welcome to Krish’s personal vault — a curated portal into stories that move, inspire, and thrill.<br />
+    🎬 From English thrillers to Hindi epics, Korean heartbeats to Chinese legends — all handpicked on my mission to watch <strong>1000+ legendary series</strong> from around the world.<br />
+    🍿 Movie vault launching soon — stay tuned for cinematic gems!
   </div>
+
+  <p id="watchlistCount">📺 Loading watchlist count...</p>
 
   <div class="vault-buttons">
     <button onclick="location.href='english.html'">📂 My Watchlist</button>
@@ -108,6 +116,15 @@
   <footer>
     Crafted with ❤️ by Krish • Always evolving 🚀
   </footer>
+
+  <script src="englishrecommendations.js"></script>
+  <script>
+    window.onload = () => {
+      const count = recommendedEnglishSeries.length;
+      document.getElementById("watchlistCount").textContent =
+        `📺 My Watchlist currently has ${count} series and counting!`;
+    };
+  </script>
 
 </body>
 </html>
