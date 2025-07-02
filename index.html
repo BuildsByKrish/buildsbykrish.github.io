@@ -2,194 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Krish's Watchlist & Recommendation Hub</title>
-  <link rel="stylesheet" href="vault-theme.css" />
+  <title>Series Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    /* Stylish Heading */
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: #00ffe7;
-      text-align: center;
-      position: relative;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px #00ffe7;
-    }
-
-    h1::after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 3px;
-      background: #00ffe7;
-      margin: 0.5rem auto 0;
-      border-radius: 2px;
-    }
-
-    /* Quote Styling */
-    .quote {
-      font-size: 1.3rem;
-      color: #00ffe7;
-      text-shadow: 0 0 8px #00ffe7;
-      margin: 2rem 0 1.2rem;
-      font-style: italic;
-      text-align: center;
-    }
-
-    /* Live Counter */
-    .counter {
-      font-size: 1.2rem;
-      color: #ccc;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .counter span {
-      font-weight: bold;
-      color: #00ffe7;
-      text-shadow: 0 0 6px #00ffe7;
-    }
-
-    /* Intro */
-    .intro {
-      max-width: 750px;
-      font-size: 1.15rem;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
-      color: #ccc;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 0 12px #00ffe73b;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    .intro strong {
-      color: #00ffe7;
-      text-shadow: 0 0 6px #00ffe7;
-    }
-
-    .nav-grid {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-
-    /* Scroll-to-Top */
-    #scrollBtn {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 99;
-      border: none;
-      outline: none;
-      background: linear-gradient(90deg, #00ffe7, #00ccff);
-      color: #000;
-      padding: 0.8rem 1rem;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      box-shadow: 0 0 12px #00ffe7;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    #scrollBtn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #00ffff;
-    }
-
-    /* Custom Cursor */
     body {
-      cursor: none;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #111, #222);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
     }
 
-    .cursor-dot {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 12px;
-      height: 12px;
-      background: #00ffe7;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      box-shadow: 0 0 10px #00ffe7;
-      transform: translate(-50%, -50%);
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 3rem;
+      color: #00d2ff;
+      letter-spacing: 1px;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin: 1rem auto 2.5rem;
+      font-size: 1.1rem;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .vault-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      width: 90%;
+      max-width: 400px;
+      margin-bottom: 3rem;
+    }
+
+    .vault-buttons button {
+      background: #111;
+      color: #00d2ff;
+      border: 2px solid #00d2ff;
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .vault-buttons button:hover {
+      background: #00d2ff;
+      color: #111;
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #00d2ff88;
     }
 
     footer {
       margin-top: auto;
+      padding: 2rem 1rem;
       font-size: 0.9rem;
-      color: #666;
-      text-align: center;
+      color: #888;
+    }
+
+    @media (min-width: 600px) {
+      .vault-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .vault-buttons button {
+        flex: 1 1 45%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>🎬 Krish's Watchlist & Recommendation Hub</h1>
-
-  <div class="quote">“Stories are infinite — I’m chasing 1000 of them.”</div>
-
-  <div class="counter">
-    Series Watched: <span id="counter">0</span> / 1000+
-  </div>
+  <h1>Welcome to the Series Vault</h1>
 
   <div class="intro">
-    <p>Hey, I’m <strong>Krish</strong> — a passionate explorer of stories, on a mission to watch <strong>1000+ legendary series</strong> from around the world. This hub is my personal vault — part journal, part discovery engine — where I track what I’ve watched and share what I love.</p>
-    <p>✨ Want to explore my journey? Head to <strong>My Watchlist Vault</strong>.<br>
-    🎯 Looking for something new? Dive into <strong>Recommendations by Me</strong> — curated by genre, language, and vibe.<br>
-    🌍 From English thrillers to Hindi dramas, Korean heartbeats to Chinese fantasy — it’s all here.<br>
-    🍿 <em>Movie recommendations coming soon!</em></p>
+    ✨ First time here? Explore handpicked series by genre, language & vibe.<br />
+    🎬 From English thrillers to Hindi epics, Korean heartbeats to Chinese legends — it’s all curated for you.<br />
+    🍿 Movie vault launching soon — stay tuned!
   </div>
 
-  <div class="nav-grid">
-    <a href="watchlist.html" class="nav-btn">📺 My Watchlist Vault</a>
-    <a href="collections.html" class="nav-btn">📚 Recommendations by Me</a>
-    <a href="submit.html" class="nav-btn">📝 Submit Recommendations</a>
+  <div class="vault-buttons">
+    <button onclick="location.href='english.html'">📂 My Watchlist</button>
+    <button onclick="location.href='collections.html'">🧠 Recommendations by Me</button>
+    <button onclick="location.href='submit.html'">📤 Submit Your Recommendation</button>
   </div>
 
-  <button onclick="scrollToTop()" id="scrollBtn" title="Go to top">⬆</button>
-  <div class="cursor-dot"></div>
-
-  <footer>Curated by Krish ✨</footer>
-
-  <script>
-    // Live counter animation
-    const counter = document.getElementById("counter");
-    const target = 125;
-    let count = 0;
-    const updateCounter = () => {
-      const increment = Math.ceil(target / 50);
-      if (count < target) {
-        count += increment;
-        if (count > target) count = target;
-        counter.textContent = count;
-        setTimeout(updateCounter, 30);
-      }
-    };
-    updateCounter();
-
-    // Scroll button
-    const scrollBtn = document.getElementById("scrollBtn");
-    window.onscroll = () => {
-      scrollBtn.style.display = window.scrollY > 200 ? "block" : "none";
-    };
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // Custom cursor
-    const dot = document.querySelector(".cursor-dot");
-    document.addEventListener("mousemove", e => {
-      dot.style.top = `${e.clientY}px`;
-      dot.style.left = `${e.clientX}px`;
-    });
-  </script>
+  <footer>
+    Crafted with ❤️ by Krish • Always evolving 🚀
+  </footer>
 
 </body>
 </html>
