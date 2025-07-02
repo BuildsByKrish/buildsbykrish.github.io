@@ -87,21 +87,6 @@
       font-weight: bold;
     }
 
-    .progress-bar {
-      height: 6px;
-      background: #00d2ff33;
-      border-radius: 4px;
-      overflow: hidden;
-      margin: 0.5rem 2rem;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background: #00d2ff;
-      transition: width 1s ease-in-out;
-    }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -182,14 +167,9 @@
 <body>
 
   <header>
-    <a href="collections.html" id="homeBtn">🏠 Home</a>
     <h1>My Watchlist Vault</h1>
     <div id="liveCount">Loading...</div>
   </header>
-
-  <div class="progress-bar">
-    <div class="progress-bar-fill" id="progressFill"></div>
-  </div>
 
   <div class="top-bar">
     <input type="text" id="searchInput" placeholder="🔍 Search by title..." />
