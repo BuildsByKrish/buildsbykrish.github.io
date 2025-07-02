@@ -25,7 +25,7 @@
     header {
       position: sticky;
       top: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(10px);
       padding: 1rem 2rem;
       display: flex;
@@ -45,6 +45,46 @@
       font-weight: bold;
       font-size: 1rem;
       color: #00d2ff;
+    }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 2rem;
+    }
+
+    .top-bar input, .top-bar select {
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #00d2ff88;
+      background: #111;
+      color: #fff;
+      font-family: inherit;
+    }
+
+    .genre-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.5rem 2rem 1rem;
+    }
+
+    .genre-buttons button {
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      border-radius: 5px;
+      background: transparent;
+      border: 1px solid #00d2ff;
+      color: #00d2ff;
+      cursor: pointer;
+    }
+
+    .genre-buttons button.active {
+      background: #00d2ff;
+      color: #111;
+      font-weight: bold;
     }
 
     .progress-bar {
@@ -79,7 +119,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeInUp 0.6s forwards;
+      animation: fadeInUp 0.5s forwards;
     }
 
     .card:hover {
@@ -92,11 +132,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
-    .card h3 {
-      margin: 0 0 0.5rem;
-      color: #fff;
     }
 
     .tags {
@@ -136,18 +171,45 @@
       display: none;
     }
 
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.9rem;
+      background: #00d2ff;
+      color: #111;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: none;
+      z-index: 100;
+    }
+
     footer {
       text-align: center;
       padding: 2rem 1rem;
       font-size: 0.9rem;
       color: #888;
     }
+
+    #homeBtn {
+      background: transparent;
+      border: 1px solid #00d2ff;
+      color: #00d2ff;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>📂 My Watchlist Vault</h1>
+    <a href="collections.html" id="homeBtn">🏠 Home</a>
+    <h1>My Watchlist Vault</h1>
     <div id="liveCount">Loading...</div>
   </header>
 
@@ -155,14 +217,27 @@
     <div class="progress-bar-fill" id="progressFill"></div>
   </div>
 
+  <div class="top-bar">
+    <input type="text" id="searchInput" placeholder="🔍 Search by title..." />
+    <select id="sortSelect">
+      <option value="default">🔃 Sort</option>
+      <option value="title">Title A-Z</option>
+      <option value="year">Year ↑</option>
+      <option value="popularity">Popularity ↓</option>
+    </select>
+  </div>
+
+  <div class="genre-buttons" id="genreButtons"></div>
+
   <div class="grid" id="watchlistGrid"></div>
 
+  <button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝 Top</button>
+
   <footer>
-    Crafted with ❤️ by Krish • 125/1000 and counting 🚀
+    Built with 🔥 by Krish • Keep watching and keep dreaming 🌍🎬
   </footer>
 
   <script src="data.js"></script>
   <script src="watchlist.js"></script>
-
 </body>
 </html>
