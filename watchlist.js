@@ -1,6 +1,5 @@
 const grid = document.getElementById("watchlistGrid");
 const liveCount = document.getElementById("liveCount");
-const progressFill = document.getElementById("progressFill");
 const searchInput = document.getElementById("searchInput");
 const sortSelect = document.getElementById("sortSelect");
 const genreButtons = document.getElementById("genreButtons");
@@ -14,7 +13,6 @@ let activeGenre = null;
 function render(list) {
   grid.innerHTML = "";
   liveCount.textContent = `📺 ${list.length}/${totalGoal} Series Watched`;
-  progressFill.style.width = `${(list.length / totalGoal) * 100}%`;
 
   list.forEach((show, i) => {
     const card = document.createElement("div");
@@ -50,12 +48,10 @@ function toggleDescription(id) {
   desc.classList.toggle("hidden");
 }
 
-// Generate major genre buttons only
+// Only show Thriller and Drama genres
 function generateGenres() {
-  const majorGenres = ["Action", "Romance", "Thriller", "Comedy", "Fantasy", "Crime", "Drama", "Mystery", "Horror"];
-  const genres = [...new Set(myWatchlist.map(item => item.genre))].filter(g => majorGenres.includes(g)).sort();
-
-  genres.forEach(genre => {
+  const majorGenres = ["Thriller", "Drama"];
+  majorGenres.forEach(genre => {
     const btn = document.createElement("button");
     btn.textContent = genre;
     btn.onclick = () => {
