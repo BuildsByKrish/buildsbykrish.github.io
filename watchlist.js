@@ -6,17 +6,15 @@ const totalGoal = 1000;
 const list = typeof myWatchlist !== "undefined" ? myWatchlist : [];
 const total = list.length;
 
-// Update live count
 liveCount.textContent = `📺 ${total}/1000 Series Watched`;
-
-// Animate progress bar
 progressFill.style.width = `${(total / totalGoal) * 100}%`;
 
-// Render each series card
 list.forEach((show, i) => {
   const card = document.createElement("div");
   card.className = "card";
   card.style.animationDelay = `${i * 0.05}s`;
+
+  const descriptionId = `desc-${show.id}`;
 
   card.innerHTML = `
     <h3>${i + 1}. ${show.title}</h3>
@@ -30,7 +28,14 @@ list.forEach((show, i) => {
     <p style="font-size: 0.85rem; margin-top: 0.5rem;">
       Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
     </p>
+    <button class="desc-btn" onclick="toggleDescription('${descriptionId}')">📖 Show Description</button>
+    <p id="${descriptionId}" class="description hidden">${show.description}</p>
   `;
 
   grid.appendChild(card);
 });
+
+function toggleDescription(id) {
+  const desc = document.getElementById(id);
+  desc.classList.toggle("hidden");
+}
