@@ -1,93 +1,36 @@
-const posterGrid = document.getElementById("posterGrid");
-const topPicksGrid = document.getElementById("topPicksGrid");
-const watchedSet = new Set(JSON.parse(localStorage.getItem("watchedShows") || "[]"));
+const grid = document.getElementById("watchlistGrid");
+const liveCount = document.getElementById("liveCount");
+const progressFill = document.getElementById("progressFill");
 
-const topPickTitles = [
-  "Peaky Blinders",
-  "Game of Thrones",
-  "Breaking Bad",
-  "When Life Gives You Tangerines",
-  "You",
-  "Lucifer",
-  "Squid Game"
-];
+const totalGoal = 1000;
+const list = typeof myWatchlist !== "undefined" ? myWatchlist : [];
+const total = list.length;
 
-function saveWatched() {
-  localStorage.setItem("watchedShows", JSON.stringify(Array.from(watchedSet)));
-}
+// Update live count
+liveCount.textContent = `📺 ${total}/1000 Series Watched`;
 
-function createPosterTile(show, index, isTop = false) {
-  const isWatched = watchedSet.has(show.title);
-  const stars = "⭐".repeat(show.rating || 0);
-  const number = index + 1;
+// Animate progress bar
+progressFill.style.width = `${(total / totalGoal) * 100}%`;
 
-  const genreTags = (show.genres || [])
-    .map(g => `<span class="tag">${g}</span>`)
-    .join("");
+// Render each series card
+list.forEach((show, i) => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.style.animationDelay = `${i * 0.05}s`;
 
-  const platformTag = show.platform
-    ? `<span class="tag">${show.platform}</span>`
-    : "";
-
-  const runtimeText = show.runtime ? `• ${show.runtime} min` : "";
-  const episodeText = show.episodes
-    ? `• ${show.episodes} ${show.episodes === 1 ? "episode" : "episodes"}`
-    : "";
-
-  return `
-    <div class="poster-tile text-only ${isWatched ? "watched" : ""} ${isTop ? "top-pick" : ""}" onclick="toggleWatched('${show.title}')">
-      <div class="poster-info">
-        <h3>${number}. ${show.title}</h3>
-        <p>${stars} ${runtimeText} ${episodeText}</p>
-        <div class="tags">
-          ${genreTags}
-          ${platformTag}
-        </div>
-      </div>
+  card.innerHTML = `
+    <h3>${i + 1}. ${show.title}</h3>
+    <div class="tags">
+      <span class="tag">${show.platform}</span>
+      <span class="tag">${show.genre}</span>
+      <span class="tag">📅 ${show.year}</span>
+      <span class="tag">🔥 ${show.popularity}%</span>
+      <span class="tag">${show.hindiDubbed ? "🔁 Hindi Dubbed" : "🎧 Original"}</span>
     </div>
+    <p style="font-size: 0.85rem; margin-top: 0.5rem;">
+      Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
+    </p>
   `;
-}
 
-function toggleWatched(title) {
-  watchedSet.has(title) ? watchedSet.delete(title) : watchedSet.add(title);
-  saveWatched();
-  renderAll();
-}
-
-function populateGenreMenu() {
-  const genres = new Set();
-  seriesData.forEach(s => s.genres?.forEach(g => genres.add(g)));
-  const select = document.getElementById("genreFilter");
-  genres.forEach(g => {
-    const opt = document.createElement("option");
-    opt.value = g;
-    opt.textContent = g;
-    select.appendChild(opt);
-  });
-}
-
-function renderAll() {
-  const filter = document.getElementById("genreFilter").value;
-  const search = document.getElementById("searchInput").value.toLowerCase();
-
-  const top = seriesData.filter(s => topPickTitles.includes(s.title));
-  topPicksGrid.innerHTML = top.map((s, i) => createPosterTile(s, i, true)).join("");
-
-  const filtered = seriesData.filter(s => {
-    const notTop = !topPickTitles.includes(s.title);
-    const matchesGenre = filter === "All" || s.genres?.includes(filter);
-    const matchesSearch = s.title.toLowerCase().includes(search);
-    return notTop && matchesGenre && matchesSearch;
-  });
-
-  posterGrid.innerHTML = filtered.map((s, i) => createPosterTile(s, i)).join("");
-}
-
-document.getElementById("genreFilter").addEventListener("change", renderAll);
-document.getElementById("searchInput").addEventListener("input", renderAll);
-
-populateGenreMenu();
-renderAll();
-function goToMain() {
-  window.location.href = "index.html"; // Or replace with your actual homepage filename
-}
+  grid.appendChild(card);
+});
