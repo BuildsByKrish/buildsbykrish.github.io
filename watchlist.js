@@ -48,10 +48,30 @@ function toggleDescription(id) {
   desc.classList.toggle("hidden");
 }
 
-// Only show Thriller and Drama genres
+// Generate major genre buttons
 function generateGenres() {
-  const majorGenres = ["Thriller", "Drama"];
-  majorGenres.forEach(genre => {
+  const majorGenres = [
+    "Thriller",
+    "Drama",
+    "Action",
+    "Romance",
+    "Comedy",
+    "Fantasy",
+    "Crime",
+    "Mystery",
+    "Horror",
+    "Sci-Fi",
+    "Legal Drama",
+    "Supernatural",
+    "Historical",
+    "Slice of Life"
+  ];
+
+  const genres = [...new Set(myWatchlist.map(item => item.genre))]
+    .filter(g => majorGenres.includes(g))
+    .sort();
+
+  genres.forEach(genre => {
     const btn = document.createElement("button");
     btn.textContent = genre;
     btn.onclick = () => {
