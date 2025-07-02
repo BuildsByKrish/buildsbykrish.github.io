@@ -5,12 +5,15 @@ const myWatchlist = [
     platform: "Prime Video",
     genre: "Crime Thriller",
     year: 2023,
+    language: "Hindi",
+    hindiDubbed: false,
     seasons: 1,
     episodes: 8,
     runtime: "7h",
     popularity: 89,
-    hindiDubbed: true,
-    description: "An artist drawn into the world of counterfeiting finds himself pitted against a ruthless gangster and a determined cop in this darkly stylish thriller."
+    imdbRating: 8.5,
+    tags: ["counterfeit", "con artist", "drama", "police", "crime"],
+    description: "An artist drawn into the world of counterfeiting finds himself pitted against a ruthless gangster and a determined cop."
   },
   {
     id: 2,
@@ -18,12 +21,15 @@ const myWatchlist = [
     platform: "Netflix",
     genre: "Supernatural Mystery",
     year: 2022,
+    language: "English",
+    hindiDubbed: true,
     seasons: 1,
     episodes: 8,
     runtime: "6.5h",
     popularity: 92,
-    hindiDubbed: true,
-    description: "Wednesday Addams joins Nevermore Academy and uncovers a monstrous mystery involving her parents’ past, all while mastering her psychic powers."
+    imdbRating: 8.1,
+    tags: ["gothic", "academy", "detective", "teen", "quirky"],
+    description: "Wednesday Addams joins Nevermore Academy and uncovers a monstrous mystery while mastering her psychic abilities."
   },
   {
     id: 3,
@@ -31,12 +37,15 @@ const myWatchlist = [
     platform: "Netflix",
     genre: "Sci-Fi Horror",
     year: 2016,
+    language: "English",
+    hindiDubbed: true,
     seasons: 4,
     episodes: 34,
     runtime: "30h",
     popularity: 98,
-    hindiDubbed: true,
-    description: "When a young boy vanishes, a small town uncovers a secret government experiment and a strange girl with supernatural powers from an alternate dimension."
+    imdbRating: 8.7,
+    tags: ["supernatural", "80s", "kids", "demogorgon", "alternate dimension"],
+    description: "A group of kids uncovers a secret government experiment and befriends a girl with supernatural powers while searching for their missing friend."
   },
   {
     id: 4,
@@ -44,12 +53,15 @@ const myWatchlist = [
     platform: "Disney+ Hotstar",
     genre: "Psychological Thriller",
     year: 2022,
+    language: "Hindi",
+    hindiDubbed: false,
     seasons: 1,
     episodes: 6,
     runtime: "5h",
     popularity: 84,
-    hindiDubbed: true,
-    description: "A brooding cop with a haunted past dives deep into Mumbai’s most disturbing cases while confronting his own demons."
+    imdbRating: 7.1,
+    tags: ["detective", "dark", "mind games", "serial killer", "cop"],
+    description: "A brooding cop with a dark past dives deep into Mumbai’s most disturbing cases while confronting his own sanity."
   },
   {
     id: 5,
@@ -57,12 +69,15 @@ const myWatchlist = [
     platform: "Sony LIV",
     genre: "Biographical Drama",
     year: 2020,
+    language: "Hindi",
+    hindiDubbed: false,
     seasons: 1,
     episodes: 10,
     runtime: "9h",
     popularity: 95,
-    hindiDubbed: true,
-    description: "The gripping rise and fall of Harshad Mehta, the stockbroker who shook India’s financial system with one of the biggest market scams."
+    imdbRating: 9.3,
+    tags: ["stock market", "real story", "fraud", "media", "economy"],
+    description: "The dramatic rise and fall of Harshad Mehta, who shook India's stock market with one of its biggest financial scams."
   },
   {
     id: 6,
@@ -70,12 +85,15 @@ const myWatchlist = [
     platform: "Prime Video",
     genre: "Spy Thriller",
     year: 2019,
+    language: "Hindi",
+    hindiDubbed: false,
     seasons: 2,
     episodes: 19,
     runtime: "15h",
     popularity: 94,
-    hindiDubbed: true,
-    description: "A middle-class man secretly working as an intelligence officer balances domestic life and national duty while combating terrorists and sleeper cells."
+    imdbRating: 8.7,
+    tags: ["espionage", "terrorism", "fatherhood", "drama", "comedy"],
+    description: "A secret intelligence officer balances high-stakes missions and a chaotic family life while facing growing threats."
   },
   {
     id: 7,
@@ -83,12 +101,15 @@ const myWatchlist = [
     platform: "Prime Video",
     genre: "Superhero Satire",
     year: 2019,
+    language: "English",
+    hindiDubbed: true,
     seasons: 3,
     episodes: 24,
     runtime: "22h",
     popularity: 94,
-    hindiDubbed: true,
-    description: "When heroes go corrupt, a scrappy team of vigilantes takes them down in this ultra-violent, irreverent twist on the superhero genre."
+    imdbRating: 8.7,
+    tags: ["satire", "antihero", "violence", "superpowers", "conspiracy"],
+    description: "A group of vigilantes take down corrupt superheroes who abuse their fame and power under a corporate regime."
   },
   {
     id: 8,
@@ -96,12 +117,15 @@ const myWatchlist = [
     platform: "Netflix",
     genre: "Zombie Thriller",
     year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
     seasons: 1,
     episodes: 12,
     runtime: "12h",
     popularity: 88,
-    hindiDubbed: true,
-    description: "A high school becomes the epicenter of a zombie virus outbreak as trapped students fight to survive and escape."
+    imdbRating: 7.5,
+    tags: ["high school", "outbreak", "virus", "students", "survival"],
+    description: "A virus outbreak traps students in their high school as they battle the undead and try to escape a zombified city."
   },
   {
     id: 9,
@@ -109,12 +133,15 @@ const myWatchlist = [
     platform: "HBO Max",
     genre: "Post-Apocalyptic Drama",
     year: 2023,
+    language: "English",
+    hindiDubbed: true,
     seasons: 1,
     episodes: 9,
     runtime: "9h",
     popularity: 97,
-    hindiDubbed: true,
-    description: "A hardened smuggler escorts a girl immune to a deadly fungus across a ravaged America, forging a bond that changes everything."
+    imdbRating: 8.9,
+    tags: ["zombie", "fungus", "road trip", "emotion", "survival"],
+    description: "A hardened smuggler escorts a girl immune to a fungal apocalypse across a devastated America while bonding along the way."
   },
   {
     id: 10,
@@ -122,12 +149,15 @@ const myWatchlist = [
     platform: "Netflix",
     genre: "Supernatural Mystery",
     year: 2023,
+    language: "English",
+    hindiDubbed: true,
     seasons: 1,
     episodes: 8,
     runtime: "7h",
     popularity: 82,
-    hindiDubbed: true,
-    description: "In a haunted London, teen ghost-hunters run an agency to battle spirits without adult supervision — or funding."
+    imdbRating: 7.4,
+    tags: ["ghost", "teens", "detective", "action", "haunted"],
+    description: "In haunted London, teen ghost hunters battle spirits while running their own paranormal agency — without adult interference."
   },
   {
     id: 11,
@@ -135,12 +165,15 @@ const myWatchlist = [
     platform: "Netflix",
     genre: "Crime Biopic",
     year: 2022,
+    language: "English",
+    hindiDubbed: true,
     seasons: 1,
     episodes: 10,
     runtime: "9h",
     popularity: 86,
-    hindiDubbed: true,
-    description: "A disturbing look into the mind of one of America’s most notorious serial killers, told from the perspectives of his victims."
+    imdbRating: 7.9,
+    tags: ["serial killer", "true crime", "disturbing", "dark", "investigation"],
+    description: "The story of serial killer Jeffrey Dahmer told through the eyes of his victims, capturing the chilling impact of his crimes."
   },
   {
     id: 12,
@@ -148,12 +181,15 @@ const myWatchlist = [
     platform: "Netflix",
     genre: "Crime Thriller",
     year: 2017,
+    language: "English",
+    hindiDubbed: true,
     seasons: 4,
     episodes: 44,
     runtime: "40h",
     popularity: 95,
-    hindiDubbed: true,
-    description: "A financial advisor launders money for a drug cartel and moves his family to the Ozarks, where danger and moral compromise await."
+    imdbRating: 8.5,
+    tags: ["money laundering", "cartel", "family", "dark", "tense"],
+    description: "A financial advisor is forced to launder money for a drug cartel, relocating his family to the Ozarks under deadly pressure."
   },
   {
     id: 13,
@@ -161,12 +197,15 @@ const myWatchlist = [
     platform: "Disney+ Hotstar",
     genre: "Fantasy Drama",
     year: 2023,
+    language: "Hindi",
+    hindiDubbed: false,
     seasons: 1,
     episodes: 6,
     runtime: "5h",
     popularity: 81,
-    hindiDubbed: true,
-    description: "A sanitation worker gains the ability to foresee the future and sets out to rewrite his fate — but destiny has other plans."
+    imdbRating: 7.2,
+    tags: ["magic", "Mumbai", "aspiration", "rags to riches", "twist"],
+    description: "A sanitation worker gains the power to foresee the future and uses it to change his fate — until greed gets in the way."
   },
   {
     id: 14,
@@ -174,233 +213,287 @@ const myWatchlist = [
     platform: "Netflix",
     genre: "Mystery Thriller",
     year: 2022,
+    language: "Multilingual",
+    hindiDubbed: true,
     seasons: 1,
     episodes: 8,
     runtime: "8h",
     popularity: 87,
-    hindiDubbed: true,
-    description: "Mysterious happenings aboard a migrant ship crossing the Atlantic unravel a mind-bending puzzle that blurs time and space."
+    imdbRating: 7.3,
+    tags: ["ship", "puzzle", "historical", "dreams", "surreal"],
+    description: "Migrant passengers aboard a steamship cross the Atlantic and discover mind-bending secrets that question reality itself."
   },
   {
-    id: 15,
-    title: "Money Heist",
-    platform: "Netflix",
-    genre: "Heist Thriller",
-    year: 2017,
-    seasons: 5,
-    episodes: 41,
-    runtime: "32h",
-    popularity: 96,
-    hindiDubbed: true,
-    description: "An enigmatic Professor gathers a crew of skilled criminals to pull off the biggest bank heist Spain has ever seen."
-  },
-  {
-    id: 16,
-    title: "Cobra Kai",
-    platform: "Netflix",
-    genre: "Martial Arts Drama",
-    year: 2018,
-    seasons: 5,
-    episodes: 50,
-    runtime: "40h",
-    popularity: 90,
-    hindiDubbed: true,
-    description: "Decades after their karate rivalry, Johnny Lawrence and Daniel LaRusso reignite their feud through dojos, teens, and unfinished business."
-  },
-  {
-    id: 17,
-    title: "The Watcher",
-    platform: "Netflix",
-    genre: "True Crime Thriller",
-    year: 2022,
-    seasons: 1,
-    episodes: 7,
-    runtime: "6h",
-    popularity: 83,
-    hindiDubbed: true,
-    description: "A couple’s dream home turns into a nightmare when they receive ominous letters from a mysterious stalker watching every move."
-  },
-  {
-    id: 18,
-    title: "Loki",
-    platform: "Disney+ Hotstar",
-    genre: "Superhero Fantasy",
-    year: 2021,
-    seasons: 2,
-    episodes: 12,
-    runtime: "10h",
-    popularity: 92,
-    hindiDubbed: true,
-    description: "The God of Mischief bounces through time and timelines while working with the Time Variance Authority to contain cosmic chaos."
-  },
-  {
-    id: 19,
-    title: "Moon Knight",
-    platform: "Disney+ Hotstar",
-    genre: "Superhero Mystery",
-    year: 2022,
-    seasons: 1,
-    episodes: 6,
-    runtime: "5h",
-    popularity: 85,
-    hindiDubbed: true,
-    description: "A man with dissociative identity disorder becomes the avatar for an Egyptian moon god, battling both enemies and himself."
-  },
-  {
-    id: 20,
-    title: "Alice in Borderland",
-    platform: "Netflix",
-    genre: "Survival Sci-Fi",
-    year: 2020,
-    seasons: 2,
-    episodes: 16,
-    runtime: "15h",
-    popularity: 91,
-    hindiDubbed: true,
-    description: "A gamer and his friends find themselves in an abandoned Tokyo where they must play deadly games to survive and return to reality."
-  },
-  {
-    id: 21,
-    title: "Asur",
-    platform: "JioCinema",
-    genre: "Mythological Crime Thriller",
-    year: 2020,
-    seasons: 2,
-    episodes: 16,
-    runtime: "14h",
-    popularity: 89,
-    hindiDubbed: true,
-    description: "A former forensic expert is pulled into a cat-and-mouse chase with a killer inspired by ancient Indian mythology and philosophy."
-  },
-  {
-    id: 22,
-    title: "College Romance",
-    platform: "Sony LIV",
-    genre: "Romantic Comedy",
-    year: 2018,
-    seasons: 3,
-    episodes: 15,
-    runtime: "10h",
-    popularity: 84,
-    hindiDubbed: true,
-    description: "Three close-knit friends navigate love, awkward encounters, heartbreak, and humor through the wild world of college life."
-  },
-  {
-    id: 23,
-    title: "Mismatched",
-    platform: "Netflix",
-    genre: "Young Adult Romance",
-    year: 2020,
-    seasons: 2,
-    episodes: 12,
-    runtime: "8h",
-    popularity: 79,
-    hindiDubbed: true,
-    description: "A tech whiz and a romantic misfit bond and bicker through a coding camp where sparks — and code — fly."
-  },
-  {
-    id: 24,
-    title: "Yeh Kaali Kaali Ankhein",
-    platform: "Netflix",
-    genre: "Romantic Thriller",
-    year: 2022,
-    seasons: 1,
-    episodes: 8,
-    runtime: "7h",
-    popularity: 82,
-    hindiDubbed: true,
-    description: "When a powerful woman’s obsession traps a small-town man into a forced relationship, he’s pushed to dangerous extremes to escape."
-  },
-  {
-    id: 25,
-    title: "Mirzapur",
-    platform: "Prime Video",
-    genre: "Crime Action",
-    year: 2018,
-    seasons: 2,
-    episodes: 19,
-    runtime: "16h",
-    popularity: 95,
-    hindiDubbed: true,
-    description: "Gunfights, power struggles, and blood feuds erupt in a lawless town where ambition, revenge, and brutality rule."
-  },
-  {
-    id: 26,
-    title: "Criminal Justice",
-    platform: "Disney+ Hotstar",
-    genre: "Courtroom Drama",
-    year: 2019,
-    seasons: 3,
-    episodes: 18,
-    runtime: "14h",
-    popularity: 87,
-    hindiDubbed: true,
-    description: "An intense legal thriller that explores the flaws in India’s criminal justice system through multiple gripping murder cases."
-  },
-  {
-    id: 27,
-    title: "Lucifer",
-    platform: "Netflix",
-    genre: "Fantasy Drama",
-    year: 2016,
-    seasons: 6,
-    episodes: 93,
-    runtime: "70h",
-    popularity: 93,
-    hindiDubbed: true,
-    description: "The Devil abandons Hell and opens a nightclub in LA — but soon ends up assisting the police in solving crimes with divine intuition."
-  },
-  {
-    id: 28,
-    title: "Saas Bahu Aur Flamingo",
-    platform: "Disney+ Hotstar",
-    genre: "Crime Drama",
-    year: 2023,
-    seasons: 1,
-    episodes: 8,
-    runtime: "7h",
-    popularity: 80,
-    hindiDubbed: true,
-    description: "A matriarch runs a powerful drug empire from the front of a quirky handicrafts business with her equally badass daughters-in-law."
-  },
-  {
-    id: 29,
-    title: "Dahaad",
-    platform: "Prime Video",
-    genre: "Crime Mystery",
-    year: 2023,
-    seasons: 1,
-    episodes: 8,
-    runtime: "7h",
-    popularity: 85,
-    hindiDubbed: true,
-    description: "A relentless female cop in rural Rajasthan investigates a chilling pattern of disappearances linked to a methodical serial killer."
-  },
-  {
-    id: 30,
-    title: "Panchayat",
-    platform: "Prime Video",
-    genre: "Slice of Life Comedy",
-    year: 2020,
-    seasons: 2,
-    episodes: 16,
-    runtime: "12h",
-    popularity: 91,
-    hindiDubbed: true,
-    description: "An urban engineering graduate takes up a low-paying government job in a rural village and slowly discovers meaning, humor, and belonging."
-  },
+  id: 15,
+  title: "Money Heist",
+  platform: "Netflix",
+  genre: "Heist Thriller",
+  year: 2017,
+  language: "Spanish",
+  hindiDubbed: true,
+  seasons: 5,
+  episodes: 41,
+  runtime: "32h",
+  popularity: 96,
+  imdbRating: 8.2,
+  tags: ["heist", "robbery", "mask", "professor", "resistance"],
+  description: "An enigmatic criminal mastermind gathers a crew of specialists to execute Spain’s biggest-ever bank robbery under the alias 'The Professor'."
+},
+{
+  id: 16,
+  title: "Cobra Kai",
+  platform: "Netflix",
+  genre: "Martial Arts Drama",
+  year: 2018,
+  language: "English",
+  hindiDubbed: true,
+  seasons: 5,
+  episodes: 50,
+  runtime: "40h",
+  popularity: 90,
+  imdbRating: 8.5,
+  tags: ["karate", "rivalry", "dojo", "high school", "nostalgia"],
+  description: "Decades after their legendary karate showdown, Johnny Lawrence and Daniel LaRusso reignite their feud through dueling dojos and conflicting ideals."
+},
+{
+  id: 17,
+  title: "The Watcher",
+  platform: "Netflix",
+  genre: "True Crime Thriller",
+  year: 2022,
+  language: "English",
+  hindiDubbed: true,
+  seasons: 1,
+  episodes: 7,
+  runtime: "6h",
+  popularity: 83,
+  imdbRating: 6.5,
+  tags: ["stalker", "suburb", "mystery", "family", "letters"],
+  description: "A couple's dream home turns into a nightmare when an anonymous stalker starts watching — and manipulating — their lives through cryptic messages."
+},
+{
+  id: 18,
+  title: "Loki",
+  platform: "Disney+ Hotstar",
+  genre: "Superhero Fantasy",
+  year: 2021,
+  language: "English",
+  hindiDubbed: true,
+  seasons: 2,
+  episodes: 12,
+  runtime: "10h",
+  popularity: 92,
+  imdbRating: 8.2,
+  tags: ["multiverse", "time travel", "antihero", "variant", "chaos"],
+  description: "The God of Mischief dives into the multiverse after stealing the Tesseract, facing variants and timelines with the Time Variance Authority."
+},
+{
+  id: 19,
+  title: "Moon Knight",
+  platform: "Disney+ Hotstar",
+  genre: "Superhero Mystery",
+  year: 2022,
+  language: "English",
+  hindiDubbed: true,
+  seasons: 1,
+  episodes: 6,
+  runtime: "5h",
+  popularity: 85,
+  imdbRating: 7.3,
+  tags: ["egyptian mythology", "dissociative identity", "superhero", "vigilante"],
+  description: "A man with dissociative identity disorder discovers he's the vessel of an Egyptian moon god — and must battle both enemies and his inner selves."
+},
+{
+  id: 20,
+  title: "Alice in Borderland",
+  platform: "Netflix",
+  genre: "Survival Sci-Fi",
+  year: 2020,
+  language: "Japanese",
+  hindiDubbed: true,
+  seasons: 2,
+  episodes: 16,
+  runtime: "15h",
+  popularity: 91,
+  imdbRating: 7.6,
+  tags: ["games", "tokyo", "death", "strategy", "mystery"],
+  description: "Three friends find themselves in an empty Tokyo where they must compete in deadly games to survive and find a way back to reality."
+},
+{
+  id: 21,
+  title: "Asur",
+  platform: "JioCinema",
+  genre: "Mythological Crime Thriller",
+  year: 2020,
+  language: "Hindi",
+  hindiDubbed: false,
+  seasons: 2,
+  episodes: 16,
+  runtime: "14h",
+  popularity: 89,
+  imdbRating: 8.4,
+  tags: ["mythology", "serial killer", "forensics", "ritual", "philosophy"],
+  description: "A forensic expert is pulled into a cat-and-mouse game against a killer who believes he's fulfilling divine justice from ancient mythology."
+},
+{
+  id: 22,
+  title: "College Romance",
+  platform: "Sony LIV",
+  genre: "Romantic Comedy",
+  year: 2018,
+  language: "Hindi",
+  hindiDubbed: false,
+  seasons: 3,
+  episodes: 15,
+  runtime: "10h",
+  popularity: 84,
+  imdbRating: 7.4,
+  tags: ["college", "friendship", "dating", "breakups", "funny"],
+  description: "A hilarious take on modern college life as a group of friends navigate love, drama, heartbreak, and lifelong bonds."
+},
+{
+  id: 23,
+  title: "Mismatched",
+  platform: "Netflix",
+  genre: "Young Adult Romance",
+  year: 2020,
+  language: "Hindi",
+  hindiDubbed: false,
+  seasons: 2,
+  episodes: 12,
+  runtime: "8h",
+  popularity: 79,
+  imdbRating: 6.8,
+  tags: ["coding", "campus", "romance", "conflict", "startup"],
+  description: "A coding prodigy and a charming gamer clash at a summer tech camp, sparking a coming-of-age story of ambition and awkward love."
+},
+{
+  id: 24,
+  title: "Yeh Kaali Kaali Ankhein",
+  platform: "Netflix",
+  genre: "Romantic Thriller",
+  year: 2022,
+  language: "Hindi",
+  hindiDubbed: false,
+  seasons: 1,
+  episodes: 8,
+  runtime: "7h",
+  popularity: 82,
+  imdbRating: 7.1,
+  tags: ["obsession", "power", "romance", "thriller", "escape"],
+  description: "A small-town man is pulled into a dangerous world when the daughter of a powerful politician becomes obsessed with him."
+},
+{
+  id: 25,
+  title: "Mirzapur",
+  platform: "Prime Video",
+  genre: "Crime Action",
+  year: 2018,
+  language: "Hindi",
+  hindiDubbed: false,
+  seasons: 2,
+  episodes: 19,
+  runtime: "16h",
+  popularity: 95,
+  imdbRating: 8.5,
+  tags: ["gangs", "guns", "power", "revenge", "UP"],
+  description: "Two brothers are caught in the violent rise of crime and politics as they challenge the infamous Tripathi family in a lawless city."
+},
+{
+  id: 26,
+  title: "Criminal Justice",
+  platform: "Disney+ Hotstar",
+  genre: "Courtroom Drama",
+  year: 2019,
+  language: "Hindi",
+  hindiDubbed: false,
+  seasons: 3,
+  episodes: 18,
+  runtime: "14h",
+  popularity: 87,
+  imdbRating: 8.1,
+  tags: ["law", "prison", "justice", "reform", "thriller"],
+  description: "Each season explores a compelling legal drama — where the system, morality, and individual stories intertwine in India’s courtroom corridors."
+},
+{
+  id: 27,
+  title: "Lucifer",
+  platform: "Netflix",
+  genre: "Fantasy Drama",
+  year: 2016,
+  language: "English",
+  hindiDubbed: true,
+  seasons: 6,
+  episodes: 93,
+  runtime: "70h",
+  popularity: 93,
+  imdbRating: 8.1,
+  tags: ["devil", "crime", "LA", "investigation", "romance"],
+  description: "The Devil abandons Hell to run a nightclub in LA — but ends up helping the police solve murders and confront his own redemption arc."
+},
+{
+  id: 28,
+  title: "Saas Bahu Aur Flamingo",
+  platform: "Disney+ Hotstar",
+  genre: "Crime Drama",
+  year: 2023,
+  language: "Hindi",
+  hindiDubbed: false,
+  seasons: 1,
+  episodes: 8,
+  runtime: "7h",
+  popularity: 80,
+  imdbRating: 7.2,
+  tags: ["matriarch", "drug cartel", "feminist", "guns", "family"],
+  description: "A powerful woman runs a drug empire with her daughters-in-law in a dusty town — with danger, deception, and female grit at every turn."
+},
+{
+  id: 29,
+  title: "Dahaad",
+  platform: "Prime Video",
+  genre: "Crime Mystery",
+  year: 2023,
+  language: "Hindi",
+  hindiDubbed: false,
+  seasons: 1,
+  episodes: 8,
+  runtime: "7h",
+  popularity: 85,
+  imdbRating: 7.6,
+  tags: ["serial killer", "female lead", "investigation", "rural", "suspense"],
+  description: "A tough female cop investigates a string of mysterious suicides that hint at the presence of a calculating serial killer."
+},
+{
+  id: 30,
+  title: "Panchayat",
+  platform: "Prime Video",
+  genre: "Slice of Life Comedy",
+  year: 2020,
+  language: "Hindi",
+  hindiDubbed: false,
+  seasons: 2,
+  episodes: 16,
+  runtime: "12h",
+  popularity: 91,
+  imdbRating: 8.9,
+  tags: ["village", "drama", "comedy", "youth", "bureaucracy"],
+  description: "An engineering graduate reluctantly joins a rural government office as secretary and slowly discovers meaning and friendships in village life."
+},
 {
   id: 31,
   title: "Lucky Guy",
   platform: "Prime Video",
   genre: "K-Romance Comedy",
   year: 2021,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 10,
   runtime: "8h",
   popularity: 77,
-  hindiDubbed: false,
-  description: "A perpetually unlucky man discovers a chance to reset his fate when he crosses paths with a woman who seems to change his destiny."
+  imdbRating: 7.0,
+  tags: ["romance", "luck", "coincidence", "slice of life", "quirky"],
+  description: "A man plagued by bad luck finds his fortunes flipped when he meets a girl who unknowingly shifts his destiny."
 },
 {
   id: 32,
@@ -408,12 +501,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Romantic Comedy",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 12,
   runtime: "10h",
   popularity: 90,
-  hindiDubbed: true,
-  description: "A food researcher goes on a blind date in place of her friend and unexpectedly ends up in a contract relationship with her company’s CEO."
+  imdbRating: 8.1,
+  tags: ["office romance", "identity", "blind date", "funny", "CEO"],
+  description: "A food researcher goes on a blind date pretending to be her friend and ends up in a relationship contract with her company's CEO."
 },
 {
   id: 33,
@@ -421,12 +517,15 @@ const myWatchlist = [
   platform: "Disney+ Hotstar",
   genre: "Legal Comedy",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 12,
   runtime: "10h",
   popularity: 84,
-  hindiDubbed: true,
-  description: "A maverick lawyer who charges only one dollar per case uses his wit to fight injustice and face powerful opponents with flair."
+  imdbRating: 8.0,
+  tags: ["courtroom", "justice", "humor", "lawyer", "satire"],
+  description: "A witty lawyer with a flashy style and just a ₩1000 fee defends the poor and fights corruption in his own wild way."
 },
 {
   id: 34,
@@ -434,12 +533,15 @@ const myWatchlist = [
   platform: "Prime Video",
   genre: "Superhero Action",
   year: 2023,
+  language: "English",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 8,
   runtime: "8h",
   popularity: 87,
-  hindiDubbed: true,
-  description: "At a college for young superheroes run by Vought, students compete and conspire in a Hunger Games–style showdown filled with dark secrets."
+  imdbRating: 7.9,
+  tags: ["superpowers", "college", "violence", "spin-off", "dark"],
+  description: "Set in The Boys universe, young superpowered students compete in brutal tests to become the next corporate heroes at Godolkin University."
 },
 {
   id: 35,
@@ -447,12 +549,15 @@ const myWatchlist = [
   platform: "Disney+ Hotstar",
   genre: "Crime Mystery",
   year: 2021,
+  language: "Tamil",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 7,
   runtime: "6h",
   popularity: 79,
-  hindiDubbed: true,
-  description: "A crime novelist suffering from Alzheimer’s becomes the prime suspect in a murder investigation, forcing his daughter to uncover the truth."
+  imdbRating: 7.4,
+  tags: ["author", "dementia", "murder", "daughter", "media"],
+  description: "A novelist with Alzheimer’s becomes the prime suspect in a murder case, forcing his daughter to uncover dark secrets hidden in his stories."
 },
 {
   id: 36,
@@ -460,12 +565,15 @@ const myWatchlist = [
   platform: "YouTube",
   genre: "Comedy Drama",
   year: 2021,
+  language: "Hindi",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 8,
   runtime: "6h",
   popularity: 83,
-  hindiDubbed: true,
-  description: "Bhuvan Bam’s fictional universe gets a full-blown series as his lovable characters get swept up in a lottery ticket mix-up and family drama."
+  imdbRating: 8.6,
+  tags: ["BB Ki Vines", "lottery", "satire", "family", "middle class"],
+  description: "Bhuvan Bam’s beloved characters come together in a hilarious tale involving a lottery ticket, dreams, and the chaos of everyday Indian life."
 },
 {
   id: 37,
@@ -473,12 +581,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Crime Drama",
   year: 2008,
+  language: "English",
+  hindiDubbed: true,
   seasons: 5,
   episodes: 62,
   runtime: "50h",
   popularity: 99,
-  hindiDubbed: true,
-  description: "A high school chemistry teacher turns to meth production after a cancer diagnosis, spiraling into a world of danger and deception."
+  imdbRating: 9.5,
+  tags: ["meth", "teacher", "transformation", "cartel", "iconic"],
+  description: "A high school chemistry teacher turns to meth production after a cancer diagnosis, changing his life — and the criminal world — forever."
 },
 {
   id: 38,
@@ -486,12 +597,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Romantic Comedy",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 86,
-  hindiDubbed: true,
-  description: "A hotel heir and a cheerful concierge clash and then collide in a heartwarming enemies-to-lovers workplace romance."
+  imdbRating: 7.6,
+  tags: ["hotel", "heir", "smile", "opposites attract", "K-romance"],
+  description: "A hotel heir and a cheerful employee butt heads in the workplace before finding unexpected warmth in each other’s presence."
 },
 {
   id: 39,
@@ -499,12 +613,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Fantasy Romance",
   year: 2020,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "16h",
   popularity: 88,
-  hindiDubbed: true,
-  description: "A Korean emperor enters a parallel world and meets a strong-willed detective as they team up to close the rift between dimensions."
+  imdbRating: 8.1,
+  tags: ["parallel worlds", "emperor", "detective", "mystery", "epic"],
+  description: "A Korean emperor crosses into a parallel world to stop evil from destroying both realms, where he meets a fierce detective unlike any other."
 },
 {
   id: 40,
@@ -512,12 +629,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Fantasy Romance",
   year: 2016,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "18h",
   popularity: 92,
-  hindiDubbed: false,
-  description: "An immortal goblin seeks a human bride to end his cursed immortality, crossing fate and centuries of sorrow and love."
+  imdbRating: 8.6,
+  tags: ["immortality", "grim reaper", "destiny", "K-drama", "tears"],
+  description: "An immortal goblin must find his bride to end his cursed life. When he meets a cheerful high schooler, fate kicks in with poetic sadness and beauty."
 },
 {
   id: 41,
@@ -525,12 +645,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Romantic Comedy",
   year: 2018,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 89,
-  hindiDubbed: true,
-  description: "When his devoted secretary suddenly resigns, a narcissistic boss tries to win her back, uncovering a shared childhood past."
+  imdbRating: 8.1,
+  tags: ["boss", "secretary", "office", "past trauma", "adorable"],
+  description: "When his devoted secretary decides to resign, an arrogant yet lovable CEO realizes he knows nothing about her — and maybe about himself."
 },
 {
   id: 42,
@@ -538,12 +661,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Supernatural Mystery",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 82,
-  hindiDubbed: true,
-  description: "A small-town vet with psychic touch ability teams up with a detective to solve crimes — and maybe fall in love along the way."
+  imdbRating: 7.4,
+  tags: ["village", "veterinarian", "psychic", "touch", "detective"],
+  description: "A psychic vet and a detective join forces to solve crimes in a sleepy village — with every clue just a finger’s touch away."
 },
 {
   id: 43,
@@ -551,12 +677,15 @@ const myWatchlist = [
   platform: "Disney+ Hotstar",
   genre: "Romantic Thriller",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 78,
-  hindiDubbed: true,
-  description: "An arrogant CEO fakes amnesia when he’s threatened with murder — but his secretary may have secrets of her own."
+  imdbRating: 7.3,
+  tags: ["amnesia", "ceo", "secretary", "revenge", "fake identity"],
+  description: "An arrogant CEO fakes amnesia after receiving a death threat — only to discover his secretary might be hiding something darker."
 },
 {
   id: 44,
@@ -564,12 +693,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Romance Drama",
   year: 2019,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "16h",
   popularity: 94,
-  hindiDubbed: true,
-  description: "A South Korean heiress lands in North Korea after a paragliding mishap and falls for a stoic soldier who protects her secret."
+  imdbRating: 8.7,
+  tags: ["north korea", "heiress", "accident", "soldier", "star-crossed"],
+  description: "After a paragliding mishap, a South Korean heiress lands in North Korea and falls in love with a soldier who protects her secret."
 },
 {
   id: 45,
@@ -577,12 +709,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Crime Thriller",
   year: 2020,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 91,
-  hindiDubbed: true,
-  description: "A loving husband hides his serial killer past from his detective wife, until a case threatens to destroy their carefully crafted life."
+  imdbRating: 8.7,
+  tags: ["husband", "secret identity", "detective", "past", "psychopath"],
+  description: "A devoted husband hides a dark past from his detective wife — until a case threatens to unravel his carefully built life."
 },
 {
   id: 46,
@@ -590,12 +725,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Psychological Romance",
   year: 2020,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "16h",
   popularity: 90,
-  hindiDubbed: true,
-  description: "A psychiatric caregiver and a rebellious children's author heal from their past traumas as their lives intertwine emotionally and magically."
+  imdbRating: 8.5,
+  tags: ["mental health", "children's author", "trauma", "healing", "autism"],
+  description: "A caregiver at a psychiatric ward and a troubled children’s book author confront their pasts and fall in love while helping each other heal."
 },
 {
   id: 47,
@@ -603,12 +741,15 @@ const myWatchlist = [
   platform: "TVING",
   genre: "Psychological Thriller",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 12,
   runtime: "10h",
   popularity: 81,
-  hindiDubbed: false,
-  description: "Two men tied by childhood bullying confront dark secrets and long-buried rage when a series of murders occurs decades later."
+  imdbRating: 7.6,
+  tags: ["bullying", "revenge", "serial killer", "dark", "flashbacks"],
+  description: "Two men revisit their traumatic school days after a string of murders reveals deep scars and long-forgotten rage."
 },
 {
   id: 48,
@@ -616,12 +757,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Crime Comedy",
   year: 2021,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 20,
   runtime: "20h",
   popularity: 94,
-  hindiDubbed: true,
-  description: "A Korean-Italian mafia consigliere returns to Seoul to recover hidden gold, only to wage war against a corrupt conglomerate."
+  imdbRating: 8.4,
+  tags: ["mafia", "law", "gold", "comedy", "revenge"],
+  description: "A Korean-Italian consigliere returns to reclaim hidden gold but ends up taking down a corrupt conglomerate with legal and extra-legal tactics."
 },
 {
   id: 49,
@@ -629,12 +773,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Legal Action",
   year: 2018,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "15h",
   popularity: 86,
-  hindiDubbed: true,
-  description: "A former gangster-turned-lawyer uses fists and legal tricks to fight a corrupt judge and avenge his mother’s death."
+  imdbRating: 7.8,
+  tags: ["gangster", "judge", "law", "revenge", "mother"],
+  description: "A former gangster-turned-lawyer and his fearless partner take on a corrupt judge to avenge personal tragedy and uphold justice."
 },
 {
   id: 50,
@@ -642,12 +789,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Superhero Comedy",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 88,
-  hindiDubbed: true,
-  description: "Blessed with superhuman strength, Nam-soon returns to Korea to find her family — but uncovers a dangerous drug ring instead."
+  imdbRating: 6.9,
+  tags: ["super strength", "family", "drug ring", "action", "funny"],
+  description: "Nam-soon returns to Korea with superhuman strength to find her family — and uncovers a major drug cartel in the process."
 },
 {
   id: 51,
@@ -655,12 +805,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Legal Comedy",
   year: 2019,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "13h",
   popularity: 82,
-  hindiDubbed: false,
-  description: "A cocky, ruthless lawyer with a perfect win record teams up with an idealistic rookie to face off in quirky and intense courtroom battles."
+  imdbRating: 7.5,
+  tags: ["lawyer", "bizarre", "satire", "legal battles", "mentorship"],
+  description: "A loud, eccentric lawyer with a perfect win record teams up with a righteous newbie to face off against absurd courtroom challenges."
 },
 {
   id: 52,
@@ -668,12 +821,15 @@ const myWatchlist = [
   platform: "Disney+ Hotstar",
   genre: "Crime Mystery",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 90,
-  hindiDubbed: true,
-  description: "A struggling lawyer is mistaken for a genius con artist and thrown into a conspiracy involving corruption, crime, and survival behind bars."
+  imdbRating: 8.0,
+  tags: ["lawyer", "conspiracy", "corruption", "prison", "mistaken identity"],
+  description: "A struggling lawyer is thrown into prison after being mistaken for a genius conman called 'Big Mouse', triggering a battle of survival and truth."
 },
 {
   id: 53,
@@ -681,12 +837,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Legal Drama",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "20h",
   popularity: 93,
-  hindiDubbed: true,
-  description: "A brilliant autistic attorney tackles challenging cases and social biases with her sharp mind and heartfelt perspective."
+  imdbRating: 8.7,
+  tags: ["autism", "law", "kindness", "brilliant", "courtroom"],
+  description: "An autistic attorney with a photographic memory wins cases in unique ways, offering empathy, brilliance, and challenges in a legal world."
 },
 {
   id: 54,
@@ -694,12 +853,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Romantic Mystery",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 12,
   runtime: "11h",
   popularity: 85,
-  hindiDubbed: true,
-  description: "After losing her boyfriend, a grieving woman finds herself back in 1998 in someone else’s body — with a familiar face by her side."
+  imdbRating: 7.8,
+  tags: ["time travel", "fate", "body swap", "love", "grief"],
+  description: "A grieving woman wakes up in 1998 in someone else’s body — and meets a boy who resembles her late boyfriend, sparking mystery and longing."
 },
 {
   id: 55,
@@ -707,12 +869,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Romantic Comedy",
   year: 2015,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 88,
-  hindiDubbed: true,
-  description: "Years after losing touch, two childhood friends reunite — but with reversed appearances and tangled hearts in a workplace setting."
+  imdbRating: 7.6,
+  tags: ["magazine", "transformation", "identity", "reunion", "office romance"],
+  description: "Two childhood friends reunite at a workplace — but their roles and appearances have reversed, leading to secrets, comedy, and sweet tension."
 },
 {
   id: 56,
@@ -720,12 +885,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Action Thriller",
   year: 2019,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 12,
   runtime: "10h",
   popularity: 81,
-  hindiDubbed: false,
-  description: "A vet hiding his identity as a trained assassin crosses paths with a detective searching for her family's killer — unaware he may be her answer."
+  imdbRating: 7.7,
+  tags: ["assassin", "vet", "mystery", "childhood", "hunt"],
+  description: "A veterinarian moonlighting as a contract killer gets entangled with a detective seeking the truth — unaware she may be tied to his past."
 },
 {
   id: 57,
@@ -733,12 +901,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Romantic Comedy",
   year: 2019,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "13h",
   popularity: 84,
-  hindiDubbed: false,
-  description: "An arrogant boss with face blindness relies on his quirky secretary — and falls for her, unaware she’s hiding her identity."
+  imdbRating: 7.1,
+  tags: ["office", "face blindness", "identity", "romance", "misunderstanding"],
+  description: "A cold-hearted boss with face blindness relies unknowingly on his quirky secretary — sparking a heartwarming identity mix-up."
 },
 {
   id: 58,
@@ -746,12 +917,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Sci-Fi Romance",
   year: 2017,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 87,
-  hindiDubbed: true,
-  description: "A tech genius allergic to humans falls for a woman pretending to be a robot — until emotions disrupt their artificial arrangement."
+  imdbRating: 8.0,
+  tags: ["robot", "allergy", "romance", "pretend", "technology"],
+  description: "A man allergic to human touch falls for a woman pretending to be a robot — but emotions begin to override artificial boundaries."
 },
 {
   id: 59,
@@ -759,12 +933,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Romantic Drama",
   year: 2018,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 80,
-  hindiDubbed: false,
-  description: "Two airport employees with mysterious pasts navigate ambition, hardship, and a growing connection amid the bustle of departures and arrivals."
+  imdbRating: 7.3,
+  tags: ["airport", "mystery", "romance", "secret", "K-drama"],
+  description: "Two airport employees with hidden pasts cross paths and fall in love while facing personal barriers and professional duties."
 },
 {
   id: 60,
@@ -772,12 +949,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Military Romance",
   year: 2016,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "16h",
   popularity: 91,
-  hindiDubbed: true,
-  description: "A soldier and a doctor fall in love across borders, conflict zones, and philosophies as they serve during a humanitarian mission."
+  imdbRating: 8.2,
+  tags: ["soldier", "doctor", "conflict", "mission", "war zone"],
+  description: "A soldier and a doctor fall in love across conflict zones and ideologies while serving humanity on the frontlines."
 },
 {
   id: 61,
@@ -785,12 +965,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Romantic Comedy",
   year: 2010,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 75,
-  hindiDubbed: true,
-  description: "A clumsy girl moves into the house of the school’s top student after a disaster strikes her home — and life never stays the same again."
+  imdbRating: 6.9,
+  tags: ["high school", "crush", "cohabitation", "nerd vs genius", "cute"],
+  description: "A high school girl moves in with her crush — a genius boy who’s cold and arrogant — triggering a slow-burn love story."
 },
 {
   id: 62,
@@ -798,12 +981,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Medical Romance",
   year: 2014,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 21,
   runtime: "17h",
   popularity: 79,
-  hindiDubbed: false,
-  description: "A divorced couple unexpectedly reunites as interns in the same hospital’s emergency department — with sparks, chaos, and awkward tension."
+  imdbRating: 7.3,
+  tags: ["hospital", "divorced couple", "ER", "reunion", "healing"],
+  description: "A divorced couple reunites as interns in a hospital’s emergency department — rehashing arguments, passion, and unresolved feelings."
 },
 {
   id: 63,
@@ -811,12 +997,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Romantic Fantasy",
   year: 2018,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 82,
-  hindiDubbed: true,
-  description: "A fed-up husband gets a supernatural chance to redo his life and change his marriage — but is a new timeline the right one?"
+  imdbRating: 7.8,
+  tags: ["marriage", "time travel", "regret", "alternate reality", "love"],
+  description: "A frustrated husband wakes up in an alternate reality where he never married his wife — only to realize what truly matters."
 },
 {
   id: 64,
@@ -824,12 +1013,15 @@ const myWatchlist = [
   platform: "Prime Video",
   genre: "Paranormal Thriller",
   year: 2023,
+  language: "Telugu",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 8,
   runtime: "7h",
   popularity: 85,
-  hindiDubbed: true,
-  description: "Newspapers begin predicting gruesome deaths — and a journalist races to uncover the dark force behind these deadly headlines."
+  imdbRating: 7.6,
+  tags: ["newspaper", "fate", "murder", "investigation", "media"],
+  description: "A journalist begins receiving newspapers predicting gruesome deaths — and races against time to unravel the horrifying mystery."
 },
 {
   id: 65,
@@ -837,12 +1029,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Heist Thriller",
   year: 2023,
+  language: "Spanish",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 8,
   runtime: "7h",
   popularity: 88,
-  hindiDubbed: true,
-  description: "Before the Royal Mint heist, Berlin leads a new crew through an elaborate plan for one final love-fueled, chaos-laced burglary in Paris."
+  imdbRating: 7.3,
+  tags: ["money heist", "prequel", "Paris", "charm", "crew"],
+  description: "Before Money Heist, Berlin leads a new crew through one dazzling, dangerous heist in Paris driven by romance and greed."
 },
 {
   id: 66,
@@ -850,12 +1045,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Dark Comedy Thriller",
   year: 2024,
+  language: "Hindi",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 8,
   runtime: "7h",
   popularity: 84,
-  hindiDubbed: true,
-  description: "A small-town cook accidentally simmers up murder and mayhem while dreaming of opening her own restaurant — using a bizarre recipe for reinvention."
+  imdbRating: 7.5,
+  tags: ["murder", "food", "imposter", "twist", "chaos"],
+  description: "A failed cook hatches a bizarre plan to replace her husband and live her dream — but nothing goes according to recipe."
 },
 {
   id: 67,
@@ -863,12 +1061,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Action Thriller",
   year: 2016,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 85,
-  hindiDubbed: true,
-  description: "A former mercenary becomes a bodyguard to a presidential candidate’s secret daughter, unraveling power plays and buried truths."
+  imdbRating: 7.8,
+  tags: ["bodyguard", "politics", "presidential", "revenge", "romance"],
+  description: "An ex-mercenary becomes a bodyguard for a presidential candidate’s hidden daughter — diving into politics, vengeance, and protection."
 },
 {
   id: 68,
@@ -876,12 +1077,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Supernatural Comedy",
   year: 2016,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 81,
-  hindiDubbed: false,
-  description: "A ghost-fighting college student teams up with a teenage spirit to exorcise ghouls — and sparks fly between worlds."
+  imdbRating: 7.6,
+  tags: ["ghost", "exorcist", "teen", "funny", "romance"],
+  description: "A college student who fights ghosts teams up with a feisty spirit to kick evil — and maybe catch feelings."
 },
 {
   id: 69,
@@ -889,12 +1093,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Crime Comedy",
   year: 2019,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 79,
-  hindiDubbed: false,
-  description: "A passionate subway police officer joins forces with a by-the-book captain to chase a serial killer lurking beneath Seoul’s metro tunnels."
+  imdbRating: 7.4,
+  tags: ["subway", "rookie cop", "serial killer", "partner", "underground"],
+  description: "A rookie subway cop joins forces with a rule-following partner to track a serial killer haunting the metro tunnels."
 },
 {
   id: 70,
@@ -902,12 +1109,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Psychological Romance",
   year: 2015,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 20,
   runtime: "16h",
   popularity: 89,
-  hindiDubbed: true,
-  description: "A business heir with dissociative identity disorder hides his seven personalities while working with a psychiatrist to heal — and fall in love."
+  imdbRating: 8.2,
+  tags: ["dissociative identity", "healing", "psychology", "romance", "trauma"],
+  description: "A man with seven personalities and a secret psychiatrist navigate trauma, healing, and love in this emotional psychological K-drama."
 },
 {
   id: 71,
@@ -915,12 +1125,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Fantasy Romance",
   year: 2019,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "16h",
   popularity: 91,
-  hindiDubbed: true,
-  description: "A centuries-old cursed hotel owner meets a human manager and begins her journey toward redemption as lost souls check in for closure."
+  imdbRating: 8.1,
+  tags: ["ghosts", "hotel", "afterlife", "past", "CEO"],
+  description: "A cursed woman runs a hotel for restless spirits until a human manager shakes her world — and maybe redeems her eternal sentence."
 },
 {
   id: 72,
@@ -928,12 +1141,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Legal Drama",
   year: 2018,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 80,
-  hindiDubbed: false,
-  description: "An idealistic rookie judge teams up with a strict senior to tackle small but meaningful legal cases full of social commentary and moral dilemmas."
+  imdbRating: 7.3,
+  tags: ["court", "judges", "idealism", "law", "slice of life"],
+  description: "Three judges with wildly different values handle small but impactful cases, shining a light on social tensions and empathy in the courtroom."
 },
 {
   id: 73,
@@ -941,12 +1157,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Fantasy Romance",
   year: 2019,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 84,
-  hindiDubbed: false,
-  description: "A mischievous angel is tasked with finding love for a blind ballerina — but ends up breaking celestial rules as he falls for her himself."
+  imdbRating: 7.8,
+  tags: ["angel", "blind ballerina", "forbidden love", "heaven", "destiny"],
+  description: "A playful angel is sent on one final mission: to make a blind ballerina fall in love — but ends up falling for her himself."
 },
 {
   id: 74,
@@ -954,12 +1173,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Romantic Comedy",
   year: 2009,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 25,
   runtime: "20h",
   popularity: 87,
-  hindiDubbed: true,
-  description: "A working-class girl enrolls in an elite high school and crosses paths with a group of rich, arrogant boys — and sparks chaos and romance."
+  imdbRating: 7.8,
+  tags: ["high school", "rich boys", "Cinderella", "bullying", "makeover"],
+  description: "A spirited girl enters an elite high school and clashes with a powerful group of boys known as F4 — sparking chaos and romance."
 },
 {
   id: 75,
@@ -967,12 +1189,15 @@ const myWatchlist = [
   platform: "iQIYI",
   genre: "C-Romance",
   year: 2021,
+  language: "Chinese",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 22,
   runtime: "18h",
   popularity: 80,
-  hindiDubbed: false,
-  description: "An AI voice assistant developer moves in next door to a quirky girl who can’t speak well — until their fates collide in the sweetest way."
+  imdbRating: 7.3,
+  tags: ["love story", "communication", "quirky", "neighborhood", "AI voice"],
+  description: "A tech developer who can't connect with others falls for a sweet girl next door with a speech disorder — and their story rewires hearts."
 },
 {
   id: 76,
@@ -980,12 +1205,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Slice of Life Romance",
   year: 2017,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 85,
-  hindiDubbed: true,
-  description: "Two lifelong friends try to break free from dead-end lives and chase their dreams while navigating unspoken feelings and growing pains."
+  imdbRating: 8.0,
+  tags: ["dreams", "underdogs", "friendship", "struggles", "romance"],
+  description: "Two underachievers try to rise above social pressures and chase their dreams while unspoken love simmers between them."
 },
 {
   id: 77,
@@ -993,12 +1221,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Teen Mystery",
   year: 2015,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 83,
-  hindiDubbed: false,
-  description: "After a case of mistaken identity between twin sisters, secrets unravel at an elite high school where bullying and trauma hide behind the perfect image."
+  imdbRating: 7.7,
+  tags: ["twins", "amnesia", "school", "bullying", "drama"],
+  description: "When a shy girl wakes up with her missing twin sister’s identity, secrets, bullies, and betrayals come crashing down around her."
 },
 {
   id: 78,
@@ -1006,12 +1237,15 @@ const myWatchlist = [
   platform: "Prime Video",
   genre: "Action Thriller",
   year: 2022,
+  language: "English",
+  hindiDubbed: true,
   seasons: 2,
   episodes: 16,
   runtime: "13h",
   popularity: 88,
-  hindiDubbed: true,
-  description: "Jack Reacher, a former military police officer, wanders into a small town — and uncovers a deadly conspiracy that demands brutal justice."
+  imdbRating: 8.1,
+  tags: ["ex-military", "investigation", "small town", "brutal", "justice"],
+  description: "Jack Reacher rolls into a quiet town — only to uncover corruption, murder, and secrets he can't walk away from."
 },
 {
   id: 79,
@@ -1019,12 +1253,15 @@ const myWatchlist = [
   platform: "HBO Max",
   genre: "Epic Fantasy",
   year: 2011,
+  language: "English",
+  hindiDubbed: true,
   seasons: 8,
   episodes: 73,
   runtime: "70h",
   popularity: 99,
-  hindiDubbed: true,
-  description: "Noble families clash over control of the Iron Throne in a brutal world where alliances shift, dragons return, and winter is always coming."
+  imdbRating: 9.2,
+  tags: ["dragons", "throne", "betrayal", "winter", "war"],
+  description: "Noble families wage war over the Iron Throne in a medieval world where dragons return, alliances crumble, and winter always looms."
 },
 {
   id: 80,
@@ -1032,12 +1269,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Drama",
   year: 2020,
+  language: "English",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 7,
   runtime: "6h",
   popularity: 93,
-  hindiDubbed: true,
-  description: "An orphan chess prodigy rises to global fame while battling addiction, loneliness, and patriarchy in a male-dominated world."
+  imdbRating: 8.6,
+  tags: ["chess", "genius", "orphan", "addiction", "girl power"],
+  description: "An orphan chess prodigy rises to global stardom while facing addiction, loneliness, and the constraints of a male-dominated game."
 },
 {
   id: 81,
@@ -1045,12 +1285,15 @@ const myWatchlist = [
   platform: "Sony LIV",
   genre: "Dark Comedy",
   year: 2020,
+  language: "Hindi",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 7,
   runtime: "6h",
   popularity: 80,
-  hindiDubbed: true,
-  description: "A man stuck in a loveless marriage takes up a murder-for-hire job — but chaos reigns as multiple parties chase the same target."
+  imdbRating: 7.0,
+  tags: ["murder-for-hire", "luck", "comedy", "crime", "chaos"],
+  description: "A man takes up a contract to kill — only to become entangled in a ridiculous mess of mistaken identity and double-crosses."
 },
 {
   id: 82,
@@ -1058,12 +1301,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Melodrama",
   year: 2019,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 78,
-  hindiDubbed: false,
-  description: "A terminally ill man fakes divorce to spare his wife — only to cross paths with her again years later and confront heartbreak head-on."
+  imdbRating: 7.5,
+  tags: ["illness", "divorce", "love", "separation", "marriage"],
+  description: "A man secretly divorces his wife to protect her from his terminal illness — only to meet her again when fate gives them a second chance."
 },
 {
   id: 83,
@@ -1071,12 +1317,15 @@ const myWatchlist = [
   platform: "YouTube",
   genre: "Sci-Fi Short Drama",
   year: 2023,
+  language: "English",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 6,
   runtime: "2h",
   popularity: 75,
-  hindiDubbed: false,
-  description: "In a dystopian world, a mysterious pill controls memory, love, and loyalty. A man rebels to reclaim his forgotten truth."
+  imdbRating: 7.2,
+  tags: ["memory", "dystopia", "short series", "love", "freedom"],
+  description: "In a future where emotions and memory are controlled by pills, one man goes off-script to remember who he truly is."
 },
 {
   id: 84,
@@ -1084,12 +1333,15 @@ const myWatchlist = [
   platform: "ZEE5",
   genre: "Time Travel Mystery",
   year: 2024,
+  language: "Hindi",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 10,
   runtime: "9h",
   popularity: 86,
-  hindiDubbed: true,
-  description: "A time-spanning conspiracy unfolds across 1990, 2001, and 2023 — where one crime ripples across generations and dark secrets echo through time."
+  imdbRating: 7.6,
+  tags: ["1990", "2001", "2023", "investigation", "connections"],
+  description: "Spanning across three time periods, a chilling crime unravels connections between people and decisions that echo across generations."
 },
 {
   id: 85,
@@ -1097,12 +1349,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Heist Drama",
   year: 2023,
+  language: "Japanese",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 8,
   runtime: "7h",
   popularity: 82,
-  hindiDubbed: false,
-  description: "In the shadows of Tokyo, a crew of slick con artists take down corrupt elite using charm, deception, and dazzling street smarts."
+  imdbRating: 7.2,
+  tags: ["con artists", "Tokyo", "heist", "deception", "elite"],
+  description: "A slick group of con artists exposes corruption among Tokyo’s elite, pulling off dazzling scams with charm and cunning."
 },
 {
   id: 86,
@@ -1110,12 +1365,15 @@ const myWatchlist = [
   platform: "Sony LIV",
   genre: "Comedy Drama",
   year: 2024,
+  language: "Hindi",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 8,
   runtime: "6h",
   popularity: 79,
-  hindiDubbed: true,
-  description: "A small-town man lands a government accounting job, stumbling into crime, politics, and chaos — all while trying to hold onto his values."
+  imdbRating: 7.3,
+  tags: ["CA", "small town", "aspiration", "middle class", "drama"],
+  description: "A mild-mannered accountant stumbles into chaos and politics when he's appointed as a C.A. in a notorious bureaucracy."
 },
 {
   id: 87,
@@ -1123,12 +1381,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Fantasy Romance",
   year: 2016,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 20,
   runtime: "18h",
   popularity: 90,
-  hindiDubbed: true,
-  description: "A mermaid from the Joseon era lands in modern-day Seoul and meets the reincarnation of her lost love — now a charming con artist."
+  imdbRating: 8.1,
+  tags: ["mermaid", "con artist", "reincarnation", "fate", "Joseon"],
+  description: "A mermaid from the past finds herself in modern Seoul and reunites with the reincarnation of her lost love — now a genius scammer."
 },
 {
   id: 88,
@@ -1136,12 +1397,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Supernatural Romance",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 88,
-  hindiDubbed: true,
-  description: "A fiery heiress enters a contract marriage with a demon who loses his powers — together, they spark chaos, magic, and unexpected love."
+  imdbRating: 7.4,
+  tags: ["contract marriage", "heiress", "power loss", "demon", "chaos"],
+  description: "A feisty heiress and a demon without powers enter a contract marriage — and find themselves tied by fate, flame, and falling love."
 },
 {
   id: 89,
@@ -1149,12 +1413,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Melodrama",
   year: 2024,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 92,
-  hindiDubbed: true,
-  description: "A chaebol heiress and her countryside-born husband struggle to save their crumbling marriage — and their empire — from tragedy and betrayal."
+  imdbRating: 8.6,
+  tags: ["marriage", "chaebol", "redemption", "love", "corporate"],
+  description: "A wealthy heiress and her husband fight for their love — and legacy — as betrayal, crisis, and unexpected hope force them to break down walls."
 },
 {
   id: 90,
@@ -1162,12 +1429,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Romantic Comedy",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 10,
   runtime: "8h",
   popularity: 85,
-  hindiDubbed: true,
-  description: "A tough lawyer who distrusts men and a top actor who mistrusts women clash in a fake-dating setup — and fall headfirst into real love."
+  imdbRating: 7.6,
+  tags: ["fake dating", "celebrity", "lawyer", "opposites attract", "funny"],
+  description: "A man who distrusts women and a woman who hates men enter a fake relationship — only to discover the line between hate and love is paper thin."
 },
 {
   id: 91,
@@ -1175,12 +1445,15 @@ const myWatchlist = [
   platform: "YouTube",
   genre: "Short Romantic Comedy",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 6,
   runtime: "2h",
   popularity: 74,
-  hindiDubbed: false,
-  description: "In this fast-paced mini-series, a fitness trainer and a finance consultant navigate a love-hate friendship based on challenges and wagers."
+  imdbRating: 6.9,
+  tags: ["fitness", "bets", "workplace", "mini-series", "romance"],
+  description: "A flirty fitness trainer and a no-nonsense finance manager challenge each other in a series of love-wagered bets."
 },
 {
   id: 92,
@@ -1188,12 +1461,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Legal Romance",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 80,
-  hindiDubbed: true,
-  description: "A former prosecutor and his quirky tenant open a café that offers coffee and free legal advice — plus a slow-burn love story brewing inside."
+  imdbRating: 7.7,
+  tags: ["cafe", "lawyer", "love story", "tenant", "justice"],
+  description: "A former prosecutor and his quirky tenant open a legal café where clients are served coffee and free legal counsel — with romance brewing on the side."
 },
 {
   id: 93,
@@ -1201,12 +1477,15 @@ const myWatchlist = [
   platform: "MX Player",
   genre: "Pakistani Romance",
   year: 2022,
+  language: "Urdu",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 40,
   runtime: "32h",
   popularity: 87,
-  hindiDubbed: true,
-  description: "A neglected girl grows into a strong woman after marrying into a conservative household — where love may finally rewrite her fate."
+  imdbRating: 8.0,
+  tags: ["arranged marriage", "in-laws", "transformation", "family", "growth"],
+  description: "A neglected girl finds strength and love after marrying into a conservative family — navigating tradition, abuse, and newfound dignity."
 },
 {
   id: 94,
@@ -1214,12 +1493,15 @@ const myWatchlist = [
   platform: "YouTube",
   genre: "Romantic Drama",
   year: 2024,
+  language: "Hindi",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 10,
   runtime: "7h",
   popularity: 76,
-  hindiDubbed: true,
-  description: "Two opposites meet by accident and find their lives woven together across years, heartbreaks, and second chances."
+  imdbRating: 7.4,
+  tags: ["strangers", "timing", "missed chances", "fate", "lifetime"],
+  description: "Two opposites meet by accident and grow apart before they grow close — connected through time, love, and quiet heartbreak."
 },
 {
   id: 95,
@@ -1227,12 +1509,15 @@ const myWatchlist = [
   platform: "Sony LIV",
   genre: "Crime Thriller",
   year: 2024,
+  language: "Telugu",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 8,
   runtime: "6h",
   popularity: 81,
-  hindiDubbed: true,
-  description: "A no-nonsense female cop uncovers layers of crime and conspiracy while chasing a serial killer in a city haunted by secrets."
+  imdbRating: 7.5,
+  tags: ["serial killer", "female lead", "cop", "mystery", "tense"],
+  description: "A determined cop investigating a string of murders gets pulled deeper into a puzzle that threatens to upend everything she believes."
 },
 {
   id: 96,
@@ -1240,12 +1525,15 @@ const myWatchlist = [
   platform: "Prime Video",
   genre: "Crime Noir",
   year: 2020,
+  language: "Hindi",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 9,
   runtime: "8h",
   popularity: 92,
-  hindiDubbed: true,
-  description: "A cynical cop gets entangled in a web of politics, media, and violence after investigating a failed assassination plot."
+  imdbRating: 8.0,
+  tags: ["journalism", "politics", "violence", "society", "morality"],
+  description: "A weary cop’s investigation into an attempted murder spirals into the underworld of crime, caste, and systemic rot in modern India."
 },
 {
   id: 97,
@@ -1253,12 +1541,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Romantic Drama",
   year: 2014,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 20,
   runtime: "18h",
   popularity: 84,
-  hindiDubbed: true,
-  description: "A young journalist with ‘Pinocchio Syndrome’ — who hiccups when lying — joins a news team seeking justice through truth and love."
+  imdbRating: 8.1,
+  tags: ["journalism", "truth", "hiccups", "childhood trauma", "justice"],
+  description: "A girl with 'Pinocchio Syndrome' — who hiccups when lying — teams up with a driven reporter to uncover corruption and seek truth."
 },
 {
   id: 98,
@@ -1266,12 +1557,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Fantasy Romance",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 86,
-  hindiDubbed: true,
-  description: "A civil servant unleashes a centuries-old curse — and a forbidden romance — when she opens a book locked for generations."
+  imdbRating: 7.3,
+  tags: ["curse", "lawyer", "magic book", "prophecy", "romance"],
+  description: "An ancient curse binds a civil servant to a defense attorney — sparking a magical connection they can’t control or resist."
 },
 {
   id: 99,
@@ -1279,12 +1573,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Crime Drama",
   year: 2015,
+  language: "English",
+  hindiDubbed: true,
   seasons: 6,
   episodes: 63,
   runtime: "55h",
   popularity: 98,
-  hindiDubbed: true,
-  description: "Before becoming Saul Goodman, slippery lawyer Jimmy McGill navigates moral crises and criminal connections in this masterful Breaking Bad prequel."
+  imdbRating: 8.9,
+  tags: ["lawyer", "prequel", "ethics", "Breaking Bad", "corruption"],
+  description: "Before Saul Goodman represented criminals, he was Jimmy McGill — a clever underdog navigating law, morality, and identity."
 },
 {
   id: 100,
@@ -1292,12 +1589,15 @@ const myWatchlist = [
   platform: "Prime Video",
   genre: "Action Romance",
   year: 2024,
+  language: "English",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 8,
   runtime: "7h",
   popularity: 84,
-  hindiDubbed: true,
-  description: "Two strangers recruited for a top-secret spy organization must pose as a married couple — but the lies run deeper than they expect."
+  imdbRating: 7.1,
+  tags: ["marriage", "spies", "secrets", "action", "thriller"],
+  description: "Two strangers pose as a married couple in a spy organization — but as missions intensify, so does the emotional fallout."
 },
 {
   id: 101,
@@ -1305,12 +1605,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Teen Romance",
   year: 2023,
+  language: "English",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 10,
   runtime: "7h",
   popularity: 78,
-  hindiDubbed: true,
-  description: "Kitty Covey heads to South Korea to reunite with her long-distance boyfriend — only to discover love is messier than she thought."
+  imdbRating: 6.7,
+  tags: ["spin-off", "To All the Boys", "high school", "Korea", "teen"],
+  description: "Kitty Covey flies to Seoul for love — but discovers international romance is harder than it looks in this quirky teen drama."
 },
 {
   id: 102,
@@ -1318,12 +1621,15 @@ const myWatchlist = [
   platform: "ZEE5",
   genre: "Thriller",
   year: 2023,
+  language: "Hindi",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 7,
   runtime: "6h",
   popularity: 80,
-  hindiDubbed: true,
-  description: "A seemingly normal bank day turns into a hostage situation, leading to tense standoffs and shocking revelations about the robbers’ motives."
+  imdbRating: 7.3,
+  tags: ["bank", "hostage", "conspiracy", "negotiation", "heist"],
+  description: "A normal day turns deadly when armed assailants take over a bank — and their motives are far more personal than money."
 },
 {
   id: 103,
@@ -1331,12 +1637,15 @@ const myWatchlist = [
   platform: "ZEE5",
   genre: "Action Thriller",
   year: 2022,
+  language: "Hindi",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 6,
   runtime: "5h",
   popularity: 76,
-  hindiDubbed: true,
-  description: "An elite commando is assigned a secret ‘black warrant’ hit — but soon learns that he might be the one being hunted."
+  imdbRating: 6.9,
+  tags: ["military", "manhunt", "betrayal", "target", "thriller"],
+  description: "An elite agent receives a classified mission — but quickly realizes he’s being hunted by forces within his own system."
 },
 {
   id: 104,
@@ -1344,12 +1653,15 @@ const myWatchlist = [
   platform: "Peacock",
   genre: "Espionage Thriller",
   year: 2024,
+  language: "English",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 10,
   runtime: "8h",
   popularity: 83,
-  hindiDubbed: false,
-  description: "An elusive assassin known only as 'The Jackal' is contracted to carry out a high-stakes international hit — as authorities scramble to stop him."
+  imdbRating: 7.5,
+  tags: ["assassin", "Europe", "spy", "hunt", "secret operation"],
+  description: "A mysterious assassin codenamed ‘The Jackal’ is contracted for a political hit — igniting an international game of cat and mouse."
 },
 {
   id: 105,
@@ -1357,12 +1669,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Heist Mystery",
   year: 2021,
+  language: "French",
+  hindiDubbed: true,
   seasons: 3,
   episodes: 17,
   runtime: "14h",
   popularity: 91,
-  hindiDubbed: true,
-  description: "Inspired by the adventures of gentleman thief Arsène Lupin, a brilliant con artist sets out to avenge his father’s wrongful framing."
+  imdbRating: 7.5,
+  tags: ["gentleman thief", "revenge", "Paris", "disguise", "justice"],
+  description: "Inspired by Arsène Lupin, a clever thief orchestrates elaborate heists to avenge his father’s framing — charming the public and fooling the elite."
 },
 {
   id: 106,
@@ -1370,12 +1685,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Crime Drama",
   year: 2024,
+  language: "English",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 8,
   runtime: "7h",
   popularity: 86,
-  hindiDubbed: true,
-  description: "When a British aristocrat inherits a cannabis empire, he’s pulled into a world of violence and scheming as rival factions close in."
+  imdbRating: 7.8,
+  tags: ["weed empire", "inheritance", "gangsters", "UK", "violence"],
+  description: "When an English aristocrat inherits a cannabis empire, he’s dragged into underworld rivalries, betrayals, and bloodshed."
 },
 {
   id: 107,
@@ -1383,12 +1701,15 @@ const myWatchlist = [
   platform: "Prime Video",
   genre: "Fantasy Revenge Drama",
   year: 2024,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 90,
-  hindiDubbed: true,
-  description: "A woman returns to the past after being murdered by her cheating husband — this time determined to rewrite fate and take him down first."
+  imdbRating: 8.4,
+  tags: ["time travel", "revenge", "affair", "marriage", "betrayal"],
+  description: "After being killed by her husband and best friend, a woman wakes up in the past — and plans their downfall before it happens."
 },
 {
   id: 108,
@@ -1396,12 +1717,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Political Thriller",
   year: 2023,
+  language: "English",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 10,
   runtime: "8h",
   popularity: 88,
-  hindiDubbed: true,
-  description: "A low-level FBI agent gets thrown into a deadly conspiracy after answering a call on a secret emergency line in the White House basement."
+  imdbRating: 7.5,
+  tags: ["FBI", "White House", "conspiracy", "emergency line", "danger"],
+  description: "A low-level FBI agent gets a cryptic call from the White House basement hotline — dragging him into a deadly conspiracy."
 },
 {
   id: 109,
@@ -1409,12 +1733,15 @@ const myWatchlist = [
   platform: "YouTube",
   genre: "Medical Action",
   year: 2024,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 12,
   runtime: "10h",
   popularity: 78,
-  hindiDubbed: false,
-  description: "Set inside a high-pressure ER, skilled trauma doctors fight to save lives during disasters and crises, uncovering their own hidden wounds."
+  imdbRating: 7.2,
+  tags: ["doctors", "disasters", "ER", "teamwork", "intense"],
+  description: "Trauma surgeons battle life-and-death chaos in South Korea’s busiest ER — where adrenaline, precision, and heart save lives and uncover truths."
 },
 {
   id: 110,
@@ -1422,12 +1749,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Legal Drama",
   year: 2022,
+  language: "English",
+  hindiDubbed: true,
   seasons: 2,
   episodes: 20,
   runtime: "18h",
   popularity: 87,
-  hindiDubbed: true,
-  description: "An idealistic criminal defense lawyer operates out of the back of his Lincoln, taking on risky cases that blur the lines of justice."
+  imdbRating: 7.7,
+  tags: ["defense lawyer", "cases", "Los Angeles", "justice", "court"],
+  description: "A charismatic defense lawyer takes cases from the back of his Lincoln — navigating morality, crime, and courtroom showdowns in L.A."
 },
 {
   id: 111,
@@ -1435,12 +1765,15 @@ const myWatchlist = [
   platform: "YouTube",
   genre: "Short Romantic Drama",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 5,
   runtime: "2h",
   popularity: 73,
-  hindiDubbed: false,
-  description: "A heartfelt short series exploring love through soft moments, missed chances, and sweet silences between two ordinary souls."
+  imdbRating: 6.8,
+  tags: ["slice of life", "awkward love", "quiet moments", "emotions", "short"],
+  description: "Two soft-spoken souls tiptoe through quiet love, silences, and unspoken emotions in this melancholic short drama."
 },
 {
   id: 112,
@@ -1448,12 +1781,15 @@ const myWatchlist = [
   platform: "YouTube",
   genre: "K-Romance Mini",
   year: 2024,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 8,
   runtime: "3h",
   popularity: 75,
-  hindiDubbed: false,
-  description: "A quirky girl who delivers fruit and a stoic part-timer find joy, frustration, and something unexpectedly tender in each other’s company."
+  imdbRating: 7.1,
+  tags: ["countryside", "fruit shop", "young love", "Korean mini", "sweet"],
+  description: "A tangerine delivery girl and a quiet student form a charming bond in a small town full of clumsy affection and fresh starts."
 },
 {
   id: 113,
@@ -1461,12 +1797,15 @@ const myWatchlist = [
   platform: "Apple TV+",
   genre: "Sci-Fi Mystery",
   year: 2022,
+  language: "English",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 9,
   runtime: "8h",
   popularity: 92,
-  hindiDubbed: false,
-  description: "In a company where work memories are surgically separated from personal ones, an employee starts questioning the cost of corporate loyalty."
+  imdbRating: 8.7,
+  tags: ["memory", "corporate", "dystopia", "consciousness", "thriller"],
+  description: "In a world where work and personal lives are surgically separated, one employee starts questioning what’s real — and what’s been wiped."
 },
 {
   id: 114,
@@ -1474,12 +1813,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Business Romance",
   year: 2020,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "16h",
   popularity: 89,
-  hindiDubbed: true,
-  description: "Set in South Korea’s tech scene, a dreamer girl and two rival entrepreneurs battle for love and innovation in a start-up competition."
+  imdbRating: 8.1,
+  tags: ["startup", "SandBox", "business", "competition", "love triangle"],
+  description: "In a Korean Silicon Valley, a dreamer girl and two brilliant rivals fight for success, invention — and each other’s hearts."
 },
 {
   id: 115,
@@ -1487,12 +1829,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Thriller",
   year: 2024,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 8,
   runtime: "7h",
   popularity: 84,
-  hindiDubbed: true,
-  description: "A mild-mannered student accidentally kills a predator — and becomes a serial murderer of criminals, hunted by a detective with secrets."
+  imdbRating: 7.6,
+  tags: ["serial killer", "vigilante", "student", "investigation", "twist"],
+  description: "A timid student kills a criminal in self-defense — but what if fate keeps steering him into more justice-fueled murders?"
 },
 {
   id: 116,
@@ -1500,12 +1845,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Legal Drama",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 10,
   runtime: "9h",
   popularity: 86,
-  hindiDubbed: true,
-  description: "A strict judge known for her hatred of juvenile criminals takes over a youth court — and begins confronting the roots of crime and empathy."
+  imdbRating: 8.0,
+  tags: ["juvenile court", "law", "youth crime", "compassion", "tough judge"],
+  description: "A strict judge who despises young offenders takes over youth court — but each case challenges her icy convictions."
 },
 {
   id: 117,
@@ -1513,12 +1861,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Teen Romance",
   year: 2013,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 20,
   runtime: "17h",
   popularity: 89,
-  hindiDubbed: true,
-  description: "Elite high schoolers struggle with love, friendship, and family expectations as a scholarship girl shakes up the balance of their glittering world."
+  imdbRating: 7.5,
+  tags: ["rich teens", "prestige school", "forbidden love", "status", "drama"],
+  description: "A poor girl enters an elite school ruled by powerful heirs — and her arrival turns friendships, love, and legacies upside down."
 },
 {
   id: 118,
@@ -1526,12 +1877,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Slice of Life Romance",
   year: 2018,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 85,
-  hindiDubbed: true,
-  description: "After plastic surgery changes her life, a college freshman confronts bullying, identity, and self-worth — and meets someone who sees her real face."
+  imdbRating: 7.3,
+  tags: ["plastic surgery", "self-esteem", "bullying", "college", "identity"],
+  description: "After cosmetic surgery gives her a new face, a timid college girl faces fresh insecurities — until someone sees past her looks."
 },
 {
   id: 119,
@@ -1539,12 +1893,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Romantic Legal Thriller",
   year: 2017,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 40,
   runtime: "32h",
   popularity: 87,
-  hindiDubbed: true,
-  description: "A prosecutor and his assistant are swept up in romance, laughter — and a murder case that may connect them more deeply than expected."
+  imdbRating: 8.0,
+  tags: ["amnesia", "law", "romance", "killer", "office romance"],
+  description: "A prosecutor and a trainee uncover buried secrets, including one shocking murder case — all while resisting (and not resisting) each other."
 },
 {
   id: 120,
@@ -1552,12 +1909,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Revenge Drama",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 2,
   episodes: 16,
   runtime: "14h",
   popularity: 93,
-  hindiDubbed: true,
-  description: "Years after surviving brutal bullying, a woman becomes a teacher at her tormentors’ child’s school — and methodically destroys their lives."
+  imdbRating: 8.9,
+  tags: ["bullying", "revenge", "teacher", "trauma", "justice"],
+  description: "A woman brutally bullied in school returns years later as a teacher — to make her abusers’ children watch their parents crumble."
 },
 {
   id: 121,
@@ -1565,12 +1925,15 @@ const myWatchlist = [
   platform: "Disney+ Hotstar",
   genre: "Fantasy Drama",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 16,
   runtime: "14h",
   popularity: 82,
-  hindiDubbed: true,
-  description: "A poor teen trades lives with a rich classmate using a golden spoon — but the price of borrowed privilege soon becomes unbearable."
+  imdbRating: 7.8,
+  tags: ["poverty", "rich switch", "supernatural", "regret", "family"],
+  description: "A poor student uses a magical spoon to swap lives with a rich friend — but discovers wealth comes at a devastating cost."
 },
 {
   id: 122,
@@ -1578,12 +1941,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Historical Horror",
   year: 2023,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 1,
   episodes: 10,
   runtime: "9h",
   popularity: 90,
-  hindiDubbed: true,
-  description: "In 1945 Seoul, a wealthy businessman and a bounty hunter confront horrifying creatures born from greed and colonial evil."
+  imdbRating: 8.1,
+  tags: ["colonialism", "monster", "1945", "mystery", "duo"],
+  description: "In 1945 Seoul, a tycoon and a bounty hunter fight unspeakable horrors born of war, greed, and unsanctioned experiments."
 },
 {
   id: 123,
@@ -1591,12 +1957,15 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Apocalyptic Horror",
   year: 2020,
+  language: "Korean",
+  hindiDubbed: true,
   seasons: 2,
   episodes: 20,
   runtime: "18h",
   popularity: 91,
-  hindiDubbed: true,
-  description: "Residents of an apartment complex are trapped as humans begin turning into monsters — and survival means facing inner demons too."
+  imdbRating: 7.9,
+  tags: ["monsters", "apocalypse", "survival", "residents", "body horror"],
+  description: "Residents in a crumbling apartment block battle grotesque monsters — and their own inner demons — as humanity hangs by a thread."
 },
 {
   id: 124,
@@ -1604,12 +1973,15 @@ const myWatchlist = [
   platform: "Viki",
   genre: "Tech Fantasy Comedy",
   year: 2022,
+  language: "Korean",
+  hindiDubbed: false,
   seasons: 1,
   episodes: 12,
   runtime: "10h",
   popularity: 80,
-  hindiDubbed: false,
-  description: "A young man picks up a smartphone — and finds the soul of a CEO trapped inside. Together, they try to solve his murder and save the company."
+  imdbRating: 7.4,
+  tags: ["AI", "CEO", "possession", "tech firm", "identity swap"],
+  description: "When a smartphone contains the soul of a murdered CEO, a young man must help run his company — and uncover the killer."
 },
 {
   id: 125,
@@ -1617,11 +1989,14 @@ const myWatchlist = [
   platform: "Netflix",
   genre: "Crime Period Drama",
   year: 2013,
+  language: "English",
+  hindiDubbed: true,
   seasons: 6,
   episodes: 36,
   runtime: "40h",
   popularity: 96,
-  hindiDubbed: true,
-  description: "Tommy Shelby leads the Peaky Blinders, a ruthless gang carving their empire out of post-WWI Birmingham. Fueled by ambition and trauma, Tommy ascends from bookmaker to political powerbroker — but every rise comes with blood, betrayal, and ghosts from the past."
+  imdbRating: 8.8,
+  tags: ["gangsters", "1920s", "Birmingham", "Tommy Shelby", "revenge"],
+  description: "Tommy Shelby leads the Peaky Blinders — a feared post-WWI gang carving out power in Birmingham through deals, violence, and political cunning. But every rise leaves blood behind."
 }
 ];
