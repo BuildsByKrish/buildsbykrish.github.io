@@ -1,118 +1,106 @@
-/* ⚡ Smooth Page Fade-In */
-body {
-  opacity: 0;
-  animation: fadeIn 0.8s ease-in forwards;
-  background: linear-gradient(145deg, #000000, #121212);
-  font-family: 'Segoe UI', sans-serif;
-  color: #f0f0f0;
-  padding: 2rem;
-}
+/* ============================
+   Genre-Based Tag Colors
+============================ */
+.tag[data-genre*="Crime"]         { background: #e74c3c; color: #fff; }
+.tag[data-genre*="Thriller"]      { background: #f39c12; color: #111; }
+.tag[data-genre*="Drama"]         { background: #3498db; color: #fff; }
+.tag[data-genre*="Fantasy"]       { background: #9b59b6; color: #fff; }
+.tag[data-genre*="Sci-Fi"]        { background: #1abc9c; color: #111; }
+.tag[data-genre*="Mystery"]       { background: #34495e; color: #fff; }
+.tag[data-genre*="Comedy"]        { background: #2ecc71; color: #111; }
+.tag[data-genre*="Horror"]        { background: #8e44ad; color: #fff; }
+.tag[data-genre*="Supernatural"]  { background: #c0392b; color: #fff; }
+.tag[data-genre*="Teen"]          { background: #ff69b4; color: #111; }
+.tag[data-genre*="Medical"]       { background: #16a085; color: #fff; }
+.tag[data-genre*="Post-Apocalyptic"] { background: #7f8c8d; color: #fff; }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-/* 🎬 Headings */
-h1 {
-  color: #00ffe7;
-  text-shadow: 0 0 10px #00ffe7;
-  animation: flicker 2s infinite;
-}
-
-h2 {
-  animation: slideIn 0.6s ease-out;
-}
-
-@keyframes slideIn {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-    text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
-  }
-  20%, 24%, 55% {
-    opacity: 0.4;
-    text-shadow: none;
-  }
-}
-
-/* 🧠 Poster Cards */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
+/* ============================
+   Hover Effects & Card Animation
+============================ */
 .poster-tile {
-  background: #1a1a1a;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 0 8px #00ffe73b;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .poster-tile:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 20px #00ffe7aa;
+  transform: translateY(-6px);
+  box-shadow: 0 0 15px #00d2ff88;
 }
 
-/* 💫 Tag styling */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.4rem;
+/* ============================
+   Must Watch Badge
+============================ */
+.poster-tile.must-watch {
+  border-left: 6px solid gold;
+  background: linear-gradient(145deg, #1a1a1a, #111);
+  position: relative;
 }
-
-.tag {
-  font-size: 0.75rem;
-  background: #00ffe7;
-  color: #000;
-  padding: 0.25rem 0.6rem;
-  border-radius: 5px;
-  font-weight: bold;
-  animation: pulse 2s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 6px #00ffe7; }
-  50% { box-shadow: 0 0 12px #00ffe7; }
-}
-
-/* 🎛️ Button Styling */
-.main-btn, .nav-btn {
-  background: linear-gradient(90deg, #00ffe7, #00ccff);
-  color: #000;
-  font-weight: bold;
-  padding: 0.8rem 1.6rem;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 0 12px #00ffe7;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.main-btn:hover, .nav-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #00ffff;
-}
-
-/* 🌙 Light Mode Toggle */
-body.light-mode {
-  background: #f5f5f5;
+.poster-tile.must-watch::before {
+  content: "⭐ Must Watch";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: gold;
   color: #111;
+  font-weight: bold;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
 }
 
-body.light-mode .poster-tile {
-  background: #fff;
-  color: #000;
-  box-shadow: 0 0 10px #00ccff55;
+/* ============================
+   Dark Theme Polish
+============================ */
+.filters button:hover,
+.filters select:hover,
+.filters input:focus {
+  background: #00d2ff;
+  color: #111;
+  outline: none;
+}
+input::placeholder {
+  color: #888;
+}
+select {
+  cursor: pointer;
 }
 
-body.light-mode .tag {
-  background: #00ccff;
-  color: #000;
+/* ============================
+   Thematic Backgrounds
+============================ */
+body[data-theme="fantasy"] {
+  background: linear-gradient(to right, #2c3e50, #8e44ad);
+}
+body[data-theme="crime"] {
+  background: linear-gradient(to right, #000000, #434343);
+}
+body[data-theme="sci-fi"] {
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+}
+body[data-theme="comedy"] {
+  background: linear-gradient(to right, #1d976c, #93f9b9);
+}
+body[data-theme="thriller"] {
+  background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+}
+body[data-theme="mystery"] {
+  background: linear-gradient(to right, #232526, #414345);
+}
+
+/* ============================
+   Responsive Enhancements
+============================ */
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  .filters input,
+  .filters select {
+    width: 90%;
+  }
+  .poster-info h3 {
+    font-size: 1rem;
+  }
+  .tag {
+    font-size: 0.7rem;
+  }
 }
