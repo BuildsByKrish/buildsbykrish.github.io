@@ -465,20 +465,20 @@ const englishWatchlist = [
 },
 {
   id: 30,
-  title: "Friends",
+  title: "Mindhunter",
   platform: "Netflix",
-  genre: "Comedy",
-  year: 1994,
+  genre: "Crime Thriller",
+  year: 2017,
   language: "English",
   hindiDubbed: true,
-  seasons: 10,
-  episodes: 236,
-  runtime: "85h",
-  popularity: 98,
-  imdbRating: 8.9,
-  tags: ["New York", "friendship", "romance", "90s", "sitcom"],
-  description: "Six friends in Manhattan navigate relationships, careers, and life’s ups and downs — with coffee, sarcasm, and unforgettable moments."
-},
+  seasons: 2,
+  episodes: 19,
+  runtime: "17h",
+  popularity: 87,
+  imdbRating: 8.6,
+  tags: ["FBI", "serial killers", "psychology", "interviews", "1970s"],
+  description: "In the late 1970s, two FBI agents pioneer criminal profiling by interviewing serial killers — diving deep into the darkest minds to solve active cases."
+}
 {
   id: 31,
   title: "The Big Bang Theory",
