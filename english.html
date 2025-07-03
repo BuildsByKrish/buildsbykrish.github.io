@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="vault-theme.css" />
 
-  <!-- Vault Data -->
+  <!-- Data -->
   <script defer src="englishrecommendations.js"></script>
 </head>
 <body>
@@ -42,7 +42,7 @@
     <button onclick="filterHindiDub('yes')">Hindi Dubbed ✅</button>
     <button onclick="filterHindiDub('no')">English Only ❌</button>
 
-    <!-- Must Watch Filter -->
+    <!-- Must Watch -->
     <button onclick="filterMustWatch()">🎯 Must Watch (IMDb 9+)</button>
 
     <!-- Search + Sort -->
@@ -92,10 +92,10 @@
 
     function filterByGenre(selectedGenre) {
       if (selectedGenre === "All") {
-        currentList = [...recommendedEnglishSeries];
+        currentList = [...englishWatchlist];
         document.body.dataset.theme = "";
       } else {
-        currentList = recommendedEnglishSeries.filter(s =>
+        currentList = englishWatchlist.filter(s =>
           s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
         );
         document.body.dataset.theme = selectedGenre.toLowerCase().replace(/\s+/g, "-");
@@ -106,22 +106,22 @@
     function filterHindiDub(option) {
       switch (option) {
         case 'yes':
-          currentList = recommendedEnglishSeries.filter(s => s.hindiDubbed); break;
+          currentList = englishWatchlist.filter(s => s.hindiDubbed); break;
         case 'no':
-          currentList = recommendedEnglishSeries.filter(s => !s.hindiDubbed); break;
+          currentList = englishWatchlist.filter(s => !s.hindiDubbed); break;
         default:
-          currentList = [...recommendedEnglishSeries]; break;
+          currentList = [...englishWatchlist]; break;
       }
       display(currentList);
     }
 
     function filterMustWatch() {
-      currentList = recommendedEnglishSeries.filter(s => s.imdbRating >= 9);
+      currentList = englishWatchlist.filter(s => s.imdbRating >= 9);
       display(currentList);
     }
 
     function searchTitles(query) {
-      currentList = recommendedEnglishSeries.filter(s =>
+      currentList = englishWatchlist.filter(s =>
         s.title.toLowerCase().includes(query.toLowerCase())
       );
       display(currentList);
@@ -143,7 +143,7 @@
     }
 
     window.onload = () => {
-      currentList = [...recommendedEnglishSeries];
+      currentList = [...englishWatchlist];
       display(currentList);
       console.log("✅ English Vault Loaded:", currentList.length);
     };
