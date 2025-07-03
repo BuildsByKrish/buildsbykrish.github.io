@@ -16,9 +16,9 @@
     .filters {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
       gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
       margin: 1.5rem 0 2rem;
       overflow-x: auto;
     }
@@ -27,6 +27,11 @@
     .filters button {
       white-space: nowrap;
       flex-shrink: 0;
+      padding: 0.5rem 1rem;
+      background: #1c1c1c;
+      color: #00d2ff;
+      border: none;
+      border-radius: 6px;
     }
   </style>
 </head>
@@ -35,7 +40,6 @@
   <h1>English Series Vault</h1>
 
   <div class="filters">
-    <!-- Genre Dropdown -->
     <select onchange="filterByGenre(this.value)">
       <option value="All">All Genres</option>
       <option value="Crime">Crime</option>
@@ -55,15 +59,12 @@
       <option value="Post-Apocalyptic">Post-Apocalyptic</option>
     </select>
 
-    <!-- Hindi Dubbed Toggle -->
     <button onclick="filterHindiDub('all')">All</button>
     <button onclick="filterHindiDub('yes')">Hindi Dubbed ✅</button>
     <button onclick="filterHindiDub('no')">English Only ❌</button>
 
-    <!-- Must Watch -->
     <button onclick="filterMustWatch()">🎯 Must Watch (IMDb 9+)</button>
 
-    <!-- Search + Sort -->
     <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
     <select onchange="sortBy(this.value)">
       <option value="">Sort by…</option>
@@ -109,10 +110,10 @@
 
     function filterByGenre(selectedGenre) {
       if (selectedGenre === "All") {
-        currentList = [...englishWatchlist];
+        currentList = [...myWatchlist];
         document.body.dataset.theme = "";
       } else {
-        currentList = englishWatchlist.filter(s =>
+        currentList = myWatchlist.filter(s =>
           s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
         );
         document.body.dataset.theme = selectedGenre.toLowerCase().replace(/\s+/g, "-");
@@ -123,22 +124,22 @@
     function filterHindiDub(option) {
       switch (option) {
         case 'yes':
-          currentList = englishWatchlist.filter(s => s.hindiDubbed); break;
+          currentList = myWatchlist.filter(s => s.hindiDubbed); break;
         case 'no':
-          currentList = englishWatchlist.filter(s => !s.hindiDubbed); break;
+          currentList = myWatchlist.filter(s => !s.hindiDubbed); break;
         default:
-          currentList = [...englishWatchlist]; break;
+          currentList = [...myWatchlist]; break;
       }
       display(currentList);
     }
 
     function filterMustWatch() {
-      currentList = englishWatchlist.filter(s => s.imdbRating >= 9);
+      currentList = myWatchlist.filter(s => s.imdbRating >= 9);
       display(currentList);
     }
 
     function searchTitles(query) {
-      currentList = englishWatchlist.filter(s =>
+      currentList = myWatchlist.filter(s =>
         s.title.toLowerCase().includes(query.toLowerCase())
       );
       display(currentList);
@@ -160,9 +161,9 @@
     }
 
     window.onload = () => {
-      currentList = [...englishWatchlist];
+      currentList = [...myWatchlist];
       display(currentList);
-      console.log("✅ English Vault Loaded:", currentList.length);
+      console.log("✅ Vault loaded:", currentList.length);
     };
 
     window.onscroll = function () {
