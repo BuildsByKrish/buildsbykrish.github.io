@@ -478,7 +478,7 @@ const englishWatchlist = [
   imdbRating: 8.6,
   tags: ["FBI", "serial killers", "psychology", "interviews", "1970s"],
   description: "In the late 1970s, two FBI agents pioneer criminal profiling by interviewing serial killers — diving deep into the darkest minds to solve active cases."
-}
+},
 {
   id: 31,
   title: "The Big Bang Theory",
