@@ -4,85 +4,34 @@
   <meta charset="UTF-8" />
   <title>Hindi Series Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="vault-theme.css" />
+
+  <!-- Data -->
+  <script defer src="hindirecommendations.js"></script>
+
   <style>
-    body {
-      font-family: sans-serif;
-      background: #111;
-      color: #fff;
-      margin: 0;
-      padding: 0 1rem 3rem;
-      scroll-behavior: smooth;
-    }
-    h1 {
-      text-align: center;
-      color: #ffc107;
-      margin: 2rem 0 1rem;
-    }
     .filters {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
       justify-content: center;
-      margin-bottom: 2rem;
+      align-items: center;
+      margin: 1.5rem 0 2rem;
+      overflow-x: auto;
     }
-    .filters button,
     .filters select,
-    .filters input {
-      background: #222;
-      color: #ffc107;
-      font-weight: bold;
+    .filters input,
+    .filters button {
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 0.5rem 1rem;
+      background: #1c1c1c;
+      color: #ffcc00;
       border: none;
       border-radius: 6px;
-      padding: 0.5rem 1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding-bottom: 3rem;
-    }
-    .poster-tile {
-      background: #1c1c1c;
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 0 10px #ffc10744;
-    }
-    .poster-info h3 {
-      margin: 0 0 0.5rem;
-    }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .tag {
-      background: #ffc107;
-      color: #111;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-    }
-    .top-btn,
-    .home-btn {
-      position: fixed;
-      z-index: 99;
-      right: 20px;
-      padding: 0.7rem 1.2rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 50px;
-      background-color: #ffc107;
-      color: #111;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-    }
-    .top-btn {
-      bottom: 80px;
-      display: none;
-    }
-    .home-btn {
-      bottom: 20px;
     }
   </style>
 </head>
@@ -91,22 +40,23 @@
   <h1>Hindi Series Vault</h1>
 
   <div class="filters">
-    <!-- Genre Filters -->
-    <button onclick="filterByGenre('All')">All Genres</button>
-    <button onclick="filterByGenre('Crime')">Crime</button>
-    <button onclick="filterByGenre('Thriller')">Thriller</button>
-    <button onclick="filterByGenre('Drama')">Drama</button>
-    <button onclick="filterByGenre('Fantasy')">Fantasy</button>
-    <button onclick="filterByGenre('Sci-Fi')">Sci-Fi</button>
-    <button onclick="filterByGenre('Mystery')">Mystery</button>
-    <button onclick="filterByGenre('Comedy')">Comedy</button>
+    <select onchange="filterByGenre(this.value)">
+      <option value="All">All Genres</option>
+      <option value="Crime">Crime</option>
+      <option value="Thriller">Thriller</option>
+      <option value="Drama">Drama</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Action">Action</option>
+      <option value="Spy">Spy</option>
+      <option value="Mythological">Mythological</option>
+      <option value="Historical">Historical</option>
+      <option value="Political">Political</option>
+      <option value="Military">Military</option>
+      <option value="Slice of Life">Slice of Life</option>
+    </select>
 
-    <!-- Hindi Dubbed Toggle -->
-    <button onclick="filterHindiDub('all')">All</button>
-    <button onclick="filterHindiDub('yes')">Hindi Dubbed ✅</button>
-    <button onclick="filterHindiDub('no')">Original Only ❌</button>
+    <button onclick="filterMustWatch()">🎯 Must Watch (IMDb 9+)</button>
 
-    <!-- Search + Sort -->
     <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
     <select onchange="sortBy(this.value)">
       <option value="">Sort by…</option>
@@ -119,7 +69,9 @@
 
   <div id="hindiGrid" class="grid"></div>
 
-  <script src="./hindirecommendations.js"></script>
+  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
+  <button onclick="goHome()" class="home-btn">🏠 Home</button>
+
   <script>
     let currentList = [];
 
@@ -130,18 +82,21 @@
         return;
       }
       grid.innerHTML = list.map((show, i) => `
-        <div class="poster-tile">
+        <div class="poster-tile ${show.imdbRating >= 9 ? 'must-watch' : ''}">
           <div class="poster-info">
             <h3>${i + 1}. ${show.title}</h3>
             <div class="tags">
               <span class="tag">${show.platform}</span>
-              <span class="tag">${show.genre}</span>
+              <span class="tag" data-genre="${show.genre}">${show.genre}</span>
               <span class="tag">📅 ${show.year}</span>
               <span class="tag">🔥 ${show.popularity}%</span>
-              <span class="tag">${show.hindiDubbed ? "🔁 Hindi Dubbed" : "🎧 Original Only"}</span>
+              <span class="tag">⭐ ${show.imdbRating}</span>
             </div>
             <p style="font-size: 0.85rem; margin-top: 0.5rem;">
               Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
+            </p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #ccc;">
+              ${show.description}
             </p>
           </div>
         </div>
@@ -150,36 +105,31 @@
 
     function filterByGenre(selectedGenre) {
       if (selectedGenre === "All") {
-        currentList = [...recommendedHindiSeries];
+        currentList = [...hindiWatchlist];
+        document.body.dataset.theme = "";
       } else {
-        currentList = recommendedHindiSeries.filter(s =>
+        currentList = hindiWatchlist.filter(s =>
           s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
         );
+        document.body.dataset.theme = selectedGenre.toLowerCase().replace(/\s+/g, "-");
       }
       display(currentList);
     }
 
-    function filterHindiDub(option) {
-      switch (option) {
-        case 'yes':
-          currentList = recommendedHindiSeries.filter(s => s.hindiDubbed); break;
-        case 'no':
-          currentList = recommendedHindiSeries.filter(s => !s.hindiDubbed); break;
-        default:
-          currentList = [...recommendedHindiSeries]; break;
-      }
+    function filterMustWatch() {
+      currentList = hindiWatchlist.filter(s => s.imdbRating >= 9);
       display(currentList);
     }
 
     function searchTitles(query) {
-      currentList = recommendedHindiSeries.filter(s =>
+      currentList = hindiWatchlist.filter(s =>
         s.title.toLowerCase().includes(query.toLowerCase())
       );
       display(currentList);
     }
 
     function sortBy(type) {
-      const sorted = [...currentList];
+      let sorted = [...currentList];
       switch (type) {
         case "popularity":
           sorted.sort((a, b) => b.popularity - a.popularity); break;
@@ -194,15 +144,14 @@
     }
 
     window.onload = () => {
-      currentList = [...recommendedHindiSeries];
+      currentList = [...hindiWatchlist];
       display(currentList);
       console.log("✅ Hindi Vault Loaded:", currentList.length);
     };
 
-    window.onscroll = function () {
+    window.onscroll = () => {
       document.getElementById("topBtn").style.display =
-        document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
-          ? "block" : "none";
+        window.scrollY > 400 ? "block" : "none";
     };
 
     function scrollTopSmooth() {
@@ -213,9 +162,6 @@
       window.location.href = "collections.html";
     }
   </script>
-
-  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
-  <button onclick="goHome()" class="home-btn">🏠 Home</button>
 
 </body>
 </html>
