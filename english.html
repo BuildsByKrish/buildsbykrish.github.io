@@ -5,12 +5,12 @@
   <title>English Series Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Stylesheets -->
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="vault-theme.css" />
 
   <!-- Data -->
-  <script defer src="data.js"></script>
+  <script defer src="englishrecommendations.js"></script>
 
   <style>
     .filters {
@@ -110,10 +110,10 @@
 
     function filterByGenre(selectedGenre) {
       if (selectedGenre === "All") {
-        currentList = [...myWatchlist];
+        currentList = [...englishWatchlist];
         document.body.dataset.theme = "";
       } else {
-        currentList = myWatchlist.filter(s =>
+        currentList = englishWatchlist.filter(s =>
           s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
         );
         document.body.dataset.theme = selectedGenre.toLowerCase().replace(/\s+/g, "-");
@@ -124,22 +124,22 @@
     function filterHindiDub(option) {
       switch (option) {
         case 'yes':
-          currentList = myWatchlist.filter(s => s.hindiDubbed); break;
+          currentList = englishWatchlist.filter(s => s.hindiDubbed); break;
         case 'no':
-          currentList = myWatchlist.filter(s => !s.hindiDubbed); break;
+          currentList = englishWatchlist.filter(s => !s.hindiDubbed); break;
         default:
-          currentList = [...myWatchlist]; break;
+          currentList = [...englishWatchlist]; break;
       }
       display(currentList);
     }
 
     function filterMustWatch() {
-      currentList = myWatchlist.filter(s => s.imdbRating >= 9);
+      currentList = englishWatchlist.filter(s => s.imdbRating >= 9);
       display(currentList);
     }
 
     function searchTitles(query) {
-      currentList = myWatchlist.filter(s =>
+      currentList = englishWatchlist.filter(s =>
         s.title.toLowerCase().includes(query.toLowerCase())
       );
       display(currentList);
@@ -161,15 +161,14 @@
     }
 
     window.onload = () => {
-      currentList = [...myWatchlist];
+      currentList = [...englishWatchlist];
       display(currentList);
-      console.log("✅ Vault loaded:", currentList.length);
+      console.log("✅ English Vault Loaded:", currentList.length);
     };
 
-    window.onscroll = function () {
+    window.onscroll = () => {
       document.getElementById("topBtn").style.display =
-        document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
-          ? "block" : "none";
+        window.scrollY > 400 ? "block" : "none";
     };
 
     function scrollTopSmooth() {
