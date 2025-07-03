@@ -10,105 +10,33 @@
   <link rel="stylesheet" href="vault-theme.css" />
 
   <!-- Data & Logic -->
-  <script defer src="english.js"></script>
+  <script defer src="englishrecommendations.js"></script>
   <script defer src="watchlist.js"></script>
-
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #111;
-      color: #fff;
-      margin: 0;
-      padding: 0 1rem 3rem;
-      scroll-behavior: smooth;
-    }
-    h1 {
-      text-align: center;
-      color: #00d2ff;
-      margin: 2rem 0 1rem;
-    }
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    .filters button,
-    .filters select,
-    .filters input {
-      background: #222;
-      color: #00d2ff;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding-bottom: 3rem;
-    }
-    .poster-tile {
-      background: #1c1c1c;
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 0 10px #00d2ff44;
-    }
-    .poster-info h3 {
-      margin: 0 0 0.5rem;
-    }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .tag {
-      background: #00d2ff;
-      color: #111;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-    }
-    .top-btn,
-    .home-btn {
-      position: fixed;
-      z-index: 99;
-      right: 20px;
-      padding: 0.7rem 1.2rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 50px;
-      background-color: #00d2ff;
-      color: #111;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-    }
-    .top-btn {
-      bottom: 80px;
-      display: none;
-    }
-    .home-btn {
-      bottom: 20px;
-    }
-  </style>
 </head>
 <body>
 
   <h1>English Series Vault</h1>
 
   <div class="filters">
-    <!-- Genre Filters -->
-    <button onclick="filterByGenre('All')">All Genres</button>
-    <button onclick="filterByGenre('Crime')">Crime</button>
-    <button onclick="filterByGenre('Thriller')">Thriller</button>
-    <button onclick="filterByGenre('Drama')">Drama</button>
-    <button onclick="filterByGenre('Fantasy')">Fantasy</button>
-    <button onclick="filterByGenre('Sci-Fi')">Sci-Fi</button>
-    <button onclick="filterByGenre('Mystery')">Mystery</button>
-    <button onclick="filterByGenre('Comedy')">Comedy</button>
+    <!-- Genre Dropdown -->
+    <select onchange="filterByGenre(this.value)">
+      <option value="All">All Genres</option>
+      <option value="Crime">Crime</option>
+      <option value="Thriller">Thriller</option>
+      <option value="Drama">Drama</option>
+      <option value="Fantasy">Fantasy</option>
+      <option value="Sci-Fi">Sci-Fi</option>
+      <option value="Mystery">Mystery</option>
+      <option value="Comedy">Comedy</option>
+      <option value="Romance">Romance</option>
+      <option value="Horror">Horror</option>
+      <option value="Action">Action</option>
+      <option value="Action-Comedy">Action-Comedy</option>
+      <option value="Supernatural">Supernatural</option>
+      <option value="Teen">Teen</option>
+      <option value="Medical">Medical</option>
+      <option value="Post-Apocalyptic">Post-Apocalyptic</option>
+    </select>
 
     <!-- Hindi Dubbed Toggle -->
     <button onclick="filterHindiDub('all')">All</button>
@@ -128,6 +56,9 @@
 
   <div id="englishGrid" class="grid"></div>
 
+  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
+  <button onclick="goHome()" class="home-btn">🏠 Home</button>
+
   <script>
     let currentList = [];
 
@@ -138,12 +69,12 @@
         return;
       }
       grid.innerHTML = list.map((show, i) => `
-        <div class="poster-tile">
+        <div class="poster-tile ${show.imdbRating >= 8.8 ? 'must-watch' : ''}">
           <div class="poster-info">
             <h3>${i + 1}. ${show.title}</h3>
             <div class="tags">
               <span class="tag">${show.platform}</span>
-              <span class="tag">${show.genre}</span>
+              <span class="tag" data-genre="${show.genre}">${show.genre}</span>
               <span class="tag">📅 ${show.year}</span>
               <span class="tag">🔥 ${show.popularity}%</span>
               <span class="tag">${show.hindiDubbed ? "🔁 Hindi Dubbed" : "🎧 English Only"}</span>
@@ -159,10 +90,12 @@
     function filterByGenre(selectedGenre) {
       if (selectedGenre === "All") {
         currentList = [...recommendedEnglishSeries];
+        document.body.dataset.theme = "";
       } else {
         currentList = recommendedEnglishSeries.filter(s =>
           s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
         );
+        document.body.dataset.theme = selectedGenre.toLowerCase().replace(/\s+/g, "-");
       }
       display(currentList);
     }
@@ -221,9 +154,6 @@
       window.location.href = "collections.html";
     }
   </script>
-
-  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
-  <button onclick="goHome()" class="home-btn">🏠 Home</button>
 
 </body>
 </html>
