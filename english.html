@@ -42,6 +42,9 @@
     <button onclick="filterHindiDub('yes')">Hindi Dubbed ✅</button>
     <button onclick="filterHindiDub('no')">English Only ❌</button>
 
+    <!-- Must Watch Filter -->
+    <button onclick="filterMustWatch()">🎯 Must Watch (IMDb 9+)</button>
+
     <!-- Search + Sort -->
     <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
     <select onchange="sortBy(this.value)">
@@ -50,7 +53,6 @@
       <option value="year">Year</option>
       <option value="titleAsc">A–Z</option>
       <option value="titleDesc">Z–A</option>
-      <option value="mustWatch">🎯 Must Watch (IMDb 9+)</option>
     </select>
   </div>
 
@@ -60,7 +62,6 @@
   <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
   <button onclick="goHome()" class="home-btn">🏠 Home</button>
 
-  <!-- Scripts -->
   <script>
     let currentList = [];
 
@@ -114,6 +115,11 @@
       display(currentList);
     }
 
+    function filterMustWatch() {
+      currentList = recommendedEnglishSeries.filter(s => s.imdbRating >= 9);
+      display(currentList);
+    }
+
     function searchTitles(query) {
       currentList = recommendedEnglishSeries.filter(s =>
         s.title.toLowerCase().includes(query.toLowerCase())
@@ -132,8 +138,6 @@
           sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
         case "titleDesc":
           sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
-        case "mustWatch":
-          sorted = recommendedEnglishSeries.filter(s => s.imdbRating >= 9); break;
       }
       display(sorted);
     }
