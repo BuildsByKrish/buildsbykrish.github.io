@@ -979,7 +979,6 @@ const koreanWatchlist = [
     hindiDubbed: true,
     description: "A psychic vet and a hot-headed detective team up to solve small-town crimes — but a serial killer case tests their powers and partnership."
   },
-koreanWatchl
   {
     id: 71,
     title: "Reborn Rich",
