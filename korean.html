@@ -18,13 +18,17 @@
       border-radius: 6px;
       cursor: pointer;
       font-size: 14px;
-      opacity: 0.7;
+      opacity: 0.75;
       z-index: 1000;
+      transition: all 0.2s ease;
     }
-    #goTopBtn:hover { opacity: 1; }
+    #goTopBtn:hover {
+      opacity: 1;
+      background-color: #000;
+    }
   </style>
 </head>
-<body>
+<body class="korean-vault" data-theme="fantasy">
   <header>
     <h1>🇰🇷 Krish’s Korean Vault</h1>
     <nav>
@@ -55,7 +59,7 @@
     <div id="vaultContainer" class="vault-grid"></div>
   </main>
 
-  <button id="goTopBtn" onclick="scrollToTop()">🔝 Go to Top</button>
+  <button id="goTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">🔝 Go to Top</button>
 
   <script src="koreanrecommendations.js"></script>
   <script>
@@ -68,18 +72,20 @@
     const searchInput = document.getElementById("searchInput");
     const sortFilter = document.getElementById("sortFilter");
 
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
     function renderVault(data) {
       container.innerHTML = "";
       data.forEach(entry => {
         const card = document.createElement("div");
         card.className = "vault-card";
+
+        // Optional: must-watch badge logic
+        if (entry.imdbRating >= 8.8 && entry.popularity >= 90) {
+          card.classList.add("must-watch");
+        }
+
         card.innerHTML = `
           <h2>${entry.title}</h2>
-          <p><strong>Genre:</strong> ${entry.genre}</p>
+          <p><strong>Genre:</strong> ${entry.genre.split('/').map(g => `<span class="tag" data-genre="${g.trim()}">${g.trim()}</span>`).join(' ')}</p>
           <p><strong>Platform:</strong> ${entry.platform}</p>
           <p><strong>Year:</strong> ${entry.year}</p>
           <p><strong>IMDb:</strong> ${entry.imdbRating}</p>
@@ -92,7 +98,7 @@
     }
 
     function populateFilters(data) {
-      const genres = [...new Set(data.map(d => d.genre))].sort();
+      const genres = [...new Set(data.flatMap(d => d.genre.split('/').map(g => g.trim())))].sort();
       const platforms = [...new Set(data.flatMap(d => d.platform.split(" / ")))].sort();
 
       genres.forEach(g => {
@@ -117,7 +123,7 @@
       const platform = platformFilter.value;
       const imdb = parseFloat(imdbFilter.value);
       const hindiOnly = hindiToggle.checked;
-      const subOnly = subsToggle.checked;
+      const subsOnly = subsToggle.checked;
       const search = searchInput.value.toLowerCase();
       const sortBy = sortFilter.value;
 
@@ -125,7 +131,7 @@
       if (platform) filtered = filtered.filter(d => d.platform.includes(platform));
       if (imdb) filtered = filtered.filter(d => d.imdbRating >= imdb);
       if (hindiOnly) filtered = filtered.filter(d => d.hindiDubbed);
-      if (subOnly) filtered = filtered.filter(d => !d.hindiDubbed);
+      if (subsOnly) filtered = filtered.filter(d => !d.hindiDubbed);
       if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search));
 
       if (sortBy === "imdb") {
@@ -139,8 +145,10 @@
       renderVault(filtered);
     }
 
-    [genreFilter, platformFilter, imdbFilter, hindiToggle, subsToggle, searchInput, sortFilter]
-      .forEach(el => el.addEventListener("input", applyFilters));
+    [
+      genreFilter, platformFilter, imdbFilter,
+      hindiToggle, subsToggle, searchInput, sortFilter
+    ].forEach(el => el.addEventListener("input", applyFilters));
 
     populateFilters(koreanWatchlist);
     renderVault(koreanWatchlist);
