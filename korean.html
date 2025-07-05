@@ -2,197 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Korean Series Vault</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Krish's Korean Vault</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="vault-theme.css" />
   <style>
-    body {
-      font-family: sans-serif;
-      background: #111;
+    #goTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      padding: 10px 14px;
+      background-color: #444;
       color: #fff;
-      margin: 0;
-      padding: 0 1rem 3rem;
-      scroll-behavior: smooth;
-    }
-    h1 {
-      text-align: center;
-      color: #ff5f5f;
-      margin: 2rem 0 1rem;
-    }
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    .filters button,
-    .filters select,
-    .filters input {
-      background: #222;
-      color: #ff5f5f;
-      font-weight: bold;
       border: none;
       border-radius: 6px;
-      padding: 0.5rem 1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding-bottom: 3rem;
-    }
-    .poster-tile {
-      background: #1c1c1c;
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 0 10px #ff5f5f44;
-    }
-    .poster-info h3 {
-      margin: 0 0 0.5rem;
-    }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .tag {
-      background: #ff5f5f;
-      color: #111;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-    }
-    .top-btn,
-    .home-btn {
-      position: fixed;
-      z-index: 99;
-      right: 20px;
-      padding: 0.7rem 1.2rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 50px;
-      background-color: #ff5f5f;
-      color: #111;
       cursor: pointer;
-      transition: opacity 0.3s ease;
+      font-size: 14px;
+      opacity: 0.7;
+      z-index: 1000;
     }
-    .top-btn {
-      bottom: 80px;
-      display: none;
-    }
-    .home-btn {
-      bottom: 20px;
-    }
+    #goTopBtn:hover { opacity: 1; }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🇰🇷 Krish’s Korean Vault</h1>
+    <nav>
+      <a href="collections.html" class="home-button">🏠 Back to Home</a>
+    </nav>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search by title..." />
+      <select id="genreFilter"><option value="">All Genres</option></select>
+      <select id="platformFilter"><option value="">All Platforms</option></select>
+      <select id="imdbFilter">
+        <option value="">All Ratings</option>
+        <option value="9">9.0+</option>
+        <option value="8">8.0+</option>
+        <option value="7">7.0+</option>
+      </select>
+      <select id="sortFilter">
+        <option value="">Sort By</option>
+        <option value="imdb">IMDb Rating</option>
+        <option value="year">Year</option>
+        <option value="popularity">Popularity</option>
+      </select>
+      <label><input type="checkbox" id="hindiToggle" /> 🎧 Hindi Dubbed</label>
+      <label><input type="checkbox" id="subsToggle" /> 🇰🇷 Korean (Sub Only)</label>
+    </div>
+  </header>
 
-  <h1>Korean Series Vault</h1>
+  <main>
+    <div id="vaultContainer" class="vault-grid"></div>
+  </main>
 
-  <div class="filters">
-    <!-- Genre Filters -->
-    <button onclick="filterByGenre('All')">All Genres</button>
-    <button onclick="filterByGenre('Crime')">Crime</button>
-    <button onclick="filterByGenre('Thriller')">Thriller</button>
-    <button onclick="filterByGenre('Drama')">Drama</button>
-    <button onclick="filterByGenre('Fantasy')">Fantasy</button>
-    <button onclick="filterByGenre('Mystery')">Mystery</button>
-    <button onclick="filterByGenre('Romance')">Romance</button>
+  <button id="goTopBtn" onclick="scrollToTop()">🔝 Go to Top</button>
 
-    <!-- Search + Sort -->
-    <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
-    <select onchange="sortBy(this.value)">
-      <option value="">Sort by…</option>
-      <option value="popularity">Popularity</option>
-      <option value="year">Year</option>
-      <option value="titleAsc">A–Z</option>
-      <option value="titleDesc">Z–A</option>
-    </select>
-  </div>
-
-  <div id="koreanGrid" class="grid"></div>
-
-  <script src="./koreanrecommendations.js"></script>
+  <script src="koreanrecommendations.js"></script>
   <script>
-    let currentList = [];
+    const container = document.getElementById("vaultContainer");
+    const genreFilter = document.getElementById("genreFilter");
+    const platformFilter = document.getElementById("platformFilter");
+    const imdbFilter = document.getElementById("imdbFilter");
+    const hindiToggle = document.getElementById("hindiToggle");
+    const subsToggle = document.getElementById("subsToggle");
+    const searchInput = document.getElementById("searchInput");
+    const sortFilter = document.getElementById("sortFilter");
 
-    function display(list) {
-      const grid = document.getElementById("koreanGrid");
-      if (!list || !list.length) {
-        grid.innerHTML = "<p style='text-align:center;'>No shows to display. Check filters or data file.</p>";
-        return;
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderVault(data) {
+      container.innerHTML = "";
+      data.forEach(entry => {
+        const card = document.createElement("div");
+        card.className = "vault-card";
+        card.innerHTML = `
+          <h2>${entry.title}</h2>
+          <p><strong>Genre:</strong> ${entry.genre}</p>
+          <p><strong>Platform:</strong> ${entry.platform}</p>
+          <p><strong>Year:</strong> ${entry.year}</p>
+          <p><strong>IMDb:</strong> ${entry.imdbRating}</p>
+          <p><strong>Runtime:</strong> ${entry.runtime}</p>
+          <p><strong>Hindi Dubbed:</strong> ${entry.hindiDubbed ? "✅" : "❌"}</p>
+          <p class="description">${entry.description}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function populateFilters(data) {
+      const genres = [...new Set(data.map(d => d.genre))].sort();
+      const platforms = [...new Set(data.flatMap(d => d.platform.split(" / ")))].sort();
+
+      genres.forEach(g => {
+        const opt = document.createElement("option");
+        opt.value = g;
+        opt.textContent = g;
+        genreFilter.appendChild(opt);
+      });
+
+      platforms.forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p;
+        opt.textContent = p;
+        platformFilter.appendChild(opt);
+      });
+    }
+
+    function applyFilters() {
+      let filtered = [...koreanWatchlist];
+
+      const genre = genreFilter.value;
+      const platform = platformFilter.value;
+      const imdb = parseFloat(imdbFilter.value);
+      const hindiOnly = hindiToggle.checked;
+      const subOnly = subsToggle.checked;
+      const search = searchInput.value.toLowerCase();
+      const sortBy = sortFilter.value;
+
+      if (genre) filtered = filtered.filter(d => d.genre.includes(genre));
+      if (platform) filtered = filtered.filter(d => d.platform.includes(platform));
+      if (imdb) filtered = filtered.filter(d => d.imdbRating >= imdb);
+      if (hindiOnly) filtered = filtered.filter(d => d.hindiDubbed);
+      if (subOnly) filtered = filtered.filter(d => !d.hindiDubbed);
+      if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search));
+
+      if (sortBy === "imdb") {
+        filtered.sort((a, b) => b.imdbRating - a.imdbRating);
+      } else if (sortBy === "year") {
+        filtered.sort((a, b) => b.year - a.year);
+      } else if (sortBy === "popularity") {
+        filtered.sort((a, b) => b.popularity - a.popularity);
       }
-      grid.innerHTML = list.map((show, i) => `
-        <div class="poster-tile">
-          <div class="poster-info">
-            <h3>${i + 1}. ${show.title}</h3>
-            <div class="tags">
-              <span class="tag">${show.platform}</span>
-              <span class="tag">${show.genre}</span>
-              <span class="tag">📅 ${show.year}</span>
-              <span class="tag">🔥 ${show.popularity}%</span>
-            </div>
-            <p style="font-size: 0.85rem; margin-top: 0.5rem;">
-              Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
-            </p>
-          </div>
-        </div>
-      `).join("");
+
+      renderVault(filtered);
     }
 
-    function filterByGenre(selectedGenre) {
-      if (selectedGenre === "All") {
-        currentList = [...recommendedKoreanSeries];
-      } else {
-        currentList = recommendedKoreanSeries.filter(s =>
-          s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
-        );
-      }
-      display(currentList);
-    }
+    [genreFilter, platformFilter, imdbFilter, hindiToggle, subsToggle, searchInput, sortFilter]
+      .forEach(el => el.addEventListener("input", applyFilters));
 
-    function searchTitles(query) {
-      currentList = recommendedKoreanSeries.filter(s =>
-        s.title.toLowerCase().includes(query.toLowerCase())
-      );
-      display(currentList);
-    }
-
-    function sortBy(type) {
-      const sorted = [...currentList];
-      switch (type) {
-        case "popularity":
-          sorted.sort((a, b) => b.popularity - a.popularity); break;
-        case "year":
-          sorted.sort((a, b) => b.year - a.year); break;
-        case "titleAsc":
-          sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
-        case "titleDesc":
-          sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
-      }
-      display(sorted);
-    }
-
-    window.onload = () => {
-      currentList = [...recommendedKoreanSeries];
-      display(currentList);
-      console.log("✅ Korean Vault Loaded:", currentList.length);
-    };
-
-    window.onscroll = function () {
-      document.getElementById("topBtn").style.display =
-        document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
-          ? "block" : "none";
-    };
-
-    function scrollTopSmooth() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    populateFilters(koreanWatchlist);
+    renderVault(koreanWatchlist);
   </script>
-
-  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
-  <button onclick="location.href='collections.html'" class="home-btn">🏠 Home</button>
-
 </body>
 </html>
