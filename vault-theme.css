@@ -12,28 +12,34 @@
 .tag[data-genre*="Supernatural"]  { background: #c0392b; color: #fff; }
 .tag[data-genre*="Teen"]          { background: #ff69b4; color: #111; }
 .tag[data-genre*="Medical"]       { background: #16a085; color: #fff; }
-.tag[data-genre*="Post-Apocalyptic"] { background: #7f8c8d; color: #fff; }
+.tag[data-genre*="Historical"]    { background: #d35400; color: #fff; }
+.tag[data-genre*="Romance"]       { background: #f78fb3; color: #111; }
+.tag[data-genre*="Youth"]         { background: #74b9ff; color: #111; }
+.tag[data-genre*="Legal"]         { background: #6c5ce7; color: #fff; }
+.tag[data-genre*="Healing"]       { background: #a3cb38; color: #111; }
 
 /* ============================
-   Hover Effects & Card Animation
+   Tag Styling
 ============================ */
-.poster-tile {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.poster-tile:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 15px #00d2ff88;
+.tag {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  margin-right: 6px;
+  margin-top: 4px;
 }
 
 /* ============================
    Must Watch Badge
 ============================ */
-.poster-tile.must-watch {
+.vault-card.must-watch {
   border-left: 6px solid gold;
-  background: linear-gradient(145deg, #1a1a1a, #111);
+  background: linear-gradient(145deg, #fdf6e3, #fffdf0);
   position: relative;
 }
-.poster-tile.must-watch::before {
+.vault-card.must-watch::before {
   content: "⭐ Must Watch";
   position: absolute;
   top: 10px;
@@ -47,7 +53,18 @@
 }
 
 /* ============================
-   Dark Theme Polish
+   Hover Effects & Card Animations
+============================ */
+.vault-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.vault-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 15px #00d2ff88;
+}
+
+/* ============================
+   Filter Enhancements
 ============================ */
 .filters button:hover,
 .filters select:hover,
@@ -64,7 +81,36 @@ select {
 }
 
 /* ============================
-   Thematic Backgrounds
+   Dark Mode Support
+============================ */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+body.dark-mode header {
+  background-color: #000;
+}
+body.dark-mode .vault-card {
+  background-color: #1d1d1d;
+  color: #eee;
+  border-color: #333;
+}
+body.dark-mode .vault-card .description {
+  color: #ccc;
+}
+body.dark-mode .tag {
+  opacity: 0.9;
+}
+
+/* ============================
+   Font Variants by Vault Type
+============================ */
+body.korean-vault { font-family: 'Noto Sans KR', sans-serif; }
+body.hindi-vault  { font-family: 'Noto Sans Devanagari', sans-serif; }
+body.english-vault { font-family: 'Inter', sans-serif; }
+
+/* ============================
+   Genre-Based Thematic Backgrounds
 ============================ */
 body[data-theme="fantasy"] {
   background: linear-gradient(to right, #2c3e50, #8e44ad);
@@ -86,7 +132,7 @@ body[data-theme="mystery"] {
 }
 
 /* ============================
-   Responsive Enhancements
+   Responsive Tweaks
 ============================ */
 @media (max-width: 600px) {
   .filters {
@@ -97,8 +143,11 @@ body[data-theme="mystery"] {
   .filters select {
     width: 90%;
   }
-  .poster-info h3 {
+  .vault-card h2 {
     font-size: 1rem;
+  }
+  .vault-card p {
+    font-size: 13px;
   }
   .tag {
     font-size: 0.7rem;
