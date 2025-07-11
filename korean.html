@@ -59,7 +59,7 @@
     <div id="vaultContainer" class="vault-grid"></div>
   </main>
 
-  <button id="goTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">🔝 Go to Top</button>
+  <button id="goTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">🔝 Go to Top</button>
 
   <script src="koreanrecommendations.js"></script>
   <script>
@@ -78,14 +78,18 @@
         const card = document.createElement("div");
         card.className = "vault-card";
 
-        // Optional: must-watch badge logic
         if (entry.imdbRating >= 8.8 && entry.popularity >= 90) {
           card.classList.add("must-watch");
         }
 
+        const genreTags = entry.genre
+          .split("/")
+          .map(g => `<span class="tag" data-genre="${g.trim()}">${g.trim()}</span>`)
+          .join(" ");
+
         card.innerHTML = `
           <h2>${entry.title}</h2>
-          <p><strong>Genre:</strong> ${entry.genre.split('/').map(g => `<span class="tag" data-genre="${g.trim()}">${g.trim()}</span>`).join(' ')}</p>
+          <p><strong>Genre:</strong> ${genreTags}</p>
           <p><strong>Platform:</strong> ${entry.platform}</p>
           <p><strong>Year:</strong> ${entry.year}</p>
           <p><strong>IMDb:</strong> ${entry.imdbRating}</p>
@@ -123,7 +127,7 @@
       const platform = platformFilter.value;
       const imdb = parseFloat(imdbFilter.value);
       const hindiOnly = hindiToggle.checked;
-      const subsOnly = subsToggle.checked;
+      const subOnly = subsToggle.checked;
       const search = searchInput.value.toLowerCase();
       const sortBy = sortFilter.value;
 
@@ -131,7 +135,7 @@
       if (platform) filtered = filtered.filter(d => d.platform.includes(platform));
       if (imdb) filtered = filtered.filter(d => d.imdbRating >= imdb);
       if (hindiOnly) filtered = filtered.filter(d => d.hindiDubbed);
-      if (subsOnly) filtered = filtered.filter(d => !d.hindiDubbed);
+      if (subOnly) filtered = filtered.filter(d => !d.hindiDubbed);
       if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search));
 
       if (sortBy === "imdb") {
