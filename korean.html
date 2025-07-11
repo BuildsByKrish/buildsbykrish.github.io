@@ -51,7 +51,6 @@
         <option value="popularity">Popularity</option>
       </select>
       <label><input type="checkbox" id="hindiToggle" /> 🎧 Hindi Dubbed</label>
-      <label><input type="checkbox" id="subsToggle" /> 🇰🇷 Korean (Sub Only)</label>
     </div>
   </header>
 
@@ -68,7 +67,6 @@
     const platformFilter = document.getElementById("platformFilter");
     const imdbFilter = document.getElementById("imdbFilter");
     const hindiToggle = document.getElementById("hindiToggle");
-    const subsToggle = document.getElementById("subsToggle");
     const searchInput = document.getElementById("searchInput");
     const sortFilter = document.getElementById("sortFilter");
 
@@ -102,8 +100,8 @@
     }
 
     function populateFilters(data) {
-      const genres = [...new Set(data.flatMap(d => d.genre.split('/').map(g => g.trim())))].sort();
-      const platforms = [...new Set(data.flatMap(d => d.platform.split(" / ")))].sort();
+      const genres = [...new Set(data.flatMap(d => d.genre.split("/").map(g => g.trim())))].sort();
+      const platforms = [...new Set(data.flatMap(d => d.platform.split(" / ").map(p => p.trim())))].sort();
 
       genres.forEach(g => {
         const opt = document.createElement("option");
@@ -127,7 +125,6 @@
       const platform = platformFilter.value;
       const imdb = parseFloat(imdbFilter.value);
       const hindiOnly = hindiToggle.checked;
-      const subOnly = subsToggle.checked;
       const search = searchInput.value.toLowerCase();
       const sortBy = sortFilter.value;
 
@@ -135,7 +132,6 @@
       if (platform) filtered = filtered.filter(d => d.platform.includes(platform));
       if (imdb) filtered = filtered.filter(d => d.imdbRating >= imdb);
       if (hindiOnly) filtered = filtered.filter(d => d.hindiDubbed);
-      if (subOnly) filtered = filtered.filter(d => !d.hindiDubbed);
       if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search));
 
       if (sortBy === "imdb") {
@@ -149,10 +145,8 @@
       renderVault(filtered);
     }
 
-    [
-      genreFilter, platformFilter, imdbFilter,
-      hindiToggle, subsToggle, searchInput, sortFilter
-    ].forEach(el => el.addEventListener("input", applyFilters));
+    [genreFilter, platformFilter, imdbFilter, hindiToggle, searchInput, sortFilter]
+      .forEach(el => el.addEventListener("input", applyFilters));
 
     populateFilters(koreanWatchlist);
     renderVault(koreanWatchlist);
