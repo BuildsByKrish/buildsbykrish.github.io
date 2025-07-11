@@ -7,6 +7,40 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="vault-theme.css" />
   <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fdfdfd;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 1em;
+      background: #ffeaea;
+      text-align: center;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      justify-content: center;
+      margin: 1em auto;
+    }
+    .vault-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1em;
+      padding: 2em;
+    }
+    .vault-card {
+      border: 1px solid #ddd;
+      padding: 1em;
+      background: #fff;
+      border-radius: 8px;
+    }
+    .must-watch {
+      border: 2px solid gold;
+      background-color: #fffbe6;
+    }
     #goTopBtn {
       position: fixed;
       bottom: 20px;
@@ -20,7 +54,6 @@
       font-size: 14px;
       opacity: 0.75;
       z-index: 1000;
-      transition: all 0.2s ease;
     }
     #goTopBtn:hover {
       opacity: 1;
@@ -32,7 +65,7 @@
   <header>
     <h1>🇰🇷 Krish’s Korean Vault</h1>
     <nav>
-      <a href="collections.html" class="home-button">🏠 Back to Home</a>
+      <a href="collections.html">🏠 Back to Home</a>
     </nav>
     <div class="filters">
       <input type="text" id="searchInput" placeholder="Search by title..." />
@@ -58,7 +91,7 @@
     <div id="vaultContainer" class="vault-grid"></div>
   </main>
 
-  <button id="goTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">🔝 Go to Top</button>
+  <button id="goTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">🔝 Top</button>
 
   <script src="koreanrecommendations.js"></script>
   <script>
@@ -82,12 +115,11 @@
 
         const genreTags = entry.genre
           .split("/")
-          .map(g => `<span class="tag" data-genre="${g.trim()}">${g.trim()}</span>`)
+          .map(g => `<span class="tag">${g.trim()}</span>`)
           .join(" ");
 
         card.innerHTML = `
-          <h2>${entry.title}</h2>
-          <p><strong>ID:</strong> ${entry.id}</p>
+          <h2>${entry.id}. ${entry.title}</h2>
           <p><strong>Genre:</strong> ${genreTags}</p>
           <p><strong>Platform:</strong> ${entry.platform}</p>
           <p><strong>Year:</strong> ${entry.year}</p>
@@ -146,14 +178,8 @@
       renderVault(filtered);
     }
 
-    [
-      genreFilter,
-      platformFilter,
-      imdbFilter,
-      hindiToggle,
-      searchInput,
-      sortFilter
-    ].forEach(el => el.addEventListener("input", applyFilters));
+    [genreFilter, platformFilter, imdbFilter, hindiToggle, searchInput, sortFilter]
+      .forEach(el => el.addEventListener("input", applyFilters));
 
     populateFilters(koreanWatchlist);
     renderVault(koreanWatchlist);
