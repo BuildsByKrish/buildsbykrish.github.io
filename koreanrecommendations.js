@@ -2729,3 +2729,17 @@ const koreanWatchlist = [
     hindiDubbed: true,
     description: "A modern male chef wakes up in the body of a Joseon-era queen — and must navigate palace politics, royal secrets, and gender chaos."
   },
+{
+  id: 196,
+  title: "The Red Sleeve",
+  platform: "MBC / Viki",
+  genre: "Historical Romance",
+  year: 2021,
+  seasons: 1,
+  episodes: 17,
+  runtime: "18h",
+  popularity: 86,
+  imdbRating: 8.5,
+  hindiDubbed: true,
+  description: "A court lady values freedom over love — but fate binds her to a crown prince torn between duty and desire."
+},
