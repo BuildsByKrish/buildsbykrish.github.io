@@ -87,6 +87,7 @@
 
         card.innerHTML = `
           <h2>${entry.title}</h2>
+          <p><strong>ID:</strong> ${entry.id}</p>
           <p><strong>Genre:</strong> ${genreTags}</p>
           <p><strong>Platform:</strong> ${entry.platform}</p>
           <p><strong>Year:</strong> ${entry.year}</p>
@@ -145,8 +146,14 @@
       renderVault(filtered);
     }
 
-    [genreFilter, platformFilter, imdbFilter, hindiToggle, searchInput, sortFilter]
-      .forEach(el => el.addEventListener("input", applyFilters));
+    [
+      genreFilter,
+      platformFilter,
+      imdbFilter,
+      hindiToggle,
+      searchInput,
+      sortFilter
+    ].forEach(el => el.addEventListener("input", applyFilters));
 
     populateFilters(koreanWatchlist);
     renderVault(koreanWatchlist);
