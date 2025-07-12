@@ -1,155 +1,118 @@
-/* ============================
-   Genre-Based Tag Colors
-============================ */
-.tag[data-genre*="Crime"]         { background: #e74c3c; color: #fff; }
-.tag[data-genre*="Thriller"]      { background: #f39c12; color: #111; }
-.tag[data-genre*="Drama"]         { background: #3498db; color: #fff; }
-.tag[data-genre*="Fantasy"]       { background: #9b59b6; color: #fff; }
-.tag[data-genre*="Sci-Fi"]        { background: #1abc9c; color: #111; }
-.tag[data-genre*="Mystery"]       { background: #34495e; color: #fff; }
-.tag[data-genre*="Comedy"]        { background: #2ecc71; color: #111; }
-.tag[data-genre*="Horror"]        { background: #8e44ad; color: #fff; }
-.tag[data-genre*="Supernatural"]  { background: #c0392b; color: #fff; }
-.tag[data-genre*="Teen"]          { background: #ff69b4; color: #111; }
-.tag[data-genre*="Medical"]       { background: #16a085; color: #fff; }
-.tag[data-genre*="Historical"]    { background: #d35400; color: #fff; }
-.tag[data-genre*="Romance"]       { background: #f78fb3; color: #111; }
-.tag[data-genre*="Youth"]         { background: #74b9ff; color: #111; }
-.tag[data-genre*="Legal"]         { background: #6c5ce7; color: #fff; }
-.tag[data-genre*="Healing"]       { background: #a3cb38; color: #111; }
-
-/* ============================
-   Tag Styling
-============================ */
-.tag {
-  display: inline-block;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 500;
-  margin-right: 6px;
-  margin-top: 4px;
+/* 📦 GRID */
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5em;
+  padding: 2em;
 }
 
-/* ============================
-   Must Watch Badge
-============================ */
-.vault-card.must-watch {
-  border-left: 6px solid gold;
-  background: linear-gradient(145deg, #fdf6e3, #fffdf0);
-  position: relative;
-}
-.vault-card.must-watch::before {
-  content: "⭐ Must Watch";
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: gold;
-  color: #111;
-  font-weight: bold;
-  font-size: 0.7rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-}
-
-/* ============================
-   Hover Effects & Card Animations
-============================ */
+/* 💳 CARD STYLING */
 .vault-card {
+  background: #1c1c1c;
+  border-radius: 10px;
+  padding: 1em;
+  border: 2px solid #333;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .vault-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 15px #00d2ff88;
+  transform: scale(1.03);
+  box-shadow: 0 0 12px #ffd70044;
 }
-
-/* ============================
-   Filter Enhancements
-============================ */
-.filters button:hover,
-.filters select:hover,
-.filters input:focus {
-  background: #00d2ff;
-  color: #111;
-  outline: none;
+.vault-card h2 {
+  color: #ffd700;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
 }
-input::placeholder {
-  color: #888;
+.vault-card p {
+  font-size: 0.95em;
+  margin: 0.4em 0;
 }
-select {
-  cursor: pointer;
-}
-
-/* ============================
-   Dark Mode Support
-============================ */
-body.dark-mode {
-  background-color: #121212;
-  color: #eee;
-}
-body.dark-mode header {
-  background-color: #000;
-}
-body.dark-mode .vault-card {
-  background-color: #1d1d1d;
-  color: #eee;
-  border-color: #333;
-}
-body.dark-mode .vault-card .description {
+.vault-card .description {
+  font-style: italic;
   color: #ccc;
 }
-body.dark-mode .tag {
-  opacity: 0.9;
+
+/* 👑 MUST-WATCH GLOW */
+.vault-card.must-watch {
+  border: 2px solid gold;
+  background: #221e00;
+  box-shadow: 0 0 12px #ffd700aa;
+  position: relative;
+}
+.vault-card.must-watch::before {
+  content: "👑 Must-Watch";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: gold;
+  color: #111;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 4px 6px;
+  border-radius: 5px;
 }
 
-/* ============================
-   Font Variants by Vault Type
-============================ */
-body.korean-vault { font-family: 'Noto Sans KR', sans-serif; }
-body.hindi-vault  { font-family: 'Noto Sans Devanagari', sans-serif; }
-body.english-vault { font-family: 'Inter', sans-serif; }
-
-/* ============================
-   Genre-Based Thematic Backgrounds
-============================ */
-body[data-theme="fantasy"] {
-  background: linear-gradient(to right, #2c3e50, #8e44ad);
-}
-body[data-theme="crime"] {
-  background: linear-gradient(to right, #000000, #434343);
-}
-body[data-theme="sci-fi"] {
-  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
-}
-body[data-theme="comedy"] {
-  background: linear-gradient(to right, #1d976c, #93f9b9);
-}
-body[data-theme="thriller"] {
-  background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
-}
-body[data-theme="mystery"] {
-  background: linear-gradient(to right, #232526, #414345);
+/* 🎬 TAGS */
+.tag {
+  display: inline-block;
+  background: #ffd70022;
+  color: #ffd700;
+  font-size: 0.75em;
+  padding: 3px 6px;
+  margin: 2px 4px 0 0;
+  border-radius: 4px;
 }
 
-/* ============================
-   Responsive Tweaks
-============================ */
-@media (max-width: 600px) {
-  .filters {
-    flex-direction: column;
-    align-items: center;
-  }
-  .filters input,
-  .filters select {
-    width: 90%;
-  }
-  .vault-card h2 {
-    font-size: 1rem;
-  }
-  .vault-card p {
-    font-size: 13px;
-  }
-  .tag {
-    font-size: 0.7rem;
-  }
+/* 🎛️ FILTERS */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8em;
+  margin: 1.5em auto;
+}
+
+/* 🎢 CAROUSEL */
+.carousel-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  background: #222;
+  padding: 1em 1.5em;
+  border-top: 2px solid #ffd70033;
+  border-bottom: 2px solid #ffd70033;
+}
+.carousel-item {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #ffd;
+  border: 2px solid #ffd70055;
+  border-radius: 8px;
+  padding: 1em;
+  margin-right: 1em;
+  min-width: 240px;
+  transition: transform 0.3s ease;
+}
+.carousel-item:hover {
+  transform: scale(1.04);
+  background: #292211;
+}
+
+/* 🌗 DARK THEME */
+body.dark {
+  background: #0a0a0a;
+  color: #fdfdfd;
+}
+body.dark .vault-card {
+  background: #1a1a1a;
+}
+body.dark .vault-card.must-watch {
+  background: #332900;
+}
+body.dark .carousel-item {
+  background: #1a1a1a;
+  color: #fffdd0;
+}
+body.dark header {
+  background: linear-gradient(to right, #222, #111);
+  color: #ffd700;
 }
