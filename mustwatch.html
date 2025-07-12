@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Must-Watch Vault | Krish</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fffef5;
+      color: #222;
+      margin: 0;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    header {
+      background: linear-gradient(to right, #ffd700, #fff0a8);
+      text-align: center;
+      padding: 1.2em;
+      border-bottom: 2px solid gold;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    h1 {
+      margin-bottom: 0.5em;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1em;
+      margin: 1em auto;
+    }
+
+    .carousel-container {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 1em 1.5em;
+      background: #fff7cd;
+      border-bottom: 1px solid gold;
+    }
+
+    .carousel-item {
+      display: inline-block;
+      background: #fff;
+      border: 2px solid gold;
+      border-radius: 8px;
+      padding: 0.5em 1em;
+      margin-right: 1em;
+      min-width: 220px;
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-item:hover {
+      transform: scale(1.05);
+      background: #fffae3;
+    }
+
+    .vault-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1em;
+      padding: 2em;
+    }
+
+    .vault-card {
+      border: 2px solid gold;
+      background: #fffef2;
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: 0 0 8px #ffe;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .vault-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 12px #ffc;
+    }
+
+    .vault-card::before {
+      content: "👑 Must-Watch";
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: gold;
+      color: #000;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    #goTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 14px;
+      background: #333;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      opacity: 0.7;
+      z-index: 1000;
+    }
+
+    #goTopBtn:hover {
+      opacity: 1;
+      background: #000;
+    }
+
+    .theme-toggle {
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    body.dark {
+      background: #111;
+      color: #eee;
+    }
+
+    body.dark .vault-card {
+      background: #1a1a1a;
+      border-color: #ffd700;
+      box-shadow: 0 0 8px #ffd70044;
+    }
+
+    body.dark header {
+      background: linear-gradient(to right, #333, #222);
+      color: #fff;
+    }
+
+    body.dark .carousel-item {
+      background: #222;
+      color: #ffe;
+    }
+
+    .description {
+      margin-top: 0.5em;
+      font-size: 0.95em;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎖 Krish’s Must-Watch Vault</h1>
+    <nav>
+      <a href="collections.html">🏠 Back to Home</a>
+    </nav>
+    <div class="theme-toggle" onclick="document.body.classList.toggle('dark')">🌓 Toggle Theme</div>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search by title..."/>
+      <select id="languageFilter"><option value="">All Languages</option></select>
+      <select id="genreFilter"><option value="">All Genres</option></select>
+      <select id="platformFilter"><option value="">All Platforms</option></select>
+      <select id="imdbFilter">
+        <option value="">All Ratings</option>
+        <option value="9">9.0+</option>
+        <option value="8">8.0+</option>
+        <option value="7">7.0+</option>
+      </select>
+      <label><input type="checkbox" id="hindiToggle"/> 🎧 Hindi Dubbed</label>
+    </div>
+  </header>
+
+  <section class="carousel-container" id="topCarousel">
+    <!-- Top Picks preview will be injected here -->
+  </section>
+
+  <main>
+    <div id="vaultContainer" class="vault-grid"></div>
+  </main>
+
+  <button id="goTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝 Top</button>
+
+  <script src="hindirecommendations.js"></script>
+  <script src="englishrecommendations.js"></script>
+  <script src="koreanrecommendations.js"></script>
+  <script src="chineserecommendations.js"></script>
+  <script>
+    const container = document.getElementById("vaultContainer");
+    const carousel = document.getElementById("topCarousel");
+    const genreFilter = document.getElementById("genreFilter");
+    const platformFilter = document.getElementById("platformFilter");
+    const imdbFilter = document.getElementById("imdbFilter");
+    const hindiToggle = document.getElementById("hindiToggle");
+    const searchInput = document.getElementById("searchInput");
+    const languageFilter = document.getElementById("languageFilter");
+
+    const allVaults = [
+      ...hindirecommendations.map(d => ({ ...d, language: "Hindi" })),
+      ...englishrecommendations.map(d => ({ ...d, language: "English" })),
+      ...koreanrecommendations.map(d => ({ ...d, language: "Korean" })),
+      ...chineserecommendations.map(d => ({ ...d, language: "Chinese" }))
+    ];
+
+    const mustWatchEntries = allVaults.filter(d => d.mustWatch);
+
+    function renderCarousel(data) {
+      carousel.innerHTML = "";
+      const top10 = [...data].sort((a, b) => b.imdbRating - a.imdbRating).slice(0, 10);
+      top10.forEach(entry => {
+        const item = document.createElement("div");
+        item.className = "carousel-item";
+        item.innerHTML = `
+          <strong>${entry.title}</strong><br/>
+          <small>${entry.language} | IMDb ${entry.imdbRating}</small>
+        `;
+        carousel.appendChild(item);
+      });
+    }
+
+    function renderVault(data) {
+      container.innerHTML = "";
+      data.forEach(entry => {
+        const card = document.createElement("div");
+        card.className = "vault-card";
+        const genreTags = entry.genre
+          .split("/")
+          .map(g => `<span class="tag">🎬 ${g.trim()}</span>`)
+          .join(" ");
+
+        card.innerHTML = `
+          <h2>${entry.title}</h2>
+          <p><strong>Language:</strong> ${entry.language}</p>
+          <p><strong>Genre:</strong> ${genreTags}</p>
+          <p><strong>Platform:</strong> ${entry.platform}</p>
+          <p><strong>Year:</strong> ${entry.year}</p>
+          <p><strong>IMDb:</strong> ${entry.imdbRating}</p>
+          <p><strong>Hindi Dubbed:</strong> ${entry.hindiDubbed ? "✅" : "❌"}</p>
+          <p class="description">${entry.description}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function populateFilters(data) {
+      const languages = [...new Set(data.map(d => d.language))].sort();
+      const genres = [...new Set(data.flatMap(d => d.genre.split("/").map(g => g.trim())))].sort();
+      const platforms = [...new Set(data.flatMap(d => d.platform.split(" / ").map(p => p.trim())))].sort();
+
+     [43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/ruanvalente/origamid/tree/08d21800775d80bfbbc007cee39983bc81acf996/javascript-es6+%2Fmodulos%2Fmod-07%2Fmod-07.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "1")[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/lzh-yi/Web-Fork-/tree/024b3e55587afdf9f05a677613a75f24e3d1803e/03-CSS%E8%BF%9B%E9%98%B6%2F04-%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%EF%BC%9F.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054 "2")
