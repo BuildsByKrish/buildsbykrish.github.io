@@ -1,4 +1,4 @@
-/* RESET + BASE */
+/* 🌐 GLOBAL RESET */
 * {
   margin: 0;
   padding: 0;
@@ -21,7 +21,7 @@ h1, h2 {
   font-weight: 700;
 }
 
-/* HEADER + NAV */
+/* 🧭 HEADER + NAVIGATION */
 header {
   background: linear-gradient(to right, #1a1a1a, #333);
   color: #ffd700;
@@ -35,7 +35,7 @@ nav a {
   display: inline-block;
 }
 
-/* BUTTONS */
+/* ⚙ BUTTONS + INPUTS */
 button, input, select {
   font-family: inherit;
   border: none;
@@ -51,8 +51,20 @@ button {
 button:hover {
   background: #ffeb3b;
 }
+input::placeholder {
+  color: #888;
+}
+select {
+  background: #222;
+  color: #ffd700;
+}
+input {
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+}
 
-/* GO TO TOP */
+/* 🔝 SCROLL-TO-TOP */
 #goTopBtn {
   position: fixed;
   bottom: 16px;
