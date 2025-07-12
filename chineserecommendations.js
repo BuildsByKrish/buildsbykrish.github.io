@@ -433,20 +433,6 @@ const chineseWatchlist = [
     hindiDubbed: true,
     description: "A naïve girl gets involved with a wealthy CEO — heartwarming gestures and corporate chaos turn into love."
   },
-  {
-    id: 32,
-    title: "My Amazing Boyfriend",
-    platform: "Tencent Video / Netflix",
-    genre: "Fantasy Romance / Superhuman Drama",
-    year: 2016,
-    seasons: 1,
-    episodes: 28,
-    runtime: "26h",
-    popularity: 83,
-    imdbRating: 8.1,
-    hindiDubbed: true,
-    description: "A mutant with supernatural powers wakes from a 100-year sleep — and finds an unlikely romance with a modern actress."
-  },
 {
     id: 32,
     title: "My Amazing Boyfriend",
@@ -672,20 +658,6 @@ const chineseWatchlist = [
     description: "A designer joins a startup and clashes with the arrogant founder — their arguments turn into spark-filled attraction."
   },
   {
-    id: 48,
-    title: "Professional Single",
-    platform: "Youku / MX Player",
-    genre: "Romantic Comedy / Art School Life",
-    year: 2020,
-    seasons: 1,
-    episodes: 24,
-    runtime: "22h",
-    popularity: 79,
-    imdbRating: 7.6,
-    hindiDubbed: true,
-    description: "A sculptor who plans to stay single meets a bold girl determined to win his heart — awkward charm leads the way."
-  },
-{
     id: 48,
     title: "Professional Single",
     platform: "Youku / MX Player",
