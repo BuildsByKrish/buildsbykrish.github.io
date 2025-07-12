@@ -1,201 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>My Watchlist Vault</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(-45deg, #0f0f0f, #1a1a1a, #111, #222);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
-      color: #fff;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(10px);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 99;
-      border-bottom: 1px solid #00d2ff33;
-    }
-
-    header h1 {
-      font-size: 1.6rem;
-      color: #00d2ff;
-      margin: 0;
-    }
-
-    #liveCount {
-      font-weight: bold;
-      font-size: 1rem;
-      color: #00d2ff;
-    }
-
-    .top-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 2rem;
-    }
-
-    .top-bar input, .top-bar select {
-      padding: 0.4rem 0.6rem;
-      border-radius: 6px;
-      border: 1px solid #00d2ff88;
-      background: #111;
-      color: #fff;
-      font-family: inherit;
-    }
-
-    .genre-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 0.5rem 2rem 1rem;
-    }
-
-    .genre-buttons button {
-      padding: 0.3rem 0.7rem;
-      font-size: 0.8rem;
-      border-radius: 5px;
-      background: transparent;
-      border: 1px solid #00d2ff;
-      color: #00d2ff;
-      cursor: pointer;
-    }
-
-    .genre-buttons button.active {
-      background: #00d2ff;
-      color: #111;
-      font-weight: bold;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 1rem;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 20px #00d2ff22;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.5s forwards;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 20px #00d2ff88;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.5rem;
-    }
-
-    .tag {
-      background: #00d2ff;
-      color: #111;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-    }
-
-    .desc-btn {
-      margin-top: 0.8rem;
-      background: transparent;
-      border: 1px solid #00d2ff;
-      color: #00d2ff;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
-
-    .description {
-      margin-top: 0.6rem;
-      font-size: 0.85rem;
-      line-height: 1.4;
-      color: #ccc;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #888;
-    }
-  </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Must-Watch Vault | Krish Series Recommendations</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="vault-theme.css"/>
 </head>
-<body>
-
+<body class="vault">
   <header>
-    <h1>My Watchlist Vault</h1>
-    <div id="liveCount">Loading...</div>
+    <h1>🎖 Krish Must-Watch Vault</h1>
+    <nav>
+      <a href="collections.html">🏠 Back to Collection</a>
+    </nav>
+    <div class="theme-toggle" onclick="document.body.classList.toggle('dark')">🌓 Toggle Theme</div>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search by title..."/>
+      <select id="languageFilter"><option value="">All Languages</option></select>
+      <select id="genreFilter"><option value="">All Genres</option></select>
+      <select id="platformFilter"><option value="">All Platforms</option></select>
+      <select id="imdbFilter">
+        <option value="">All Ratings</option>
+        <option value="9">9.0+</option>
+        <option value="8">8.0+</option>
+        <option value="7">7.0+</option>
+      </select>
+      <label><input type="checkbox" id="hindiToggle"/> 🎧 Hindi Dubbed</label>
+    </div>
   </header>
 
-  <div class="top-bar">
-    <input type="text" id="searchInput" placeholder="🔍 Search by title..." />
-    <select id="sortSelect">
-      <option value="default">🔃 Sort</option>
-      <option value="title">Title A-Z</option>
-      <option value="year">Year ↑</option>
-      <option value="popularity">Popularity ↓</option>
-    </select>
-  </div>
+  <section class="carousel-container" id="topCarousel"></section>
 
-  <div class="genre-buttons" id="genreButtons"></div>
+  <main>
+    <div id="vaultContainer" class="vault-grid"></div>
+  </main>
 
-  <div class="grid" id="watchlistGrid"></div>
+  <button id="goTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝 Top</button>
 
-  <!-- Floating Home + Top buttons -->
-  <div style="position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 0.5rem; z-index: 100;">
-    <a href="collections.html" id="homeBtn" style="background: #00d2ff; color: #111; padding: 0.5rem 0.8rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; text-align: center;">🏠 Home</a>
-    <button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" style="background: #00d2ff; color: #111; border: none; padding: 0.5rem 0.8rem; border-radius: 6px; font-size: 0.9rem; cursor: pointer;">🔝 Top</button>
-  </div>
+  <!-- Vault JS files -->
+  <script src="hindirecommendations.js"></script>
+  <script src="englishrecommendations.js"></script>
+  <script src="koreanrecommendations.js"></script>
+  <script src="chineserecommendations.js"></script>
 
-  <footer>
-    Built with ❤️ by Krish • 125/1000 and counting 🚀
+  <script>
+    const container = document.getElementById("vaultContainer");
+    const carousel = document.getElementById("topCarousel");
+    const genreFilter = document.getElementById("genreFilter");
+    const platformFilter = document.getElementById("platformFilter");
+    const imdbFilter = document.getElementById("imdbFilter");
+    const hindiToggle = document.getElementById("hindiToggle");
+    const searchInput = document.getElementById("searchInput");
+    const languageFilter = document.getElementById("languageFilter");
+
+    const allVaults = [
+      ...hindirecommendations.map(d => ({ ...d, language: "Hindi" })),
+      ...englishrecommendations.map(d => ({ ...d, language: "English" })),
+      ...koreanrecommendations.map(d => ({ ...d, language: "Korean" })),
+      ...chineserecommendations.map(d => ({ ...d, language: "Chinese" }))
+    ];
+
+    const mustWatchEntries = allVaults.filter(d => d.mustWatch);
+
+    function renderCarousel(data) {
+      carousel.innerHTML = "";
+      const top10 = [...data].sort((a, b) => b.imdbRating - a.imdbRating).slice(0, 10);
+      top10.forEach(entry => {
+        const item = document.createElement("div");
+        item.className = "carousel-item";
+        item.innerHTML = `
+          <strong>${entry.title}</strong><br/>
+          <small>${entry.language} | IMDb ${entry.imdbRating}</small>
+        `;
+        carousel.appendChild(item);
+      });
+    }
+
+    function renderVault(data) {
+      container.innerHTML = "";
+      data.forEach(entry => {
+        const card = document.createElement("div");
+        card.className = "vault-card must-watch";
+        const genreTags = entry.genre
+          .split("/")
+          .map(g => `<span class="tag">🎬 ${g.trim()}</span>`)
+          .join(" ");
+
+        card.innerHTML = `
+          <h2>${entry.title}</h2>
+          <p><strong>Language:</strong> ${entry.language}</p>
+          <p><strong>Genre:</strong> ${genreTags}</p>
+          <p><strong>Platform:</strong> ${entry.platform}</p>
+          <p><strong>Year:</strong> ${entry.year}</p>
+          <p><strong>IMDb:</strong> ${entry.imdbRating}</p>
+          <p><strong>Hindi Dubbed:</strong> ${entry.hindiDubbed ? "✅" : "❌"}</p>
+          <p class="description">${entry.description}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function populateFilters(data) {
+      const languages = [...new Set(data.map(d => d.language))].sort();
+      const genres = [...new Set(data.flatMap(d => d.genre.split("/").map(g => g.trim())))].sort();
+      const platforms = [...new Set(data.flatMap(d => d.platform.split(" / ").map(p => p.trim())))].sort();
+
+      languages.forEach(l => {
+        const opt = document.createElement("option");
+        opt.value = l;
+        opt.textContent = l;
+        languageFilter.appendChild(opt);
+      });
+      genres.forEach(g => {
+        const opt = document.createElement("option");
+        opt.value = g;
+        opt.textContent = g;
+        genreFilter.appendChild(opt);
+      });
+      platforms.forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p;
+        opt.textContent = p;
+        platformFilter.appendChild(opt);
+      });
+    }
+
+    function applyFilters() {
+      let filtered = [...mustWatchEntries];
+      const lang = languageFilter.value;
+      const genre = genreFilter.value;
+      const platform = platformFilter.value;
+      const imdb = parseFloat(imdbFilter.value);
+      const hindiOnly = hindiToggle.checked;
+      const search = searchInput.value.toLowerCase();
+
+      if (lang) filtered = filtered.filter(d => d.language === lang);
+      if (genre) filtered = filtered.filter(d => d.genre.includes(genre));
+      if (platform) filtered = filtered.filter(d => d.platform.includes(platform));
+      if (imdb) filtered = filtered.filter(d => d.imdbRating >= imdb);
+      if (hindiOnly) filtered = filtered.filter(d => d.hindiDubbed);
+      if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search));
+
+      renderVault(filtered);
+    }
+
+    [languageFilter, genreFilter, platformFilter, imdbFilter, hindiToggle, searchInput]
+      .forEach(el => el.addEventListener("input", applyFilters));
+
+    populateFilters(mustWatchEntries);
+    renderVault(mustWatchEntries);
+    renderCarousel(mustWatchEntries);
+  </script>
+
+  <footer style="text-align: center; padding: 2em; background: #1a1a1a; color: #aaa;">
+    <h3>🔗 Sources & Structure</h3>
+    <p>Must-Watch Vault curated from series listed across: <br>
+      <strong><a href="collections.html" style="color:#ffd700;">Krish Series Recommendations</a></strong>
+    </p>
+    <p>Powered by <code>hindirecommendations.js</code>, <code>englishrecommendations.js</code>, <code>koreanrecommendations.js</code>, and <code>chineserecommendations.js</code> — filtered via <code>mustWatch: true</code>.</p>
+    <p>Crafted by Krish for lovers of legendary storytelling 👑</p>
   </footer>
-
-  <script src="data.js"></script>
-  <script src="watchlist.js"></script>
 </body>
 </html>
