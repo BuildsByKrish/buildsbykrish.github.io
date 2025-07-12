@@ -1,89 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Collections</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Krish Series Recommendations</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="vault-theme.css"/>
   <style>
-    body {
-      background: #111;
-      color: #fff;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0 1rem 3rem;
-    }
-    h1 {
-      text-align: center;
-      color: #00d2ff;
-      margin: 2rem 0 1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      padding-bottom: 3rem;
-    }
-    .vault-card {
+    .vault-row {
       background: #1c1c1c;
-      border-radius: 10px;
-      padding: 1.2rem;
+      border-bottom: 1px solid #333;
+      padding: 2em;
       text-align: center;
-      box-shadow: 0 0 10px #00d2ff55;
-      transition: transform 0.3s ease;
-      cursor: pointer;
     }
-    .vault-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 12px #00d2ffaa;
+    .vault-row h2 {
+      color: #ffd700;
+      font-size: 1.6em;
+      margin-bottom: 0.4em;
     }
-    .vault-title {
-      font-size: 1.1rem;
-      color: #00d2ff;
-      margin-bottom: 0.5rem;
+    .vault-row p {
+      color: #aaa;
+      font-size: 0.95em;
+      margin-bottom: 1em;
     }
-    .vault-desc {
-      font-size: 0.85rem;
-      color: #ccc;
-    }
-    .home-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #00d2ff;
+    .vault-link {
+      display: inline-block;
+      padding: 0.7em 1.2em;
+      background-color: #ffd700;
       color: #111;
-      border: none;
-      border-radius: 50px;
-      padding: 0.7rem 1.2rem;
       font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 10px #00d2ff88;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .vault-link:hover {
+      background-color: #ffec3b;
     }
   </style>
 </head>
-<body>
+<body class="vault">
+  <header>
+    <h1>🎬 Krish Series Recommendations</h1>
+    <p>Curated vaults across Hindi, English, Korean, and Chinese storytelling — plus a crown-tier Must-Watch experience.</p>
+  </header>
 
-  <h1>Series Vaults</h1>
+  <main>
+    <section class="vault-row">
+      <h2>🇮🇳 Hindi Vault</h2>
+      <p>Original masterpieces and iconic stories from Indian creators.</p>
+      <a href="hindivault.html" class="vault-link">Enter Vault</a>
+    </section>
 
-  <div class="grid">
-    <div class="vault-card" onclick="location.href='english.html'">
-      <div class="vault-title">English Vault</div>
-      <div class="vault-desc">Global hits across genres</div>
-    </div>
-    <div class="vault-card" onclick="location.href='hindi.html'">
-      <div class="vault-title">Hindi Vault</div>
-      <div class="vault-desc">Bollywood & Desi gems</div>
-    </div>
-    <div class="vault-card" onclick="location.href='korean.html'">
-      <div class="vault-title">Korean Vault</div>
-      <div class="vault-desc">K-Dramas & thrillers</div>
-    </div>
-    <div class="vault-card" onclick="location.href='chinese.html'">
-      <div class="vault-title">Chinese Vault</div>
-      <div class="vault-desc">C-Dramas & wuxia tales</div>
-    </div>
-  </div>
+    <section class="vault-row">
+      <h2>🇺🇸 English Vault</h2>
+      <p>Global hits, cult classics, and genre-defining western series.</p>
+      <a href="englishvault.html" class="vault-link">Enter Vault</a>
+    </section>
 
-  <button class="home-btn" onclick="location.href='index.html'">🏠 Home</button>
+    <section class="vault-row">
+      <h2>🇰🇷 Korean Vault</h2>
+      <p>Dramatic romances, thrillers, and the soul of K-drama storytelling.</p>
+      <a href="koreanvault.html" class="vault-link">Enter Vault</a>
+    </section>
 
+    <section class="vault-row">
+      <h2>🇨🇳 Chinese Vault</h2>
+      <p>Epic legends, wuxia warriors, and transcendent historical sagas.</p>
+      <a href="chinesevault.html" class="vault-link">Enter Vault</a>
+    </section>
+
+    <section class="vault-row">
+      <h2>🎖 Must-Watch Vault</h2>
+      <p>Top 100+ series crowned across all languages — original, iconic, unforgettable.</p>
+      <a href="mustwatchvault.html" class="vault-link">Enter Vault</a>
+    </section>
+  </main>
 </body>
 </html>
