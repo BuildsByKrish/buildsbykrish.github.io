@@ -1119,3 +1119,46 @@ const chineseWatchlist = [
     hindiDubbed: true,
     description: "Three women face marriage, work, and self-worth in their 30s — honest, empowering, and emotionally resonant."
   },
+  {
+    id: 81,
+    title: "Dear Missy",
+    platform: "Tencent Video / MX Player",
+    genre: "Drama / Female Rivalry + Friendship",
+    year: 2020,
+    seasons: 1,
+    episodes: 40,
+    runtime: "38h",
+    popularity: 80,
+    imdbRating: 7.8,
+    hindiDubbed: true,
+    description: "Two best friends reunite after betrayal — now successful women navigating work, wounds, and buried bonds."
+  },
+  {
+    id: 82,
+    title: "Reset",
+    platform: "Tencent Video / Viki",
+    genre: "Thriller / Time Loop Mystery",
+    year: 2022,
+    seasons: 1,
+    episodes: 15,
+    runtime: "14h",
+    popularity: 90,
+    imdbRating: 8.4,
+    hindiDubbed: true,
+    description: "A girl keeps dying in a bus explosion — trapped in a time loop, she must solve the case to escape."
+  },
+  {
+    id: 83,
+    title: "Psychologist",
+    platform: "Youku / MX Player",
+    genre: "Drama / Healing + Mental Health",
+    year: 2021,
+    seasons: 1,
+    episodes: 40,
+    runtime: "39h",
+    popularity: 82,
+    imdbRating: 8.0,
+    hindiDubbed: true,
+    description: "A therapist helps clients find peace while struggling with her own scars — gentle, sensitive, and poignant."
+  },
+  
