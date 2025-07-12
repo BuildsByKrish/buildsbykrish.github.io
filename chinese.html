@@ -2,197 +2,181 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Chinese Series Vault</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Krish's Chinese Vault</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="vault-theme.css" />
   <style>
     body {
-      font-family: sans-serif;
-      background: #111;
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fefefe;
       margin: 0;
-      padding: 0 1rem 3rem;
-      scroll-behavior: smooth;
+      padding: 0;
     }
-    h1 {
+    header {
+      background: #ffeccc;
       text-align: center;
-      color: #00e676;
-      margin: 2rem 0 1rem;
+      padding: 1em;
     }
     .filters {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
       justify-content: center;
-      margin-bottom: 2rem;
+      gap: 1em;
+      margin: 1em auto;
     }
-    .filters button,
-    .filters select,
-    .filters input {
-      background: #222;
-      color: #00e676;
-      font-weight: bold;
+    .vault-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1em;
+      padding: 2em;
+    }
+    .vault-card {
+      border: 1px solid #ddd;
+      padding: 1em;
+      background: #fff;
+      border-radius: 8px;
+    }
+    .must-watch {
+      border: 2px solid gold;
+      background-color: #fffbe6;
+    }
+    #goTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      padding: 10px 14px;
+      background-color: #333;
+      color: #fff;
       border: none;
       border-radius: 6px;
-      padding: 0.5rem 1rem;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding-bottom: 3rem;
-    }
-    .poster-tile {
-      background: #1c1c1c;
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 0 10px #00e67644;
-    }
-    .poster-info h3 {
-      margin: 0 0 0.5rem;
-    }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .tag {
-      background: #00e676;
-      color: #111;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-    }
-    .top-btn,
-    .home-btn {
-      position: fixed;
-      z-index: 99;
-      right: 20px;
-      padding: 0.7rem 1.2rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 50px;
-      background-color: #00e676;
-      color: #111;
       cursor: pointer;
-      transition: opacity 0.3s ease;
+      font-size: 14px;
+      opacity: 0.7;
+      z-index: 1000;
     }
-    .top-btn {
-      bottom: 80px;
-      display: none;
-    }
-    .home-btn {
-      bottom: 20px;
+    #goTopBtn:hover {
+      opacity: 1;
+      background-color: #000;
     }
   </style>
 </head>
-<body>
+<body class="chinese-vault" data-theme="dynasty">
+  <header>
+    <h1>🇨🇳 Krish’s Chinese Vault</h1>
+    <nav>
+      <a href="collections.html">🏠 Back to Home</a>
+    </nav>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search by title..." />
+      <select id="genreFilter"><option value="">All Genres</option></select>
+      <select id="platformFilter"><option value="">All Platforms</option></select>
+      <select id="imdbFilter">
+        <option value="">All Ratings</option>
+        <option value="9">9.0+</option>
+        <option value="8">8.0+</option>
+        <option value="7">7.0+</option>
+      </select>
+      <select id="sortFilter">
+        <option value="">Sort By</option>
+        <option value="imdb">IMDb Rating</option>
+        <option value="year">Year</option>
+        <option value="popularity">Popularity</option>
+      </select>
+      <label><input type="checkbox" id="hindiToggle" /> 🎧 Hindi Dubbed</label>
+    </div>
+  </header>
 
-  <h1>Chinese Series Vault</h1>
+  <main>
+    <div id="vaultContainer" class="vault-grid"></div>
+  </main>
 
-  <div class="filters">
-    <!-- Genre Filters -->
-    <button onclick="filterByGenre('All')">All Genres</button>
-    <button onclick="filterByGenre('Wuxia')">Wuxia</button>
-    <button onclick="filterByGenre('Historical')">Historical</button>
-    <button onclick="filterByGenre('Romance')">Romance</button>
-    <button onclick="filterByGenre('Fantasy')">Fantasy</button>
-    <button onclick="filterByGenre('Drama')">Drama</button>
-    <button onclick="filterByGenre('Mystery')">Mystery</button>
+  <button id="goTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">🔝 Top</button>
 
-    <!-- Search + Sort -->
-    <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
-    <select onchange="sortBy(this.value)">
-      <option value="">Sort by…</option>
-      <option value="popularity">Popularity</option>
-      <option value="year">Year</option>
-      <option value="titleAsc">A–Z</option>
-      <option value="titleDesc">Z–A</option>
-    </select>
-  </div>
-
-  <div id="chineseGrid" class="grid"></div>
-
-  <script src="./chineserecommendations.js"></script>
+  <script src="chineserecommendations.js"></script>
   <script>
-    let currentList = [];
+    const container = document.getElementById("vaultContainer");
+    const genreFilter = document.getElementById("genreFilter");
+    const platformFilter = document.getElementById("platformFilter");
+    const imdbFilter = document.getElementById("imdbFilter");
+    const hindiToggle = document.getElementById("hindiToggle");
+    const searchInput = document.getElementById("searchInput");
+    const sortFilter = document.getElementById("sortFilter");
 
-    function display(list) {
-      const grid = document.getElementById("chineseGrid");
-      if (!list || !list.length) {
-        grid.innerHTML = "<p style='text-align:center;'>No shows to display. Check filters or data file.</p>";
-        return;
-      }
-      grid.innerHTML = list.map((show, i) => `
-        <div class="poster-tile">
-          <div class="poster-info">
-            <h3>${i + 1}. ${show.title}</h3>
-            <div class="tags">
-              <span class="tag">${show.platform}</span>
-              <span class="tag">${show.genre}</span>
-              <span class="tag">📅 ${show.year}</span>
-              <span class="tag">🔥 ${show.popularity}%</span>
-            </div>
-            <p style="font-size: 0.85rem; margin-top: 0.5rem;">
-              Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
-            </p>
-          </div>
-        </div>
-      `).join("");
+    function renderVault(data) {
+      container.innerHTML = "";
+      data.forEach(entry => {
+        const card = document.createElement("div");
+        card.className = "vault-card";
+        if (entry.imdbRating >= 8.8 && entry.popularity >= 90) {
+          card.classList.add("must-watch");
+        }
+
+        const genreTags = entry.genre
+          .split("/")
+          .map(g => `<span class="tag">${g.trim()}</span>`)
+          .join(" ");
+
+        card.innerHTML = `
+          <h2>${entry.id}. ${entry.title}</h2>
+          <p><strong>Genre:</strong> ${genreTags}</p>
+          <p><strong>Platform:</strong> ${entry.platform}</p>
+          <p><strong>Year:</strong> ${entry.year}</p>
+          <p><strong>IMDb:</strong> ${entry.imdbRating}</p>
+          <p><strong>Runtime:</strong> ${entry.runtime}</p>
+          <p><strong>Hindi Dubbed:</strong> ${entry.hindiDubbed ? "✅" : "❌"}</p>
+          <p class="description">${entry.description}</p>
+        `;
+        container.appendChild(card);
+      });
     }
 
-    function filterByGenre(selectedGenre) {
-      if (selectedGenre === "All") {
-        currentList = [...recommendedChineseSeries];
-      } else {
-        currentList = recommendedChineseSeries.filter(s =>
-          s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
-        );
-      }
-      display(currentList);
+    function populateFilters(data) {
+      const genres = [...new Set(data.flatMap(d => d.genre.split("/").map(g => g.trim())))].sort();
+      const platforms = [...new Set(data.flatMap(d => d.platform.split(" / ").map(p => p.trim())))].sort();
+
+      genres.forEach(g => {
+        const opt = document.createElement("option");
+        opt.value = g;
+        opt.textContent = g;
+        genreFilter.appendChild(opt);
+      });
+
+      platforms.forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p;
+        opt.textContent = p;
+        platformFilter.appendChild(opt);
+      });
     }
 
-    function searchTitles(query) {
-      currentList = recommendedChineseSeries.filter(s =>
-        s.title.toLowerCase().includes(query.toLowerCase())
-      );
-      display(currentList);
+    function applyFilters() {
+      let filtered = [...chineseWatchlist];
+      const genre = genreFilter.value;
+      const platform = platformFilter.value;
+      const imdb = parseFloat(imdbFilter.value);
+      const hindiOnly = hindiToggle.checked;
+      const search = searchInput.value.toLowerCase();
+      const sortBy = sortFilter.value;
+
+      if (genre) filtered = filtered.filter(d => d.genre.includes(genre));
+      if (platform) filtered = filtered.filter(d => d.platform.includes(platform));
+      if (imdb) filtered = filtered.filter(d => d.imdbRating >= imdb);
+      if (hindiOnly) filtered = filtered.filter(d => d.hindiDubbed);
+      if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search));
+
+      if (sortBy === "imdb") filtered.sort((a, b) => b.imdbRating - a.imdbRating);
+      else if (sortBy === "year") filtered.sort((a, b) => b.year - a.year);
+      else if (sortBy === "popularity") filtered.sort((a, b) => b.popularity - a.popularity);
+
+      renderVault(filtered);
     }
 
-    function sortBy(type) {
-      const sorted = [...currentList];
-      switch (type) {
-        case "popularity":
-          sorted.sort((a, b) => b.popularity - a.popularity); break;
-        case "year":
-          sorted.sort((a, b) => b.year - a.year); break;
-        case "titleAsc":
-          sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
-        case "titleDesc":
-          sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
-      }
-      display(sorted);
-    }
+    [genreFilter, platformFilter, imdbFilter, hindiToggle, searchInput, sortFilter]
+      .forEach(el => el.addEventListener("input", applyFilters));
 
-    window.onload = () => {
-      currentList = [...recommendedChineseSeries];
-      display(currentList);
-      console.log("✅ Chinese Vault Loaded:", currentList.length);
-    };
-
-    window.onscroll = function () {
-      document.getElementById("topBtn").style.display =
-        document.body.scrollTop > 400 || document.documentElement.scrollTop > 400
-          ? "block" : "none";
-    };
-
-    function scrollTopSmooth() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    populateFilters(chineseWatchlist);
+    renderVault(chineseWatchlist);
   </script>
-
-  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
-  <button onclick="location.href='collections.html'" class="home-btn">🏠 Home</button>
-
 </body>
 </html>
