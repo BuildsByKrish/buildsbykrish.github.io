@@ -1,83 +1,25 @@
-/* 🌐 GLOBAL RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body.hindi-theme header,
+body.hindi-theme .vault-card {
+  border-color: #ff9933;
+  background-color: #1c1400;
 }
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #111;
-  color: #fdfdfd;
-  line-height: 1.6;
+body.english-theme header,
+body.english-theme .vault-card {
+  border-color: #33ccff;
+  background-color: #102030;
 }
-a {
-  color: #ffd700;
-  text-decoration: none;
+body.korean-theme header,
+body.korean-theme .vault-card {
+  border-color: #00c3b1;
+  background-color: #0c2c2c;
 }
-a:hover {
-  text-decoration: underline;
+body.chinese-theme header,
+body.chinese-theme .vault-card {
+  border-color: #cc3333;
+  background-color: #2c0f0f;
 }
-h1, h2 {
-  font-weight: 700;
-}
-
-/* 🧭 HEADER + NAVIGATION */
-header {
-  background: linear-gradient(to right, #1a1a1a, #333);
-  color: #ffd700;
-  text-align: center;
-  padding: 1.5em 1em;
-  border-bottom: 2px solid #ffd700;
-}
-nav a {
-  font-size: 14px;
-  margin-top: 0.5em;
-  display: inline-block;
-}
-
-/* ⚙ BUTTONS + INPUTS */
-button, input, select {
-  font-family: inherit;
-  border: none;
-  padding: 0.6em 1em;
-  border-radius: 4px;
-}
-button {
-  background: #ffd700;
-  color: #111;
-  font-weight: bold;
-  cursor: pointer;
-}
-button:hover {
-  background: #ffeb3b;
-}
-input::placeholder {
-  color: #888;
-}
-select {
-  background: #222;
-  color: #ffd700;
-}
-input {
-  background: #1a1a1a;
-  color: #fff;
-  border: 1px solid #333;
-}
-
-/* 🔝 SCROLL-TO-TOP */
-#goTopBtn {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  background: #ffd700;
-  color: #111;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 999;
-  padding: 0.8em;
-  box-shadow: 0 0 10px #ffd70055;
-}
-#goTopBtn:hover {
-  background: #ffec3b;
+body.mustwatch-theme header,
+body.mustwatch-theme .vault-card {
+  border-color: gold;
+  background-color: #121212;
 }
