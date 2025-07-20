@@ -1,25 +1,93 @@
-body.hindi-theme header,
-body.hindi-theme .vault-card {
-  border-color: #ff9933;
-  background-color: #1c1400;
+/* 🌐 Reset and Base Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body.english-theme header,
-body.english-theme .vault-card {
-  border-color: #33ccff;
-  background-color: #102030;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #111;
+  color: #fdfdfd;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
-body.korean-theme header,
-body.korean-theme .vault-card {
-  border-color: #00c3b1;
-  background-color: #0c2c2c;
+a {
+  color: #ffd700;
+  text-decoration: none;
 }
-body.chinese-theme header,
-body.chinese-theme .vault-card {
-  border-color: #cc3333;
-  background-color: #2c0f0f;
+a:hover {
+  text-decoration: underline;
 }
-body.mustwatch-theme header,
-body.mustwatch-theme .vault-card {
-  border-color: gold;
-  background-color: #121212;
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* 🧭 Header Styling */
+header {
+  background: linear-gradient(to right, #1a1a1a, #333);
+  padding: 2em 1em;
+  text-align: center;
+  border-bottom: 2px solid #ffd70055;
+}
+header h1 {
+  font-size: 2em;
+  margin-bottom: 0.3em;
+  color: #ffd700;
+}
+header p {
+  color: #ccc;
+  font-size: 1em;
+}
+
+/* 🚀 Button Styles */
+button {
+  background: #ffd700;
+  color: #111;
+  font-weight: bold;
+  border: none;
+  padding: 0.6em 1.1em;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: #ffec3b;
+}
+input[type="text"]::placeholder {
+  color: #888;
+}
+
+/* 📱 Responsive Layout */
+@media screen and (max-width: 768px) {
+  .main-wrapper {
+    flex-direction: column;
+  }
+  .sidebar-filters {
+    width: 100%;
+    position: relative;
+    height: auto;
+    border-right: none;
+    border-bottom: 2px solid #333;
+  }
+  .vault-poster-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    padding: 1em;
+    gap: 1em;
+  }
+  header h1 {
+    font-size: 1.6em;
+  }
+}
+
+/* 🌙 Dark Mode Toggle */
+body.dark {
+  background: #000;
+  color: #eee;
+}
+body.dark header {
+  background: linear-gradient(to right, #000, #222);
+}
+body.dark a {
+  color: #ffdb4d;
 }
