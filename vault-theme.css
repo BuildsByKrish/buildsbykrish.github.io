@@ -150,7 +150,7 @@
   background: #292211;
 }
 
-/* 🌗 Dark Mode */
+/* 🌗 Dark Mode Base */
 body.dark {
   background: #0a0a0a;
   color: #eee;
@@ -181,7 +181,7 @@ body.dark .carousel-container {
   color: #ffd700;
 }
 
-/* 🧃 Vault Theme Variants */
+/* 💈 Theme Variants per Vault */
 body.mustwatch-theme .hero-banner,
 body.mustwatch-theme .vault-card { border-color: gold; background-color: #121212; }
 
@@ -196,3 +196,6 @@ body.korean-theme .vault-card { border-color: #00c3b1; background-color: #0c2c2c
 
 body.chinese-theme .hero-banner,
 body.chinese-theme .vault-card { border-color: #cc3333; background-color: #2c0f0f; }
+
+body.watchlist-theme .hero-banner,
+body.watchlist-theme .vault-card { border-color: #ff66cc; background-color: #2a112a; }
