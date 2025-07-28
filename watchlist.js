@@ -1,132 +1,135 @@
-const grid = document.getElementById("watchlistGrid");
-const liveCount = document.getElementById("liveCount");
-const searchInput = document.getElementById("searchInput");
-const sortSelect = document.getElementById("sortSelect");
-const genreButtons = document.getElementById("genreButtons");
-const backToTopBtn = document.getElementById("backToTop");
+// script.js
 
-const totalGoal = 1000;
-let filteredList = [...myWatchlist];
-let activeGenre = null;
+// Make sure myWatchlist is available globally or imported if using modules.
+// For now, assuming data.js is loaded before script.js in HTML.
 
-// Render cards
-function render(list) {
-  grid.innerHTML = "";
-  liveCount.textContent = `📺 ${list.length}/${totalGoal} Series Watched`;
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("vaultContainer");
+  const genreFilter = document.getElementById("genreFilter");
+  const platformFilter = document.getElementById("platformFilter");
+  const imdbFilter = document.getElementById("imdbFilter");
+  const hindiToggle = document.getElementById("hindiToggle");
+  const searchInput = document.getElementById("searchInput");
+  const languageFilter = document.getElementById("languageFilter");
+  const goTopBtn = document.getElementById("goTopBtn"); // Get the scroll button
 
-  list.forEach((show, i) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.style.animationDelay = `${i * 0.03}s`;
+  // Function to render the series cards
+  function renderVault(data) {
+    container.innerHTML = ""; // Clear existing content
+    if (data.length === 0) {
+      container.innerHTML = "<p class='no-results'>No series found matching your criteria.</p>";
+      return;
+    }
+    data.forEach(entry => {
+      const card = document.createElement("div");
+      card.className = "vault-card";
 
-    const descriptionId = `desc-${show.id}`;
+      // Handle multiple genres and platforms with tags
+      const genreTags = entry.genre
+        .split("/")
+        .map(g => `<span class="tag">🎬 ${g.trim()}</span>`)
+        .join("");
 
-    card.innerHTML = `
-      <h3>${i + 1}. ${show.title}</h3>
-      <div class="tags">
-        <span class="tag">${show.platform}</span>
-        <span class="tag">${show.genre}</span>
-        <span class="tag">📅 ${show.year}</span>
-        <span class="tag">🔥 ${show.popularity}%</span>
-        <span class="tag">⭐ ${show.imdbRating}</span>
-        <span class="tag">${show.hindiDubbed ? "🔁 Hindi Dubbed" : "🎧 Original"}</span>
-      </div>
-      <p style="font-size: 0.85rem; margin-top: 0.5rem;">
-        Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
-      </p>
-      <button class="desc-btn" onclick="toggleDescription('${descriptionId}')">📖 Show Description</button>
-      <p id="${descriptionId}" class="description hidden">${show.description}</p>
-    `;
+      const platformDisplay = entry.platform
+        .split(" / ")
+        .map(p => `<span class="tag platform-tag">${p.trim()}</span>`)
+        .join(" ");
 
-    grid.appendChild(card);
-  });
-}
-
-// Toggle description
-function toggleDescription(id) {
-  const desc = document.getElementById(id);
-  desc.classList.toggle("hidden");
-}
-
-// Generate major genre buttons
-function generateGenres() {
-  const majorGenres = [
-    "Thriller",
-    "Drama",
-    "Action",
-    "Romance",
-    "Comedy",
-    "Fantasy",
-    "Crime",
-    "Mystery",
-    "Horror",
-    "Sci-Fi",
-    "Legal Drama",
-    "Supernatural",
-    "Historical",
-    "Slice of Life"
-  ];
-
-  const genres = [...new Set(myWatchlist.map(item => item.genre))]
-    .filter(g => majorGenres.includes(g))
-    .sort();
-
-  genres.forEach(genre => {
-    const btn = document.createElement("button");
-    btn.textContent = genre;
-    btn.onclick = () => {
-      if (activeGenre === genre) {
-        activeGenre = null;
-        btn.classList.remove("active");
-        filteredList = [...myWatchlist];
-      } else {
-        activeGenre = genre;
-        document.querySelectorAll(".genre-buttons button").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        filteredList = myWatchlist.filter(item => item.genre === genre);
-      }
-      applyFilters();
-    };
-    genreButtons.appendChild(btn);
-  });
-}
-
-// Search
-searchInput.addEventListener("input", () => {
-  applyFilters();
-});
-
-// Sort
-sortSelect.addEventListener("change", () => {
-  applyFilters();
-});
-
-// Apply search + sort
-function applyFilters() {
-  let list = [...filteredList];
-  const query = searchInput.value.toLowerCase();
-
-  if (query) {
-    list = list.filter(item => item.title.toLowerCase().includes(query));
+      card.innerHTML = `
+        <h2>${entry.title}</h2>
+        <p><strong>Language:</strong> ${entry.language}</p>
+        <p><strong>Genre:</strong> ${genreTags}</p>
+        <p><strong>Platform:</strong> ${platformDisplay}</p>
+        <p><strong>Year:</strong> ${entry.year}</p>
+        <p><strong>IMDb:</strong> ${entry.imdbRating ? entry.imdbRating.toFixed(1) : 'N/A'}</p>
+        <p><strong>Hindi Dubbed:</strong> ${entry.hindiDubbed ? "✅ Yes" : "❌ No"}</p>
+        <p class="description">${entry.description}</p>
+        ${entry.mustWatch ? '<div class="must-watch-badge">⭐ Must Watch</div>' : ''}
+      `;
+      container.appendChild(card);
+    });
   }
 
-  const sortBy = sortSelect.value;
-  if (sortBy === "title") {
-    list.sort((a, b) => a.title.localeCompare(b.title));
-  } else if (sortBy === "year") {
-    list.sort((a, b) => a.year - b.year);
-  } else if (sortBy === "popularity") {
-    list.sort((a, b) => b.popularity - a.popularity);
+  // Function to populate filter dropdowns
+  function populateFilters(data) {
+    const languages = [...new Set(data.map(d => d.language))].sort();
+    const allGenres = data.flatMap(d => d.genre.split("/").map(g => g.trim()));
+    const genres = [...new Set(allGenres)].sort();
+    const allPlatforms = data.flatMap(d => d.platform.split(" / ").map(p => p.trim()));
+    const platforms = [...new Set(allPlatforms)].sort();
+
+    // Clear previous options before populating
+    languageFilter.innerHTML = '<option value="">All Languages</option>';
+    genreFilter.innerHTML = '<option value="">All Genres</option>';
+    platformFilter.innerHTML = '<option value="">All Platforms</option>';
+
+    languages.forEach(l => {
+      const opt = document.createElement("option");
+      opt.value = l;
+      opt.textContent = l;
+      languageFilter.appendChild(opt);
+    });
+    genres.forEach(g => {
+      const opt = document.createElement("option");
+      opt.value = g;
+      opt.textContent = g;
+      genreFilter.appendChild(opt);
+    });
+    platforms.forEach(p => {
+      const opt = document.createElement("option");
+      opt.value = p;
+      opt.textContent = p;
+      platformFilter.appendChild(opt);
+    });
   }
 
-  render(list);
-}
+  // Function to apply all filters
+  function applyFilters() {
+    let filtered = [...myWatchlist]; // Use myWatchlist as defined in data.js
 
-// Back to top visibility
-window.addEventListener("scroll", () => {
-  backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    const lang = languageFilter.value;
+    const genre = genreFilter.value;
+    const platform = platformFilter.value;
+    const imdb = parseFloat(imdbFilter.value);
+    const hindiOnly = hindiToggle.checked;
+    const search = searchInput.value.toLowerCase();
+
+    if (lang) filtered = filtered.filter(d => d.language === lang);
+    if (genre) filtered = filtered.filter(d => d.genre.includes(genre));
+    if (platform) filtered = filtered.filter(d => d.platform.includes(platform));
+    if (imdb) filtered = filtered.filter(d => d.imdbRating >= imdb);
+    if (hindiOnly) filtered = filtered.filter(d => d.hindiDubbed);
+    if (search) filtered = filtered.filter(d =>
+      d.title.toLowerCase().includes(search) ||
+      d.description.toLowerCase().includes(search) ||
+      d.tags.some(tag => tag.toLowerCase().includes(search)) // Search tags too
+    );
+
+    renderVault(filtered);
+  }
+
+  // Event Listeners for filters
+  [languageFilter, genreFilter, platformFilter, imdbFilter, hindiToggle, searchInput]
+    .forEach(el => el.addEventListener("input", applyFilters));
+
+  // Event listener for scroll to top button visibility
+  window.onscroll = function() {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      goTopBtn.style.display = "block";
+    } else {
+      goTopBtn.style.display = "none";
+    }
+  };
+
+  // Initial calls to populate filters and render content
+  // Ensure myWatchlist from data.js is loaded before this script runs.
+  if (typeof myWatchlist !== 'undefined') {
+      populateFilters(myWatchlist);
+      applyFilters(); // Call applyFilters initially to render all based on default filters
+  } else {
+      console.error("myWatchlist data is not loaded. Ensure data.js is linked before script.js.");
+  }
 });
 
-// Init
-generateGenres();
-render(myWatchlist);
+// Function for scroll to top, attached to the button in HTML
+// window.scrollTo is already directly in the onclick in HTML, so no need to duplicate here.
