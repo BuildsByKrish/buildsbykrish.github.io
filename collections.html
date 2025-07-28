@@ -3,91 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Recommendations | Krish Vault</title>
+    <title>Hindi Series | Krish's Recommendations</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="vault-theme.css"> </head>
-<body class="vault collections-theme">
+    <link rel="stylesheet" href="vault-theme.css">
+</head>
+<body class="vault hindi-collection-theme">
 
     <header class="hero-banner">
-        <h1>🧠 Krish's Handpicked Recommendations</h1>
-        <p>Dive into series that have truly captivated me. These aren't just shows; they're experiences I believe you'll love too!</p>
-        <nav><a href="index.html" class="back-button">← Back to Home</a></nav>
+        <h1>🇮🇳 Hindi Dubbed & Originals</h1>
+        <p>Explore the best Hindi series and dubbed international shows from my collection.</p>
+        <nav>
+            <a href="collections.html" class="back-button">← Back to Collections</a>
+            <a href="index.html" class="back-button" style="margin-left: 10px;">← Back to Home</a>
+        </nav>
         <button onclick="document.body.classList.toggle('dark')">🌓 Toggle Theme</button>
     </header>
 
-    <main class="vault-grid-container">
-
-        <section class="recommendation-section">
-            <h2>⭐ Must-Watch Essentials</h2>
-            <p class="section-intro">If you watch nothing else, watch these. My absolute top-tier recommendations that changed the game.</p>
-            <div class="recommendation-cards-grid">
-                <div class="recommendation-card">
-                    <h3>Vincenzo (Korean)</h3>
-                    <p class="recommendation-blurb">
-                        **Why I Recommend:** A stylish, dark comedy thriller about a mafia consigliere who uses villainous methods to achieve justice. The plot twists are incredible, and the chemistry is undeniable!
-                    </p>
-                    <ul class="recommendation-details">
-                        <li><strong>Platform:</strong> Netflix</li>
-                        <li><strong>Genre:</strong> Dark Comedy, Thriller, Legal Drama</li>
-                        <li><strong>IMDb:</strong> 8.4</li>
-                    </ul>
-                </div>
-                <div class="recommendation-card">
-                    <h3>Money Heist (Spanish)</h3>
-                    <p class="recommendation-blurb">
-                        **Why I Recommend:** The ultimate heist series! Brilliant planning, unexpected turns, and characters you can't help but root for (or against). Pure adrenaline from start to finish.
-                    </p>
-                    <ul class="recommendation-details">
-                        <li><strong>Platform:</strong> Netflix</li>
-                        <li><strong>Genre:</strong> Crime Thriller, Heist</li>
-                        <li><strong>IMDb:</strong> 8.2</li>
-                    </ul>
-                </div>
-                </div>
-        </section>
-
-        <section class="recommendation-section">
-            <h2>💎 Hidden Gems</h2>
-            <p class="section-intro">Lesser-known but equally captivating series that deserve more love and attention.</p>
-            <div class="recommendation-cards-grid">
-                <div class="recommendation-card">
-                    <h3>Kingdom (Korean)</h3>
-                    <p class="recommendation-blurb">
-                        **Why I Recommend:** A brilliant blend of historical drama and zombie apocalypse. Intense, visually stunning, and truly unique. It will keep you on the edge of your seat!
-                    </p>
-                    <ul class="recommendation-details">
-                        <li><strong>Platform:</strong> Netflix</li>
-                        <li><strong>Genre:</strong> Historical, Zombie, Thriller</li>
-                        <li><strong>IMDb:</strong> 8.3</li>
-                    </ul>
-                </div>
-                </div>
-        </section>
-
-        <section class="recommendation-section">
-            <h2>🎭 Thriller Fanatics</h2>
-            <p class="section-intro">For those who love suspense, mystery, and a good mind-bending plot.</p>
-            <div class="recommendation-cards-grid">
-                <div class="recommendation-card">
-                    <h3>Dark (German)</h3>
-                    <p class="recommendation-blurb">
-                        **Why I Recommend:** Complex, mind-bending time travel saga. You'll need to pay attention, but the payoff is immensely rewarding. A true masterpiece of storytelling.
-                    </p>
-                    <ul class="recommendation-details">
-                        <li><strong>Platform:</strong> Netflix</li>
-                        <li><strong>Genre:</strong> Sci-Fi, Mystery, Thriller</li>
-                        <li><strong>IMDb:</strong> 8.7</li>
-                    </ul>
-                </div>
+    <main>
+        <div id="vaultContainer" class="vault-poster-grid">
             </div>
-        </section>
-
-
     </main>
 
+    <button id="goTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝 Top</button>
+
+    <script src="data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById("vaultContainer");
+            // Assuming myWatchlist is loaded from data.js
+
+            function renderSeries(data) {
+                container.innerHTML = "";
+                data.forEach(entry => {
+                    const card = document.createElement("div");
+                    card.className = "vault-card";
+                    const genreTags = entry.genre.split("/").map(g => `<span class="tag">🎬 ${g.trim()}</span>`).join("");
+                    const platformDisplay = entry.platform.split(" / ").map(p => `<span class="tag platform-tag">${p.trim()}</span>`).join(" ");
+
+                    card.innerHTML = `
+                        <span class="series-id">#${entry.id}</span>
+                        <h2>${entry.title}</h2>
+                        <p><strong>Language:</strong> ${entry.language}</p>
+                        <p><strong>Genre:</strong> ${genreTags}</p>
+                        <p><strong>Platform:</strong> ${platformDisplay}</p>
+                        <p><strong>Year:</strong> ${entry.year}</p>
+                        <p><strong>IMDb:</strong> ${entry.imdbRating ? entry.imdbRating.toFixed(1) : 'N/A'}</p>
+                        <p><strong>Hindi Dubbed:</strong> ${entry.hindiDubbed ? "✅ Yes" : "❌ No"}</p>
+                        ${entry.mustWatch ? '<div class="must-watch-badge">⭐ Must Watch</div>' : ''}
+                        <p class="description hidden">${entry.description}</p>
+                        <button class="toggle-description-btn">View Description</button>
+                    `;
+                    container.appendChild(card);
+                });
+
+                document.querySelectorAll('.toggle-description-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const descriptionElement = this.previousElementSibling;
+                        if (descriptionElement) {
+                            descriptionElement.classList.toggle('hidden');
+                            this.textContent = descriptionElement.classList.contains('hidden') ? 'View Description' : 'Hide Description';
+                        }
+                    });
+                });
+            }
+
+            // Filter for Hindi content
+            if (typeof myWatchlist !== 'undefined') {
+                const hindiSeries = myWatchlist.filter(series => series.language === 'Hindi');
+                renderSeries(hindiSeries);
+            } else {
+                console.error("myWatchlist data is not loaded.");
+            }
+
+            // Go to top button visibility (re-use from script.js if needed)
+            const goTopBtn = document.getElementById("goTopBtn");
+            window.onscroll = function() {
+                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                    goTopBtn.style.display = "block";
+                } else {
+                    goTopBtn.style.display = "none";
+                }
+            };
+        });
+    </script>
+
     <footer class="vault-footer">
-        <h3>🔗 Recommendations from the Heart</h3>
+        <h3>🔗 Hindi Series Collection</h3>
         <p>Curated by Krish with cultural depth and cinematic intent 💛</p>
     </footer>
 
