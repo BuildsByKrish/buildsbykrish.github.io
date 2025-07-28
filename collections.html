@@ -3,95 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hindi Series | Krish's Recommendations</title>
+    <title>Collections Hub | Krish Vault</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="vault-theme.css">
 </head>
-<body class="vault hindi-collection-theme">
+<body class="vault collections-theme">
 
     <header class="hero-banner">
-        <h1>🇮🇳 Hindi Dubbed & Originals</h1>
-        <p>Explore the best Hindi series and dubbed international shows from my collection.</p>
-        <nav>
-            <a href="collections.html" class="back-button">← Back to Collections</a>
-            <a href="index.html" class="back-button" style="margin-left: 10px;">← Back to Home</a>
-        </nav>
+        <h1>🧠 Krish's Recommendation Hub</h1>
+        <p>Explore curated cinematic journeys by language and special categories.</p>
+        <nav><a href="index.html" class="back-button">← Back to Home</a></nav>
         <button onclick="document.body.classList.toggle('dark')">🌓 Toggle Theme</button>
     </header>
 
-    <main>
-        <div id="vaultContainer" class="vault-poster-grid">
+    <main class="vault-grid-container">
+        <section class="collection-gateway-section">
+            <h2>Discover More</h2>
+            <div class="collection-gateway-grid">
+                <a href="hindi.html" class="gateway-card">
+                    <h3>🇮🇳 Bollywood & Beyond</h3>
+                    <p>Dive into captivating Hindi series and dubbed international hits.</p>
+                </a>
+
+                <a href="korean.html" class="gateway-card">
+                    <h3>🇰🇷 K-Drama Odyssey</h3>
+                    <p>Unravel thrilling plots and heartwarming tales from Korea.</p>
+                </a>
+
+                <a href="chinese.html" class="gateway-card">
+                    <h3>🇨🇳 Chinese Epics</h3>
+                    <p>Journey through rich narratives and breathtaking visuals from China.</p>
+                </a>
+
+                <a href="english.html" class="gateway-card">
+                    <h3>🇬🇧/🇺🇸 Global Favorites</h3>
+                    <p>Explore top-tier English series from around the world.</p>
+                </a>
+
+                <a href="mustwatch.html" class="gateway-card gateway-card-mustwatch">
+                    <h3>⭐ Essential Masterpieces</h3>
+                    <p>My handpicked, must-watch series that define cinematic excellence.</p>
+                </a>
             </div>
+        </section>
     </main>
 
-    <button id="goTopBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝 Top</button>
-
-    <script src="data.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const container = document.getElementById("vaultContainer");
-            // Assuming myWatchlist is loaded from data.js
-
-            function renderSeries(data) {
-                container.innerHTML = "";
-                data.forEach(entry => {
-                    const card = document.createElement("div");
-                    card.className = "vault-card";
-                    const genreTags = entry.genre.split("/").map(g => `<span class="tag">🎬 ${g.trim()}</span>`).join("");
-                    const platformDisplay = entry.platform.split(" / ").map(p => `<span class="tag platform-tag">${p.trim()}</span>`).join(" ");
-
-                    card.innerHTML = `
-                        <span class="series-id">#${entry.id}</span>
-                        <h2>${entry.title}</h2>
-                        <p><strong>Language:</strong> ${entry.language}</p>
-                        <p><strong>Genre:</strong> ${genreTags}</p>
-                        <p><strong>Platform:</strong> ${platformDisplay}</p>
-                        <p><strong>Year:</strong> ${entry.year}</p>
-                        <p><strong>IMDb:</strong> ${entry.imdbRating ? entry.imdbRating.toFixed(1) : 'N/A'}</p>
-                        <p><strong>Hindi Dubbed:</strong> ${entry.hindiDubbed ? "✅ Yes" : "❌ No"}</p>
-                        ${entry.mustWatch ? '<div class="must-watch-badge">⭐ Must Watch</div>' : ''}
-                        <p class="description hidden">${entry.description}</p>
-                        <button class="toggle-description-btn">View Description</button>
-                    `;
-                    container.appendChild(card);
-                });
-
-                document.querySelectorAll('.toggle-description-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const descriptionElement = this.previousElementSibling;
-                        if (descriptionElement) {
-                            descriptionElement.classList.toggle('hidden');
-                            this.textContent = descriptionElement.classList.contains('hidden') ? 'View Description' : 'Hide Description';
-                        }
-                    });
-                });
-            }
-
-            // Filter for Hindi content
-            if (typeof myWatchlist !== 'undefined') {
-                const hindiSeries = myWatchlist.filter(series => series.language === 'Hindi');
-                renderSeries(hindiSeries);
-            } else {
-                console.error("myWatchlist data is not loaded.");
-            }
-
-            // Go to top button visibility (re-use from script.js if needed)
-            const goTopBtn = document.getElementById("goTopBtn");
-            window.onscroll = function() {
-                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                    goTopBtn.style.display = "block";
-                } else {
-                    goTopBtn.style.display = "none";
-                }
-            };
-        });
-    </script>
-
     <footer class="vault-footer">
-        <h3>🔗 Hindi Series Collection</h3>
-        <p>Curated by Krish with cultural depth and cinematic intent 💛</p>
+        <h3>🔗 Curated with Passion</h3>
+        <p>Your next obsession starts here 💛</p>
     </footer>
 
-</body>
+    </body>
 </html>
