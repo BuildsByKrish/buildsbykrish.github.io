@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    /* ... Your existing inline CSS remains here for now ... */
     body {
       margin: 0;
       padding: 0;
@@ -137,8 +138,11 @@
     Crafted with ❤️ by Krish • Always evolving 🚀
   </footer>
 
+  <script src="data.js"></script>
   <script>
-    const target = 125;
+    // Ensure myWatchlist is loaded from data.js before trying to access it
+    // Use the actual length of myWatchlist for the target
+    const target = typeof myWatchlist !== 'undefined' ? myWatchlist.length : 0;
     let count = 0;
     const counter = document.getElementById("countUp");
 
@@ -148,11 +152,18 @@
         counter.textContent = count;
         requestAnimationFrame(animateCount);
       } else {
-        counter.textContent = target;
+        counter.textContent = target; // Ensure it settles on the exact target
       }
     };
 
-    window.addEventListener("load", animateCount);
+    // If data is already loaded (common for small files), animate immediately
+    // Otherwise, wait for the window load
+    if (typeof myWatchlist !== 'undefined') {
+        animateCount();
+    } else {
+        window.addEventListener("load", animateCount);
+    }
+
   </script>
 
 </body>
