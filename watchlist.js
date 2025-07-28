@@ -1,8 +1,5 @@
 // script.js
 
-// Make sure myWatchlist is available globally or imported if using modules.
-// For now, assuming data.js is loaded before script.js in HTML.
-
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("vaultContainer");
   const genreFilter = document.getElementById("genreFilter");
@@ -36,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .join(" ");
 
       card.innerHTML = `
+        <span class="series-id">#${entry.id}</span>
         <h2>${entry.title}</h2>
         <p><strong>Language:</strong> ${entry.language}</p>
         <p><strong>Genre:</strong> ${genreTags}</p>
@@ -43,14 +41,28 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Year:</strong> ${entry.year}</p>
         <p><strong>IMDb:</strong> ${entry.imdbRating ? entry.imdbRating.toFixed(1) : 'N/A'}</p>
         <p><strong>Hindi Dubbed:</strong> ${entry.hindiDubbed ? "✅ Yes" : "❌ No"}</p>
-        <p class="description">${entry.description}</p>
         ${entry.mustWatch ? '<div class="must-watch-badge">⭐ Must Watch</div>' : ''}
+
+        <p class="description hidden">${entry.description}</p>
+        <button class="toggle-description-btn" data-target-id="desc-${entry.id}">View Description</button>
       `;
       container.appendChild(card);
     });
+
+    // Attach event listeners to the new buttons after they are rendered
+    document.querySelectorAll('.toggle-description-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Find the description paragraph within the same card
+            const descriptionElement = this.previousElementSibling; // The <p class="description"> is right before the button
+            if (descriptionElement) {
+                descriptionElement.classList.toggle('hidden');
+                this.textContent = descriptionElement.classList.contains('hidden') ? 'View Description' : 'Hide Description';
+            }
+        });
+    });
   }
 
-  // Function to populate filter dropdowns
+  // Function to populate filter dropdowns (remains the same)
   function populateFilters(data) {
     const languages = [...new Set(data.map(d => d.language))].sort();
     const allGenres = data.flatMap(d => d.genre.split("/").map(g => g.trim()));
@@ -83,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Function to apply all filters
+  // Function to apply all filters (remains the same as previous)
   function applyFilters() {
     let filtered = [...myWatchlist]; // Use myWatchlist as defined in data.js
 
@@ -102,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (search) filtered = filtered.filter(d =>
       d.title.toLowerCase().includes(search) ||
       d.description.toLowerCase().includes(search) ||
-      d.tags.some(tag => tag.toLowerCase().includes(search)) // Search tags too
+      d.tags.some(tag => tag.toLowerCase().includes(search))
     );
 
     renderVault(filtered);
@@ -122,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Initial calls to populate filters and render content
-  // Ensure myWatchlist from data.js is loaded before this script runs.
   if (typeof myWatchlist !== 'undefined') {
       populateFilters(myWatchlist);
       applyFilters(); // Call applyFilters initially to render all based on default filters
@@ -130,6 +141,3 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("myWatchlist data is not loaded. Ensure data.js is linked before script.js.");
   }
 });
-
-// Function for scroll to top, attached to the button in HTML
-// window.scrollTo is already directly in the onclick in HTML, so no need to duplicate here.
