@@ -192,23 +192,22 @@
 
         .collection-gateway-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem; /* Larger gap for more breathing room */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Min card width slightly smaller */
+            gap: 2rem; /* Slightly smaller gap between cards */
             justify-content: center;
             margin-top: 3rem;
         }
 
-        /* --- EPIC GATEWAY CARD STYLES --- */
+        /* --- EPIC GATEWAY CARD STYLES (Adjusted for smaller size) --- */
         .epic-gateway-card {
-            /* Base for glass effect with subtle depth */
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 210, 255, 0.04) 100%);
-            border: 1px solid; /* Defined by specific colors below for a dynamic border */
+            border: 1px solid;
             border-image-slice: 1;
-            border-radius: 20px; /* More pronounced rounded corners */
-            padding: 2.5rem; /* More generous padding */
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), /* Deeper initial shadow */
-                        inset 0 0 8px rgba(255, 255, 255, 0.05); /* Subtle inner light */
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Slower, more elegant transition */
+            border-radius: 20px;
+            padding: 2rem; /* Slightly reduced padding */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), /* Slightly less intense shadow */
+                        inset 0 0 8px rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             text-decoration: none;
             color: inherit;
             display: flex;
@@ -216,17 +215,14 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            min-height: 220px; /* Taller for a grander presence */
+            min-height: 200px; /* Slightly reduced min-height */
             position: relative;
-            overflow: hidden; /* Important for inner effects */
+            overflow: hidden;
 
-            /* Default border for generic cards (subtle blue glow) */
             border-image-source: linear-gradient(45deg, rgba(0,210,255,0.4), rgba(255,255,255,0.2));
-            /* Initial subtle glow */
             filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.3));
         }
 
-        /* Pseudo-element for a subtle, internal light shimmer */
         .epic-gateway-card::before {
             content: '';
             position: absolute;
@@ -237,98 +233,100 @@
             background: radial-gradient(circle at 100% 0%, rgba(255,255,255,0.05) 0%, transparent 50%);
             opacity: 0;
             transition: opacity 0.5s ease;
-            z-index: 1; /* Above background but below content */
-            pointer-events: none; /* Allows clicks to pass through */
+            z-index: 1;
+            pointer-events: none;
         }
 
-        /* Hover effect for all epic gateway cards */
         .epic-gateway-card:hover {
-            transform: translateY(-15px) scale(1.03); /* Lifts higher and slightly scales */
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), /* Deeper shadow on hover */
-                        0 0 35px rgba(0, 210, 255, 0.6); /* Pronounced blue glow */
-            background: linear-gradient(145deg, rgba(0, 210, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%); /* Brighter background */
-            border-image-source: linear-gradient(45deg, #00d2ff, #a0ffff); /* Brighter border */
-            filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.8)); /* Stronger filter glow */
+            transform: translateY(-12px) scale(1.02); /* Less pronounced lift and scale */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), /* Adjusted shadow on hover */
+                        0 0 30px rgba(0, 210, 255, 0.6); /* Slightly less glow */
+            background: linear-gradient(145deg, rgba(0, 210, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+            border-image-source: linear-gradient(45deg, #00d2ff, #a0ffff);
+            filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.8)); /* Slightly less filter glow */
         }
 
         .epic-gateway-card:hover::before {
-            opacity: 1; /* Activate shimmer on hover */
+            opacity: 1;
         }
 
         .epic-gateway-card h3 {
-            color: #e0f7fa; /* Lighter, more ethereal blue for contrast */
-            font-size: 2.2rem; /* Even larger heading for impact */
+            color: #e0f7fa;
+            font-size: 2rem; /* Reduced font size for heading */
             margin-top: 0;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* Reduced margin */
             line-height: 1.2;
-            letter-spacing: 1px;
-            text-shadow: 0 0 15px rgba(0, 210, 255, 1), 0 0 30px rgba(0, 210, 255, 0.6); /* More intense text glow */
-            font-weight: 700; /* Extra bold */
+            letter-spacing: 0.8px; /* Slightly less spacing */
+            text-shadow: 0 0 12px rgba(0, 210, 255, 1), 0 0 25px rgba(0, 210, 255, 0.6); /* Slightly less intense glow */
+            font-weight: 700;
         }
 
         .epic-gateway-card p {
-            font-size: 1.1em; /* Larger and more readable paragraph text */
-            color: #cfd8dc; /* Softer white for balance */
-            line-height: 1.7;
+            font-size: 1em; /* Reduced paragraph font size */
+            color: #cfd8dc;
+            line-height: 1.6; /* Adjusted line height */
             margin-bottom: 0;
-            max-width: 90%; /* Constrain text width slightly */
+            max-width: 95%; /* Allow text to use more width */
         }
 
         /* Specific EPIC style for the Must-Watch card */
         .epic-gateway-card-mustwatch {
-            border-image-source: linear-gradient(45deg, #ffcc00, #ffed82); /* Gold gradient border */
-            filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.6)); /* Initial gold filter glow */
+            border-image-source: linear-gradient(45deg, #ffcc00, #ffed82);
+            filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.6));
         }
 
         .epic-gateway-card-mustwatch h3 {
-            color: #ffcc00; /* Gold text */
-            text-shadow: 0 0 15px rgba(255, 204, 0, 1), 0 0 30px rgba(255, 204, 0, 0.6);
+            color: #ffcc00;
+            text-shadow: 0 0 12px rgba(255, 204, 0, 1), 0 0 25px rgba(255, 204, 0, 0.6);
         }
 
         .epic-gateway-card-mustwatch:hover {
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7),
-                        0 0 40px rgba(255, 204, 0, 0.8); /* Stronger gold glow on hover */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7),
+                        0 0 35px rgba(255, 204, 0, 0.8);
             background: linear-gradient(145deg, rgba(255, 204, 0, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
-            border-image-source: linear-gradient(45deg, #ffcc00, #fff8dc); /* Brighter gold border on hover */
-            filter: drop-shadow(0 0 15px rgba(255, 204, 0, 1)); /* Stronger filter glow on hover */
+            border-image-source: linear-gradient(45deg, #ffcc00, #fff8dc);
+            filter: drop-shadow(0 0 12px rgba(255, 204, 0, 1));
         }
 
         /* Responsive adjustments for smaller screens */
         @media (max-width: 768px) {
             .hero-banner h1 {
-                font-size: 2.5em;
+                font-size: 2.2em; /* Slightly smaller on mobile */
             }
             .hero-banner p {
-                font-size: 1em;
+                font-size: 0.95em;
             }
             .collection-gateway-section {
-                padding: 1.5rem;
+                padding: 1rem; /* Less padding on mobile */
+                margin-bottom: 1.5rem;
             }
             .collection-gateway-section h2 {
-                font-size: 2rem;
-                letter-spacing: 1px;
+                font-size: 1.8rem;
+                letter-spacing: 0.8px;
+                margin-bottom: 1.5rem;
             }
             .collection-gateway-section h2::after {
                 height: 2px;
-                bottom: -8px;
+                bottom: -6px;
             }
             .collection-gateway-grid {
-                gap: 1.5rem;
-                grid-template-columns: 1fr;
+                gap: 1rem; /* Smaller gap on mobile */
+                grid-template-columns: 1fr; /* Stack cards on very small screens */
             }
             .epic-gateway-card {
-                padding: 1.5rem;
-                min-height: 180px;
-                border-radius: 15px;
+                padding: 1.2rem; /* Reduced padding for smaller cards */
+                min-height: 150px; /* Reduced min-height for smaller cards */
+                border-radius: 12px;
             }
             .epic-gateway-card h3 {
-                font-size: 1.8rem;
+                font-size: 1.5rem; /* Reduced heading font size on mobile */
+                margin-bottom: 0.5rem;
             }
             .epic-gateway-card p {
-                font-size: 0.95em;
+                font-size: 0.85em; /* Reduced paragraph font size on mobile */
             }
             .vault-footer h3 {
-                font-size: 1.2em;
+                font-size: 1.1em;
             }
         }
     </style>
