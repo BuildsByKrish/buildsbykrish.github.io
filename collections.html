@@ -1,79 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Krish Series Recommendations</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="vault-theme.css"/>
-  <style>
-    .vault-row {
-      background: #1c1c1c;
-      border-bottom: 1px solid #333;
-      padding: 2em;
-      text-align: center;
-    }
-    .vault-row h2 {
-      color: #ffd700;
-      font-size: 1.6em;
-      margin-bottom: 0.4em;
-    }
-    .vault-row p {
-      color: #aaa;
-      font-size: 0.95em;
-      margin-bottom: 1em;
-    }
-    .vault-link {
-      display: inline-block;
-      padding: 0.7em 1.2em;
-      background-color: #ffd700;
-      color: #111;
-      font-weight: bold;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .vault-link:hover {
-      background-color: #ffec3b;
-    }
-  </style>
-</head>
-<body class="vault">
-  <header>
-    <h1>🎬 Krish Series Recommendations</h1>
-    <p>Curated vaults across Hindi, English, Korean, and Chinese storytelling — plus a crown-tier Must-Watch experience.</p>
-  </header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Recommendations | Krish Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="vault-theme.css"> </head>
+<body class="vault collections-theme">
 
-  <main>
-    <section class="vault-row">
-      <h2>🇮🇳 Hindi Vault</h2>
-      <p>Original masterpieces and iconic stories from Indian creators.</p>
-      <a href="hindi.html" class="vault-link">Enter Vault</a>
-    </section>
+    <header class="hero-banner">
+        <h1>🧠 Krish's Handpicked Recommendations</h1>
+        <p>Dive into series that have truly captivated me. These aren't just shows; they're experiences I believe you'll love too!</p>
+        <nav><a href="index.html" class="back-button">← Back to Home</a></nav>
+        <button onclick="document.body.classList.toggle('dark')">🌓 Toggle Theme</button>
+    </header>
 
-    <section class="vault-row">
-      <h2>🇺🇸 English Vault</h2>
-      <p>Global hits, cult classics, and genre-defining western series.</p>
-      <a href="english.html" class="vault-link">Enter Vault</a>
-    </section>
+    <main class="vault-grid-container">
 
-    <section class="vault-row">
-      <h2>🇰🇷 Korean Vault</h2>
-      <p>Dramatic romances, thrillers, and the soul of K-drama storytelling.</p>
-      <a href="korean.html" class="vault-link">Enter Vault</a>
-    </section>
+        <section class="recommendation-section">
+            <h2>⭐ Must-Watch Essentials</h2>
+            <p class="section-intro">If you watch nothing else, watch these. My absolute top-tier recommendations that changed the game.</p>
+            <div class="recommendation-cards-grid">
+                <div class="recommendation-card">
+                    <h3>Vincenzo (Korean)</h3>
+                    <p class="recommendation-blurb">
+                        **Why I Recommend:** A stylish, dark comedy thriller about a mafia consigliere who uses villainous methods to achieve justice. The plot twists are incredible, and the chemistry is undeniable!
+                    </p>
+                    <ul class="recommendation-details">
+                        <li><strong>Platform:</strong> Netflix</li>
+                        <li><strong>Genre:</strong> Dark Comedy, Thriller, Legal Drama</li>
+                        <li><strong>IMDb:</strong> 8.4</li>
+                    </ul>
+                </div>
+                <div class="recommendation-card">
+                    <h3>Money Heist (Spanish)</h3>
+                    <p class="recommendation-blurb">
+                        **Why I Recommend:** The ultimate heist series! Brilliant planning, unexpected turns, and characters you can't help but root for (or against). Pure adrenaline from start to finish.
+                    </p>
+                    <ul class="recommendation-details">
+                        <li><strong>Platform:</strong> Netflix</li>
+                        <li><strong>Genre:</strong> Crime Thriller, Heist</li>
+                        <li><strong>IMDb:</strong> 8.2</li>
+                    </ul>
+                </div>
+                </div>
+        </section>
 
-    <section class="vault-row">
-      <h2>🇨🇳 Chinese Vault</h2>
-      <p>Epic legends, wuxia warriors, and transcendent historical sagas.</p>
-      <a href="chinese.html" class="vault-link">Enter Vault</a>
-    </section>
+        <section class="recommendation-section">
+            <h2>💎 Hidden Gems</h2>
+            <p class="section-intro">Lesser-known but equally captivating series that deserve more love and attention.</p>
+            <div class="recommendation-cards-grid">
+                <div class="recommendation-card">
+                    <h3>Kingdom (Korean)</h3>
+                    <p class="recommendation-blurb">
+                        **Why I Recommend:** A brilliant blend of historical drama and zombie apocalypse. Intense, visually stunning, and truly unique. It will keep you on the edge of your seat!
+                    </p>
+                    <ul class="recommendation-details">
+                        <li><strong>Platform:</strong> Netflix</li>
+                        <li><strong>Genre:</strong> Historical, Zombie, Thriller</li>
+                        <li><strong>IMDb:</strong> 8.3</li>
+                    </ul>
+                </div>
+                </div>
+        </section>
 
-    <section class="vault-row">
-      <h2>🎖 Must-Watch Vault</h2>
-      <p>Top 100+ series crowned across all languages — original, iconic, unforgettable.</p>
-      <a href="mustwatchvault.html" class="vault-link">Enter Vault</a>
-    </section>
-  </main>
+        <section class="recommendation-section">
+            <h2>🎭 Thriller Fanatics</h2>
+            <p class="section-intro">For those who love suspense, mystery, and a good mind-bending plot.</p>
+            <div class="recommendation-cards-grid">
+                <div class="recommendation-card">
+                    <h3>Dark (German)</h3>
+                    <p class="recommendation-blurb">
+                        **Why I Recommend:** Complex, mind-bending time travel saga. You'll need to pay attention, but the payoff is immensely rewarding. A true masterpiece of storytelling.
+                    </p>
+                    <ul class="recommendation-details">
+                        <li><strong>Platform:</strong> Netflix</li>
+                        <li><strong>Genre:</strong> Sci-Fi, Mystery, Thriller</li>
+                        <li><strong>IMDb:</strong> 8.7</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="vault-footer">
+        <h3>🔗 Recommendations from the Heart</h3>
+        <p>Curated by Krish with cultural depth and cinematic intent 💛</p>
+    </footer>
+
 </body>
 </html>
