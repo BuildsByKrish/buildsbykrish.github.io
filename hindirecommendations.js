@@ -1,5 +1,4 @@
 const hindiWatchlist = [
-
   {
     id: 1,
     title: "Sacred Games",
@@ -11,7 +10,8 @@ const hindiWatchlist = [
     runtime: "12h",
     popularity: 95,
     imdbRating: 8.5,
-    description: "A troubled cop and a mysterious gangster unravel a deadly conspiracy that threatens Mumbai’s soul."
+    description: "A troubled cop and a mysterious gangster unravel a deadly conspiracy that threatens Mumbai’s soul.",
+    mustwatch: true
   },
   {
     id: 2,
@@ -24,7 +24,8 @@ const hindiWatchlist = [
     runtime: "25h",
     popularity: 92,
     imdbRating: 8.6,
-    description: "Power, politics, and bloodshed collide in the lawless town of Mirzapur ruled by a ruthless mafia family."
+    description: "Power, politics, and bloodshed collide in the lawless town of Mirzapur ruled by a ruthless mafia family.",
+    mustwatch: true
   },
   {
     id: 3,
@@ -37,7 +38,8 @@ const hindiWatchlist = [
     runtime: "7h",
     popularity: 88,
     imdbRating: 8.0,
-    description: "A cynical cop lands a high-profile case that leads him into the dark underbelly of Indian society."
+    description: "A cynical cop lands a high-profile case that leads him into the dark underbelly of Indian society.",
+    mustwatch: false
   },
   {
     id: 4,
@@ -50,7 +52,8 @@ const hindiWatchlist = [
     runtime: "13h",
     popularity: 90,
     imdbRating: 8.4,
-    description: "A forensic expert and a serial killer clash in a battle of intellect, rooted in ancient mythology."
+    description: "A forensic expert and a serial killer clash in a battle of intellect, rooted in ancient mythology.",
+    mustwatch: false // IMDb 8.4, Pop 90 - falls just short of 8.5/90 or 9.0
   },
   {
     id: 5,
@@ -63,7 +66,8 @@ const hindiWatchlist = [
     runtime: "15h",
     popularity: 94,
     imdbRating: 8.7,
-    description: "A middle-class man secretly works as an intelligence officer while juggling family life and national threats."
+    description: "A middle-class man secretly works as an intelligence officer while juggling family life and national threats.",
+    mustwatch: true
   },
   {
     id: 6,
@@ -76,7 +80,8 @@ const hindiWatchlist = [
     runtime: "10h",
     popularity: 89,
     imdbRating: 8.5,
-    description: "Based on true events, this gripping series follows the Delhi Police’s investigation into a brutal crime."
+    description: "Based on true events, this gripping series follows the Delhi Police’s investigation into a brutal crime.",
+    mustwatch: false // IMDb 8.5, Pop 89 - falls just short of 8.5/90
   },
   {
     id: 7,
@@ -89,7 +94,8 @@ const hindiWatchlist = [
     runtime: "20h",
     popularity: 82,
     imdbRating: 8.1,
-    description: "An exploration of a powerful godman’s secrets, deception, and the blind faith surrounding him."
+    description: "An exploration of a powerful godman’s secrets, deception, and the blind faith surrounding him.",
+    mustwatch: false
   },
   {
     id: 8,
@@ -102,7 +108,8 @@ const hindiWatchlist = [
     runtime: "18h",
     popularity: 84,
     imdbRating: 8.0,
-    description: "Inspired by real-life gangsters, this series traces the rise and fall of notorious criminals in India."
+    description: "Inspired by real-life gangsters, this series traces the rise and fall of notorious criminals in India.",
+    mustwatch: false
   },
   {
     id: 9,
@@ -115,7 +122,8 @@ const hindiWatchlist = [
     runtime: "16h",
     popularity: 86,
     imdbRating: 7.9,
-    description: "A desperate father turns to dark choices to save his son, triggering a deadly game of cat and mouse."
+    description: "A desperate father turns to dark choices to save his son, triggering a deadly game of cat and mouse.",
+    mustwatch: false
   },
   {
     id: 10,
@@ -128,7 +136,8 @@ const hindiWatchlist = [
     runtime: "14h",
     popularity: 83,
     imdbRating: 7.8,
-    description: "A murder at a wedding sets off a chain of cover-ups and chaos in this gritty tale of power and justice."
+    description: "A murder at a wedding sets off a chain of cover-ups and chaos in this gritty tale of power and justice.",
+    mustwatch: false
   },
   {
     id: 11,
@@ -141,7 +150,8 @@ const hindiWatchlist = [
     runtime: "6.5h",
     popularity: 87,
     imdbRating: 8.6,
-    description: "An elite RAW agent chases down the architect behind terror attacks over 19 years across continents."
+    description: "An elite RAW agent chases down the architect behind terror attacks over 19 years across continents.",
+    mustwatch: false // IMDb 8.6, Pop 87 - falls just short of 8.5/90
   },
   {
     id: 12,
@@ -154,7 +164,8 @@ const hindiWatchlist = [
     runtime: "16h",
     popularity: 85,
     imdbRating: 8.4,
-    description: "A man’s life spirals after a single night. This courtroom-crime drama explores justice, guilt, and redemption."
+    description: "A man’s life spirals after a single night. This courtroom-crime drama explores justice, guilt, and redemption.",
+    mustwatch: false
   },
   {
     id: 13,
@@ -167,7 +178,8 @@ const hindiWatchlist = [
     runtime: "8h",
     popularity: 91,
     imdbRating: 9.0,
-    description: "A monochrome masterpiece capturing the competitive pressure and friendship among IIT aspirants in Kota."
+    description: "A monochrome masterpiece capturing the competitive pressure and friendship among IIT aspirants in Kota.",
+    mustwatch: true
   },
   {
     id: 14,
@@ -180,7 +192,8 @@ const hindiWatchlist = [
     runtime: "19h",
     popularity: 88,
     imdbRating: 7.9,
-    description: "When her family is threatened, a mother must embrace the underworld her late husband left behind."
+    description: "When her family is threatened, a mother must embrace the underworld her late husband left behind.",
+    mustwatch: false
   },
   {
     id: 15,
@@ -193,7 +206,8 @@ const hindiWatchlist = [
     runtime: "17h",
     popularity: 80,
     imdbRating: 6.9,
-    description: "A surgeon’s family is taken hostage, and she must make an impossible decision to save them."
+    description: "A surgeon’s family is taken hostage, and she must make an impossible decision to save them.",
+    mustwatch: false
   },
   {
     id: 16,
@@ -206,7 +220,8 @@ const hindiWatchlist = [
     runtime: "3h",
     popularity: 75,
     imdbRating: 7.5,
-    description: "A plane lost for 35 years crashes again — unraveling a time travel mystery buried in secrecy."
+    description: "A plane lost for 35 years crashes again — unraveling a time travel mystery buried in secrecy.",
+    mustwatch: false
   },
   {
     id: 17,
@@ -219,7 +234,8 @@ const hindiWatchlist = [
     runtime: "14h",
     popularity: 81,
     imdbRating: 7.9,
-    description: "Inspired by real events, an IPS officer takes on a city held hostage by two powerful crime syndicates."
+    description: "Inspired by real events, an IPS officer takes on a city held hostage by two powerful crime syndicates.",
+    mustwatch: false
   },
   {
     id: 18,
@@ -232,7 +248,8 @@ const hindiWatchlist = [
     runtime: "20h",
     popularity: 96,
     imdbRating: 9.1,
-    description: "An engineering graduate takes a government posting in a village — and gets a hilarious crash course in life."
+    description: "An engineering graduate takes a government posting in a village — and gets a hilarious crash course in life.",
+    mustwatch: true
   },
   {
     id: 19,
@@ -245,7 +262,8 @@ const hindiWatchlist = [
     runtime: "24h",
     popularity: 77,
     imdbRating: 7.6,
-    description: "Set in a T20 cricket league, this drama exposes the power play and corruption behind the sport’s spotlight."
+    description: "Set in a T20 cricket league, this drama exposes the power play and corruption behind the sport’s spotlight.",
+    mustwatch: false
   },
   {
     id: 20,
@@ -258,7 +276,8 @@ const hindiWatchlist = [
     runtime: "6h",
     popularity: 79,
     imdbRating: 8.4,
-    description: "While investigating 1984 riots, a police officer discovers a haunting connection to her father’s past."
+    description: "While investigating 1984 riots, a police officer discovers a haunting connection to her father’s past.",
+    mustwatch: false
   },
   {
     id: 21,
@@ -271,7 +290,8 @@ const hindiWatchlist = [
     runtime: "7h",
     popularity: 90,
     imdbRating: 9.1,
-    description: "Four friends quit their jobs to launch a startup, learning business, friendship, and grit the hard way."
+    description: "Four friends quit their jobs to launch a startup, learning business, friendship, and grit the hard way.",
+    mustwatch: true
   },
   {
     id: 22,
@@ -284,7 +304,8 @@ const hindiWatchlist = [
     runtime: "12h",
     popularity: 85,
     imdbRating: 8.9,
-    description: "The inspiring journey of Homi Bhabha and Vikram Sarabhai as they shape India’s nuclear and space ambitions."
+    description: "The inspiring journey of Homi Bhabha and Vikram Sarabhai as they shape India’s nuclear and space ambitions.",
+    mustwatch: false // IMDb 8.9, Pop 85 - falls just short of 8.5/90
   },
   {
     id: 23,
@@ -297,7 +318,8 @@ const hindiWatchlist = [
     runtime: "12h",
     popularity: 78,
     imdbRating: 7.5,
-    description: "Based on true events, this gripping military drama recounts India’s surgical strikes after the Uri attack."
+    description: "Based on true events, this gripping military drama recounts India’s surgical strikes after the Uri attack.",
+    mustwatch: false
   },
   {
     id: 24,
@@ -310,7 +332,8 @@ const hindiWatchlist = [
     runtime: "6h",
     popularity: 82,
     imdbRating: 8.3,
-    description: "A retired cop does the unthinkable to protect his family when a mistake spirals into chaos."
+    description: "A retired cop does the unthinkable to protect his family when a mistake spirals into chaos.",
+    mustwatch: false
   },
   {
     id: 25,
@@ -323,7 +346,8 @@ const hindiWatchlist = [
     runtime: "23h",
     popularity: 80,
     imdbRating: 7.8,
-    description: "A woman rises from the shadows to become CM of Bihar — facing caste, corruption, and patriarchy head-on."
+    description: "A woman rises from the shadows to become CM of Bihar — facing caste, corruption, and patriarchy head-on.",
+    mustwatch: false
   },
   {
     id: 26,
@@ -336,7 +360,8 @@ const hindiWatchlist = [
     runtime: "9h",
     popularity: 97,
     imdbRating: 9.3,
-    description: "The meteoric rise and dramatic downfall of Harshad Mehta — the stock market genius who shook India’s economy."
+    description: "The meteoric rise and dramatic downfall of Harshad Mehta — the stock market genius who shook India’s economy.",
+    mustwatch: true
   },
   {
     id: 27,
@@ -349,7 +374,8 @@ const hindiWatchlist = [
     runtime: "5h",
     popularity: 78,
     imdbRating: 8.0,
-    description: "Based on the Uphaar tragedy, a couple fights the system for justice after losing their children in a cinema fire."
+    description: "Based on the Uphaar tragedy, a couple fights the system for justice after losing their children in a cinema fire.",
+    mustwatch: false
   },
   {
     id: 28,
@@ -362,7 +388,8 @@ const hindiWatchlist = [
     runtime: "6h",
     popularity: 76,
     imdbRating: 8.3,
-    description: "Inspired by Kargil war hero Major Deep Singh, who overcame paralysis to reclaim his identity and honor."
+    description: "Inspired by Kargil war hero Major Deep Singh, who overcame paralysis to reclaim his identity and honor.",
+    mustwatch: false
   },
   {
     id: 29,
@@ -375,7 +402,8 @@ const hindiWatchlist = [
     runtime: "12h",
     popularity: 74,
     imdbRating: 7.4,
-    description: "Two rival newsrooms — one idealistic, one aggressive — battle over journalism, ethics, and TRP-driven truth."
+    description: "Two rival newsrooms — one idealistic, one aggressive — battle over journalism, ethics, and TRP-driven truth.",
+    mustwatch: false
   },
   {
     id: 30,
@@ -388,7 +416,8 @@ const hindiWatchlist = [
     runtime: "11h",
     popularity: 89,
     imdbRating: 9.1,
-    description: "A heartwarming tale of a small-town Mishra family — steeped in nostalgia, humor, and middle-class magic."
+    description: "A heartwarming tale of a small-town Mishra family — steeped in nostalgia, humor, and middle-class magic.",
+    mustwatch: true
   },
   {
     id: 31,
@@ -401,7 +430,8 @@ const hindiWatchlist = [
     runtime: "5h",
     popularity: 84,
     imdbRating: 7.8,
-    description: "A journalist’s life spirals after she’s accused of murdering a fellow reporter — inspired by true events."
+    description: "A journalist’s life spirals after she’s accused of murdering a fellow reporter — inspired by true events.",
+    mustwatch: false
   },
   {
     id: 32,
@@ -414,7 +444,8 @@ const hindiWatchlist = [
     runtime: "13h",
     popularity: 82,
     imdbRating: 8.0,
-    description: "Doctors and first responders navigate chaos during the 26/11 Mumbai attacks in this gripping hospital drama."
+    description: "Doctors and first responders navigate chaos during the 26/11 Mumbai attacks in this gripping hospital drama.",
+    mustwatch: false
   },
   {
     id: 33,
@@ -427,7 +458,8 @@ const hindiWatchlist = [
     runtime: "16h",
     popularity: 79,
     imdbRating: 7.7,
-    description: "A Mughal emperor’s succession battle turns into a brutal saga of ambition, betrayal, and bloodlines."
+    description: "A Mughal emperor’s succession battle turns into a brutal saga of ambition, betrayal, and bloodlines.",
+    mustwatch: false
   },
   {
     id: 34,
@@ -440,7 +472,8 @@ const hindiWatchlist = [
     runtime: "6.5h",
     popularity: 76,
     imdbRating: 7.6,
-    description: "A matriarch runs a drug empire with her daughters-in-law — fierce, violent, and unapologetically wild."
+    description: "A matriarch runs a drug empire with her daughters-in-law — fierce, violent, and unapologetically wild.",
+    mustwatch: false
   },
   {
     id: 35,
@@ -453,7 +486,8 @@ const hindiWatchlist = [
     runtime: "6h",
     popularity: 74,
     imdbRating: 7.5,
-    description: "A gritty tale of reverse hawala, black money, and a relentless officer chasing the truth."
+    description: "A gritty tale of reverse hawala, black money, and a relentless officer chasing the truth.",
+    mustwatch: false
   },
   {
     id: 36,
@@ -466,7 +500,8 @@ const hindiWatchlist = [
     runtime: "7h",
     popularity: 72,
     imdbRating: 7.2,
-    description: "In post-Partition Delhi, a young man rises through the underworld ranks — but power always comes at a price."
+    description: "A young man rises through the underworld ranks in post-Partition Delhi — but power always comes at a price.",
+    mustwatch: false
   },
   {
     id: 37,
@@ -479,7 +514,8 @@ const hindiWatchlist = [
     runtime: "6h",
     popularity: 80,
     imdbRating: 8.2,
-    description: "Inspired by true events, a forest officer uncovers a massive ivory poaching ring in Kerala’s jungles."
+    description: "Inspired by true events, a forest officer uncovers a massive ivory poaching ring in Kerala’s jungles.",
+    mustwatch: false
   },
   {
     id: 38,
@@ -492,7 +528,8 @@ const hindiWatchlist = [
     runtime: "5.5h",
     popularity: 70,
     imdbRating: 6.9,
-    description: "A former RAW agent, now a professor, is called back into action to save four Indian intelligence officers held hostage by the Taliban."
+    description: "A former RAW agent, now a professor, is called back into action to save four Indian intelligence officers held hostage by the Taliban.",
+    mustwatch: false
   },
   {
     id: 39,
@@ -505,7 +542,8 @@ const hindiWatchlist = [
     runtime: "10h",
     popularity: 68,
     imdbRating: 6.4,
-    description: "An unassuming female constable goes undercover to bust a drug gang, navigating a dangerous world and discovering her own power."
+    description: "An unassuming female constable goes undercover to bust a drug gang, navigating a dangerous world and discovering her own power.",
+    mustwatch: false
   },
   {
     id: 40,
@@ -518,7 +556,8 @@ const hindiWatchlist = [
     runtime: "6.5h",
     popularity: 75,
     imdbRating: 7.8,
-    description: "When a foreign teenage tourist disappears in a misty Himalayan town, a local cop unearths a forgotten myth and a web of crimes."
+    description: "When a foreign teenage tourist disappears in a misty Himalayan town, a local cop unearths a forgotten myth and a web of crimes.",
+    mustwatch: false
   },
   {
     id: 41,
@@ -531,7 +570,8 @@ const hindiWatchlist = [
     runtime: "6h",
     popularity: 65,
     imdbRating: 6.0,
-    description: "A tech genius is found dead, leading a cybercrime investigator into a dark maze of hackers, digital secrets, and conspiracy."
+    description: "A tech genius is found dead, leading a cybercrime investigator into a dark maze of hackers, digital secrets, and conspiracy.",
+    mustwatch: false
   },
   {
     id: 42,
@@ -544,7 +584,8 @@ const hindiWatchlist = [
     runtime: "12h",
     popularity: 77,
     imdbRating: 7.3,
-    description: "Based on true events, a group of young men run a successful phishing operation from a remote village, but soon face political and criminal threats."
+    description: "Based on true events, a group of young men run a successful phishing operation from a remote village, but soon face political and criminal threats.",
+    mustwatch: false
   },
   {
     id: 43,
@@ -557,7 +598,8 @@ const hindiWatchlist = [
     runtime: "6h",
     popularity: 72,
     imdbRating: 7.1,
-    description: "Four gripping stories inspired by the works of legendary filmmaker Satyajit Ray, exploring themes of ego, revenge, and betrayal."
+    description: "Four gripping stories inspired by the works of legendary filmmaker Satyajit Ray, exploring themes of ego, revenge, and betrayal.",
+    mustwatch: false
   },
   {
     id: 44,
@@ -570,7 +612,8 @@ const hindiWatchlist = [
     runtime: "7h",
     popularity: 81,
     imdbRating: 7.8,
-    description: "A female police officer investigates a series of mysterious disappearances in a small town, uncovering a serial killer preying on women."
+    description: "A female police officer investigates a series of mysterious disappearances in a small town, uncovering a serial killer preying on women.",
+    mustwatch: false
   },
   {
     id: 45,
@@ -583,6 +626,7 @@ const hindiWatchlist = [
     runtime: "7h",
     popularity: 93,
     imdbRating: 8.4,
-    description: "A brilliant con artist enters the world of high-stakes counterfeit money, pursued by a fiery task force officer."
+    description: "A brilliant con artist enters the world of high-stakes counterfeit money, pursued by a fiery task force officer.",
+    mustwatch: false // IMDb 8.4, Pop 93 - falls just short of 8.5/90
   }
 ];
