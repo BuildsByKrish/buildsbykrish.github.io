@@ -242,7 +242,7 @@
 
     .poster-tile.must-watch h3 {
         color: #ffeb3b; /* Bright gold for text */
-        text-shadow: 0 0 15px rgba(255, 204, 0, 1), 0 0 30px rgba(255, 165, 0, 0.6); /* More intense gold-orange glow */
+        text-shadow: 0 0 15px rgba(255, 204, 0, 1), 0 0 30px rgba(255, 165, 0, 0.4); /* More intense gold-orange glow */
     }
     .poster-tile.must-watch .tag {
         background: rgba(255, 204, 0, 0.1);
@@ -290,149 +290,105 @@
     .poster-tile.must-watch .description-toggle-btn:hover {
         background: #ffcc00;
         color: #1a1a2e;
-        box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+        box-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+        transform: translateY(-2px);
     }
 
-    /* Description Text - Initially hidden and smoothly revealed */
-    .description-container {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.7s ease-in-out, opacity 0.5s ease;
-        opacity: 0;
-        padding-top: 0; /* No initial padding */
-    }
-
-    .description-container.expanded {
-        max-height: 200px; /* Sufficient height for most descriptions, adjust if needed */
-        opacity: 1;
-        padding-top: 1rem; /* Add padding when expanded */
-    }
-
+    /* Description text */
     .description-text {
-        font-size: 0.9em; /* Smaller font for detailed text */
-        color: #b0c4de; /* Softer text color */
+        font-size: 0.9em;
+        color: #b0c4de; /* Softer blue-grey for description */
         margin-top: 0.5rem;
-        line-height: 1.5;
+        margin-bottom: 0;
+        max-height: 3.8em; /* Approximately 3 lines */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out; /* Smooth transition */
+        opacity: 0.9;
     }
 
-    /* Scroll to Top & Home Buttons */
-    .top-btn, .home-btn {
-        position: fixed;
-        bottom: 1.5rem;
-        right: 1.5rem;
-        background: rgba(0, 210, 255, 0.2);
-        color: #e0f7fa;
-        border: 1px solid rgba(0, 210, 255, 0.5);
-        padding: 0.8rem 1.2rem;
-        border-radius: 50%; /* Circle shape */
-        font-size: 1.2em;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        z-index: 999;
-        display: none; /* Hidden by default, shown by JS */
-        backdrop-filter: blur(8px);
-        box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    .description-text.expanded {
+        max-height: 1000px; /* Large enough to show full content */
+        opacity: 1;
     }
 
-    .home-btn {
-        right: calc(1.5rem + 70px); /* Positioned next to top-btn */
-        border-radius: 8px; /* Square shape for home button */
-        font-size: 1em;
-        padding: 0.8rem 1.5rem;
+    /* Scroll to Top Button */
+    #topBtn {
+        display: none; /* Hidden by default */
+        position: fixed; /* Fixed position */
+        bottom: 20px; /* Place at the bottom */
+        right: 30px; /* Place at the right */
+        z-index: 99; /* Make sure it's above other elements */
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: rgba(0, 210, 255, 0.5); /* Semi-transparent blue */
+        color: white; /* White text */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        padding: 15px; /* Some padding */
+        border-radius: 10px; /* Rounded corners */
+        font-size: 18px; /* Increase font size */
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
     }
 
-    .top-btn:hover, .home-btn:hover {
-        background: #00d2ff;
-        color: #1a1a2e;
-        box-shadow: 0 0 25px rgba(0, 210, 255, 0.8);
-        transform: translateY(-3px);
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 1200px) {
-        .grid {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 0 1.5rem;
-        }
+    #topBtn:hover {
+        background-color: #00d2ff; /* Deeper blue on hover */
+        transform: translateY(-3px); /* Slightly lift button */
+        box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
     }
 
+    /* Footer Styles */
+    footer {
+      margin-top: 4rem;
+      padding: 1.5rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9em;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    footer a {
+      color: #00d2ff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #ffeb3b;
+      text-decoration: underline;
+    }
+
+    /* Responsive Adjustments */
     @media (max-width: 768px) {
         h1 {
             font-size: 2.5em;
-            margin-top: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        h1::after {
-            width: 70%;
-            bottom: -5px;
         }
         .filters {
-            gap: 0.75rem;
+            flex-direction: column;
+            gap: 0.8rem;
             padding: 1rem;
-            margin: 1.5rem auto;
-            max-width: 95%;
         }
         .filters select,
         .filters input,
         .filters button {
-            font-size: 0.9em;
-            padding: 0.6rem 1rem;
+            width: 100%; /* Full width on smaller screens */
+            padding: 0.8rem 1rem;
         }
         .grid {
-            grid-template-columns: 1fr; /* Stack cards on small screens */
-            gap: 1.5rem;
+            grid-template-columns: 1fr; /* Single column on very small screens */
             padding: 0 1rem;
+            gap: 2rem;
         }
         .poster-tile {
             padding: 1.5rem;
-            min-height: 250px; /* Adjust min-height for stacked cards */
-            border-radius: 15px;
+            min-height: 250px;
         }
         .poster-tile h3 {
-            font-size: 1.6em;
-            margin-bottom: 0.5rem;
-        }
-        .poster-tile .tag {
-            font-size: 0.8em;
-            padding: 0.25em 0.6em;
-        }
-        .poster-tile p:not(.description-text), .description-text {
-            font-size: 0.8em;
-        }
-        .description-toggle-btn {
-            padding: 0.5em 0.8em;
-            font-size: 0.8em;
-            margin-top: 0.8rem;
-        }
-        .top-btn, .home-btn {
-            bottom: 1rem;
-            right: 1rem;
-            padding: 0.7rem 1rem;
-            font-size: 1em;
-        }
-        .home-btn {
-            right: calc(1rem + 55px);
-            padding: 0.7rem 1.2rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        h1 {
-            font-size: 2em;
-        }
-        .filters {
-            flex-direction: column; /* Stack filters vertically */
-            align-items: stretch;
-        }
-        .filters select,
-        .filters input,
-        .filters button {
-            width: 100%; /* Full width for filter controls */
-            box-sizing: border-box;
-        }
-        .poster-tile {
-            min-height: 220px;
+            font-size: 1.5em;
         }
     }
   </style>
@@ -444,84 +400,109 @@
   <div class="filters">
     <select onchange="filterByGenre(this.value)">
       <option value="All">All Genres</option>
-      <option value="Crime">Crime</option>
-      <option value="Thriller">Thriller</option>
-      <option value="Drama">Drama</option>
-      <option value="Comedy">Comedy</option>
-      <option value="Action">Action</option>
-      <option value="Spy">Spy</option>
-      <option value="Mythological">Mythological</option>
-      <option value="Historical">Historical</option>
-      <option value="Political">Political</option>
-      <option value="Military">Military</option>
-      <option value="Slice of Life">Slice of Life</option>
-      <option value="Legal">Legal</option>
-      <option value="Teen">Teen</option>
-      <option value="Sci-Fi">Sci-Fi</option>
-      <option value="Biography">Biography</option>
-      <option value="Sports">Sports</option>
-      <option value="Period">Period</option>
-      <option value="Financial">Financial</option>
-      <option value="True Crime">True Crime</option>
-      <option value="Newsroom">Newsroom</option>
-      <option value="Medical">Medical</option>
-      <option value="Eco-Crime">Eco-Crime</option>
-    </select>
+      </select>
 
-    <button onclick="filterMustWatch()">🎯 Must Watch (IMDb 9+)</button>
+    <select onchange="filterByPlatform(this.value)">
+      <option value="All">All Platforms</option>
+      </select>
 
-    <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
+    <select onchange="filterByYear(this.value)">
+        <option value="All">All Years</option>
+        </select>
+
     <select onchange="sortBy(this.value)">
-      <option value="">Sort by…</option>
+      <option value="">Sort By</option>
+      <option value="imdbRating">IMDb Rating</option>
       <option value="popularity">Popularity</option>
-      <option value="year">Year</option>
-      <option value="imdbRating">IMDb Rating</option> <option value="titleAsc">A–Z</option>
-      <option value="titleDesc">Z–A</option>
+      <option value="year">Newest First</option>
+      <option value="titleAsc">Title (A-Z)</option>
+      <option value="titleDesc">Title (Z-A)</option>
     </select>
+
+    <input type="text" id="searchBar" onkeyup="searchTitles(this.value)" placeholder="Search titles..." />
+
+    <button onclick="filterMustWatch()">Must Watch 🔥</button>
+    <button onclick="resetFilters()">Reset Filters</button>
   </div>
 
-  <div id="hindiGrid" class="grid"></div>
+  <div class="grid" id="hindiGrid">
+    </div>
 
-  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆ Top</button>
-  <button onclick="goHome()" class="home-btn">🏠 Collections Hub</button>
+  <button onclick="topFunction()" id="topBtn" title="Go to top">⬆️</button>
+
+  <footer>
+    <p>&copy; <span id="currentYear"></span> Krish Vault. All rights reserved.</p>
+    <p>Data is for informational purposes only. Series ratings and details may vary.</p>
+    <p>Made with ❤️ by Krish</p>
+  </footer>
 
   <script>
-    // Ensure hindirecommendations.js is loaded first, then this script executes
-    // The hindiWatchlist data is expected to be available globally from hindirecommendations.js
+    let currentList = []; // Holds the currently displayed list based on filters/sorts
+    let initialLoadDone = false; // Flag to ensure initial sort only happens once
 
-    let currentList = [];
-    let initialLoadDone = false; // Flag to ensure initial data is set
+    // Function to populate unique filter options
+    function populateFilterOptions() {
+        const genres = [...new Set(hindiWatchlist.map(item => item.genre))].sort();
+        const genreSelect = document.querySelector('select[onchange="filterByGenre(this.value)"]');
+        genres.forEach(genre => {
+            const option = document.createElement('option');
+            option.value = genre;
+            option.textContent = genre;
+            genreSelect.appendChild(option);
+        });
 
+        const platforms = [...new Set(hindiWatchlist.map(item => item.platform))].sort();
+        const platformSelect = document.querySelector('select[onchange="filterByPlatform(this.value)"]');
+        platforms.forEach(platform => {
+            const option = document.createElement('option');
+            option.value = platform;
+            option.textContent = platform;
+            platformSelect.appendChild(option);
+        });
+
+        const years = [...new Set(hindiWatchlist.map(item => item.year))].sort((a, b) => b - a); // Sort years descending
+        const yearSelect = document.querySelector('select[onchange="filterByYear(this.value)"]');
+        years.forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        });
+    }
+
+    // Function to display series cards
     function display(list) {
-      const grid = document.getElementById("hindiGrid");
-      if (!list || !list.length) {
-        grid.innerHTML = "<p style='text-align:center; color: #ffeb3b; font-size: 1.2em; margin-top: 3rem;'>No series to display. Try adjusting your filters!</p>";
+      const hindiGrid = document.getElementById("hindiGrid");
+      hindiGrid.innerHTML = ""; // Clear existing cards
+
+      if (list.length === 0) {
+        hindiGrid.innerHTML = "<p style='text-align:center; color: #ff6666; font-size: 1.2em; margin-top: 3rem;'>No series found matching your criteria.</p>";
         return;
       }
-      grid.innerHTML = list.map((show, i) => `
-        <div class="poster-tile ${show.imdbRating >= 9 ? 'must-watch' : ''}" data-id="${show.id}">
+
+      list.forEach((show) => {
+        const tile = document.createElement("div");
+        // Use show.mustwatch directly for the class
+        tile.className = `poster-tile ${show.mustwatch ? 'must-watch' : ''}`;
+        
+        tile.innerHTML = `
           <div class="poster-info">
-            <h3>${i + 1}. ${show.title}</h3>
+            <h3>${show.title}</h3>
             <div class="tags">
-              <span class="tag">${show.platform}</span>
-              <span class="tag" data-genre="${show.genre.toLowerCase()}">${show.genre}</span>
-              <span class="tag">📅 ${show.year}</span>
-              <span class="tag">🔥 ${show.popularity}%</span>
-              <span class="tag">⭐ ${show.imdbRating}</span>
+                <span class="tag" data-genre="${show.genre.toLowerCase()}">${show.genre}</span>
+                <span class="tag">${show.platform}</span>
+                <span class="tag">${show.year}</span>
             </div>
-            <p style="font-size: 0.9em; margin-top: 0.5rem; color: #d0e0ff;">
-              Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
-            </p>
-            
-            <div class="description-container" id="desc-${show.id}">
-                <p class="description-text">
-                    ${show.description}
-                </p>
+            <p>Seasons: ${show.seasons} | Episodes: ${show.episodes} | Runtime: ${show.runtime}</p>
+            <p>IMDb: ${show.imdbRating} | Popularity: ${show.popularity}%</p>
+            <div id="desc-${show.id}" class="description-text">
+                ${show.description}
             </div>
-            <button class="description-toggle-btn" onclick="toggleDescription(event, '${show.id}')">View Details</button>
+            <button class="description-toggle-btn" onclick="toggleDescription(event, ${show.id})">View Details</button>
           </div>
-        </div>
-      `).join("");
+        `;
+        hindiGrid.appendChild(tile);
+      });
     }
 
     // Function to toggle description visibility
@@ -533,41 +514,41 @@
         if (descriptionContainer.classList.contains('expanded')) {
             descriptionContainer.classList.remove('expanded');
             button.textContent = 'View Details';
-            // Optional: Reduce card height if it was expanded significantly
             card.style.minHeight = '280px'; // Reset to base min-height
         } else {
             descriptionContainer.classList.add('expanded');
             button.textContent = 'Hide Details';
-            // Optional: Adjust card height to fit content, or allow it to auto-expand
             card.style.minHeight = 'fit-content'; // Let it grow
-            // After expansion, if it was too short before, force a reflow to recalculate min-height
+            // After expansion, force a reflow to recalculate min-height
             setTimeout(() => {
                 card.style.minHeight = `${card.scrollHeight + 20}px`; // Add some buffer
             }, 700); // After transition finishes
         }
     }
 
-    function filterByGenre(selectedGenre) {
-      if (!initialLoadDone) return; // Prevent filters from running before data is ready
-      if (selectedGenre === "All") {
-        currentList = [...hindiWatchlist];
-      } else {
-        // Use includes for broader genre matching (e.g., "Crime Thriller" matches "Crime")
-        currentList = hindiWatchlist.filter(s =>
-          s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
-        );
-      }
+    // Filter functions
+    function filterByGenre(genre) {
+      currentList = genre === "All" ? [...hindiWatchlist] : hindiWatchlist.filter((s) => s.genre === genre);
       display(currentList);
     }
 
+    function filterByPlatform(platform) {
+        currentList = platform === "All" ? [...hindiWatchlist] : hindiWatchlist.filter(s => s.platform === platform);
+        display(currentList);
+    }
+
+    function filterByYear(year) {
+        currentList = year === "All" ? [...hindiWatchlist] : hindiWatchlist.filter(s => s.year == parseInt(year));
+        display(currentList);
+    }
+
     function filterMustWatch() {
-      if (!initialLoadDone) return;
-      currentList = hindiWatchlist.filter(s => s.imdbRating >= 9);
+      // Filter directly by the mustwatch flag
+      currentList = hindiWatchlist.filter(s => s.mustwatch === true);
       display(currentList);
     }
 
     function searchTitles(query) {
-      if (!initialLoadDone) return;
       currentList = hindiWatchlist.filter(s =>
         s.title.toLowerCase().includes(query.toLowerCase())
       );
@@ -575,15 +556,14 @@
     }
 
     function sortBy(type) {
-      if (!initialLoadDone) return;
-      let sorted = [...currentList];
+      let sorted = [...currentList]; // Sort the currently filtered/searched list
       switch (type) {
+        case "imdbRating":
+          sorted.sort((a, b) => b.imdbRating - a.imdbRating); break;
         case "popularity":
           sorted.sort((a, b) => b.popularity - a.popularity); break;
         case "year":
           sorted.sort((a, b) => b.year - a.year); break;
-        case "imdbRating":
-          sorted.sort((a, b) => b.imdbRating - a.imdbRating); break; // Sort by IMDb Rating
         case "titleAsc":
           sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
         case "titleDesc":
@@ -592,32 +572,50 @@
       display(sorted);
     }
 
+    // Reset Filters Function
+    function resetFilters() {
+      currentList = [...hindiWatchlist]; // Reset to original list
+      document.querySelector('select[onchange="filterByGenre(this.value)"]').value = 'All';
+      document.querySelector('select[onchange="filterByPlatform(this.value)"]').value = 'All';
+      document.querySelector('select[onchange="filterByYear(this.value)"]').value = 'All';
+      document.querySelector('select[onchange="sortBy(this.value)"]').value = ''; // Reset sort dropdown
+      document.getElementById('searchBar').value = ''; // Clear search bar
+      
+      // Re-apply initial sort if desired
+      sortBy('imdbRating'); // Sort by IMDb Rating by default on reset
+      console.log("✅ Filters Reset.");
+    }
+
+    // Scroll to top button logic
+    let mybutton = document.getElementById("topBtn");
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+
+    // Initial Load - Important: ensure hindirecommendations.js is loaded first
     window.onload = () => {
+      document.getElementById("currentYear").textContent = new Date().getFullYear();
+      populateFilterOptions();
       // Ensure hindiWatchlist is available from the external JS file
       if (typeof hindiWatchlist !== 'undefined') {
         currentList = [...hindiWatchlist];
-        display(currentList);
+        sortBy('imdbRating'); // Initial sort by IMDb Rating
         initialLoadDone = true;
-        console.log("✅ Hindi Vault Loaded:", currentList.length);
+        console.log("✅ Hindi Vault Loaded:", hindiWatchlist.length, "series.");
       } else {
         console.error("❌ hindiWatchlist data not found. Make sure hindirecommendations.js is loaded correctly.");
         document.getElementById("hindiGrid").innerHTML = "<p style='text-align:center; color: #ff6666; font-size: 1.2em; margin-top: 3rem;'>Error loading data. Please check hindirecommendations.js file.</p>";
       }
     };
-
-    window.onscroll = () => {
-      document.getElementById("topBtn").style.display =
-        window.scrollY > 400 ? "block" : "none";
-    };
-
-    function scrollTopSmooth() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function goHome() {
-      window.location.href = "collections.html";
-    }
   </script>
-
 </body>
 </html>
