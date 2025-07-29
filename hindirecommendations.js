@@ -130,8 +130,6 @@ const hindiWatchlist = [
     imdbRating: 7.8,
     description: "A murder at a wedding sets off a chain of cover-ups and chaos in this gritty tale of power and justice."
   },
-
-  // Batch 2
   {
     id: 11,
     title: "Special OPS",
@@ -392,8 +390,6 @@ const hindiWatchlist = [
     imdbRating: 9.1,
     description: "A heartwarming tale of a small-town Mishra family — steeped in nostalgia, humor, and middle-class magic."
   },
-
-  // Batch 4
   {
     id: 31,
     title: "Scoop",
@@ -484,5 +480,109 @@ const hindiWatchlist = [
     popularity: 80,
     imdbRating: 8.2,
     description: "Inspired by true events, a forest officer uncovers a massive ivory poaching ring in Kerala’s jungles."
+  },
+  {
+    id: 38,
+    title: "Bard of Blood",
+    platform: "Netflix",
+    genre: "Spy Thriller",
+    year: 2019,
+    seasons: 1,
+    episodes: 7,
+    runtime: "5.5h",
+    popularity: 70,
+    imdbRating: 6.9,
+    description: "A former RAW agent, now a professor, is called back into action to save four Indian intelligence officers held hostage by the Taliban."
+  },
+  {
+    id: 39,
+    title: "She",
+    platform: "Netflix",
+    genre: "Crime Drama",
+    year: 2020,
+    seasons: 2,
+    episodes: 14,
+    runtime: "10h",
+    popularity: 68,
+    imdbRating: 6.4,
+    description: "An unassuming female constable goes undercover to bust a drug gang, navigating a dangerous world and discovering her own power."
+  },
+  {
+    id: 40,
+    title: "Aranyak",
+    platform: "Netflix",
+    genre: "Crime Thriller",
+    year: 2021,
+    seasons: 1,
+    episodes: 8,
+    runtime: "6.5h",
+    popularity: 75,
+    imdbRating: 7.8,
+    description: "When a foreign teenage tourist disappears in a misty Himalayan town, a local cop unearths a forgotten myth and a web of crimes."
+  },
+  {
+    id: 41,
+    title: "Chakravyuh",
+    platform: "MX Player",
+    genre: "Cyber Crime Thriller",
+    year: 2020,
+    seasons: 1,
+    episodes: 8,
+    runtime: "6h",
+    popularity: 65,
+    imdbRating: 6.0,
+    description: "A tech genius is found dead, leading a cybercrime investigator into a dark maze of hackers, digital secrets, and conspiracy."
+  },
+  {
+    id: 42,
+    title: "Jamtara - Sabka Number Ayega",
+    platform: "Netflix",
+    genre: "Crime Drama",
+    year: 2020,
+    seasons: 2,
+    episodes: 18,
+    runtime: "12h",
+    popularity: 77,
+    imdbRating: 7.3,
+    description: "Based on true events, a group of young men run a successful phishing operation from a remote village, but soon face political and criminal threats."
+  },
+  {
+    id: 43,
+    title: "Ray",
+    platform: "Netflix",
+    genre: "Drama Anthology",
+    year: 2021,
+    seasons: 1,
+    episodes: 4,
+    runtime: "6h",
+    popularity: 72,
+    imdbRating: 7.1,
+    description: "Four gripping stories inspired by the works of legendary filmmaker Satyajit Ray, exploring themes of ego, revenge, and betrayal."
+  },
+  {
+    id: 44,
+    title: "Dahaad",
+    platform: "Amazon Prime Video",
+    genre: "Crime Thriller",
+    year: 2023,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 81,
+    imdbRating: 7.8,
+    description: "A female police officer investigates a series of mysterious disappearances in a small town, uncovering a serial killer preying on women."
+  },
+  {
+    id: 45,
+    title: "Farzi",
+    platform: "Amazon Prime Video",
+    genre: "Crime Thriller",
+    year: 2023,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 93,
+    imdbRating: 8.4,
+    description: "A brilliant con artist enters the world of high-stakes counterfeit money, pursued by a fiery task force officer."
   }
 ];
