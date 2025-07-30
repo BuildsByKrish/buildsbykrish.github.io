@@ -3,182 +3,308 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A comprehensive, serially numbered list of popular Hindi web series with detailed information for easy Browse.">
-  <title>Hindi Series List - Detailed</title>
+  <meta name="description" content="A comprehensive, interactive, and modern list of popular Hindi web series with detailed information.">
+  <title>Hindi Series Vault - Modern Display</title>
   <style>
-    /* General Body and Typography */
+    /* Global Styles & Body Layout */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif; /* Modern, clean font */
       margin: 0;
-      padding: 20px;
-      background-color: #f5f7fa;
-      color: #2c3e50;
-      line-height: 1.6;
+      padding: 30px 20px; /* More generous padding */
+      background: linear-gradient(to right, #eceff1, #cfd8dc); /* Subtle gradient background */
+      color: #37474f; /* Darker text for better contrast */
+      line-height: 1.7;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      padding-bottom: 70px; /* Space for fixed elements */
+      padding-bottom: 90px; /* Space for fixed elements */
+      box-sizing: border-box; /* Include padding in element's total width and height */
     }
 
+    /* Main Heading */
     h1 {
       text-align: center;
-      color: #007bff;
-      margin-bottom: 35px;
-      font-size: 2.5em; /* Larger, more prominent heading */
-      letter-spacing: 0.8px;
-      padding-bottom: 12px;
-      border-bottom: 3px solid #007bff; /* More defined, matching underline */
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle text shadow */
+      color: #2196f3; /* Bright blue for heading */
+      margin-bottom: 45px;
+      font-size: 2.8em; /* Larger, bolder heading */
+      letter-spacing: 1.2px;
+      padding-bottom: 15px;
+      border-bottom: 4px solid #bbdefb; /* Soft blue underline */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* More pronounced shadow */
+      font-weight: 700;
     }
 
-    /* List Container */
+    /* Ordered List Container */
     ol {
-      list-style-type: decimal;
-      max-width: 750px; /* Wider list for more content */
+      list-style-type: none; /* Custom numbering, so hide default */
+      max-width: 850px; /* Wider cards */
       margin: 0 auto;
-      padding-left: 30px;
+      padding-left: 0; /* Remove default padding for OL */
       flex-grow: 1;
+      counter-reset: series-counter; /* Initialize counter for custom numbering */
     }
 
-    /* Individual List Item (Series Card) */
+    /* Individual Series Card (li.series-item) */
     li.series-item {
       background-color: #ffffff;
       border: 1px solid #e0e0e0;
-      margin-bottom: 15px; /* More space between items */
-      padding: 20px 25px; /* Generous padding */
-      border-radius: 10px; /* More rounded corners */
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* More noticeable shadow */
-      transition: all 0.3s ease-in-out; /* Smoother transitions */
-      position: relative; /* For numbering and potential badges */
-      display: block; /* Ensure full clickable area if links were added */
+      margin-bottom: 20px; /* More space between cards */
+      padding: 25px 30px; /* Ample padding */
+      border-radius: 12px; /* Nicely rounded corners */
+      box-shadow: 0 6px 15px rgba(0,0,0,0.12); /* Modern, softer shadow */
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth hover animation */
+      position: relative;
+      overflow: hidden; /* Ensures content stays within bounds */
     }
 
     li.series-item:hover {
-      background-color: #e6f7ff;
-      border-color: #007bff; /* Border color matches heading on hover */
-      transform: translateY(-5px); /* More pronounced lift effect */
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow on hover */
+      border-color: #2196f3; /* Highlight border on hover */
+      transform: translateY(-8px); /* More pronounced lift */
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2); /* Stronger shadow on hover */
     }
 
-    /* Numbering for List Items */
-    /* Hide default OL numbers and use custom numbering within LI */
-    ol li {
-      list-style: none; /* Hide default numbering */
-      counter-increment: series-counter; /* Increment counter for each li */
-    }
-
+    /* Custom Numbering for Cards */
     li.series-item::before {
-      content: counter(series-counter) ". "; /* Display custom counter */
-      color: #007bff; /* Blue color for numbers */
-      font-weight: bold;
-      font-size: 1.3em;
+      counter-increment: series-counter; /* Increment for each card */
+      content: counter(series-counter) ".";
       position: absolute;
-      left: 0px; /* Adjust as needed for alignment with content */
-      top: 20px;
-      width: 25px; /* Reserve space for number */
-      text-align: right;
+      top: 25px;
+      left: 0px; /* Aligned to the left edge of the card */
+      font-size: 2em; /* Large, prominent number */
+      font-weight: 800;
+      color: #90caf9; /* Muted blue for number */
+      opacity: 0.8;
+      width: 50px; /* Space for the number */
+      text-align: center; /* Center the number */
     }
 
     li.series-item > div {
-        margin-left: 30px; /* Push content to the right of the number */
+      margin-left: 60px; /* Offset content to clear the number */
     }
 
     /* Series Title */
     .series-title {
-      font-size: 1.6em;
-      color: #0056b3; /* Slightly darker blue for titles */
-      margin-bottom: 8px;
-      font-weight: 700; /* Bolder title */
-    }
-
-    /* Series Details */
-    .series-details p {
-      margin: 4px 0; /* Compact spacing for details */
-      font-size: 0.95em;
-      color: #555;
-    }
-
-    .series-details strong {
-      color: #333;
-    }
-
-    /* Description */
-    .series-description {
-      margin-top: 15px;
-      font-style: italic;
-      color: #666;
-      border-top: 1px dashed #eee; /* Dotted line above description */
-      padding-top: 10px;
+      font-size: 1.8em;
+      color: #3f51b5; /* Deep blue for titles */
+      margin-bottom: 10px;
+      font-weight: 700;
+      line-height: 1.2;
     }
 
     /* Must-Watch Badge */
     .mustwatch-badge {
-      background-color: #28a745; /* Green for must-watch */
+      background-color: #4caf50; /* Vibrant green */
       color: white;
-      padding: 4px 10px;
-      border-radius: 5px;
-      font-size: 0.8em;
-      font-weight: bold;
-      margin-left: 10px;
+      padding: 5px 12px;
+      border-radius: 20px; /* Pill-shaped badge */
+      font-size: 0.85em;
+      font-weight: 600;
+      margin-left: 15px;
       vertical-align: middle;
-      display: inline-block; /* Aligns with title */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Key Details Section */
+    .series-key-details {
+      display: flex;
+      flex-wrap: wrap; /* Allow details to wrap on smaller screens */
+      gap: 10px 20px; /* Space between detail items */
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed #e0e0e0; /* Separator for details */
+    }
+
+    .series-key-details p {
+      margin: 0; /* Remove default paragraph margins */
+      font-size: 0.9em;
+      color: #546e7a;
+      flex: 1 1 auto; /* Allow items to grow and shrink */
+      min-width: 150px; /* Minimum width for each detail item */
+    }
+
+    .series-key-details strong {
+      color: #333;
+      font-weight: 600;
+    }
+
+    /* Toggle Button for Description */
+    .toggle-description-btn {
+      background-color: #03a9f4; /* Light blue button */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.95em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      font-weight: 600;
+      margin-top: 10px; /* Space above button */
+    }
+
+    .toggle-description-btn:hover {
+      background-color: #0288d1; /* Darker blue on hover */
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    }
+
+    /* Description Content - Hidden by Default */
+    .series-description-content {
+      max-height: 0; /* Initially collapsed */
+      overflow: hidden; /* Hide overflowing content */
+      opacity: 0; /* Make invisible */
+      transition: max-height 0.6s ease-out, opacity 0.5s ease-out, padding 0.5s ease-out, border-top 0.5s ease-out, margin-top 0.5s ease-out; /* Smooth transition */
+      color: #455a64;
+      font-style: italic;
+    }
+
+    /* Description Content - When Expanded */
+    .series-description-content.expanded {
+      max-height: 300px; /* Sufficiently large to show all descriptions without scroll */
+      opacity: 1;
+      padding-top: 20px; /* Space when expanded */
+      border-top: 1px dashed #9e9e9e; /* Separator when expanded */
+      margin-top: 20px;
     }
 
     /* Scroll to Top Button */
     #topBtn {
       display: none;
       position: fixed;
-      bottom: 20px;
-      right: 30px;
-      z-index: 100;
+      bottom: 25px;
+      right: 35px;
+      z-index: 1000; /* Ensure it's on top of everything */
       border: none;
       outline: none;
-      background-color: #007bff;
+      background-color: #ff5722; /* Vibrant orange */
       color: white;
       cursor: pointer;
-      padding: 14px 18px;
+      padding: 15px 20px;
       border-radius: 50%;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
       transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     }
 
     #topBtn:hover {
-      background-color: #0056b3;
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      background-color: #e64a19; /* Darker orange on hover */
+      transform: translateY(-3px) scale(1.08); /* More noticeable lift and scale */
+      box-shadow: 0 6px 15px rgba(0,0,0,0.35);
     }
 
     /* Footer Styles */
     footer {
-        text-align: center;
-        margin-top: 40px;
-        padding: 20px;
-        font-size: 0.95em;
-        color: #7f8c8d;
-        border-top: 1px solid #e0e0e0;
-        width: 100%;
-        background-color: #ffffff;
-        box-shadow: 0 -2px 5px rgba(0,0,0,0.03);
+      text-align: center;
+      margin-top: 50px; /* More space from content */
+      padding: 25px;
+      font-size: 0.9em;
+      color: #607d8b;
+      border-top: 1px solid #b0bec5; /* Solid, subtle border */
+      width: 100%;
+      background-color: #e0e0e0; /* Light grey footer background */
+      box-shadow: 0 -3px 8px rgba(0,0,0,0.05);
+      box-sizing: border-box; /* Include padding in width */
     }
 
     footer a {
-        color: #007bff;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s ease-in-out;
+      color: #2196f3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
     }
 
     footer a:hover {
-        text-decoration: underline;
-        color: #0056b3;
+      text-decoration: underline;
+      color: #1976d2;
+    }
+
+    /* Responsive Design Adjustments */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2em;
+        margin-bottom: 30px;
+      }
+      li.series-item {
+        padding: 20px;
+      }
+      li.series-item::before {
+        font-size: 1.8em;
+        width: 40px;
+        top: 20px;
+      }
+      li.series-item > div {
+        margin-left: 50px;
+      }
+      .series-title {
+        font-size: 1.5em;
+      }
+      .series-key-details {
+        gap: 8px 15px;
+      }
+      .series-key-details p {
+        font-size: 0.85em;
+        min-width: 120px;
+      }
+      .toggle-description-btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+      }
+      #topBtn {
+        padding: 12px 16px;
+        font-size: 18px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+      }
+      li.series-item {
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+      li.series-item::before {
+        font-size: 1.6em;
+        width: 35px;
+        top: 15px;
+      }
+      li.series-item > div {
+        margin-left: 45px;
+      }
+      .series-title {
+        font-size: 1.3em;
+      }
+      .series-key-details {
+        flex-direction: column; /* Stack details vertically */
+        gap: 5px;
+      }
+      .series-key-details p {
+        min-width: unset; /* Remove min-width for full stacking */
+        font-size: 0.8em;
+      }
+      .mustwatch-badge {
+        padding: 3px 8px;
+        font-size: 0.75em;
+        margin-left: 10px;
+      }
+      .series-description-content.expanded {
+        padding-top: 15px;
+        margin-top: 15px;
+      }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <h1>Hindi Series List - All Details</h1>
+  <h1>Hindi Series Vault</h1>
 
   <ol id="seriesList">
     <li class="series-item"><div>Loading series data...</div></li> </ol>
@@ -193,61 +319,77 @@
   <script src="hindirecommendations.js" defer></script>
 
   <script defer>
-    // This script will run AFTER hindirecommendations.js and the HTML are fully parsed.
+    // This script will run AFTER hindirecommendations.js and the HTML document are fully parsed.
 
     const seriesListElement = document.getElementById('seriesList');
 
     function populateSeriesList() {
-      // Clear any initial loading messages or old content
-      seriesListElement.innerHTML = '';
+      seriesListElement.innerHTML = ''; // Clear initial loading message
 
-      // Check if the 'hindiWatchlist' array exists, is an array, and has data
+      // Check for the hindiWatchlist data
       if (typeof hindiWatchlist !== 'undefined' && Array.isArray(hindiWatchlist) && hindiWatchlist.length > 0) {
         hindiWatchlist.forEach(show => {
           const listItem = document.createElement('li');
-          listItem.classList.add('series-item'); // Add class for styling
+          listItem.classList.add('series-item'); // Add the main card styling class
 
-          // Create the content for each series item
+          // Construct the inner HTML for each series card
+          // The description is wrapped in a div with 'series-description-content' and initially hidden
           let content = `
             <div>
               <h2 class="series-title">
                 ${show.title}
                 ${show.mustwatch ? '<span class="mustwatch-badge">Must-Watch</span>' : ''}
               </h2>
-              <div class="series-details">
+              <div class="series-key-details">
                 <p><strong>Platform:</strong> ${show.platform}</p>
                 <p><strong>Genre:</strong> ${show.genre}</p>
                 <p><strong>Year:</strong> ${show.year}</p>
-                <p><strong>Seasons:</strong> ${show.seasons} | <strong>Episodes:</strong> ${show.episodes}</p>
+                <p><strong>Seasons:</strong> ${show.seasons}</p>
+                <p><strong>Episodes:</strong> ${show.episodes}</p>
                 <p><strong>Runtime:</strong> ${show.runtime}</p>
                 <p><strong>Popularity:</strong> ${show.popularity}%</p>
                 <p><strong>IMDb Rating:</strong> ${show.imdbRating}</p>
               </div>
-              <p class="series-description">${show.description}</p>
+              <button class="toggle-description-btn">View Details</button>
+              <div class="series-description-content">
+                <p>${show.description}</p>
+              </div>
             </div>
           `;
 
-          listItem.innerHTML = content; // Set the inner HTML
-          seriesListElement.appendChild(listItem); // Add to the list
+          listItem.innerHTML = content;
+          seriesListElement.appendChild(listItem);
+
+          // Add event listener for the "View Details" button for *this specific* list item
+          const toggleBtn = listItem.querySelector('.toggle-description-btn');
+          const descriptionDiv = listItem.querySelector('.series-description-content');
+
+          toggleBtn.addEventListener('click', () => {
+            descriptionDiv.classList.toggle('expanded'); // Toggle the 'expanded' class
+            if (descriptionDiv.classList.contains('expanded')) {
+              toggleBtn.textContent = 'Hide Details';
+            } else {
+              toggleBtn.textContent = 'View Details';
+            }
+          });
         });
       } else {
-        // Display an error if data is missing or malformed
+        // Display an error message if data is not found or empty
         const errorItem = document.createElement('li');
         errorItem.classList.add('series-item');
-        errorItem.style.color = '#e74c3c'; /* Red for error text */
+        errorItem.style.color = '#e74c3c';
         errorItem.innerHTML = '<div>Error: Series data not found or is empty. Please ensure `hindirecommendations.js` is linked correctly and contains the `hindiWatchlist` array.</div>';
         seriesListElement.appendChild(errorItem);
       }
     }
 
-    // Call populateSeriesList when the DOM is ready
+    // Call populateSeriesList function when the entire DOM is loaded
     document.addEventListener('DOMContentLoaded', populateSeriesList);
 
 
     // --- Scroll to Top Button Functionality ---
     const topButton = document.getElementById("topBtn");
 
-    // Show/hide the button based on scroll position
     window.onscroll = function() {
       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         topButton.style.display = "block";
@@ -256,7 +398,6 @@
       }
     };
 
-    // Scroll to the top when button is clicked
     function topFunction() {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
