@@ -2,117 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hindi Series List</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 20px;
-      background-color: #f0f0f0;
-      color: #333;
-      padding-bottom: 60px; /* Add space for the fixed scroll button */
-    }
-    h1 {
-      text-align: center;
-      color: #0056b3;
-      margin-bottom: 30px;
-    }
-    ol {
-      list-style-type: decimal; /* Ensures numerical numbering */
-      max-width: 600px;
-      margin: 0 auto;
-      padding-left: 25px; /* Space for the numbers */
-    }
-    li {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      margin-bottom: 8px; /* Slightly less space than before */
-      padding: 10px 15px;
-      border-radius: 5px;
-      font-size: 1.1em;
-    }
-    /* Add a subtle hover effect for better user experience */
-    li:hover {
-      background-color: #e9f5ff; /* Light blue on hover */
-      border-color: #a7d9ff;
-    }
-
-    /* Scroll to Top Button Styles */
-    #topBtn {
-      display: none; /* Hidden by default */
-      position: fixed; /* Fixed position */
-      bottom: 20px; /* Place at the bottom */
-      right: 30px; /* Place at the right */
-      z-index: 99; /* Make sure it's on top */
-      border: none; /* Remove borders */
-      outline: none; /* Remove outline */
-      background-color: #007bff; /* Blue background */
-      color: white; /* White text */
-      cursor: pointer; /* Add a mouse pointer on hover */
-      padding: 15px; /* Some padding */
-      border-radius: 10px; /* Rounded corners */
-      font-size: 18px; /* Increase font size */
-      transition: background-color 0.3s, transform 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    #topBtn:hover {
-      background-color: #0056b3; /* Darker blue on hover */
-      transform: translateY(-2px);
-    }
-
-    footer {
-        text-align: center;
-        margin-top: 30px;
-        padding: 15px;
-        font-size: 0.9em;
-        color: #555;
-        border-top: 1px solid #eee;
-    }
-
-    footer a {
-        color: #007bff;
-        text-decoration: none;
-    }
-
-    footer a:hover {
-        text-decoration: underline;
-    }
-  </style>
+  <meta name="description" content="A serially numbered list of popular Hindi web series for easy Browse.">
+  <title>Hindi Series List</title>
 </head>
-<body>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f5f7fa; color: #2c3e50; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 70px;">
 
-  <h1>Hindi Series List (Serial Numbered)</h1>
+  <h1 style="text-align: center; color: #007bff; margin-bottom: 35px; font-size: 2.2em; letter-spacing: 0.5px; padding-bottom: 10px; border-bottom: 2px solid #e0e6eb;">Hindi Series List (Serial Numbered)</h1>
 
-  <ol id="seriesList">
-    </ol>
+  <ol id="seriesList" style="list-style-type: decimal; max-width: 650px; margin: 0 auto; padding-left: 30px; flex-grow: 1;">
+    <li style="background-color: #ffffff; border: 1px solid #e0e0e0; margin-bottom: 10px; padding: 12px 18px; border-radius: 8px; font-size: 1.15em; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.2s ease-in-out;">Loading series...</li> </ol>
 
-  <button onclick="topFunction()" id="topBtn" title="Go to top">⬆️</button>
+  <button onclick="topFunction()" id="topBtn" title="Go to top" style="display: none; position: fixed; bottom: 20px; right: 30px; z-index: 100; border: none; outline: none; background-color: #007bff; color: white; cursor: pointer; padding: 14px 18px; border-radius: 50%; font-size: 20px; font-weight: bold; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">⬆️</button>
 
-  <footer>
-    <p>&copy; <span id="currentYear"></span> Krish Vault. All rights reserved.</p>
-    <p><a href="your-home-page.html">Back to Home</a></p>
+  <footer style="text-align: center; margin-top: 40px; padding: 20px; font-size: 0.95em; color: #7f8c8d; border-top: 1px solid #e0e0e0; width: 100%; background-color: #ffffff; box-shadow: 0 -2px 5px rgba(0,0,0,0.03);">
+    <p style="margin: 0;">&copy; <span id="currentYear"></span> Krish Vault. All rights reserved.</p>
+    <p style="margin: 10px 0 0 0;"><a href="your-home-page.html" style="color: #007bff; text-decoration: none; font-weight: 500; transition: color 0.2s ease-in-out;">Back to Home</a></p>
   </footer>
 
-  <script src="hindirecommendations.js"></script>
-  <script>
+  <script src="hindirecommendations.js" defer></script>
+  <script defer>
+    // This script runs AFTER hindirecommendations.js and HTML are loaded.
+
     // Get the ordered list element
     const seriesListElement = document.getElementById('seriesList');
 
-    // Check if hindiWatchlist exists (it should, from the linked JS file)
-    if (typeof hindiWatchlist !== 'undefined' && Array.isArray(hindiWatchlist)) {
-      // Loop through the hindiWatchlist array and create list items
-      hindiWatchlist.forEach(show => {
-        const listItem = document.createElement('li');
-        listItem.textContent = show.title; // <ol> will add the serial number automatically
-        seriesListElement.appendChild(listItem);
-      });
-    } else {
-      seriesListElement.innerHTML = '<li>Error: Series data not found. Please ensure hindirecommendations.js is linked correctly and contains the hindiWatchlist array.</li>';
+    // Function to populate the list
+    function populateSeriesList() {
+      // Clear any loading messages
+      seriesListElement.innerHTML = '';
+
+      // Check if hindiWatchlist exists and is an array
+      if (typeof hindiWatchlist !== 'undefined' && Array.isArray(hindiWatchlist) && hindiWatchlist.length > 0) {
+        // Loop through the hindiWatchlist array and create list items
+        hindiWatchlist.forEach(show => {
+          const listItem = document.createElement('li');
+          // Apply inline styles for list items
+          listItem.setAttribute('style', 'background-color: #ffffff; border: 1px solid #e0e0e0; margin-bottom: 10px; padding: 12px 18px; border-radius: 8px; font-size: 1.15em; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.2s ease-in-out;');
+          
+          // To handle hover effects with inline styles, we need JavaScript for mouseover/mouseout
+          listItem.onmouseover = function() {
+            this.style.backgroundColor = '#e6f7ff';
+            this.style.borderColor = '#a0d9f0';
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+          };
+          listItem.onmouseout = function() {
+            this.style.backgroundColor = '#ffffff';
+            this.style.borderColor = '#e0e0e0';
+            this.style.transform = 'none';
+            this.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+          };
+
+          // The <ol> tag naturally handles the numbering, so just set the title text
+          listItem.textContent = show.title;
+          seriesListElement.appendChild(listItem);
+        });
+      } else {
+        const errorItem = document.createElement('li');
+        errorItem.setAttribute('style', 'background-color: #ffffff; border: 1px solid #e0e0e0; margin-bottom: 10px; padding: 12px 18px; border-radius: 8px; font-size: 1.15em; box-shadow: 0 2px 5px rgba(0,0,0,0.05); color: #e74c3c;');
+        errorItem.textContent = 'No series data found. Please ensure hindirecommendations.js is linked correctly and contains the `hindiWatchlist` array.';
+        seriesListElement.appendChild(errorItem);
+      }
     }
 
+    // Call the populate function once the DOM is ready (or after defer scripts run)
+    document.addEventListener('DOMContentLoaded', populateSeriesList);
+
+
     // --- Scroll to Top Button JavaScript ---
-    // Get the button
     let mybutton = document.getElementById("topBtn");
 
     // When the user scrolls down 20px from the top of the document, show the button
@@ -134,6 +92,31 @@
 
     // Set the current year in the footer
     document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+    // JavaScript for button hover effect (since CSS :hover cannot be inline)
+    mybutton.onmouseover = function() {
+      this.style.backgroundColor = '#0056b3';
+      this.style.transform = 'translateY(-2px) scale(1.05)';
+      this.style.boxShadow = '0 6px 12px rgba(0,0,0,0.3)';
+    };
+    mybutton.onmouseout = function() {
+      this.style.backgroundColor = '#007bff';
+      this.style.transform = 'none';
+      this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+    };
+
+    // JavaScript for footer link hover effect
+    const footerLink = document.querySelector('footer a');
+    if (footerLink) {
+      footerLink.onmouseover = function() {
+        this.style.textDecoration = 'underline';
+        this.style.color = '#0056b3';
+      };
+      footerLink.onmouseout = function() {
+        this.style.textDecoration = 'none';
+        this.style.color = '#007bff';
+      };
+    }
   </script>
 
 </body>
