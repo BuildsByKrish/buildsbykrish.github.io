@@ -2,273 +2,441 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hindi Series Vault</title>
+  <title>Hindi Series Vault - Galactic Gateway</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A comprehensive, interactive, and modern list of popular Hindi web series with detailed information.">
+  <meta name="description" content="A futuristic, interactive vault showcasing Hindi web series with a special glowy golden design for must-watch titles.">
 
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="vault-theme.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <script defer src="hindirecommendations.js"></script>
 
   <style>
     /*
       ======================================================
-      CUSTOM STYLES FOR HINDI SERIES PAGE (Modern & Interactive)
-      These styles are specific to hindi.html and enhance it.
+      FUTURISTIC & GOLDEN GLOW THEME FOR HINDI SERIES VAULT
       ======================================================
     */
 
+    /* Base Body and Typography */
     body {
-      font-family: 'Poppins', sans-serif; /* Use Poppins for a modern feel */
-      padding: 30px 20px; /* More generous padding */
-      background: linear-gradient(to right, #eceff1, #cfd8dc); /* Subtle gradient background */
-      color: #37474f; /* Darker text for better contrast */
-      line-height: 1.7;
+      font-family: 'Poppins', sans-serif; /* Primary font for readability */
+      margin: 0;
+      padding: 40px 20px; /* More generous padding for modern feel */
+      background: #0d1117; /* Dark, deep space background */
+      color: #e0e0e0; /* Light grey for general text */
+      line-height: 1.8;
       min-height: 100vh;
       box-sizing: border-box;
-      /* Adjust body padding-bottom to accommodate stacked buttons */
-      padding-bottom: 150px; /* Increased space for stacked buttons + footer */
+      padding-bottom: 150px; /* Space for stacked buttons + footer */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      position: relative;
     }
 
+    /* Subtle background texture/pattern for depth */
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM1YzVhNmQiIGZpbGwtb3BhY2l0eT0iMC4wNyI+PHBhdGggZD0iTTM2Ljg4IDUwLjE3Yy01LjU1IDAtMTAuMDIgNC40OC0xMC4wMiAxMC4wMnYyLjQ2YzAgNS41NS00LjQ4IDEwLjAyLTEwLjAyIDEwLjAyaC0yLjQ2Yy01LjU1IDAtMTAuMDIgNC40OC0xMC4wMiAxMC4wMlYzNmMwLTMuNzQgMy4wMy02Ljc3IDYuNzctNi43N2gyLjQ2YzMuNzQgMCA2Ljc3IDMuMDMgNi43NyA2Ljc3djIuNDZjMCAzLjc0IDMuMDMgNi43NyA2Ljc3IDYuNzdoMi40NmMzLjc0IDAgNi43NyAzLjAzIDYuNzcgNi43N3YyLjQ2YzAgNS41NS00LjQ4IDEwLjAyLTEwLjAyIDEwLjAyLTIuNzYgMC01LjAxLTIuMjUtNS4wMS01LjAxVjM2LjEyYy0yLjc2IDAtNS4wMS0yLjI1LTUuMDEtNS4wMXYtMi40NmMwLTIuNzYgMi4yNS01LjAxIDUuMDEtNS4wMXMyLjU1LTIuMDYgMi41NS00LjgydjIuNDZjMC0yLjc2LTIuMjUtNS4wMS01LjAxLTUuMDFoLTIuNDZjLTIuNzYgMC01LjAxLTIuMjUtNS4wMS01LjAxVjQuODVjMC0yLjc2IDIuMjUtNS4wMSA1LjAxLTUuMDFoLTIuNDYtMi41NEM0Ni44OCAwIDU2LjcxIDkuMTcgNTYuNzEgMjAuMTZ2Mi41NUM1Ni43MSAyOC4yMSA0OS42IDIwLjEzIDQ2Ljg4IDIwLjEzaC0yLjQ2Yy0zLjc0IDAtNi43NyAzLjAzLTYuNzcgNi43N3YyLjQ2YzAgMy43NCAzLjAzIDYuNzcgNi43NyA2Ljc3aDIuNDZjMy43NCAwIDYuNzcgMy4wMyA2Ljc3IDYuNzdzMy4wMyA2Ljc3IDYuNzcgNi43N2gyLjQ2Yy0yLjc2IDAtNS4wMS0yLjI1LTUuMDEtNS4wMVY0MC4xMmMtMi43NiAwLTUuMDEtMi4yNS01LjAxLTUuMDFWMjQuNTZjMC01LjU1IDQuNDgtMTAuMDIgMTAuMDItMTAuMDJoMi40NmM1LjU1IDAgMTAuMDIgNC40OCAxMC4wMiAxMC4wMnYyLjQ2YzAgNS41NS00LjQ4IDEwLjAyLTEwLjAyIDEwLjAyaC0yLjQ2Yy01LjU1IDAtMTAuMDIgNC40OC0xMC4wMiAxMC4wMlYzNi41NmMwLTIuNzYgMi4yNS01LjAxIDUuMDEtNS4wMXYyLjQ2YzAgMi43Ni0yLjI1IDUuMDEtNS4wMSA1LjAxdi0yLjQ2YzAtMi43NiAyLjI1LTUuMDEgNS4wMS01LjAxdjIuNDZjMC0yLjc2LTIuMjUtNS4wMS01LjAxLTUuMDFoLTUuMDZMNDYuODggMCIgZmlsbC1vcGFjaXR5PSIuMDQiIGZpbGw9IiM2OWZjZmYiLz48L2c+PC9nPg==') repeat;
+        opacity: 0.05;
+        z-index: -1;
+    }
+
+
+    /* Main Heading */
     h1 {
+      font-family: 'Rajdhani', sans-serif; /* Futuristic font for heading */
       text-align: center;
-      color: #2196f3; /* Bright blue for heading */
-      margin-bottom: 45px;
-      font-size: 2.8em; /* Larger, bolder heading */
-      letter-spacing: 1.2px;
-      padding-bottom: 15px;
-      border-bottom: 4px solid #bbdefb; /* Soft blue underline */
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      color: #00bcd4; /* Cyan/Teal glow */
+      margin-bottom: 50px;
+      font-size: 3.5em; /* Very large, impactful heading */
+      letter-spacing: 2px;
+      padding-bottom: 20px;
+      border-bottom: 5px solid rgba(0, 188, 212, 0.3); /* Soft, glowing underline */
+      text-shadow: 0 0 15px rgba(0, 188, 212, 0.6), 0 0 30px rgba(0, 188, 212, 0.4); /* Intense glow */
       font-weight: 700;
+      animation: pulsateGlow 3s infinite alternate; /* Subtle pulsating glow */
     }
 
-    /* Filters Section - Keep existing styles from your style.css or vault-theme.css */
-    /* Ensure .filters, .filters select, .filters input, .filters button styles from your external CSS apply */
+    @keyframes pulsateGlow {
+        from { text-shadow: 0 0 10px rgba(0, 188, 212, 0.5), 0 0 20px rgba(0, 188, 212, 0.3); }
+        to { text-shadow: 0 0 20px rgba(0, 188, 212, 0.7), 0 0 40px rgba(0, 188, 212, 0.5); }
+    }
 
-    /* Grid Container - Styles from your external CSS are expected */
+
+    /* Filters Section - Enhancements */
+    .filters {
+      gap: 1.2rem; /* More spacing */
+      margin: 2rem auto 3rem; /* Centered, more vertical space */
+      max-width: 900px; /* Constrain width */
+      padding: 0 15px;
+    }
+
+    .filters select,
+    .filters input,
+    .filters button {
+      padding: 0.8rem 1.5rem;
+      background: #1a202c; /* Darker background for inputs/buttons */
+      color: #00bcd4; /* Cyan/Teal text for interactive elements */
+      border: 1px solid #00bcd4; /* Cyan border */
+      border-radius: 8px; /* Slightly more rounded */
+      font-family: 'Rajdhani', sans-serif; /* Futuristic font */
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(0, 188, 212, 0.3); /* Subtle glow */
+    }
+
+    .filters select:focus,
+    .filters input:focus,
+    .filters button:hover {
+      background: #263238; /* Slightly lighter dark on hover/focus */
+      color: #ffeb3b; /* Golden highlight on hover/focus */
+      border-color: #ffeb3b; /* Golden border */
+      box-shadow: 0 0 15px rgba(255, 235, 59, 0.6), 0 0 25px rgba(255, 235, 59, 0.4); /* Golden glow */
+      transform: translateY(-2px);
+    }
+    .filters input::placeholder {
+        color: rgba(0, 188, 212, 0.7); /* Lighter placeholder text */
+    }
+
+
+    /* Grid Container */
     .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px; /* More space between grid items */
-        max-width: 1200px; /* Limit overall grid width */
-        margin: 0 auto;
-        padding: 0 10px;
+        gap: 40px; /* More space between items in the grid */
+        max-width: 1300px; /* Wider grid for more content */
+        padding: 0 20px;
     }
 
     /* Poster Tile (Individual Series Card) */
     .poster-tile {
-        background-color: #ffffff;
-        border: 1px solid #e0e0e0;
-        border-radius: 12px;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        overflow: hidden;
-        display: flex; /* Use flex for internal layout */
-        flex-direction: column;
+        background: #1a202c; /* Dark card background */
+        border: 1px solid #37474f; /* Subtle dark border */
+        border-radius: 15px; /* More pronounced rounded corners */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Deeper shadow for depth */
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         position: relative;
+        overflow: hidden;
+        z-index: 1; /* Ensure cards are above background effects */
     }
 
     .poster-tile:hover {
-        border-color: #2196f3;
-        transform: translateY(-8px);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        border-color: #00bcd4; /* Cyan border on hover */
+        transform: translateY(-10px) scale(1.02); /* More dynamic lift and slight scale */
+        box-shadow: 0 15px 35px rgba(0, 188, 212, 0.3), 0 0 30px rgba(0, 188, 212, 0.1); /* Cyan glow on hover */
     }
 
     .poster-info {
-        padding: 20px;
-        flex-grow: 1; /* Allows info section to grow */
+        padding: 25px;
     }
 
     .poster-info h3 {
-        font-size: 1.6em; /* Slightly smaller for card title */
-        color: #3f51b5;
+        font-family: 'Rajdhani', sans-serif; /* Futuristic font for card titles */
+        font-size: 1.8em;
+        color: #e0f7fa; /* Lighter, almost white for titles */
         margin-top: 0;
-        margin-bottom: 10px;
-        font-weight: 700;
-        line-height: 1.2;
+        margin-bottom: 15px;
+        font-weight: 600;
+        line-height: 1.3;
+        position: relative;
+    }
+    .poster-info h3::after { /* Underline effect for title */
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: #00bcd4;
+        margin-top: 8px;
+        transition: width 0.3s ease;
+    }
+    .poster-tile:hover .poster-info h3::after {
+        width: 100%; /* Expands on hover */
     }
 
     /* Tags within cards */
     .tags {
-        margin-bottom: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px; /* Space between tags */
+        margin-bottom: 15px;
+        gap: 10px;
     }
 
     .tag {
-        background-color: #e0f2f7; /* Light blue tag background */
-        color: #0288d1; /* Darker blue tag text */
-        padding: 4px 10px;
-        border-radius: 5px;
-        font-size: 0.8em;
+        background-color: #263238; /* Darker tag background */
+        color: #80deea; /* Lighter cyan tag text */
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.85em;
         font-weight: 500;
+        border: 1px solid rgba(0, 188, 212, 0.2);
+    }
+    .tag[data-genre]::before { /* Small icon next to genre tag */
+        content: '🎬 ';
+        opacity: 0.7;
     }
 
-    /* Specific style for Must-Watch badge - aligned with screenshot */
-    .must-watch-badge {
-        background-color: #4CAF50; /* Green */
-        color: white;
-        padding: 4px 10px;
-        border-radius: 5px; /* Matches screenshot style */
-        font-size: 0.75rem;
-        font-weight: bold;
-        margin-left: 8px;
-        vertical-align: middle;
-        display: inline-block;
-    }
-
+    /* Key details summary */
     .key-details-summary {
-        font-size: 0.9rem;
-        color: #546e7a;
-        margin: 0.5rem 0 1rem;
+        font-size: 0.95rem;
+        color: #b0bec5; /* Muted grey for details */
+        margin: 0.8rem 0 1.2rem;
+        border-top: 1px dashed rgba(255,255,255,0.08); /* Subtle separator */
+        padding-top: 15px;
     }
 
     /* Toggle Button for Description */
     .toggle-description-btn {
-      background-color: #03a9f4; /* Light blue button */
-      color: white;
+      background-color: #00bcd4; /* Cyan button */
+      color: #0d1117; /* Dark text for contrast */
       border: none;
-      padding: 10px 20px;
+      padding: 12px 25px;
       border-radius: 8px;
-      font-size: 0.95em;
+      font-size: 1em;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
       font-weight: 600;
-      width: 100%; /* Full width button */
-      margin-top: 15px; /* Space above button */
+      width: auto; /* Auto width */
+      margin-top: 15px;
+      align-self: flex-start; /* Align to start of card */
     }
 
     .toggle-description-btn:hover {
-      background-color: #0288d1; /* Darker blue on hover */
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      background-color: #ffeb3b; /* Golden on hover */
+      color: #1a202c; /* Dark text */
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 235, 59, 0.6);
     }
 
     /* Description Content - Hidden by Default */
     .full-description-content {
-      max-height: 0; /* Initially collapsed */
-      overflow: hidden; /* Hide overflowing content */
-      opacity: 0; /* Make invisible */
-      transition: max-height 0.6s ease-out, opacity 0.5s ease-out, padding 0.5s ease-out, border-top 0.5s ease-out, margin-top 0.5s ease-out; /* Smooth transition */
-      color: #455a64;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      padding: 0; /* Reset padding for smooth transition */
+      border-top: none; /* Reset border */
+      margin-top: 0; /* Reset margin */
+      transition: max-height 0.7s ease-out, opacity 0.6s ease-out, padding 0.6s ease-out, border-top 0.6s ease-out, margin-top 0.6s ease-out;
+      color: #bbdefb; /* Light blue for description text */
       font-style: italic;
-      line-height: 1.5;
+      font-size: 0.95em;
     }
 
     /* Description Content - When Expanded */
     .full-description-content.expanded {
-      max-height: 300px; /* Sufficiently large to show all descriptions without scroll */
+      max-height: 350px; /* Increased height capacity */
       opacity: 1;
-      padding-top: 20px; /* Space when expanded */
-      border-top: 1px dashed #9e9e9e; /* Separator when expanded */
+      padding-top: 20px;
+      border-top: 1px dashed rgba(255,255,255,0.2);
       margin-top: 20px;
     }
 
-    /* Stacked Buttons (Home and Scroll to Top) */
-    .home-btn {
-        bottom: 80px; /* Position above scroll-to-top button */
-        right: 20px;
+    /*
+      ======================================================
+      GOLDEN GLOW & INDIAN VIBE FOR MUST-WATCH SERIES
+      ======================================================
+    */
+    .poster-tile.must-watch {
+        border-color: #ffd700; /* Gold border */
+        background: linear-gradient(135deg, #1f2833, #151a21); /* Slightly different background for must-watch */
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.6), 0 0 50px rgba(255, 215, 0, 0.3); /* Strong golden glow */
+        position: relative;
+        z-index: 2; /* Bring must-watch cards slightly to front */
+        animation: glowPulse 2s infinite alternate; /* Pulsating glow */
+    }
+
+    @keyframes glowPulse {
+        from { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.2); }
+        to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4); }
+    }
+
+    .poster-tile.must-watch:hover {
+        border-color: #ffeb3b; /* Brighter gold on hover */
+        transform: translateY(-15px) scale(1.04); /* More aggressive lift */
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.9), 0 0 80px rgba(255, 215, 0, 0.5); /* Intense golden glow on hover */
+    }
+
+    .poster-tile.must-watch .poster-info h3 {
+        color: #ffeb3b; /* Golden title */
+        text-shadow: 0 0 10px rgba(255, 235, 59, 0.7);
+    }
+    .poster-tile.must-watch .poster-info h3::after {
+        background: linear-gradient(to right, #ffeb3b, #ffd700); /* Golden underline */
+    }
+
+    .poster-tile.must-watch .tag {
+        background-color: #3d3200; /* Darker golden tag background */
+        color: #ffcc00; /* Brighter golden tag text */
+        border-color: rgba(255, 204, 0, 0.4);
+    }
+    .must-watch-badge {
+        background-color: #ffcc00; /* Golden badge */
+        color: #1a202c; /* Dark text for contrast */
+        font-weight: 700;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-left: 10px;
+        box-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+        animation: badgePulse 1.5s infinite alternate;
+    }
+
+    @keyframes badgePulse {
+        from { box-shadow: 0 0 5px rgba(255, 204, 0, 0.5); }
+        to { box-shadow: 0 0 15px rgba(255, 204, 0, 0.9); }
+    }
+
+
+    /*
+      ======================================================
+      BUTTONS (HOME & SCROLL TO TOP) - Stacked
+      ======================================================
+    */
+    .home-btn, #topBtn.top-btn {
         position: fixed;
-        background-color: #673ab7; /* Purple for home button */
-        color: white;
-        border: none;
-        width: 50px;
-        height: 50px;
+        right: 25px; /* Aligned to the right */
+        width: 60px; /* Slightly larger buttons */
+        height: 60px;
         border-radius: 50%;
-        font-size: 1.8em; /* Larger icon */
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        z-index: 1000; /* Ensure it's on top */
-    }
-
-    .home-btn:hover {
-        background-color: #512da8;
-        transform: translateY(-3px) scale(1.08);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-
-    #topBtn.top-btn { /* Specificity for the ID */
-        bottom: 20px; /* Original position for scroll-to-top */
-        right: 20px;
-        position: fixed;
-        background-color: #ff5722; /* Vibrant orange for scroll button */
-        color: white;
-        border: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        font-size: 1.8em; /* Larger icon */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        font-size: 2.2em; /* Larger icons */
+        transition: all 0.3s ease;
         z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
 
+    .home-btn {
+        bottom: 90px; /* Position above scroll-to-top */
+        background-color: #673ab7; /* Deep Purple for Home */
+        color: #e8eaf6;
+    }
+    .home-btn:hover {
+        background-color: #7e57c2;
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(103, 58, 183, 0.6);
+    }
+
+    #topBtn.top-btn {
+        bottom: 20px; /* Bottom position */
+        background-color: #ff5722; /* Vibrant Orange for Top */
+        color: white;
+    }
     #topBtn.top-btn:hover {
-        background-color: #e64a19;
-        transform: translateY(-3px) scale(1.08);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        background-color: #ff7043;
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(255, 87, 34, 0.6);
     }
 
-    /* Footer - Assuming styles from vault-theme.css */
-    /* If footer needs specific styling here, add it. */
+
+    /* Footer Styles - Integrated with Dark Theme */
+    .main-footer {
+        text-align: center;
+        margin-top: 60px;
+        padding: 30px;
+        font-size: 0.95em;
+        color: #78909c; /* Muted text color */
+        border-top: 1px solid #263238; /* Subtle dark border */
+        width: 100%;
+        background-color: #1a202c; /* Dark footer background */
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+        box-sizing: border-box;
+    }
+
+    .main-footer p {
+        margin: 5px 0;
+    }
+
+    .main-footer a {
+        color: #00bcd4; /* Cyan link color */
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .main-footer a:hover {
+        text-decoration: underline;
+        color: #ffeb3b; /* Golden on hover */
+    }
 
     /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      .poster-tile {
-        padding: 15px;
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       }
-      .poster-info h3 {
-        font-size: 1.4em;
+      h1 {
+        font-size: 3em;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 25px 15px;
+      }
+      h1 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
       }
       .filters {
         flex-direction: column;
         align-items: stretch;
+        padding: 0;
       }
       .filters select,
       .filters input,
       .filters button {
         width: 100%;
         box-sizing: border-box;
+        margin-bottom: 10px; /* Add margin between stacked filters */
       }
+      .poster-info h3 {
+        font-size: 1.6em;
+      }
+      .home-btn, #topBtn.top-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 2em;
+      }
+      .home-btn { bottom: 80px; right: 15px; }
+      #topBtn.top-btn { bottom: 15px; right: 15px; }
     }
 
     @media (max-width: 480px) {
+      body {
+        padding: 20px 10px;
+      }
       h1 {
         font-size: 2em;
         margin-bottom: 30px;
       }
       .poster-info h3 {
-        font-size: 1.2em;
+        font-size: 1.4em;
       }
-      .must-watch-badge {
-        font-size: 0.7em;
-        padding: 3px 8px;
+      .poster-tile {
+        padding: 15px;
+      }
+      .tags .tag {
+        font-size: 0.75em;
+        padding: 4px 8px;
       }
       .key-details-summary {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
       }
       .toggle-description-btn {
-        padding: 8px 12px;
-        font-size: 0.85em;
+        padding: 10px 18px;
+        font-size: 0.9em;
       }
     }
   </style>
 </head>
 <body>
 
-  <h1>Hindi Series Vault</h1>
+  <h1>Hindi Series Vault - Galactic Gateway</h1>
 
   <div class="filters">
     <select onchange="filterByGenre(this.value)">
@@ -298,39 +466,45 @@
 
     <button onclick="filterMustWatch()">🎯 Must Watch (IMDb 9+)</button>
 
-    <input type="text" placeholder="Search title..." oninput="searchTitles(this.value)">
+    <input type="text" placeholder="Search titles & descriptions..." oninput="searchTitles(this.value)">
     <select onchange="sortBy(this.value)">
       <option value="">Sort by…</option>
       <option value="popularity">Popularity</option>
       <option value="year">Year</option>
-      <option value="titleAsc">A–Z</option>
-      <option value="titleDesc">Z–A</option>
+      <option value="titleAsc">Title (A-Z)</option>
+      <option value="titleDesc">Title (Z-A)</option>
       <option value="imdbRating">IMDb Rating</option>
     </select>
   </div>
 
   <div id="hindiGrid" class="grid"></div>
 
-  <button onclick="goHome()" class="home-btn">🏠</button> <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn">⬆️</button> <footer class="main-footer">
+  <button onclick="goHome()" class="home-btn" title="Go to Home">🏠</button>
+  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn" title="Scroll to Top">⬆️</button>
+
+  <footer class="main-footer">
     <p>&copy; <span id="currentYear"></span> Krish Vault. All rights reserved.</p>
-    <p>Dive into cinematic journeys!</p>
+    <p>Explore cinematic galaxies!</p>
   </footer>
 
-
-  <script>
+  <script defer>
     let currentList = []; // This will hold the currently filtered/sorted list of shows
 
     // Function to display series in the grid
     function display(list) {
       const grid = document.getElementById("hindiGrid");
-      if (!list || !list.length) {
-        grid.innerHTML = "<p style='text-align:center; color: #757575; padding: 20px; border: 1px dashed #bdbdbd; border-radius: 8px; margin-top: 30px;'>No shows to display. Please adjust your filters or ensure `hindirecommendations.js` is correctly linked with data.</p>";
+      if (!grid) {
+        console.error("Error: #hindiGrid element not found.");
         return;
       }
 
-      // Map over the list to create HTML for each show
+      if (!list || !list.length) {
+        grid.innerHTML = "<p style='text-align:center; color: #757575; padding: 20px; border: 1px dashed #bdbdbd; border-radius: 8px; margin-top: 30px; background: #1a202c;'>No shows found matching your criteria. Try adjusting filters or search terms.</p>";
+        return;
+      }
+
       grid.innerHTML = list.map((show, i) => `
-        <div class="poster-tile">
+        <div class="poster-tile ${show.imdbRating >= 9 ? 'must-watch' : ''}">
           <div class="poster-info">
             <h3>
               ${show.title}
@@ -354,13 +528,13 @@
         </div>
       `).join("");
 
-      // After rendering, attach event listeners to each "View Details" button
+      // Attach event listeners for the "View Details" buttons *after* the HTML is rendered
       document.querySelectorAll('.toggle-description-btn').forEach(button => {
         button.addEventListener('click', (event) => {
           const showId = event.target.dataset.showId;
           const descriptionDiv = document.getElementById(`desc-${showId}`);
           
-          descriptionDiv.classList.toggle('expanded'); // Toggle CSS class
+          descriptionDiv.classList.toggle('expanded'); // Toggle the 'expanded' class
           if (descriptionDiv.classList.contains('expanded')) {
             event.target.textContent = 'Hide Details';
           } else {
@@ -370,33 +544,46 @@
       });
     }
 
-    // --- Filter and Sort Functions (from your original HTML) ---
+    // --- Filter and Sort Functions ---
 
     function filterByGenre(selectedGenre) {
+      if (typeof hindiWatchlist === 'undefined' || !Array.isArray(hindiWatchlist)) {
+        console.error("hindiWatchlist is not defined or is not an array.");
+        display([]); // Show error message
+        return;
+      }
       if (selectedGenre === "All") {
         currentList = [...hindiWatchlist];
-        // document.body.dataset.theme = ""; // You can add theme changes based on genre if you like
       } else {
         currentList = hindiWatchlist.filter(s =>
-          s.genre.toLowerCase().includes(selectedGenre.toLowerCase())
+          s.genre && s.genre.toLowerCase().includes(selectedGenre.toLowerCase()) // Added null check for genre
         );
-        // document.body.dataset.theme = selectedGenre.toLowerCase().replace(/\s+/g, "-");
       }
       display(currentList);
     }
 
     function filterMustWatch() {
+      if (typeof hindiWatchlist === 'undefined' || !Array.isArray(hindiWatchlist)) {
+        console.error("hindiWatchlist is not defined or is not an array.");
+        display([]);
+        return;
+      }
       currentList = hindiWatchlist.filter(s => s.imdbRating >= 9);
       display(currentList);
     }
 
     function searchTitles(query) {
+      if (typeof hindiWatchlist === 'undefined' || !Array.isArray(hindiWatchlist)) {
+        console.error("hindiWatchlist is not defined or is not an array.");
+        display([]);
+        return;
+      }
       const searchLower = query.toLowerCase();
       currentList = hindiWatchlist.filter(s =>
-        s.title.toLowerCase().includes(searchLower) ||
-        s.description.toLowerCase().includes(searchLower) ||
-        s.platform.toLowerCase().includes(searchLower) ||
-        s.genre.toLowerCase().includes(searchLower)
+        (s.title && s.title.toLowerCase().includes(searchLower)) ||
+        (s.description && s.description.toLowerCase().includes(searchLower)) ||
+        (s.platform && s.platform.toLowerCase().includes(searchLower)) ||
+        (s.genre && s.genre.toLowerCase().includes(searchLower))
       );
       display(currentList);
     }
@@ -405,15 +592,15 @@
       let sorted = [...currentList]; // Always sort the current filtered list
       switch (type) {
         case "popularity":
-          sorted.sort((a, b) => b.popularity - a.popularity); break;
+          sorted.sort((a, b) => (b.popularity || 0) - (a.popularity || 0)); break; // Added null check
         case "year":
-          sorted.sort((a, b) => b.year - a.year); break;
+          sorted.sort((a, b) => (b.year || 0) - (a.year || 0)); break;
         case "titleAsc":
-          sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
+          sorted.sort((a, b) => (a.title || '').localeCompare(b.title || '')); break;
         case "titleDesc":
-          sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
-        case "imdbRating": /* Added sort by IMDb Rating */
-          sorted.sort((a, b) => b.imdbRating - a.imdbRating); break;
+          sorted.sort((a, b) => (b.title || '').localeCompare(a.title || '')); break;
+        case "imdbRating":
+          sorted.sort((a, b) => (b.imdbRating || 0) - (a.imdbRating || 0)); break;
       }
       display(sorted);
     }
@@ -426,7 +613,7 @@
         display(currentList); // Display all data initially
         console.log("✅ Hindi Vault Loaded:", currentList.length, "shows.");
       } else {
-        console.error("❌ Error: hindiWatchlist is not defined or is empty. Check hindirecommendations.js.");
+        console.error("❌ Error: `hindiWatchlist` is not defined or is empty. Please ensure `hindirecommendations.js` is correctly linked and contains the `hindiWatchlist` array.");
         display([]); // Show empty state message
       }
       // Set the current year in the footer
@@ -435,10 +622,9 @@
 
     // --- Scroll to Top Button Functionality ---
     window.onscroll = () => {
-      document.getElementById("topBtn").style.display =
-        window.scrollY > 400 ? "flex" : "none"; /* Use 'flex' for centered icon */
-      document.querySelector('.home-btn').style.display =
-        window.scrollY > 400 ? "flex" : "none"; /* Also show/hide home button */
+      const showButtons = window.scrollY > 400;
+      document.getElementById("topBtn").style.display = showButtons ? "flex" : "none";
+      document.querySelector('.home-btn').style.display = showButtons ? "flex" : "none";
     };
 
     function scrollTopSmooth() {
