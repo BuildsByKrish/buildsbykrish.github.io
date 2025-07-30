@@ -7,8 +7,6 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <script defer src="hindirecommendations.js"></script>
-
   <style>
     /* General Body and HTML structure styles */
     body {
@@ -74,55 +72,9 @@
         border-radius: 5px;
     }
 
-    /* Filter and Sort Controls */
+    /* Filter and Sort Controls - These will NOT work without JS */
     .filters {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem; /* Increased gap for better spacing */
-        justify-content: center;
-        align-items: center;
-        margin: 2rem auto; /* More vertical margin */
-        padding: 1.5rem 1rem;
-        max-width: 90%;
-        background: rgba(255, 255, 255, 0.08); /* Glassy background */
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 12px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
-    }
-
-    .filters select,
-    .filters input,
-    .filters button {
-        white-space: nowrap;
-        flex-shrink: 0;
-        padding: 0.7rem 1.2rem; /* More padding for better touch targets */
-        background: rgba(0, 0, 0, 0.4); /* Darker, more opaque glass for controls */
-        color: #ffeb3b; /* Golden text for controls */
-        border: 1px solid rgba(255, 204, 0, 0.5); /* Golden border */
-        border-radius: 8px; /* More rounded */
-        font-size: 1em;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
-    }
-
-    .filters select:hover,
-    .filters input:hover,
-    .filters button:hover {
-        background: rgba(255, 204, 0, 0.1); /* Lighter golden glass on hover */
-        border-color: #ffeb3b; /* Brighter golden border */
-        box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
-        color: #fff;
-    }
-
-    .filters input::placeholder {
-        color: rgba(255, 255, 255, 0.6);
-    }
-    .filters input:focus {
-        outline: none;
-        border-color: #00d2ff;
-        box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+        display: none; /* Hide filters as they won't function */
     }
 
     /* Main Grid Container for Series Cards */
@@ -272,38 +224,9 @@
     }
 
 
-    /* Description Toggle Button */
+    /* Description Toggle Button - These will NOT work without JS */
     .description-toggle-btn {
-        background: rgba(255, 255, 255, 0.1);
-        color: #00d2ff;
-        border: 1px solid #00d2ff;
-        padding: 0.6em 1em;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 0.85em;
-        font-weight: 600;
-        margin-top: 1rem;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(5px);
-        align-self: flex-start; /* Align button to start within flex column */
-    }
-
-    .description-toggle-btn:hover {
-        background: #00d2ff;
-        color: #1a1a2e;
-        box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
-        transform: translateY(-2px);
-    }
-    .poster-tile.must-watch .description-toggle-btn {
-        background: rgba(255, 204, 0, 0.1);
-        color: #ffcc00;
-        border-color: #ffcc00;
-    }
-    .poster-tile.must-watch .description-toggle-btn:hover {
-        background: #ffcc00;
-        color: #1a1a2e;
-        box-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
-        transform: translateY(-2px);
+        display: none;
     }
 
     /* Description text */
@@ -312,41 +235,13 @@
         color: #b0c4de; /* Softer blue-grey for description */
         margin-top: 0.5rem;
         margin-bottom: 0;
-        max-height: 3.8em; /* Approximately 3 lines */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out; /* Smooth transition */
+        /* No max-height or overflow properties, so full description is always visible */
         opacity: 0.9;
     }
 
-    .description-text.expanded {
-        max-height: 1000px; /* Large enough to show full content */
-        opacity: 1;
-    }
-
-    /* Scroll to Top Button */
+    /* Scroll to Top Button - This will NOT work without JS */
     #topBtn {
-        display: none; /* Hidden by default */
-        position: fixed; /* Fixed position */
-        bottom: 20px; /* Place at the bottom */
-        right: 30px; /* Place at the right */
-        z-index: 99; /* Make sure it's above other elements */
-        border: none; /* Remove borders */
-        outline: none; /* Remove outline */
-        background-color: rgba(0, 210, 255, 0.5); /* Semi-transparent blue */
-        color: white; /* White text */
-        cursor: pointer; /* Add a mouse pointer on hover */
-        padding: 15px; /* Some padding */
-        border-radius: 10px; /* Rounded corners */
-        font-size: 18px; /* Increase font size */
-        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
-    }
-
-    #topBtn:hover {
-        background-color: #00d2ff; /* Deeper blue on hover */
-        transform: translateY(-3px); /* Slightly lift button */
-        box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+        display: none;
     }
 
     /* Footer Styles */
@@ -379,17 +274,6 @@
         h1 {
             font-size: 2.5em;
         }
-        .filters {
-            flex-direction: column;
-            gap: 0.8rem;
-            padding: 1rem;
-        }
-        .filters select,
-        .filters input,
-        .filters button {
-            width: 100%; /* Full width on smaller screens */
-            padding: 0.8rem 1rem;
-        }
         .grid {
             grid-template-columns: 1fr; /* Single column on very small screens */
             padding: 0 1rem;
@@ -397,7 +281,7 @@
         }
         .poster-tile {
             padding: 1.5rem;
-            min-height: 250px;
+            min-height: auto; /* Allow height to adjust */
         }
         .poster-tile h3 {
             font-size: 1.5em;
@@ -410,224 +294,1068 @@
   <h1>Hindi Series Vault</h1>
 
   <div class="filters">
-    <select onchange="filterByGenre(this.value)">
-      <option value="All">All Genres</option>
-      </select>
-
-    <select onchange="filterByPlatform(this.value)">
-      <option value="All">All Platforms</option>
-      </select>
-
-    <select onchange="filterByYear(this.value)">
-        <option value="All">All Years</option>
-        </select>
-
-    <select onchange="sortBy(this.value)">
-      <option value="">Sort By</option>
-      <option value="imdbRating">IMDb Rating</option>
-      <option value="popularity">Popularity</option>
-      <option value="year">Newest First</option>
-      <option value="titleAsc">Title (A-Z)</option>
-      <option value="titleDesc">Title (Z-A)</option>
-    </select>
-
-    <input type="text" id="searchBar" onkeyup="searchTitles(this.value)" placeholder="Search titles..." />
-
-    <button onclick="filterMustWatch()">Must Watch 🔥</button>
-    <button onclick="resetFilters()">Reset Filters</button>
+    <select><option>All Genres</option></select>
+    <select><option>All Platforms</option></select>
+    <select><option>All Years</option></select>
+    <select><option>Sort By</option></select>
+    <input type="text" placeholder="Search titles..." />
+    <button>Must Watch 🔥</button>
+    <button>Reset Filters</button>
   </div>
 
   <div class="grid" id="hindiGrid">
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#1</div>
+        <h3>Sacred Games</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime thriller">Crime Thriller</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2018</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 16 | Runtime: 12h</p>
+        <p>IMDb: 8.5 | Popularity: 95%</p>
+        <div class="description-text">
+          A troubled cop and a mysterious gangster unravel a deadly conspiracy that threatens Mumbai’s soul.
+        </div>
+      </div>
     </div>
 
-  <button onclick="topFunction()" id="topBtn" title="Go to top">⬆️</button>
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#2</div>
+        <h3>Mirzapur</h3>
+        <div class="tags">
+          <span class="tag" data-genre="action crime">Action Crime</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2018</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 30 | Runtime: 25h</p>
+        <p>IMDb: 8.6 | Popularity: 92%</p>
+        <div class="description-text">
+          Power, politics, and bloodshed collide in the lawless town of Mirzapur ruled by a ruthless mafia family.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#3</div>
+        <h3>Paatal Lok</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime drama">Crime Drama</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 9 | Runtime: 7h</p>
+        <p>IMDb: 8.0 | Popularity: 88%</p>
+        <div class="description-text">
+          A cynical cop lands a high-profile case that leads him into the dark underbelly of Indian society.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#4</div>
+        <h3>Asur</h3>
+        <div class="tags">
+          <span class="tag" data-genre="mythological thriller">Mythological Thriller</span>
+          <span class="tag">JioCinema</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 16 | Runtime: 13h</p>
+        <p>IMDb: 8.4 | Popularity: 90%</p>
+        <div class="description-text">
+          A forensic expert and a serial killer clash in a battle of intellect, rooted in ancient mythology.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#5</div>
+        <h3>The Family Man</h3>
+        <div class="tags">
+          <span class="tag" data-genre="spy thriller">Spy Thriller</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2019</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 19 | Runtime: 15h</p>
+        <p>IMDb: 8.7 | Popularity: 94%</p>
+        <div class="description-text">
+          A middle-class man secretly works as an intelligence officer while juggling family life and national threats.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#6</div>
+        <h3>Delhi Crime</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime drama">Crime Drama</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2019</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 12 | Runtime: 10h</p>
+        <p>IMDb: 8.5 | Popularity: 89%</p>
+        <div class="description-text">
+          Based on true events, this gripping series follows the Delhi Police’s investigation into a brutal crime.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#7</div>
+        <h3>Aashram</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime drama">Crime Drama</span>
+          <span class="tag">MX Player</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 28 | Runtime: 20h</p>
+        <p>IMDb: 8.1 | Popularity: 82%</p>
+        <div class="description-text">
+          An exploration of a powerful godman’s secrets, deception, and the blind faith surrounding him.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#8</div>
+        <h3>Rangbaaz</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime biography">Crime Biography</span>
+          <span class="tag">ZEE5</span>
+          <span class="tag">2018</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 24 | Runtime: 18h</p>
+        <p>IMDb: 8.0 | Popularity: 84%</p>
+        <div class="description-text">
+          Inspired by real-life gangsters, this series traces the rise and fall of notorious criminals in India.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#9</div>
+        <h3>Breathe</h3>
+        <div class="tags">
+          <span class="tag" data-genre="psychological thriller">Psychological Thriller</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2018</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 20 | Runtime: 16h</p>
+        <p>IMDb: 7.9 | Popularity: 86%</p>
+        <div class="description-text">
+          A desperate father turns to dark choices to save his son, triggering a deadly game of cat and mouse.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#10</div>
+        <h3>Undekhi</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime thriller">Crime Thriller</span>
+          <span class="tag">SonyLIV</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 18 | Runtime: 14h</p>
+        <p>IMDb: 7.8 | Popularity: 83%</p>
+        <div class="description-text">
+          A murder at a wedding sets off a chain of cover-ups and chaos in this gritty tale of power and justice.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#11</div>
+        <h3>Special OPS</h3>
+        <div class="tags">
+          <span class="tag" data-genre="spy thriller">Spy Thriller</span>
+          <span class="tag">Disney+ Hotstar</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6.5h</p>
+        <p>IMDb: 8.6 | Popularity: 87%</p>
+        <div class="description-text">
+          An elite RAW agent chases down the architect behind terror attacks over 19 years across continents.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#12</div>
+        <h3>Criminal Justice</h3>
+        <div class="tags">
+          <span class="tag" data-genre="legal drama">Legal Drama</span>
+          <span class="tag">Disney+ Hotstar</span>
+          <span class="tag">2019</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 21 | Runtime: 16h</p>
+        <p>IMDb: 8.4 | Popularity: 85%</p>
+        <div class="description-text">
+          A man’s life spirals after a single night. This courtroom-crime drama explores justice, guilt, and redemption.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#13</div>
+        <h3>Kota Factory</h3>
+        <div class="tags">
+          <span class="tag" data-genre="teen drama">Teen Drama</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2019</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 10 | Runtime: 8h</p>
+        <p>IMDb: 9.0 | Popularity: 91%</p>
+        <div class="description-text">
+          A monochrome masterpiece capturing the competitive pressure and friendship among IIT aspirants in Kota.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#14</div>
+        <h3>Aarya</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime thriller">Crime Thriller</span>
+          <span class="tag">Disney+ Hotstar</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 24 | Runtime: 19h</p>
+        <p>IMDb: 7.9 | Popularity: 88%</p>
+        <div class="description-text">
+          When her family is threatened, a mother must embrace the underworld her late husband left behind.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#15</div>
+        <h3>Hostages</h3>
+        <div class="tags">
+          <span class="tag" data-genre="thriller">Thriller</span>
+          <span class="tag">Disney+ Hotstar</span>
+          <span class="tag">2019</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 22 | Runtime: 17h</p>
+        <p>IMDb: 6.9 | Popularity: 80%</p>
+        <div class="description-text">
+          A surgeon’s family is taken hostage, and she must make an impossible decision to save them.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#16</div>
+        <h3>JL50</h3>
+        <div class="tags">
+          <span class="tag" data-genre="sci-fi mystery">Sci-Fi Mystery</span>
+          <span class="tag">SonyLIV</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 4 | Runtime: 3h</p>
+        <p>IMDb: 7.5 | Popularity: 75%</p>
+        <div class="description-text">
+          A plane lost for 35 years crashes again — unraveling a time travel mystery buried in secrecy.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#17</div>
+        <h3>Bhaukaal</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime action">Crime Action</span>
+          <span class="tag">MX Player</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 20 | Runtime: 14h</p>
+        <p>IMDb: 7.9 | Popularity: 81%</p>
+        <div class="description-text">
+          Inspired by real events, an IPS officer takes on a city held hostage by two powerful crime syndicates.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#18</div>
+        <h3>Panchayat</h3>
+        <div class="tags">
+          <span class="tag" data-genre="comedy drama">Comedy Drama</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 24 | Runtime: 20h</p>
+        <p>IMDb: 9.1 | Popularity: 96%</p>
+        <div class="description-text">
+          An engineering graduate takes a government posting in a village — and gets a hilarious crash course in life.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#19</div>
+        <h3>Inside Edge</h3>
+        <div class="tags">
+          <span class="tag" data-genre="sports drama">Sports Drama</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2017</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 30 | Runtime: 24h</p>
+        <p>IMDb: 7.6 | Popularity: 77%</p>
+        <div class="description-text">
+          Set in a T20 cricket league, this drama exposes the power play and corruption behind the sport’s spotlight.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#20</div>
+        <h3>Grahan</h3>
+        <div class="tags">
+          <span class="tag" data-genre="period drama">Period Drama</span>
+          <span class="tag">Disney+ Hotstar</span>
+          <span class="tag">2021</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6h</p>
+        <p>IMDb: 8.4 | Popularity: 79%</p>
+        <div class="description-text">
+          While investigating 1984 riots, a police officer discovers a haunting connection to her father’s past.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#21</div>
+        <h3>TVF Pitchers</h3>
+        <div class="tags">
+          <span class="tag" data-genre="drama">Drama</span>
+          <span class="tag">ZEE5</span>
+          <span class="tag">2015</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 10 | Runtime: 7h</p>
+        <p>IMDb: 9.1 | Popularity: 90%</p>
+        <div class="description-text">
+          Four friends quit their jobs to launch a startup, learning business, friendship, and grit the hard way.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#22</div>
+        <h3>Rocket Boys</h3>
+        <div class="tags">
+          <span class="tag" data-genre="historical drama">Historical Drama</span>
+          <span class="tag">SonyLIV</span>
+          <span class="tag">2022</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 16 | Runtime: 12h</p>
+        <p>IMDb: 8.9 | Popularity: 85%</p>
+        <div class="description-text">
+          The inspiring journey of Homi Bhabha and Vikram Sarabhai as they shape India’s nuclear and space ambitions.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#23</div>
+        <h3>Avrodh: The Siege Within</h3>
+        <div class="tags">
+          <span class="tag" data-genre="military thriller">Military Thriller</span>
+          <span class="tag">SonyLIV</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 17 | Runtime: 12h</p>
+        <p>IMDb: 7.5 | Popularity: 78%</p>
+        <div class="description-text">
+          Based on true events, this gripping military drama recounts India’s surgical strikes after the Uri attack.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#24</div>
+        <h3>Tabbar</h3>
+        <div class="tags">
+          <span class="tag" data-genre="family crime drama">Family Crime Drama</span>
+          <span class="tag">SonyLIV</span>
+          <span class="tag">2021</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6h</p>
+        <p>IMDb: 8.3 | Popularity: 82%</p>
+        <div class="description-text">
+          A retired cop does the unthinkable to protect his family when a mistake spirals into chaos.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#25</div>
+        <h3>Maharani</h3>
+        <div class="tags">
+          <span class="tag" data-genre="political drama">Political Drama</span>
+          <span class="tag">SonyLIV</span>
+          <span class="tag">2021</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 30 | Runtime: 23h</p>
+        <p>IMDb: 7.8 | Popularity: 80%</p>
+        <div class="description-text">
+          A woman rises from the shadows to become CM of Bihar — facing caste, corruption, and patriarchy head-on.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#26</div>
+        <h3>Scam 1992: The Harshad Mehta Story</h3>
+        <div class="tags">
+          <span class="tag" data-genre="financial thriller">Financial Thriller</span>
+          <span class="tag">SonyLIV</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 10 | Runtime: 9h</p>
+        <p>IMDb: 9.3 | Popularity: 97%</p>
+        <div class="description-text">
+          The meteoric rise and dramatic downfall of Harshad Mehta — the stock market genius who shook India’s economy.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#27</div>
+        <h3>Trial by Fire</h3>
+        <div class="tags">
+          <span class="tag" data-genre="true crime drama">True Crime Drama</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 7 | Runtime: 5h</p>
+        <p>IMDb: 8.0 | Popularity: 78%</p>
+        <div class="description-text">
+          Based on the Uphaar tragedy, a couple fights the system for justice after losing their children in a cinema fire.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#28</div>
+        <h3>Jeet Ki Zid</h3>
+        <div class="tags">
+          <span class="tag" data-genre="military biopic">Military Biopic</span>
+          <span class="tag">ZEE5</span>
+          <span class="tag">2021</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 7 | Runtime: 6h</p>
+        <p>IMDb: 8.3 | Popularity: 76%</p>
+        <div class="description-text">
+          Inspired by Kargil war hero Major Deep Singh, who overcame paralysis to reclaim his identity and honor.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#29</div>
+        <h3>The Broken News</h3>
+        <div class="tags">
+          <span class="tag" data-genre="newsroom drama">Newsroom Drama</span>
+          <span class="tag">ZEE5</span>
+          <span class="tag">2022</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 16 | Runtime: 12h</p>
+        <p>IMDb: 7.4 | Popularity: 74%</p>
+        <div class="description-text">
+          Two rival newsrooms — one idealistic, one aggressive — battle over journalism, ethics, and TRP-driven truth.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#30</div>
+        <h3>Gullak</h3>
+        <div class="tags">
+          <span class="tag" data-genre="slice of life">Slice of Life</span>
+          <span class="tag">SonyLIV</span>
+          <span class="tag">2019</span>
+        </div>
+        <p>Seasons: 4 | Episodes: 20 | Runtime: 11h</p>
+        <p>IMDb: 9.1 | Popularity: 89%</p>
+        <div class="description-text">
+          A heartwarming tale of a small-town Mishra family — steeped in nostalgia, humor, and middle-class magic.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#31</div>
+        <h3>Scoop</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime drama">Crime Drama</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 6 | Runtime: 5h</p>
+        <p>IMDb: 7.8 | Popularity: 84%</p>
+        <div class="description-text">
+          A journalist’s life spirals after she’s accused of murdering a fellow reporter — inspired by true events.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#32</div>
+        <h3>Mumbai Diaries 26/11</h3>
+        <div class="tags">
+          <span class="tag" data-genre="medical thriller">Medical Thriller</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2021</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 16 | Runtime: 13h</p>
+        <p>IMDb: 8.0 | Popularity: 82%</p>
+        <div class="description-text">
+          Doctors and first responders navigate chaos during the 26/11 Mumbai attacks in this gripping hospital drama.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#33</div>
+        <h3>Taj: Divided by Blood</h3>
+        <div class="tags">
+          <span class="tag" data-genre="historical drama">Historical Drama</span>
+          <span class="tag">ZEE5</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 20 | Runtime: 16h</p>
+        <p>IMDb: 7.7 | Popularity: 79%</p>
+        <div class="description-text">
+          A Mughal emperor’s succession battle turns into a brutal saga of ambition, betrayal, and bloodlines.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#34</div>
+        <h3>Saas Bahu Aur Flamingo</h3>
+        <div class="tags">
+          <span class="tag" data-genre="action crime">Action Crime</span>
+          <span class="tag">Disney+ Hotstar</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6.5h</p>
+        <p>IMDb: 7.6 | Popularity: 76%</p>
+        <div class="description-text">
+          A matriarch runs a drug empire with her daughters-in-law — fierce, violent, and unapologetically wild.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#35</div>
+        <h3>Kaala</h3>
+        <div class="tags">
+          <span class="tag" data-genre="financial crime thriller">Financial Crime Thriller</span>
+          <span class="tag">Disney+ Hotstar</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6h</p>
+        <p>IMDb: 7.5 | Popularity: 74%</p>
+        <div class="description-text">
+          A gritty tale of reverse hawala, black money, and a relentless officer chasing the truth.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#36</div>
+        <h3>Sultan of Delhi</h3>
+        <div class="tags">
+          <span class="tag" data-genre="period crime drama">Period Crime Drama</span>
+          <span class="tag">Disney+ Hotstar</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 9 | Runtime: 7h</p>
+        <p>IMDb: 7.2 | Popularity: 72%</p>
+        <div class="description-text">
+          A young man rises through the underworld ranks in post-Partition Delhi — but power always comes at a price.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#37</div>
+        <h3>Poacher</h3>
+        <div class="tags">
+          <span class="tag" data-genre="eco-crime thriller">Eco-Crime Thriller</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2024</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6h</p>
+        <p>IMDb: 8.2 | Popularity: 80%</p>
+        <div class="description-text">
+          Inspired by true events, a forest officer uncovers a massive ivory poaching ring in Kerala’s jungles.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#38</div>
+        <h3>Bard of Blood</h3>
+        <div class="tags">
+          <span class="tag" data-genre="spy thriller">Spy Thriller</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2019</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 7 | Runtime: 5.5h</p>
+        <p>IMDb: 6.9 | Popularity: 70%</p>
+        <div class="description-text">
+          A former RAW agent, now a professor, is called back into action to save four Indian intelligence officers held hostage by the Taliban.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#39</div>
+        <h3>She</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime drama">Crime Drama</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 14 | Runtime: 10h</p>
+        <p>IMDb: 6.4 | Popularity: 68%</p>
+        <div class="description-text">
+          An unassuming female constable goes undercover to bust a drug gang, navigating a dangerous world and discovering her own power.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#40</div>
+        <h3>Aranyak</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime thriller">Crime Thriller</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2021</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6.5h</p>
+        <p>IMDb: 7.8 | Popularity: 75%</p>
+        <div class="description-text">
+          When a foreign teenage tourist disappears in a misty Himalayan town, a local cop unearths a forgotten myth and a web of crimes.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#41</div>
+        <h3>Chakravyuh</h3>
+        <div class="tags">
+          <span class="tag" data-genre="cyber crime thriller">Cyber Crime Thriller</span>
+          <span class="tag">MX Player</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6h</p>
+        <p>IMDb: 6.0 | Popularity: 65%</p>
+        <div class="description-text">
+          A tech genius is found dead, leading a cybercrime investigator into a dark maze of hackers, digital secrets, and conspiracy.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#42</div>
+        <h3>Jamtara - Sabka Number Ayega</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime drama">Crime Drama</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 18 | Runtime: 12h</p>
+        <p>IMDb: 7.3 | Popularity: 77%</p>
+        <div class="description-text">
+          Based on true events, a group of young men run a successful phishing operation from a remote village, but soon face political and criminal threats.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#43</div>
+        <h3>Ray</h3>
+        <div class="tags">
+          <span class="tag" data-genre="drama anthology">Drama Anthology</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2021</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 4 | Runtime: 6h</p>
+        <p>IMDb: 7.1 | Popularity: 72%</p>
+        <div class="description-text">
+          Four gripping stories inspired by the works of legendary filmmaker Satyajit Ray, exploring themes of ego, revenge, and betrayal.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#44</div>
+        <h3>Dahaad</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime thriller">Crime Thriller</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 7h</p>
+        <p>IMDb: 7.8 | Popularity: 81%</p>
+        <div class="description-text">
+          A female police officer investigates a series of mysterious disappearances in a small town, uncovering a serial killer preying on women.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#45</div>
+        <h3>Farzi</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime thriller">Crime Thriller</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 7h</p>
+        <p>IMDb: 8.4 | Popularity: 93%</p>
+        <div class="description-text">
+          A brilliant con artist enters the world of high-stakes counterfeit money, pursued by a fiery task force officer.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#46</div>
+        <h3>Aspirants</h3>
+        <div class="tags">
+          <span class="tag" data-genre="drama">Drama</span>
+          <span class="tag">YouTube/TVF</span>
+          <span class="tag">2021</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 5 | Runtime: 4h</p>
+        <p>IMDb: 9.2 | Popularity: 94%</p>
+        <div class="description-text">
+          The story of three friends navigating the challenges of cracking the UPSC civil services exam in Delhi's Old Rajinder Nagar.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#47</div>
+        <h3>Made In Heaven</h3>
+        <div class="tags">
+          <span class="tag" data-genre="drama">Drama</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2019</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 16 | Runtime: 12h</p>
+        <p>IMDb: 8.3 | Popularity: 87%</p>
+        <div class="description-text">
+          Follows the lives of two wedding planners in Delhi, exploring the social fabric, traditions, and hidden truths behind big Indian weddings.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#48</div>
+        <h3>Kohrra</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime thriller">Crime Thriller</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 6 | Runtime: 5h</p>
+        <p>IMDb: 8.0 | Popularity: 80%</p>
+        <div class="description-text">
+          A dark and atmospheric crime series where two police officers uncover deceit and secrets while investigating a murder in Punjab.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#49</div>
+        <h3>Apharan</h3>
+        <div class="tags">
+          <span class="tag" data-genre="action thriller">Action Thriller</span>
+          <span class="tag">Alt Balaji / ZEE5</span>
+          <span class="tag">2018</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 30 | Runtime: 25h</p>
+        <p>IMDb: 8.2 | Popularity: 75%</p>
+        <div class="description-text">
+          A senior inspector is blackmailed into kidnapping a girl, leading to a tangled web of lies, deceit, and unexpected twists.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#50</div>
+        <h3>Bandish Bandits</h3>
+        <div class="tags">
+          <span class="tag" data-genre="musical drama">Musical Drama</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2020</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 10 | Runtime: 8h</p>
+        <p>IMDb: 7.9 | Popularity: 78%</p>
+        <div class="description-text">
+          A classical music prodigy and a pop star from different worlds embark on a musical journey, facing challenges and falling in love.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile must-watch">
+      <div class="poster-info">
+        <div class="series-id">#51</div>
+        <h3>Yeh Meri Family</h3>
+        <div class="tags">
+          <span class="tag" data-genre="family drama">Family Drama</span>
+          <span class="tag">Netflix / TVF Play</span>
+          <span class="tag">2018</span>
+        </div>
+        <p>Seasons: 2 | Episodes: 14 | Runtime: 9h</p>
+        <p>IMDb: 9.0 | Popularity: 85%</p>
+        <div class="description-text">
+          A nostalgic journey through the eyes of a 12-year-old, depicting the everyday life, joys, and challenges of a middle-class Indian family in the 90s.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#52</div>
+        <h3>Chacha Vidhayak Hain Humare</h3>
+        <div class="tags">
+          <span class="tag" data-genre="comedy">Comedy</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2018</span>
+        </div>
+        <p>Seasons: 3 | Episodes: 24 | Runtime: 10h</p>
+        <p>IMDb: 7.9 | Popularity: 70%</p>
+        <div class="description-text">
+          Ronny, a jobless young man, pretends to be a local MLA's nephew, leading to hilarious misadventures and satirical takes on small-town politics.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#53</div>
+        <h3>Sunflower</h3>
+        <div class="tags">
+          <span class="tag" data-genre="black comedy, crime">Black Comedy, Crime</span>
+          <span class="tag">ZEE5</span>
+          <span class="tag">2021</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6h</p>
+        <p>IMDb: 7.0 | Popularity: 73%</p>
+        <div class="description-text">
+          A peculiar murder mystery unfolds in the 'Sunflower' housing society, with the quirky resident Sonu Singh becoming the prime suspect.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#54</div>
+        <h3>Taaza Khabar</h3>
+        <div class="tags">
+          <span class="tag" data-genre="comedy drama, fantasy">Comedy Drama, Fantasy</span>
+          <span class="tag">Disney+ Hotstar</span>
+          <span class="tag">2023</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 6 | Runtime: 4h</p>
+        <p>IMDb: 7.7 | Popularity: 70%</p>
+        <div class="description-text">
+          A sanitation worker gains a magical ability to foresee future news headlines, changing his life and the lives of those around him.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#55</div>
+        <h3>Murder In Mahim</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime, mystery">Crime, Mystery</span>
+          <span class="tag">JioCinema</span>
+          <span class="tag">2024</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6h</p>
+        <p>IMDb: 7.5 | Popularity: 78%</p>
+        <div class="description-text">
+          Based on the book by Jerry Pinto, this series delves into a chilling murder investigation in Mumbai's Mahim area, uncovering dark secrets.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#56</div>
+        <h3>Heeramandi: The Diamond Bazaar</h3>
+        <div class="tags">
+          <span class="tag" data-genre="period drama, historical">Period Drama, Historical</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2024</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 8h</p>
+        <p>IMDb: 7.0 | Popularity: 88%</p>
+        <div class="description-text">
+          Set in the Lahore's Heeramandi during the Indian independence movement, it explores the lives of courtesans and their struggles for freedom and dignity.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#57</div>
+        <h3>Gyaarah Gyaarah</h3>
+        <div class="tags">
+          <span class="tag" data-genre="sci-fi, mystery">Sci-Fi, Mystery</span>
+          <span class="tag">ZEE5</span>
+          <span class="tag">2024</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 6h</p>
+        <p>IMDb: 7.0 | Popularity: 70%</p>
+        <div class="description-text">
+          A sci-fi thriller spanning three different timelines, intertwining the investigation of a serial killer across decades.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#58</div>
+        <h3>Citadel: Honey Bunny</h3>
+        <div class="tags">
+          <span class="tag" data-genre="spy thriller, action">Spy Thriller, Action</span>
+          <span class="tag">Amazon Prime Video</span>
+          <span class="tag">2024</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 7 | Runtime: 6h</p>
+        <p>IMDb: 7.5 | Popularity: 80%</p>
+        <div class="description-text">
+          The Indian installment of the global Citadel universe, a high-octane spy thriller with a blend of action, emotion, and espionage.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#59</div>
+        <h3>Maamla Legal Hai</h3>
+        <div class="tags">
+          <span class="tag" data-genre="comedy, legal">Comedy, Legal</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2024</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 8 | Runtime: 5h</p>
+        <p>IMDb: 7.8 | Popularity: 82%</p>
+        <div class="description-text">
+          A quirky comedy set in a district court, following the chaotic yet endearing lives of lawyers and their unconventional cases.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#60</div>
+        <h3>Shekhar Home</h3>
+        <div class="tags">
+          <span class="tag" data-genre="crime, anthology">Crime, Anthology</span>
+          <span class="tag">JioCinema</span>
+          <span class="tag">2024</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 6 | Runtime: 5h</p>
+        <p>IMDb: 6.8 | Popularity: 65%</p>
+        <div class="description-text">
+          An anthology series featuring gripping crime stories, each episode presenting a new mystery from different corners of society.
+        </div>
+      </div>
+    </div>
+
+    <div class="poster-tile ">
+      <div class="poster-info">
+        <div class="series-id">#61</div>
+        <h3>The Great Indian Kapil Show</h3>
+        <div class="tags">
+          <span class="tag" data-genre="comedy, talk show">Comedy, Talk Show</span>
+          <span class="tag">Netflix</span>
+          <span class="tag">2024</span>
+        </div>
+        <p>Seasons: 1 | Episodes: 10 | Runtime: 8h</p>
+        <p>IMDb: 6.5 | Popularity: 85%</p>
+        <div class="description-text">
+          Kapil Sharma returns with his signature comedy and celebrity interviews, bringing laughter and entertainment to a global audience.
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <button id="topBtn" title="Go to top">⬆️</button>
 
   <footer>
-    <p>&copy; <span id="currentYear"></span> Krish Vault. All rights reserved.</p>
+    <p>&copy; <span id="currentYear">2024</span> Krish Vault. All rights reserved.</p>
     <p>Data is for informational purposes only. Series ratings and details may vary.</p>
     <p>Made with ❤️ by Krish</p>
   </footer>
 
   <script>
-    let currentList = []; // Holds the currently displayed list based on filters/sorts
-    let initialLoadDone = false; // Flag to ensure initial sort only happens once
-
-    // Function to populate unique filter options
-    function populateFilterOptions() {
-        const genres = [...new Set(hindiWatchlist.map(item => item.genre))].sort();
-        const genreSelect = document.querySelector('select[onchange="filterByGenre(this.value)"]');
-        genres.forEach(genre => {
-            const option = document.createElement('option');
-            option.value = genre;
-            option.textContent = genre;
-            genreSelect.appendChild(option);
-        });
-
-        const platforms = [...new Set(hindiWatchlist.map(item => item.platform))].sort();
-        const platformSelect = document.querySelector('select[onchange="filterByPlatform(this.value)"]');
-        platforms.forEach(platform => {
-            const option = document.createElement('option');
-            option.value = platform;
-            option.textContent = platform;
-            platformSelect.appendChild(option);
-        });
-
-        const years = [...new Set(hindiWatchlist.map(item => item.year))].sort((a, b) => b - a); // Sort years descending
-        const yearSelect = document.querySelector('select[onchange="filterByYear(this.value)"]');
-        years.forEach(year => {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            yearSelect.appendChild(option);
-        });
-    }
-
-    // Function to display series cards
-    function display(list) {
-      const hindiGrid = document.getElementById("hindiGrid");
-      hindiGrid.innerHTML = ""; // Clear existing cards
-
-      if (list.length === 0) {
-        hindiGrid.innerHTML = "<p style='text-align:center; color: #ff6666; font-size: 1.2em; margin-top: 3rem;'>No series found matching your criteria.</p>";
-        return;
-      }
-
-      list.forEach((show) => {
-        const tile = document.createElement("div");
-        // Use show.mustwatch directly for the class
-        tile.className = `poster-tile ${show.mustwatch ? 'must-watch' : ''}`;
-        
-        tile.innerHTML = `
-          <div class="poster-info">
-            <div class="series-id">#${show.id}</div> <h3>${show.title}</h3>
-            <div class="tags">
-                <span class="tag" data-genre="${show.genre.toLowerCase()}">${show.genre}</span>
-                <span class="tag">${show.platform}</span>
-                <span class="tag">${show.year}</span>
-            </div>
-            <p>Seasons: ${show.seasons} | Episodes: ${show.episodes} | Runtime: ${show.runtime}</p>
-            <p>IMDb: ${show.imdbRating} | Popularity: ${show.popularity}%</p>
-            <div id="desc-${show.id}" class="description-text">
-                ${show.description}
-            </div>
-            <button class="description-toggle-btn" onclick="toggleDescription(event, ${show.id})">View Details</button>
-          </div>
-        `;
-        hindiGrid.appendChild(tile);
-      });
-    }
-
-    // Function to toggle description visibility
-    function toggleDescription(event, id) {
-        const descriptionContainer = document.getElementById(`desc-${id}`);
-        const button = event.target;
-        const card = button.closest('.poster-tile');
-
-        if (descriptionContainer.classList.contains('expanded')) {
-            descriptionContainer.classList.remove('expanded');
-            button.textContent = 'View Details';
-            card.style.minHeight = '280px'; // Reset to base min-height
-        } else {
-            descriptionContainer.classList.add('expanded');
-            button.textContent = 'Hide Details';
-            card.style.minHeight = 'fit-content'; // Let it grow
-            // After expansion, force a reflow to recalculate min-height
-            setTimeout(() => {
-                card.style.minHeight = `${card.scrollHeight + 20}px`; // Add some buffer
-            }, 700); // After transition finishes
-        }
-    }
-
-    // Filter functions
-    function filterByGenre(genre) {
-      currentList = genre === "All" ? [...hindiWatchlist] : hindiWatchlist.filter((s) => s.genre === genre);
-      display(currentList);
-    }
-
-    function filterByPlatform(platform) {
-        currentList = platform === "All" ? [...hindiWatchlist] : hindiWatchlist.filter(s => s.platform === platform);
-        display(currentList);
-    }
-
-    function filterByYear(year) {
-        currentList = year === "All" ? [...hindiWatchlist] : hindiWatchlist.filter(s => s.year == parseInt(year));
-        display(currentList);
-    }
-
-    function filterMustWatch() {
-      // Filter directly by the mustwatch flag
-      currentList = hindiWatchlist.filter(s => s.mustwatch === true);
-      display(currentList);
-    }
-
-    function searchTitles(query) {
-      currentList = hindiWatchlist.filter(s =>
-        s.title.toLowerCase().includes(query.toLowerCase())
-      );
-      display(currentList);
-    }
-
-    function sortBy(type) {
-      let sorted = [...currentList]; // Sort the currently filtered/searched list
-      switch (type) {
-        case "imdbRating":
-          sorted.sort((a, b) => b.imdbRating - a.imdbRating); break;
-        case "popularity":
-          sorted.sort((a, b) => b.popularity - a.popularity); break;
-        case "year":
-          sorted.sort((a, b) => b.year - a.year); break;
-        case "titleAsc":
-          sorted.sort((a, b) => a.title.localeCompare(b.title)); break;
-        case "titleDesc":
-          sorted.sort((a, b) => b.title.localeCompare(a.title)); break;
-      }
-      display(sorted);
-    }
-
-    // Reset Filters Function
-    function resetFilters() {
-      currentList = [...hindiWatchlist]; // Reset to original list
-      document.querySelector('select[onchange="filterByGenre(this.value)"]').value = 'All';
-      document.querySelector('select[onchange="filterByPlatform(this.value)"]').value = 'All';
-      document.querySelector('select[onchange="filterByYear(this.value)"]').value = 'All';
-      document.querySelector('select[onchange="sortBy(this.value)"]').value = ''; // Reset sort dropdown
-      document.getElementById('searchBar').value = ''; // Clear search bar
-      
-      // Re-apply initial sort if desired
-      sortBy('imdbRating'); // Sort by IMDb Rating by default on reset
-      console.log("✅ Filters Reset.");
-    }
-
-    // Scroll to top button logic
-    let mybutton = document.getElementById("topBtn");
-    window.onscroll = function() {scrollFunction()};
-    function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-      } else {
-        mybutton.style.display = "none";
-      }
-    }
-    function topFunction() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-
-    // Initial Load - Important: ensure hindirecommendations.js is loaded first
-    window.onload = () => {
-      document.getElementById("currentYear").textContent = new Date().getFullYear();
-      populateFilterOptions();
-      // Ensure hindiWatchlist is available from the external JS file
-      if (typeof hindiWatchlist !== 'undefined') {
-        currentList = [...hindiWatchlist];
-        sortBy('imdbRating'); // Initial sort by IMDb Rating
-        initialLoadDone = true;
-        console.log("✅ Hindi Vault Loaded:", hindiWatchlist.length, "series.");
-      } else {
-        console.error("❌ hindiWatchlist data not found. Make sure hindirecommendations.js is loaded correctly.");
-        document.getElementById("hindiGrid").innerHTML = "<p style='text-align:center; color: #ff6666; font-size: 1.2em; margin-top: 3rem;'>Error loading data. Please check hindirecommendations.js file.</p>";
-      }
-    };
+    // This script is only for setting the current year in the footer.
+    // All dynamic features like filtering, sorting, searching, and "View Details"
+    // are REMOVED because you requested no JavaScript for serial numbering.
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
