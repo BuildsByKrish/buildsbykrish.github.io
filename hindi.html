@@ -519,11 +519,11 @@
       }
 
       grid.innerHTML = list.map((show, i) => `
-        <div class="poster-tile ${show.imdbRating >= 9 ? 'must-watch' : ''}">
+        <div class="poster-tile ${show.mustWatch ? 'must-watch' : ''}">
           <div class="poster-info">
             <h3>
               <span class="serial-number">${i + 1}.</span> ${show.title}
-              ${show.imdbRating >= 9 ? '<span class="must-watch-badge">Must-Watch</span>' : ''}
+              ${show.mustWatch ? '<span class="must-watch-badge">Must-Watch</span>' : ''}
             </h3>
             <div class="tags">
               <span class="tag">${show.platform}</span>
@@ -583,7 +583,7 @@
         display([]);
         return;
       }
-      currentList = hindiWatchlist.filter(s => s.imdbRating >= 9);
+      currentList = hindiWatchlist.filter(s => s.mustWatch);
       display(currentList);
     }
 
