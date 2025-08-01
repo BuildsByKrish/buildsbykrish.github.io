@@ -1,667 +1,2212 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Hindi Series Vault - Galactic Gateway</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A futuristic, interactive vault showcasing Hindi web series with a special glowy golden design for must-watch titles.">
-
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="vault-theme.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <script defer src="hindirecommendations.js"></script>
-
-  <style>
-    /*
-      ======================================================
-      FUTURISTIC & GOLDEN GLOW THEME FOR HINDI SERIES VAULT
-      ======================================================
-    */
-
-    /* Base Body and Typography */
-    body {
-      font-family: 'Poppins', sans-serif; /* Primary font for readability */
-      margin: 0;
-      padding: 40px 20px; /* More generous padding for modern feel */
-      background: #0d1117; /* Dark, deep space background */
-      color: #e0e0e0; /* Light grey for general text */
-      line-height: 1.8;
-      min-height: 100vh;
-      box-sizing: border-box;
-      padding-bottom: 150px; /* Space for stacked buttons + footer */
-      overflow-x: hidden; /* Prevent horizontal scroll */
-      position: relative;
-    }
-
-    /* Subtle background texture/pattern for depth */
-    body::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM1YzVhNmQiIGZpbGwtb3BhY2l0eT0iMC4wNyI+PHBhdGggZD0iTTM2Ljg4IDUwLjE3Yy01LjU1IDAtMTAuMDIgNC40OC0xMC4wMiAxMC4wMnYyLjQ2YzAgNS41NS00LjQ4IDEwLjAyLTEwLjAyIDEwLjAyaC0yLjQ2Yy01LjU1IDAtMTAuMDIgNC40OC0xMC4wMiAxMC4wMi0xMC4wMi0yLjc2IDAtNS4wMS0yLjI1LTUuMDEtNS4wMVYzNi4xMmMtMi43NiAwLTUuMDEtMi4yNS01LjAxLTUuMDF2LTIuNDZjMC0yLjc2IDIuMjUtNS4wMSA1LjAxLTUuMDFzMi41NS0yLjA2IDIuNTUtNC44MnYyLjQ2YzAtMi43Ni0yLjI1LTUuMDEtNS4wMS01LjAxcS0yLjQ2Yy0yLjA2IDAtNS4wMS0yLjI1LTUuMDEtNS4wMVY0Ljg1YzAtMi43NiAyLjI1LTUuMDEgNS4wMS01LjAxaC0yLjQ2LTIuNTVDNDYuODggMCA1Ni43MSA5LjE3IDU2LjcxIDIwLjE2djIuNTVDNjYuNzEgMjguMjEgNDkuNiAyMC4xMyA0Ni44OCAyMC4xM2gtMi40NmMtMy43NCAwLTYuNzcgMy4wMy02Ljc3IDYuNzd2Mi40NmMwIDMuNzQgMy4wMyA2Ljc3IDYuNzcgNi43N2gyLjQ2YzMuNzQgMCA2Ljc3IDMuMDMgNi43NyA2Ljc3czMuMDMgNi43NyA2Ljc3IDYuNzdoMi40NmMtMi43NiAwLTUuMDEtMi4yNS01LjAxLTUuMDFWNDAuMTJjLTIuNzYgMC01LjAxLTIuMjUtNS4wMS01LjAxVjI0LjU2YzAtNS41NSA0LjQ4LTEwLjAyIDEwLjAyLTEwLjAyaDIuNDZjNS41NSAwIDEwLjAyIDQuNDggMTAuMDIgMTAuMDJ2Mi40NmMwIDUuNTUtNC40OCAxMC4wMi0xMC4wMiAxMC4wMmgtMi40NmMtNS41NSAwLTEwLjAyIDQuNDgtMTAuMDIgMTAuMDJWNTQuMjljMC0yLNzYgMi4yNS01LjAxIDUuMDEtNS4wMXYyLjQ2YzAgMi43Ni0yLjI1IDUuMDEtNS4wMSA1LjAxdi0yLjQ2YzAtMi43NiAyLjI1LTUuMDEgNS4wMS01LjAxdjIuNDZjMC0yLjc2LTIuMjUtNS4wMS01LjAxLTUuMDFoLTIuNDYtNS4wOEw0Ni44OCAwIiBmaWxsLW9wYWNpdHk9Ii4wNCIgZmlsbD0iIzY5ZmNmZiIvPjwvZz48L2c+PC9zdmc+') repeat;
-        opacity: 0.05;
-        z-index: -1;
-    }
-
-
-    /* Main Heading */
-    h1 {
-      font-family: 'Rajdhani', sans-serif; /* Futuristic font for heading */
-      text-align: center;
-      color: #00bcd4; /* Cyan/Teal glow */
-      margin-bottom: 50px;
-      font-size: 3.5em; /* Very large, impactful heading */
-      letter-spacing: 2px;
-      padding-bottom: 20px;
-      border-bottom: 5px solid rgba(0, 188, 212, 0.3); /* Soft, glowing underline */
-      text-shadow: 0 0 15px rgba(0, 188, 212, 0.6), 0 0 30px rgba(0, 188, 212, 0.4); /* Intense glow */
-      font-weight: 700;
-      animation: pulsateGlow 3s infinite alternate; /* Subtle pulsating glow */
-    }
-
-    @keyframes pulsateGlow {
-        from { text-shadow: 0 0 10px rgba(0, 188, 212, 0.5), 0 0 20px rgba(0, 188, 212, 0.3); }
-        to { text-shadow: 0 0 20px rgba(0, 188, 212, 0.7), 0 0 40px rgba(0, 188, 212, 0.5); }
-    }
-
-
-    /* Filters Section - Enhancements */
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem; /* More spacing */
-      justify-content: center;
-      align-items: center;
-      margin: 2rem auto 3rem; /* Centered, more vertical space */
-      max-width: 900px; /* Constrain width */
-      padding: 0 15px;
-    }
-
-    .filters select,
-    .filters input,
-    .filters button {
-      white-space: nowrap;
-      flex-shrink: 0;
-      padding: 0.8rem 1.5rem;
-      background: #1a202c; /* Darker background for inputs/buttons */
-      color: #00bcd4; /* Cyan/Teal text for interactive elements */
-      border: 1px solid #00bcd4; /* Cyan border */
-      border-radius: 8px; /* Slightly more rounded */
-      font-family: 'Rajdhani', sans-serif; /* Futuristic font */
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 8px rgba(0, 188, 212, 0.3); /* Subtle glow */
-    }
-
-    .filters select:focus,
-    .filters input:focus,
-    .filters button:hover {
-      background: #263238; /* Slightly lighter dark on hover/focus */
-      color: #ffeb3b; /* Golden highlight on hover/focus */
-      border-color: #ffeb3b; /* Golden border */
-      box-shadow: 0 0 15px rgba(255, 235, 59, 0.6), 0 0 25px rgba(255, 235, 59, 0.4); /* Golden glow */
-      transform: translateY(-2px);
-    }
-    .filters input::placeholder {
-        color: rgba(0, 188, 212, 0.7); /* Lighter placeholder text */
-    }
-
-
-    /* Grid Container */
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 40px; /* More space between items in the grid */
-        max-width: 1300px; /* Wider grid for more content */
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    /* Poster Tile (Individual Series Card) */
-    .poster-tile {
-        background: #1a202c; /* Dark card background */
-        border: 1px solid #37474f; /* Subtle dark border */
-        border-radius: 15px; /* More pronounced rounded corners */
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Deeper shadow for depth */
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        position: relative;
-        overflow: hidden;
-        z-index: 1; /* Ensure cards are above background effects */
-    }
-
-    .poster-tile:hover {
-        border-color: #00bcd4; /* Cyan border on hover */
-        transform: translateY(-10px) scale(1.02); /* More dynamic lift and slight scale */
-        box-shadow: 0 15px 35px rgba(0, 188, 212, 0.3), 0 0 30px rgba(0, 188, 212, 0.1); /* Cyan glow on hover */
-    }
-
-    .poster-info {
-        padding: 25px;
-    }
-
-    .poster-info h3 {
-        font-family: 'Rajdhani', sans-serif; /* Futuristic font for card titles */
-        font-size: 1.8em;
-        color: #e0f7fa; /* Lighter, almost white for titles */
-        margin-top: 0;
-        margin-bottom: 15px;
-        font-weight: 600;
-        line-height: 1.3;
-        position: relative;
-        display: flex; /* Allow for number and title on one line */
-        align-items: center;
-    }
-
-    /* Style for the serial number */
-    .poster-info h3 .serial-number {
-        font-size: 0.8em; /* Smaller than title */
-        color: #00bcd4; /* Cyan color */
-        margin-right: 10px; /* Space between number and title */
-        font-weight: 700;
-        opacity: 0.8;
-    }
-
-    .poster-info h3::after { /* Underline effect for title */
-        content: '';
-        display: block;
-        width: 50px;
-        height: 3px;
-        background: #00bcd4;
-        margin-top: 8px;
-        transition: width 0.3s ease;
-        position: absolute;
-        bottom: -5px; /* Position below text */
-        left: 0;
-    }
-    .poster-tile:hover .poster-info h3::after {
-        width: 100%; /* Expands on hover */
-    }
-
-    /* Tags within cards */
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 15px;
-        gap: 10px;
-    }
-
-    .tag {
-        background-color: #263238; /* Darker tag background */
-        color: #80deea; /* Lighter cyan tag text */
-        padding: 6px 12px;
-        border-radius: 6px;
-        font-size: 0.85em;
-        font-weight: 500;
-        border: 1px solid rgba(0, 188, 212, 0.2);
-    }
-    .tag[data-genre]::before { /* Small icon next to genre tag */
-        content: '🎬 ';
-        opacity: 0.7;
-    }
-
-    /* Key details summary */
-    .key-details-summary {
-        font-size: 0.95rem;
-        color: #b0bec5; /* Muted grey for details */
-        margin: 0.8rem 0 1.2rem;
-        border-top: 1px dashed rgba(255,255,255,0.08); /* Subtle separator */
-        padding-top: 15px;
-    }
-
-    /* Toggle Button for Description */
-    .toggle-description-btn {
-      background-color: #00bcd4; /* Cyan button */
-      color: #0d1117; /* Dark text for contrast */
-      border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
-      font-weight: 600;
-      width: auto; /* Auto width */
-      margin-top: 15px;
-      align-self: flex-start; /* Align to start of card */
-    }
-
-    .toggle-description-btn:hover {
-      background-color: #ffeb3b; /* Golden on hover */
-      color: #1a202c; /* Dark text */
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(255, 235, 59, 0.6);
-    }
-
-    /* Description Content - Hidden by Default */
-    .full-description-content {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      padding: 0; /* Reset padding for smooth transition */
-      border-top: none; /* Reset border */
-      margin-top: 0; /* Reset margin */
-      transition: max-height 0.7s ease-out, opacity 0.6s ease-out, padding 0.6s ease-out, border-top 0.6s ease-out, margin-top 0.6s ease-out;
-      color: #bbdefb; /* Light blue for description text */
-      font-style: italic;
-      font-size: 0.95em;
-    }
-
-    /* Description Content - When Expanded */
-    .full-description-content.expanded {
-      max-height: 350px; /* Increased height capacity */
-      opacity: 1;
-      padding-top: 20px;
-      border-top: 1px dashed rgba(255,255,255,0.2);
-      margin-top: 20px;
-    }
-
-    /*
-      ======================================================
-      GOLDEN GLOW & INDIAN VIBE FOR MUST-WATCH SERIES
-      ======================================================
-    */
-    .poster-tile.must-watch {
-        border-color: #ffd700; /* Gold border */
-        background: linear-gradient(135deg, #1f2833, #151a21); /* Slightly different background for must-watch */
-        box-shadow: 0 0 25px rgba(255, 215, 0, 0.6), 0 0 50px rgba(255, 215, 0, 0.3); /* Strong golden glow */
-        position: relative;
-        z-index: 2; /* Bring must-watch cards slightly to front */
-        animation: glowPulse 2s infinite alternate; /* Pulsating glow */
-    }
-
-    @keyframes glowPulse {
-        from { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.2); }
-        to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4); }
-    }
-
-    .poster-tile.must-watch:hover {
-        border-color: #ffeb3b; /* Brighter gold on hover */
-        transform: translateY(-15px) scale(1.04); /* More aggressive lift */
-        box-shadow: 0 0 40px rgba(255, 215, 0, 0.9), 0 0 80px rgba(255, 215, 0, 0.5); /* Intense golden glow on hover */
-    }
-
-    .poster-tile.must-watch .poster-info h3 {
-        color: #ffeb3b; /* Golden title */
-        text-shadow: 0 0 10px rgba(255, 235, 59, 0.7);
-    }
-    .poster-tile.must-watch .poster-info h3::after {
-        background: linear-gradient(to right, #ffeb3b, #ffd700); /* Golden underline */
-    }
-
-    .poster-tile.must-watch .tag {
-        background-color: #3d3200; /* Darker golden tag background */
-        color: #ffcc00; /* Brighter golden tag text */
-        border-color: rgba(255, 204, 0, 0.4);
-    }
-    .must-watch-badge {
-        background-color: #ffcc00; /* Golden badge */
-        color: #1a202c; /* Dark text for contrast */
-        font-weight: 700;
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 0.9em;
-        margin-left: 10px;
-        box-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
-        animation: badgePulse 1.5s infinite alternate;
-    }
-
-    @keyframes badgePulse {
-        from { box-shadow: 0 0 5px rgba(255, 204, 0, 0.5); }
-        to { box-shadow: 0 0 15px rgba(255, 204, 0, 0.9); }
-    }
-
-
-    /*
-      ======================================================
-      BUTTONS (HOME & SCROLL TO TOP) - Stacked
-      ======================================================
-    */
-    .home-btn, #topBtn.top-btn {
-        position: fixed;
-        right: 25px; /* Aligned to the right */
-        width: 60px; /* Slightly larger buttons */
-        height: 60px;
-        border-radius: 50%;
-        display: none; /* Hidden by default */
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        font-size: 2.2em; /* Larger icons */
-        transition: all 0.3s ease;
-        z-index: 1000;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    }
-
-    .home-btn {
-        bottom: 90px; /* Position above scroll-to-top */
-        background-color: #673ab7; /* Deep Purple for Home */
-        color: #e8eaf6;
-    }
-    .home-btn:hover {
-        background-color: #7e57c2;
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(103, 58, 183, 0.6);
-    }
-
-    #topBtn.top-btn {
-        bottom: 20px; /* Bottom position */
-        background-color: #ff5722; /* Vibrant Orange for Top */
-        color: white;
-    }
-    #topBtn.top-btn:hover {
-        background-color: #ff7043;
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(255, 87, 34, 0.6);
-    }
-
-
-    /* Footer Styles - Integrated with Dark Theme */
-    .main-footer {
-        text-align: center;
-        margin-top: 60px;
-        padding: 30px;
-        font-size: 0.95em;
-        color: #78909c; /* Muted text color */
-        border-top: 1px solid #263238; /* Subtle dark border */
-        width: 100%;
-        background-color: #1a202c; /* Dark footer background */
-        box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
-        box-sizing: border-box;
-    }
-
-    .main-footer p {
-        margin: 5px 0;
-    }
-
-    .main-footer a {
-        color: #00bcd4; /* Cyan link color */
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s ease-in-out;
-    }
-
-    .main-footer a:hover {
-        text-decoration: underline;
-        color: #ffeb3b; /* Golden on hover */
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      }
-      h1 {
-        font-size: 3em;
-      }
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 25px 15px;
-      }
-      h1 {
-        font-size: 2.5em;
-        margin-bottom: 40px;
-      }
-      .filters {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 0;
-      }
-      .filters select,
-      .filters input,
-      .filters button {
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 10px; /* Add margin between stacked filters */
-      }
-      .poster-info h3 {
-        font-size: 1.6em;
-      }
-      .home-btn, #topBtn.top-btn {
-        width: 55px;
-        height: 55px;
-        font-size: 2em;
-      }
-      .home-btn { bottom: 80px; right: 15px; }
-      #topBtn.top-btn { bottom: 15px; right: 15px; }
-    }
-
-    @media (max-width: 480px) {
-      body {
-        padding: 20px 10px;
-      }
-      h1 {
-        font-size: 2em;
-        margin-bottom: 30px;
-      }
-      .poster-info h3 {
-        font-size: 1.4em;
-      }
-      .poster-tile {
-        padding: 15px;
-      }
-      .tags .tag {
-        font-size: 0.75em;
-        padding: 4px 8px;
-      }
-      .key-details-summary {
-        font-size: 0.9rem;
-      }
-      .toggle-description-btn {
-        padding: 10px 18px;
-        font-size: 0.9em;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Hindi Series Vault - Galactic Gateway</h1>
-
-  <div class="filters">
-    <select onchange="filterByGenre(this.value)">
-      <option value="All">All Genres</option>
-      <option value="Crime">Crime</option>
-      <option value="Thriller">Thriller</option>
-      <option value="Drama">Drama</option>
-      <option value="Comedy">Comedy</option>
-      <option value="Action">Action</option>
-      <option value="Spy">Spy</option>
-      <option value="Mythological">Mythological</option>
-      <option value="Historical">Historical</option>
-      <option value="Political">Political</option>
-      <option value="Military">Military</option>
-      <option value="Slice of Life">Slice of Life</option>
-      <option value="Sci-Fi">Sci-Fi</option>
-      <option value="Legal">Legal</option>
-      <option value="Teen">Teen</option>
-      <option value="Period">Period</option>
-      <option value="Financial">Financial</option>
-      <option value="True Crime">True Crime</option>
-      <option value="Military Biopic">Military Biopic</option>
-      <option value="Newsroom">Newsroom</option>
-      <option value="Medical">Medical</option>
-      <option value="Eco-Crime">Eco-Crime</option>
-    </select>
-
-    <button onclick="filterMustWatch()">🎯 Must Watch</button>
-
-    <input type="text" placeholder="Search titles & descriptions..." oninput="searchTitles(this.value)">
-    <select onchange="sortBy(this.value)">
-      <option value="">Sort by…</option>
-      <option value="popularity">Popularity</option>
-      <option value="year">Year</option>
-      <option value="titleAsc">Title (A-Z)</option>
-      <option value="titleDesc">Title (Z-A)</option>
-      <option value="imdbRating">IMDb Rating</option>
-    </select>
-  </div>
-
-  <div id="hindiGrid" class="grid"></div>
-
-  <button onclick="goHome()" class="home-btn" title="Go to Home">🏠</button>
-  <button onclick="scrollTopSmooth()" id="topBtn" class="top-btn" title="Scroll to Top">⬆️</button>
-
-  <footer class="main-footer">
-    <p>&copy; <span id="currentYear"></span> Krish Vault. All rights reserved.</p>
-    <p>Explore cinematic galaxies!</p>
-  </footer>
-
-  <script defer>
-    let currentList = []; // This will hold the currently filtered/sorted list of shows
-
-    // Function to display series in the grid
-    function display(list) {
-      const grid = document.getElementById("hindiGrid");
-      if (!grid) {
-        console.error("Error: #hindiGrid element not found.");
-        return;
-      }
-
-      if (!list || !list.length) {
-        grid.innerHTML = "<p style='text-align:center; color: #757575; padding: 20px; border: 1px dashed #bdbdbd; border-radius: 8px; margin-top: 30px; background: #1a202c;'>No shows found matching your criteria. Try adjusting filters or search terms.</p>";
-        return;
-      }
-
-      grid.innerHTML = list.map((show, i) => `
-        <div class="poster-tile ${show.mustwatch ? 'must-watch' : ''}">
-          <div class="poster-info">
-            <h3>
-              <span class="serial-number">${i + 1}.</span> ${show.title}
-              ${show.mustwatch ? '<span class="must-watch-badge">Must-Watch</span>' : ''}
-            </h3>
-            <div class="tags">
-              <span class="tag">${show.platform}</span>
-              <span class="tag" data-genre="${show.genre}">${show.genre}</span>
-              <span class="tag">📅 ${show.year}</span>
-              <span class="tag">🔥 ${show.popularity}%</span>
-              <span class="tag">⭐ ${show.imdbRating}</span>
-            </div>
-            <p class="key-details-summary">
-              Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
-            </p>
-            <button class="toggle-description-btn" data-show-id="${show.id}">View Details</button>
-            <div class="full-description-content" id="desc-${show.id}">
-              <p>${show.description}</p>
-            </div>
-          </div>
-        </div>
-      `).join("");
-
-      // Attach event listeners for the "View Details" buttons *after* the HTML is rendered
-      document.querySelectorAll('.toggle-description-btn').forEach(button => {
-        button.addEventListener('click', (event) => {
-          const showId = event.target.dataset.showId;
-          const descriptionDiv = document.getElementById(`desc-${showId}`);
-          
-          descriptionDiv.classList.toggle('expanded'); // Toggle the 'expanded' class
-          if (descriptionDiv.classList.contains('expanded')) {
-            event.target.textContent = 'Hide Details';
-          } else {
-            event.target.textContent = 'View Details';
-          }
-        });
-      });
-    }
-
-    // --- Filter and Sort Functions ---
-
-    function filterByGenre(selectedGenre) {
-      if (typeof hindiWatchlist === 'undefined' || !Array.isArray(hindiWatchlist)) {
-        console.error("hindiWatchlist is not defined or is not an array.");
-        display([]); // Show error message
-        return;
-      }
-      if (selectedGenre === "All") {
-        currentList = [...hindiWatchlist];
-      } else {
-        currentList = hindiWatchlist.filter(s =>
-          s.genre && s.genre.toLowerCase().includes(selectedGenre.toLowerCase()) // Added null check for genre
-        );
-      }
-      display(currentList);
-    }
-
-    function filterMustWatch() {
-      if (typeof hindiWatchlist === 'undefined' || !Array.isArray(hindiWatchlist)) {
-        console.error("hindiWatchlist is not defined or is not an array.");
-        display([]);
-        return;
-      }
-      currentList = hindiWatchlist.filter(s => s.mustwatch);
-      display(currentList);
-    }
-
-    function searchTitles(query) {
-      if (typeof hindiWatchlist === 'undefined' || !Array.isArray(hindiWatchlist)) {
-        console.error("hindiWatchlist is not defined or is not an array.");
-        display([]);
-        return;
-      }
-      const searchLower = query.toLowerCase();
-      currentList = hindiWatchlist.filter(s =>
-        (s.title && s.title.toLowerCase().includes(searchLower)) ||
-        (s.description && s.description.toLowerCase().includes(searchLower)) ||
-        (s.platform && s.platform.toLowerCase().includes(searchLower)) ||
-        (s.genre && s.genre.toLowerCase().includes(searchLower))
-      );
-      display(currentList);
-    }
-
-    function sortBy(type) {
-      let sorted = [...currentList]; // Always sort the current filtered list
-      switch (type) {
-        case "popularity":
-          sorted.sort((a, b) => (b.popularity || 0) - (a.popularity || 0)); break; // Added null check
-        case "year":
-          sorted.sort((a, b) => (b.year || 0) - (a.year || 0)); break;
-        case "titleAsc":
-          sorted.sort((a, b) => (a.title || '').localeCompare(b.title || '')); break;
-        case "titleDesc":
-          sorted.sort((a, b) => (b.title || '').localeCompare(a.title || '')); break;
-        case "imdbRating":
-          sorted.sort((a, b) => (b.imdbRating || 0) - (a.imdbRating || 0)); break;
-      }
-      display(sorted);
-    }
-
-    // --- Initial Load ---
-    window.onload = () => {
-      // Check if hindiWatchlist is defined and populated from hindirecommendations.js
-      if (typeof hindiWatchlist !== 'undefined' && Array.isArray(hindiWatchlist) && hindiWatchlist.length > 0) {
-        currentList = [...hindiWatchlist]; // Initialize currentList with all data
-        display(currentList); // Display all data initially
-        console.log("✅ Hindi Vault Loaded:", currentList.length, "shows.");
-      } else {
-        console.error("❌ Error: `hindiWatchlist` is not defined or is empty. Please ensure `hindirecommendations.js` is correctly linked and contains the `hindiWatchlist` array.");
-        display([]); // Show empty state message
-      }
-      // Set the current year in the footer
-      document.getElementById("currentYear").textContent = new Date().getFullYear();
-    };
-
-    // --- Scroll to Top Button Functionality ---
-    window.onscroll = () => {
-      const showButtons = window.scrollY > 400;
-      document.getElementById("topBtn").style.display = showButtons ? "flex" : "none";
-      document.querySelector('.home-btn').style.display = showButtons ? "flex" : "none";
-    };
-
-    function scrollTopSmooth() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // --- Home Button Functionality ---
-    function goHome() {
-      window.location.href = "collections.html"; // Navigate to collections.html
-    }
-  </script>
-
-</body>
-</html>
+const myWatchlist = [
+  {
+    id: 1,
+    title: "Farzi",
+    platform: "Prime Video",
+    genre: "Crime Thriller",
+    year: 2023,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 89,
+    imdbRating: 8.5,
+    tags: ["counterfeit", "con artist", "drama", "police", "crime"],
+    description: "Sunny, a disillusioned artist, finds himself drawn into the high-stakes, dangerous world of counterfeiting, using his artistic skills to create perfect fake currency. As he delves deeper, he becomes embroiled in a thrilling cat-and-mouse game with a ruthless gangster who runs the illegal operation and a determined, unconventional task force officer, Michael, who is hell-bent on bringing the entire counterfeiting ring down.",
+    mustWatch: true
+  },
+  {
+    id: 2,
+    title: "Wednesday",
+    platform: "Netflix",
+    genre: "Supernatural Mystery",
+    year: 2022,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "6.5h",
+    popularity: 92,
+    imdbRating: 8.1,
+    tags: ["gothic", "academy", "detective", "teen", "quirky"],
+    description: "Wednesday Addams, known for her morbid curiosity and deadpan demeanor, is sent to Nevermore Academy, a school for monstrous outcasts. There, she attempts to master her emerging psychic ability, thwart a monstrous killing spree that has terrorized the local town, and solve the supernatural mystery that embroiled her parents 25 years ago, all while navigating new, complicated relationships with her fellow students.",
+    mustWatch: true
+  },
+  {
+    id: 3,
+    title: "Stranger Things",
+    platform: "Netflix",
+    genre: "Sci-Fi Horror",
+    year: 2016,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 4,
+    episodes: 34,
+    runtime: "30h",
+    popularity: 98,
+    imdbRating: 8.7,
+    tags: ["supernatural", "80s", "kids", "demogorgon", "alternate dimension"],
+    description: "In the 1980s, in the fictional town of Hawkins, Indiana, a group of young friends discovers a series of supernatural occurrences and secret government experiments. Their lives take an extraordinary turn when they befriend a mysterious girl with psychokinetic abilities, Eleven, who helps them in their desperate search for their missing friend, Will, while battling terrifying creatures from an alternate dimension known as the Upside Down.",
+    mustWatch: true
+  },
+  {
+    id: 4,
+    title: "Rudra: The Edge of Darkness",
+    platform: "Disney+ Hotstar",
+    genre: "Psychological Thriller",
+    year: 2022,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 6,
+    runtime: "5h",
+    popularity: 84,
+    imdbRating: 7.1,
+    tags: ["detective", "dark", "mind games", "serial killer", "cop"],
+    description: "DCP Rudra Veer Singh, a brilliant but brooding cop with a dark and troubled past, delves deep into Mumbai’s most disturbing criminal cases. As he confronts cunning serial killers and delves into the dark crevices of the human mind, Rudra must also battle his own internal demons and maintain his sanity, blurring the lines between good and evil.",
+    mustWatch: false
+  },
+  {
+    id: 5,
+    title: "Scam 1992: The Harshad Mehta Story",
+    platform: "Sony LIV",
+    genre: "Biographical Drama",
+    year: 2020,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 10,
+    runtime: "9h",
+    popularity: 95,
+    imdbRating: 9.3,
+    tags: ["stock market", "real story", "fraud", "media", "economy"],
+    description: "Based on true events, this gripping biographical drama chronicles the meteoric rise and catastrophic fall of Harshad Mehta, a stockbroker who single-handedly revolutionized and then subsequently shook India's stock market with one of its biggest financial scams. The series meticulously details his audacious methods, his interactions with the financial establishment, and the devastating consequences of his actions on the Indian economy and countless investors.",
+    mustWatch: true
+  },
+  {
+    id: 6,
+    title: "The Family Man",
+    platform: "Prime Video",
+    genre: "Spy Thriller",
+    year: 2019,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 2,
+    episodes: 19,
+    runtime: "15h",
+    popularity: 94,
+    imdbRating: 8.7,
+    tags: ["espionage", "terrorism", "fatherhood", "drama", "comedy"],
+    description: "Srikant Tiwari, a middle-class man who secretly works as a senior analyst for the National Investigation Agency's (NIA) T.A.S.C. force, constantly struggles to balance his high-stakes missions to combat terrorism and national threats with his chaotic and often misunderstood family life. The series masterfully blends intense espionage action with relatable domestic comedy, showcasing the personal sacrifices made by those who protect their country.",
+    mustWatch: true
+  },
+  {
+    id: 7,
+    title: "The Boys",
+    platform: "Prime Video",
+    genre: "Superhero Satire",
+    year: 2019,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 3,
+    episodes: 24,
+    runtime: "22h",
+    popularity: 94,
+    imdbRating: 8.7,
+    tags: ["satire", "antihero", "violence", "superpowers", "conspiracy"],
+    description: "In a world where superheroes are corporate-owned celebrities who are often corrupt and abuse their power, a group of vigilantes known informally as 'The Boys' set out to take them down. Led by the no-nonsense Billy Butcher, they engage in a brutal and often bloody fight against 'The Seven,' the most popular (and depraved) superhero team managed by the powerful Vought International corporation, exposing the dark truth behind their heroic facades.",
+    mustWatch: true
+  },
+  {
+    id: 8,
+    title: "All of Us Are Dead",
+    platform: "Netflix",
+    genre: "Zombie Thriller",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 12,
+    runtime: "12h",
+    popularity: 88,
+    imdbRating: 7.5,
+    tags: ["high school", "outbreak", "virus", "students", "survival"],
+    description: "When a science experiment goes horribly wrong at Hyosan High School, a sudden zombie virus outbreak traps students within the school walls. As the infection rapidly spreads, the remaining students must band together, using their wits and courage to fight off the undead, find a way to escape the zombified city, and navigate the horrors of a crumbling society while confronting difficult moral choices and personal sacrifices.",
+    mustWatch: false
+  },
+  {
+    id: 9,
+    title: "The Last of Us",
+    platform: "HBO Max",
+    genre: "Post-Apocalyptic Drama",
+    year: 2023,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 9,
+    runtime: "9h",
+    popularity: 97,
+    imdbRating: 8.9,
+    tags: ["zombie", "fungus", "road trip", "emotion", "survival"],
+    description: "Set in a post-apocalyptic world ravaged by a fungal infection that turns humans into monstrous creatures, a hardened survivor named Joel is tasked with escorting Ellie, a seemingly immune teenage girl, across a devastated America. Their perilous journey forces them to confront brutal dangers, form an unlikely bond, and navigate profound emotional landscapes in a world that has lost its humanity.",
+    mustWatch: true
+  },
+  {
+    id: 10,
+    title: "Lockwood & Co.",
+    platform: "Netflix",
+    genre: "Supernatural Mystery",
+    year: 2023,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 82,
+    imdbRating: 7.4,
+    tags: ["ghost", "teens", "detective", "action", "haunted"],
+    description: "In a version of London plagued by a ghostly epidemic, teenagers with psychic abilities are the only ones capable of fighting supernatural threats. The series follows Lucy Carlyle, a talented young psychic, who joins Lockwood & Co., a small, independent ghost-hunting agency run by the enigmatic Anthony Lockwood and his quirky assistant George Karim. Together, they take on dangerous cases, uncover dark conspiracies, and navigate a world where the living and dead coexist uneasily.",
+    mustWatch: false
+  },
+  {
+    id: 11,
+    title: "Dahmer – Monster: The Jeffrey Dahmer Story",
+    platform: "Netflix",
+    genre: "Crime Biopic",
+    year: 2022,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 10,
+    runtime: "9h",
+    popularity: 86,
+    imdbRating: 7.9,
+    tags: ["serial killer", "true crime", "disturbing", "dark", "investigation"],
+    description: "This chilling and unsettling biographical drama delves into the horrifying crimes of serial killer Jeffrey Dahmer, focusing not only on his actions but also on the systemic failures that allowed him to continue his heinous acts for over a decade. The story is told largely from the perspective of his victims and their families, highlighting the devastating impact of his crimes and the overlooked voices of those affected by his reign of terror.",
+    mustWatch: false
+  },
+  {
+    id: 12,
+    title: "Ozark",
+    platform: "Netflix",
+    genre: "Crime Thriller",
+    year: 2017,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 4,
+    episodes: 44,
+    runtime: "40h",
+    popularity: 95,
+    imdbRating: 8.5,
+    tags: ["money laundering", "cartel", "family", "dark", "tense"],
+    description: "Marty Byrde, a seemingly ordinary financial advisor, is forced to relocate his family from Chicago to the Ozarks after a money-laundering scheme goes wrong with a Mexican drug cartel. Under immense pressure, Marty must launder a vast sum of money to appease the cartel, dragging his wife Wendy and their children deeper into a web of dangerous criminals, local feuds, and increasingly desperate measures to survive and maintain their family unit.",
+    mustWatch: true
+  },
+  {
+    id: 13,
+    title: "Taaza Khabar",
+    platform: "Disney+ Hotstar",
+    genre: "Fantasy Drama",
+    year: 2023,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 6,
+    runtime: "5h",
+    popularity: 81,
+    imdbRating: 7.2,
+    tags: ["magic", "Mumbai", "aspiration", "rags to riches", "twist"],
+    description: "Basant, a sanitation worker living in the chawls of Mumbai, struggles with his everyday life until a miraculous phone call grants him the power to foresee future headlines and events. He uses this newfound ability to change his fate and rapidly rise from poverty to wealth and fame, but his escalating greed and the complexities of his new life threaten to unravel everything he has built.",
+    mustWatch: false
+  },
+  {
+    id: 14,
+    title: "1899",
+    platform: "Netflix",
+    genre: "Mystery Thriller",
+    year: 2022,
+    language: "Multilingual",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "8h",
+    popularity: 87,
+    imdbRating: 7.3,
+    tags: ["ship", "puzzle", "historical", "dreams", "surreal"],
+    description: "A diverse group of European migrants, all with their own secrets and mysteries, are traveling by steamship from London to New York in 1899, hoping for a new beginning. Their journey takes a terrifying turn when they encounter another migrant ship adrift in the open sea. What they find aboard defies logic and plunges them into a mind-bending enigma that challenges their perceptions of reality, forcing them to confront their pasts and the very nature of existence.",
+    mustWatch: false
+  },
+  {
+  id: 15,
+  title: "Money Heist",
+  platform: "Netflix",
+  genre: "Heist Thriller",
+  year: 2017,
+  language: "Spanish",
+  hindiDubbed: true,
+  seasons: 5,
+  episodes: 41,
+  runtime: "32h",
+  popularity: 96,
+  imdbRating: 8.2,
+  tags: ["heist", "robbery", "mask", "professor", "resistance"],
+  description: "An enigmatic criminal mastermind, known only as 'The Professor,' meticulously orchestrates the biggest bank robbery in Spanish history. He gathers a unique crew of eight specialized criminals, each with a city name as their alias, and trains them for months to execute a daring heist on the Royal Mint of Spain. As the heist unfolds, it becomes a complex game of cat and mouse with the police, involving intricate plans, unexpected twists, and a growing public fascination with the masked robbers.",
+  mustWatch: true
+},
+{
+  id: 16,
+  title: "Cobra Kai",
+  platform: "Netflix",
+  genre: "Martial Arts Drama",
+  year: 2018,
+  language: "English",
+  hindiDubbed: true,
+  seasons: 5,
+  episodes: 50,
+  runtime: "40h",
+  popularity: 90,
+  imdbRating: 8.5,
+  tags: ["karate", "rivalry", "dojo", "high school", "nostalgia"],
+  description: "Decades after their iconic showdown at the 1984 All Valley Karate Tournament, Johnny Lawrence, now a struggling alcoholic, decides to reopen the infamous Cobra Kai dojo. This decision reignites his long-standing rivalry with the successful Daniel LaRusso, who has embraced the 'Miyagi-Do' philosophy of balance and defense. The series explores the next generation of karate students, themes of redemption, legacy, and the enduring impact of past choices on the present.",
+  mustWatch: true
+},
+{
+  id: 17,
+  title: "The Watcher",
+  platform: "Netflix",
+  genre: "True Crime Thriller",
+  year: 2022,
+  language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 7,
+    runtime: "6h",
+    popularity: 83,
+    imdbRating: 6.5,
+    tags: ["stalker", "suburb", "mystery", "family", "letters"],
+    description: "Based on a true story, a married couple, Nora and Dean Brannock, purchase their dream home in a picturesque New Jersey suburb. However, their new life quickly turns into a living nightmare when they begin receiving disturbing, anonymous letters from a person who calls themselves 'The Watcher,' threatening their family and revealing intimate details about their lives. As the menacing letters escalate, paranoia grips the neighborhood, and the couple desperately tries to uncover the identity of their relentless tormentor, questioning everyone around them.",
+    mustWatch: false
+  },
+  {
+    id: 18,
+    title: "Loki",
+    platform: "Disney+ Hotstar",
+    genre: "Superhero Fantasy",
+    year: 2021,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 2,
+    episodes: 12,
+    runtime: "10h",
+    popularity: 92,
+    imdbRating: 8.2,
+    tags: ["multiverse", "time travel", "antihero", "variant", "chaos"],
+    description: "Following the events of 'Avengers: Endgame,' an alternate version of Loki, the God of Mischief, escapes with the Tesseract. He is quickly apprehended by the mysterious Time Variance Authority (TVA), an organization that monitors the sacred timeline. To avoid being 'pruned' from existence, Loki is forced to help Agent Mobius hunt down a dangerous variant of himself, inadvertently diving headfirst into the complexities of the multiverse and confronting his own destiny and purpose.",
+    mustWatch: true
+  },
+  {
+    id: 19,
+    title: "Moon Knight",
+    platform: "Disney+ Hotstar",
+    genre: "Superhero Mystery",
+    year: 2022,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 6,
+    runtime: "5h",
+    popularity: 85,
+    imdbRating: 7.3,
+    tags: ["egyptian mythology", "dissociative identity", "superhero", "vigilante"],
+    description: "Steven Grant, a mild-mannered gift shop employee, is plagued by blackouts and memories of a life that isn't his own. He soon discovers he has Dissociative Identity Disorder (DID) and shares a body with Marc Spector, a ruthless mercenary. As their identities clash, they become embroiled in a deadly mystery involving Egyptian gods and cults, forcing them to navigate their complex mental landscape while becoming the conduit for the Egyptian moon god Khonshu – Moon Knight.",
+    mustWatch: false
+  },
+  {
+    id: 20,
+    title: "Alice in Borderland",
+    platform: "Netflix",
+    genre: "Survival Sci-Fi",
+    year: 2020,
+    language: "Japanese",
+    hindiDubbed: true,
+    seasons: 2,
+    episodes: 16,
+    runtime: "15h",
+    popularity: 91,
+    imdbRating: 7.6,
+    tags: ["games", "tokyo", "death", "strategy", "mystery"],
+    description: "Ryohei Arisu, a disillusioned young man obsessed with video games, suddenly finds himself in a deserted, dystopian version of Tokyo along with his two best friends. They soon discover they are forced to compete in a series of increasingly deadly games, each with a specific playing card suit determining its genre (e.g., Spades for physical challenges, Hearts for psychological games). To survive, they must outwit, outlast, and outplay their opponents, while desperately searching for a way to return to their original reality and unravel the mystery of the 'Borderland.'",
+    mustWatch: true
+  },
+  {
+    id: 21,
+    title: "Asur",
+    platform: "JioCinema",
+    genre: "Mythological Crime Thriller",
+    year: 2020,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 2,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 89,
+    imdbRating: 8.4,
+    tags: ["mythology", "serial killer", "forensics", "ritual", "philosophy"],
+    description: "Set in Varanasi, this dark and intricate crime thriller follows a brilliant forensic expert, Nikhil Nair, who is pulled back into the world of criminal investigation when a cunning serial killer, who believes he is an ancient demon (Asur) fulfilling divine justice, begins leaving cryptic clues rooted in Indian mythology. Alongside his former mentor, Dhananjay Rajpoot, Nikhil enters a psychological cat-and-mouse game, where ancient religious texts intertwine with modern forensic science in a battle against a killer's warped philosophy.",
+    mustWatch: true
+  },
+  {
+    id: 22,
+    title: "College Romance",
+    platform: "Sony LIV",
+    genre: "Romantic Comedy",
+    year: 2018,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 3,
+    episodes: 15,
+    runtime: "10h",
+    popularity: 84,
+    imdbRating: 7.4,
+    tags: ["college", "friendship", "dating", "breakups", "funny"],
+    description: "This light-hearted and relatable series captures the essence of modern Indian college life through the intertwined stories of three best friends – Trippy, Naira, and Karan. As they navigate the ups and downs of new relationships, heartbreaks, academic pressures, and hilarious misadventures, the series explores the enduring bonds of friendship, the awkwardness of young love, and the memorable experiences that shape them during their college years.",
+    mustWatch: false
+  },
+  {
+    id: 23,
+    title: "Mismatched",
+    platform: "Netflix",
+    genre: "Young Adult Romance",
+    year: 2020,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 2,
+    episodes: 12,
+    runtime: "8h",
+    popularity: 79,
+    imdbRating: 6.8,
+    tags: ["coding", "campus", "romance", "conflict", "startup"],
+    description: "Set at a summer program for aspiring coders and entrepreneurs, the series follows Dimple Ahuja, an ambitious and driven coding prodigy who dreams of building the next big app, and Rishi Singh, a hopeless romantic who believes in traditional love and is looking for his future wife. Their conflicting personalities lead to initial clashes, but as they navigate campus life, academic challenges, and the complexities of young adult relationships, an unexpected and often awkward romance begins to bloom.",
+    mustWatch: false
+  },
+  {
+    id: 24,
+    title: "Yeh Kaali Kaali Ankhein",
+    platform: "Netflix",
+    genre: "Romantic Thriller",
+    year: 2022,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 82,
+    imdbRating: 7.1,
+    tags: ["obsession", "power", "romance", "thriller", "escape"],
+    description: "Vikrant, a simple, middle-class man living in a small town, finds his life turned upside down when Purva, the powerful and obsessive daughter of a local politician, becomes infatuated with him. What begins as a seemingly harmless crush quickly escalates into a dangerous obsession, as Vikrant tries desperately to escape her clutches and protect his existing relationship, leading him into a dark world of manipulation, crime, and a desperate struggle for freedom.",
+    mustWatch: false
+  },
+  {
+    id: 25,
+    title: "Mirzapur",
+    platform: "Prime Video",
+    genre: "Crime Action",
+    year: 2018,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 2,
+    episodes: 19,
+    runtime: "16h",
+    popularity: 95,
+    imdbRating: 8.5,
+    tags: ["gangs", "guns", "power", "revenge", "UP"],
+    description: "Set in the lawless city of Mirzapur in Uttar Pradesh, the series follows the ruthless, albeit self-proclaimed 'King of Mirzapur,' Akhandanand Tripathi, also known as Kaleen Bhaiya, and his impulsive, power-hungry son Munna. The lives of two innocent brothers, Guddu and Bablu, take a violent turn when they get entangled in the Tripathis' world of guns, drugs, and illicit power. What ensues is a brutal saga of ambition, revenge, betrayals, and the relentless pursuit of dominance in a world where violence is the only language.",
+    mustWatch: true
+  },
+  {
+    id: 26,
+    title: "Criminal Justice",
+    platform: "Disney+ Hotstar",
+    genre: "Courtroom Drama",
+    year: 2019,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 3,
+    episodes: 18,
+    runtime: "14h",
+    popularity: 87,
+    imdbRating: 8.1,
+    tags: ["law", "prison", "justice", "reform", "thriller"],
+    description: "This acclaimed anthology series delves into the complexities of the Indian legal system, with each season focusing on a different compelling case. It follows the journey of individuals caught in the labyrinthine world of justice, from their initial arrests and prison experiences to the intricate courtroom battles. The series highlights themes of social injustice, media trials, police brutality, and the personal toll on those seeking or dispensing justice, often through the eyes of the persistent lawyer, Madhav Mishra.",
+    mustWatch: true
+  },
+  {
+    id: 27,
+    title: "Lucifer",
+    platform: "Netflix",
+    genre: "Fantasy Drama",
+    year: 2016,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 6,
+    episodes: 93,
+    runtime: "70h",
+    popularity: 93,
+    imdbRating: 8.1,
+    tags: ["devil", "crime", "LA", "investigation", "romance"],
+    description: "Tired of his monotonous life in Hell, Lucifer Morningstar, the Devil himself, abandons his throne and retires to Los Angeles to run an upscale nightclub called 'Lux.' When a murder occurs outside his club, he finds himself drawn into the world of crime-solving, assisting LAPD detective Chloe Decker. Using his unique powers of persuasion and immortality, Lucifer helps bring criminals to justice while battling celestial forces, familial drama, and his own burgeoning humanity and feelings for Chloe.",
+    mustWatch: false
+  },
+  {
+    id: 28,
+    title: "Saas Bahu Aur Flamingo",
+    platform: "Disney+ Hotstar",
+    genre: "Crime Drama",
+    year: 2023,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 80,
+    imdbRating: 7.2,
+    tags: ["matriarch", "drug cartel", "feminist", "guns", "family"],
+    description: "Deep in the dry, unforgiving landscapes of a fictional desert town, Savitri, a powerful and unconventional matriarch, secretly runs a flourishing drug empire, known as 'Homi' (Opium), with the help of her daughters-in-law and a younger daughter. This dark crime drama explores themes of female power, family loyalty, and survival against all odds as they navigate rival gangs, corrupt officials, and internal conflicts, proving that these women are far from ordinary 'saas-bahu' stereotypes.",
+    mustWatch: false
+  },
+  {
+    id: 29,
+    title: "Dahaad",
+    platform: "Prime Video",
+    genre: "Crime Mystery",
+    year: 2023,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 85,
+    imdbRating: 7.6,
+    tags: ["serial killer", "female lead", "investigation", "rural", "suspense"],
+    description: "In the dusty, rural heartland of Rajasthan, Sub-Inspector Anjali Bhaati, a tough and determined female cop, is assigned to investigate a perplexing series of mysterious suicides among young women. As she delves deeper into the cases, she suspects a sinister pattern and realizes that a calculating serial killer is at large, targeting vulnerable women. The investigation becomes a tense cat-and-mouse chase, forcing Anjali to confront societal prejudices while racing against time to catch the elusive murderer.",
+    mustWatch: false
+  },
+  {
+    id: 30,
+    title: "Panchayat",
+    platform: "Prime Video",
+    genre: "Slice of Life Comedy",
+    year: 2020,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 2,
+    episodes: 16,
+    runtime: "12h",
+    popularity: 91,
+    imdbRating: 8.9,
+    tags: ["village", "drama", "comedy", "youth", "bureaucracy"],
+    description: "Abhishek Tripathi, an engineering graduate from a big city, reluctantly accepts a job as a Gram Panchayat Secretary in the remote and unassuming village of Phulera, Uttar Pradesh, after failing to secure a better placement. The series chronicles his often hilarious and sometimes poignant experiences as he navigates the simple yet complex daily life of the villagers, the quirks of rural bureaucracy, and slowly discovers meaning, purpose, and unexpected friendships in this unfamiliar world.",
+    mustWatch: true
+  },
+  {
+    id: 31,
+    title: "Lucky Guy",
+    platform: "Prime Video",
+    genre: "K-Romance Comedy",
+    year: 2021,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 10,
+    runtime: "8h",
+    popularity: 77,
+    imdbRating: 7.0,
+    tags: ["romance", "luck", "coincidence", "slice of life", "quirky"],
+    description: "The series follows a man who has always been plagued by bad luck, leading to a series of comical misfortunes in his life. His fortunes take an unexpected turn when he encounters a cheerful and optimistic girl who, unknowingly, seems to have a strange effect on his destiny. Their quirky interactions lead to a series of fortunate coincidences, making him wonder if she is his personal 'lucky charm' and sparking a heartwarming, often funny, romance.",
+    mustWatch: false
+  },
+  {
+    id: 32,
+    title: "Business Proposal",
+    platform: "Netflix",
+    genre: "Romantic Comedy",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 12,
+    runtime: "10h",
+    popularity: 90,
+    imdbRating: 8.1,
+    tags: ["office romance", "identity", "blind date", "funny", "CEO"],
+    description: "Shin Ha-ri, a cheerful food researcher, agrees to go on a blind date in place of her best friend, who wants to reject her suitor. However, the date turns out to be Kang Tae-moo, the handsome and work-obsessed CEO of her own company. To avoid an unwanted marriage, Tae-moo proposes a fake dating contract with Ha-ri, leading to hilarious situations, mistaken identities, and an undeniable attraction as they navigate their professional and pretend personal lives.",
+    mustWatch: true
+  },
+  {
+    id: 33,
+    title: "One Dollar Lawyer",
+    platform: "Disney+ Hotstar",
+    genre: "Legal Comedy",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 12,
+    runtime: "10h",
+    popularity: 84,
+    imdbRating: 8.0,
+    tags: ["courtroom", "justice", "humor", "lawyer", "satire"],
+    description: "Cheon Ji-hoon is a witty and flamboyant lawyer with an unconventional approach to justice. Despite his undeniable brilliance and impressive track record in court, he only charges his clients a symbolic fee of ₩1000 (about one dollar), making his services accessible to the poor and marginalized. The series follows his eccentric methods as he fights against the powerful and corrupt, delivering justice with a unique blend of humor, flair, and unwavering integrity, often leaving his colleagues baffled.",
+    mustWatch: false
+  },
+  {
+    id: 34,
+    title: "Gen V",
+    platform: "Prime Video",
+    genre: "Superhero Action",
+    year: 2023,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "8h",
+    popularity: 87,
+    imdbRating: 7.9,
+    tags: ["superpowers", "college", "violence", "spin-off", "dark"],
+    description: "Set in the universe of 'The Boys,' 'Gen V' explores Godolkin University, the only college exclusively for young adult superheroes (or 'Supes') managed by Vought International. These hormonally charged and competitive Supes push their physical and moral boundaries as they compete for top ranking, lucrative contracts, and a chance to join The Seven. However, they soon discover that behind the glitz of the university lies a dark conspiracy, testing their loyalties and the true nature of their powers.",
+    mustWatch: true
+  },
+  {
+    id: 35,
+    title: "November Story",
+    platform: "Disney+ Hotstar",
+    genre: "Crime Mystery",
+    year: 2021,
+    language: "Tamil",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 7,
+    runtime: "6h",
+    popularity: 79,
+    imdbRating: 7.4,
+    tags: ["author", "dementia", "murder", "daughter", "media"],
+    description: "Anuradha, a young and determined ethical hacker, finds herself in a desperate race against time when her acclaimed crime novelist father, Ganesan, who suffers from Alzheimer's, becomes the prime suspect in a gruesome murder. As she tries to clear his name, Anuradha must delve into his past, confront his fading memories, and piece together clues from his unfinished novel, uncovering a web of dark secrets, betrayals, and a conspiracy that could destroy her family.",
+    mustWatch: false
+  },
+  {
+    id: 36,
+    title: "Dhindora",
+    platform: "YouTube",
+    genre: "Comedy Drama",
+    year: 2021,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 8,
+    runtime: "6h",
+    popularity: 83,
+    imdbRating: 8.6,
+    tags: ["BB Ki Vines", "lottery", "satire", "family", "middle class"],
+    description: "This highly anticipated series brings Bhuvan Bam's beloved and iconic characters from 'BB Ki Vines' to life in a hilarious and heartwarming narrative. The story revolves around the chaos that ensues in a middle-class Indian family after they unexpectedly win a lottery. As they navigate newfound wealth, societal pressures, and the quirks of their eccentric relatives, the series offers a satirical yet relatable look at aspirations, challenges, and the enduring spirit of the common man.",
+    mustWatch: true
+  },
+  {
+    id: 37,
+    title: "Breaking Bad",
+    platform: "Netflix",
+    genre: "Crime Drama",
+    year: 2008,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 5,
+    episodes: 62,
+    runtime: "50h",
+    popularity: 99,
+    imdbRating: 9.5,
+    tags: ["meth", "teacher", "transformation", "cartel", "iconic"],
+    description: "Walter White, a mild-mannered and underpaid high school chemistry teacher, is diagnosed with inoperable lung cancer. Desperate to provide for his family before he dies, he teams up with his former student, Jesse Pinkman, to produce and sell methamphetamine. What begins as a desperate act quickly spirals into a terrifying descent into the criminal underworld, transforming Walter into the ruthless drug lord 'Heisenberg' and challenging every moral boundary.",
+    mustWatch: true
+  },
+  {
+    id: 38,
+    title: "King the Land",
+    platform: "Netflix",
+    genre: "Romantic Comedy",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 86,
+    imdbRating: 7.6,
+    tags: ["hotel", "heir", "smile", "opposites attract", "K-romance"],
+    description: "Gu Won, a charming and intelligent heir to The King Group, which owns luxury hotels, struggles with a past family trauma and dislikes fake smiles. He clashes with Cheon Sa-rang, an enthusiastic and hardworking hotelier known for her genuine, bright smile, who works at King Hotel. Despite their initial misunderstandings and opposing personalities, they find themselves drawn to each other, navigating the complexities of their professional lives and a heartwarming romance that makes Gu Won rediscover his lost smile.",
+    mustWatch: false
+  },
+  {
+    id: 39,
+    title: "The King: Eternal Monarch",
+    platform: "Netflix",
+    genre: "Fantasy Romance",
+    year: 2020,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "16h",
+    popularity: 88,
+    imdbRating: 8.1,
+    tags: ["parallel worlds", "emperor", "detective", "mystery", "epic"],
+    description: "Lee Gon, the emperor of the Kingdom of Corea, discovers a portal to a parallel universe: the Republic of Korea, where he encounters Detective Jeong Tae-eul, a woman he recognizes from a mysterious ID card from his childhood. Believing she holds the key to unlocking a sinister conspiracy that connects both worlds and threatens his kingdom, Lee Gon and Tae-eul embark on an epic journey across dimensions, battling evil forces and navigating a fated romance that transcends time and space.",
+    mustWatch: true
+  },
+  {
+    id: 40,
+    title: "Goblin: The Lonely and Great God",
+    platform: "Viki",
+    genre: "Fantasy Romance",
+    year: 2016,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "18h",
+    popularity: 92,
+    imdbRating: 8.6,
+    tags: ["immortality", "grim reaper", "destiny", "K-drama", "tears"],
+    description: "Kim Shin, a decorated Goryeo general, is cursed to live an immortal life as a Goblin, bearing an invisible sword in his chest, until his fated bride can pull it out and grant him eternal rest. His lonely existence crosses paths with Ji Eun-tak, a cheerful and optimistic high school student who can see ghosts and is destined to be his bride. Complicating matters is the amnesiac Grim Reaper who lives with the Goblin, and their intertwined destinies lead to a magical, poignant, and often humorous tale of love, loss, and redemption.",
+    mustWatch: true
+  },
+  {
+    id: 41,
+    title: "What's Wrong with Secretary Kim",
+    platform: "Netflix",
+    genre: "Romantic Comedy",
+    year: 2018,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 89,
+    imdbRating: 8.1,
+    tags: ["boss", "secretary", "office", "past trauma", "adorable"],
+    description: "Lee Young-joon, the narcissistic and highly capable vice president of a major corporation, has always relied completely on his perfect secretary, Kim Mi-so. When Mi-so suddenly announces her resignation after nine years, Young-joon is thrown into a state of confusion, unable to comprehend life without her. As he tries to convince her to stay, he begins to realize the true depth of his feelings for her and unravels a shared traumatic past that connects them in unexpected ways, leading to a charming and hilarious office romance.",
+    mustWatch: false
+  },
+  {
+    id: 42,
+    title: "Behind Your Touch",
+    platform: "Netflix",
+    genre: "Supernatural Mystery",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 82,
+    imdbRating: 7.4,
+    tags: ["village", "veterinarian", "psychic", "touch", "detective"],
+    description: "Bong Ye-bun is a cheerful veterinarian in a quiet rural village who unexpectedly gains psychometric abilities after a meteor shower incident: she can see the past of people and animals by touching their rear ends. She teams up with Detective Moon Jang-yeol, a hot-blooded Seoul detective exiled to the village, to solve petty crimes. However, their unusual partnership takes a serious turn when a string of mysterious murders begins to plague the village, forcing them to use Ye-bun's bizarre power to catch the killer.",
+    mustWatch: false
+  },
+  {
+    id: 43,
+    title: "Crazy Love",
+    platform: "Disney+ Hotstar",
+    genre: "Romantic Thriller",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 78,
+    imdbRating: 7.3,
+    tags: ["amnesia", "ceo", "secretary", "revenge", "fake identity"],
+    description: "No Go-jin is a brilliant but arrogant CEO of a math institute who fakes amnesia after receiving a death threat. His quiet and seemingly ordinary secretary, Lee Shin-a, who has been diagnosed with a terminal illness and has endured Go-jin's cruel treatment, decides to pretend to be his fiancée to seek revenge. Their complicated and often chaotic relationship is further muddled by his memory loss and the real threats lurking, leading to a crazy, unpredictable, and ultimately heartwarming romance.",
+    mustWatch: false
+  },
+  {
+    id: 44,
+    title: "Crash Landing on You",
+    platform: "Netflix",
+    genre: "Romance Drama",
+    year: 2019,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "16h",
+    popularity: 94,
+    imdbRating: 8.7,
+    tags: ["north korea", "heiress", "accident", "soldier", "star-crossed"],
+    description: "Yoon Se-ri, a successful South Korean fashion heiress, is unexpectedly swept away by a paragliding accident during a storm and crash-lands in the demilitarized zone of North Korea. There, she is discovered by Ri Jeong-hyeok, a quiet and principled North Korean army captain. Despite the immense political and ideological divide between their nations, Jeong-hyeok secretly protects and hides Se-ri, leading to a poignant, humorous, and star-crossed romance that challenges boundaries and fate.",
+    mustWatch: true
+  },
+  {
+    id: 45,
+    title: "Flower of Evil",
+    platform: "Netflix",
+    genre: "Crime Thriller",
+    year: 2020,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 91,
+    imdbRating: 8.7,
+    tags: ["husband", "secret identity", "detective", "past", "psychopath"],
+    description: "Baek Hee-sung is a seemingly devoted husband and loving father, running a successful metal craft workshop. However, he lives a meticulously crafted lie, hiding a dark and disturbing past and a completely different identity from his wife, Cha Ji-won, who is a homicide detective. As Ji-won investigates a series of brutal murders, she slowly begins to uncover clues that point to her perfect husband, forcing her to confront the chilling possibility that the man she loves might be a ruthless psychopath and a serial killer.",
+    mustWatch: true
+  },
+  {
+    id: 46,
+    title: "It's Okay to Not Be Okay",
+    platform: "Netflix",
+    genre: "Psychological Romance",
+    year: 2020,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "16h",
+    popularity: 90,
+    imdbRating: 8.5,
+    tags: ["mental health", "children's author", "trauma", "healing", "autism"],
+    description: "Moon Gang-tae is a kind and empathetic caregiver who works in a psychiatric ward, dedicated to looking after his older brother, Sang-tae, who has autism. Go Moon-young is a popular but antisocial children's book author with an anti-social personality disorder, stemming from her traumatic past. Their paths intertwine, leading to a dark, healing, and unconventional romance as they confront their emotional wounds, past traumas, and slowly find solace and understanding in each other, learning that it's okay to not be okay.",
+    mustWatch: true
+  },
+  {
+    id: 47,
+    title: "The King of Pigs",
+    platform: "TVING",
+    genre: "Psychological Thriller",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 12,
+    runtime: "10h",
+    popularity: 81,
+    imdbRating: 7.6,
+    tags: ["bullying", "revenge", "serial killer", "dark", "flashbacks"],
+    description: "Based on the animated film of the same name, this dark and disturbing psychological thriller follows two men, Hwang Kyung-min and Jung Jong-seok, who are haunted by the brutal bullying they endured in middle school. When a string of serial murders begins, seemingly targeting their former bullies, Jong-seok, a detective, realizes that Kyung-min might be the perpetrator. The series delves deep into the lasting trauma of school violence, the nature of revenge, and the chilling psychological games that unfold as they confront their shared, violent past.",
+    mustWatch: false
+  },
+  {
+    id: 48,
+    title: "Vincenzo",
+    platform: "Netflix",
+    genre: "Crime Comedy",
+    year: 2021,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 20,
+    runtime: "20h",
+    popularity: 94,
+    imdbRating: 8.4,
+    tags: ["mafia", "law", "gold", "comedy", "revenge"],
+    description: "Vincenzo Cassano is a sharp-witted and charismatic Korean-Italian consigliere (legal advisor) to the Mafia. When a conflict within his organization forces him to flee to South Korea, he plans to retrieve a massive amount of hidden gold stashed beneath a dilapidated Geumga Plaza. However, he finds himself inadvertently entangled in a brutal battle against Babel Group, a powerful and corrupt conglomerate. Teaming up with the feisty lawyer Hong Cha-young, Vincenzo uses his ruthless Mafia tactics and cunning legal strategies to deliver justice in his own dark, comedic, and often violent way.",
+    mustWatch: true
+  },
+  {
+    id: 49,
+    title: "Lawless Lawyer",
+    platform: "Viki",
+    genre: "Legal Action",
+    year: 2018,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "15h",
+    popularity: 86,
+    imdbRating: 7.8,
+    tags: ["gangster", "judge", "law", "revenge", "mother"],
+    description: "Bong Sang-pil is a former gangster who becomes a lawyer, using both his fists and legal loopholes to deliver justice. Driven by a desire for revenge for his mother's murder, he returns to his hometown, Kisung, to expose the deep-seated corruption led by a powerful and seemingly untouchable judge, Cha Moon-sook. He teams up with Ha Jae-yi, an idealistic lawyer who believes in the law's integrity, forming an unlikely but formidable duo fighting a system that prioritizes power over justice.",
+    mustWatch: false
+  },
+  {
+    id: 50,
+    title: "Strong Girl Nam-soon",
+    platform: "Netflix",
+    genre: "Superhero Comedy",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 88,
+    imdbRating: 6.9,
+    tags: ["super strength", "family", "drug ring", "action", "funny"],
+    description: "Gang Nam-soon, born with superhuman strength inherited from her mother and grandmother, was lost in Mongolia as a child. As an adult, she returns to Korea to find her birth family. Her extraordinary strength and quirky personality soon draw her into a large-scale drug investigation led by detective Kang Hee-sik. Together with her equally strong mother and grandmother, she uses her powers and family bond to take down a formidable drug cartel, leading to a series of action-packed and hilarious encounters.",
+    mustWatch: false
+  },
+  {
+    id: 51,
+    title: "Legal High",
+    platform: "Viki",
+    genre: "Legal Comedy",
+    year: 2019,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "13h",
+    popularity: 82,
+    imdbRating: 7.5,
+    tags: ["lawyer", "bizarre", "satire", "legal battles", "mentorship"],
+    description: "Go Tae-rim is an eccentric, arrogant, and highly skilled lawyer who boasts a 100% win rate, valuing money and victory above all else. He takes on any case, no matter how morally ambiguous, as long as he's paid. He is forced to work with Seo Jae-in, a righteous and passionate rookie lawyer who believes in justice and the truth. Their clashing philosophies lead to hilarious arguments and bizarre courtroom antics, but together they uncover shocking truths about the legal system and challenge conventional notions of right and wrong.",
+    mustWatch: false
+  },
+  {
+    id: 52,
+    title: "Big Mouth",
+    platform: "Disney+ Hotstar",
+    genre: "Crime Mystery",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 90,
+    imdbRating: 8.0,
+    tags: ["lawyer", "conspiracy", "corruption", "prison", "mistaken identity"],
+    description: "Park Chang-ho is a third-rate lawyer with a low success rate, nicknamed 'Big Mouth' for talking big. His life takes a dark turn when he gets entangled in a high-profile murder case and is mistakenly identified as 'Big Mouse,' a notorious genius conman. Thrown into a dangerous prison reserved for the most dangerous criminals, Chang-ho must fight for survival, uncover the real Big Mouse, and clear his name while his determined wife, Go Mi-ho, works tirelessly on the outside to expose the vast conspiracy surrounding him.",
+    mustWatch: true
+  },
+  {
+    id: 53,
+    title: "Extraordinary Attorney Woo",
+    platform: "Netflix",
+    genre: "Legal Drama",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "20h",
+    popularity: 93,
+    imdbRating: 8.7,
+    tags: ["autism", "law", "kindness", "brilliant", "courtroom"],
+    description: "Woo Young-woo is a brilliant young lawyer with Autism Spectrum Disorder. Despite her exceptional memory and an IQ of 164, her social skills are challenging. She lands a job at a prestigious law firm, Hanbada, where she uses her unique way of thinking and photographic memory to approach legal cases with fresh perspectives, often finding loopholes and solutions others miss. The series explores her professional growth, personal relationships, and the challenges and triumphs of navigating a neurotypical world while embracing her extraordinary self.",
+    mustWatch: true
+  },
+  {
+    id: 54,
+    title: "A Time Called You",
+    platform: "Netflix",
+    genre: "Romantic Mystery",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 12,
+    runtime: "11h",
+    popularity: 85,
+    imdbRating: 7.8,
+    tags: ["time travel", "fate", "body swap", "love", "grief"],
+    description: "Joon-hee is still grieving the death of her boyfriend, Yeon-jun, a year after his passing. Miraculously, she travels back in time to 1998 and wakes up in the body of a high school student named Min-ju. To her astonishment, she meets Si-heon, a fellow student who bears an uncanny resemblance to her late boyfriend. As she tries to unravel the mystery of her time travel and the connection between Min-ju, Si-heon, and her own past, she finds herself caught in a complex web of fate, love, and destiny across different timelines.",
+    mustWatch: false
+  },
+  {
+    id: 55,
+    title: "She Was Pretty",
+    platform: "Viki",
+    genre: "Romantic Comedy",
+    year: 2015,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 88,
+    imdbRating: 7.6,
+    tags: ["magazine", "transformation", "identity", "reunion", "office romance"],
+    description: "Kim Hye-jin, once a beautiful and popular girl in her childhood, grows up to be an 'ugly' and self-conscious woman after her family loses its fortune. Ji Sung-joon, her childhood friend who was once an overweight boy, grows up to be a handsome and successful fashion editor. When they reunite as adults at a magazine company, Hye-jin is too embarrassed by her appearance to reveal her true identity, leading to hilarious misunderstandings, identity swaps, and a heartwarming journey of self-acceptance and love as Sung-joon slowly falls for the real Hye-jin.",
+    mustWatch: false
+  },
+  {
+    id: 56,
+    title: "Kill It",
+    platform: "Viki",
+    genre: "Action Thriller",
+    year: 2019,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 12,
+    runtime: "10h",
+    popularity: 81,
+    imdbRating: 7.7,
+    tags: ["assassin", "vet", "mystery", "childhood", "hunt"],
+    description: "Kim Soo-hyun is a highly skilled elite assassin who also works as a veterinarian, secretly saving abandoned animals. Do Hyun-jin is a determined police detective who is relentless in her pursuit of justice. Their paths intertwine when Hyun-jin investigates a series of mysterious murders that seem to be connected to a cold case from Soo-hyun's past, leading them both into a dangerous game of cat and mouse while they unknowingly share a deeper, tragic connection from their childhood.",
+    mustWatch: false
+  },
+  {
+    id: 57,
+    title: "The Secret Life of My Secretary",
+    platform: "Viki",
+    genre: "Romantic Comedy",
+    year: 2019,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "13h",
+    popularity: 84,
+    imdbRating: 7.1,
+    tags: ["office", "face blindness", "identity", "romance", "misunderstanding"],
+    description: "Do Min-ik, a successful but arrogant chief of a mobile media company, suddenly develops prosopagnosia (face blindness) after an accident, meaning he can no longer recognize faces. His only constant is his loyal and seemingly ordinary secretary, Jung Gal-hee, whose face he can still see. To maintain his position, he relies solely on her. When a misunderstanding leads him to mistake Gal-hee for someone else during a blind date, a comical and heartwarming romance blossoms, forcing them to navigate identity confusion, office politics, and their true feelings.",
+    mustWatch: false
+  },
+  {
+    id: 58,
+    title: "I Am Not a Robot",
+    platform: "Viki",
+    genre: "Sci-Fi Romance",
+    year: 2017,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 87,
+    imdbRating: 8.0,
+    tags: ["robot", "allergy", "romance", "pretend", "technology"],
+    description: "Kim Min-kyu is a wealthy, intelligent, and handsome man who lives an isolated life due to a severe and unique allergy to human touch. When a groundbreaking humanoid robot named Aji 3 is being developed, its creator, Professor Hong Baek-kyun, asks his ex-girlfriend, Jo Ji-ah, to pretend to be the robot for Min-kyu after a malfunction. As Ji-ah meticulously acts as the robot, Min-kyu slowly opens up, falling in love with 'Aji 3,' leading to a heartwarming and emotionally complex story about connection, loneliness, and what truly makes us human.",
+    mustWatch: false
+  },
+  {
+    id: 59,
+    title: "Where Stars Land",
+    platform: "Viki",
+    genre: "Romantic Drama",
+    year: 2018,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 80,
+    imdbRating: 7.3,
+    tags: ["airport", "mystery", "romance", "secret", "K-drama"],
+    description: "Lee Soo-yeon is a mysterious and quiet new employee in the passenger services department at Incheon International Airport, secretly harboring a disability and a hidden past. Han Yeo-reum is an enthusiastic but accident-prone new colleague. As they navigate the chaotic world of airport operations, dealing with diverse travelers and unexpected emergencies, their lives intertwine. Soo-yeon's secret, involving a unique physical condition, slowly comes to light, challenging their budding romance and forcing them to confront their personal baggage and the true meaning of connection.",
+    mustWatch: false
+  },
+  {
+    id: 60,
+    title: "Descendants of the Sun",
+    platform: "Netflix",
+    genre: "Military Romance",
+    year: 2016,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "16h",
+    popularity: 91,
+    imdbRating: 8.2,
+    tags: ["soldier", "doctor", "conflict", "mission", "war zone"],
+    description: "Captain Yoo Si-jin, a highly skilled special forces soldier, meets Dr. Kang Mo-yeon, a talented and principled surgeon. Despite their immediate attraction, their professions and values clash, leading to a complex on-again, off-again romance. Their love story unfolds across perilous missions in fictional war-torn countries and humanitarian crises, as they navigate the dangers of their careers, witness profound suffering, and grapple with their commitment to saving lives versus taking them, all while finding love in the most unexpected circumstances.",
+    mustWatch: true
+  },
+  {
+    id: 61,
+    title: "Playful Kiss",
+    platform: "Netflix",
+    genre: "Romantic Comedy",
+    year: 2010,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 75,
+    imdbRating: 6.9,
+    tags: ["high school", "crush", "cohabitation", "nerd vs genius", "cute"],
+    description: "Oh Ha-ni, a clumsy and not-so-bright high school girl, has a long-standing crush on Baek Seung-jo, the school's perfect, genius, and incredibly cold heartthrob. After her newly built house collapses, Ha-ni and her father move into the home of her father's old friend, who happens to be Seung-jo's father. This forced cohabitation leads to a series of awkward, hilarious, and heartwarming moments as Ha-ni desperately tries to win Seung-jo's affection, gradually melting his icy exterior and igniting a slow-burn romance.",
+    mustWatch: false
+  },
+  {
+    id: 62,
+    title: "Emergency Couple",
+    platform: "Viki",
+    genre: "Medical Romance",
+    year: 2014,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 21,
+    runtime: "17h",
+    popularity: 79,
+    imdbRating: 7.3,
+    tags: ["hospital", "divorced couple", "ER", "reunion", "healing"],
+    description: "Oh Jin-hee and Oh Chang-min, a couple who married young despite their families' objections, divorced bitterly after a short and tumultuous marriage. Years later, they both decide to pursue careers in medicine and unexpectedly reunite as interns in the same hospital's emergency department. Forced to work together, they constantly clash, rehashing old arguments and pent-up frustrations, but also rekindling forgotten sparks and unresolved feelings amidst the high-pressure, life-or-death situations of the ER.",
+    mustWatch: false
+  },
+  {
+    id: 63,
+    title: "Familiar Wife",
+    platform: "Netflix",
+    genre: "Romantic Fantasy",
+    year: 2018,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 82,
+    imdbRating: 7.8,
+    tags: ["marriage", "time travel", "regret", "alternate reality", "love"],
+    description: "Cha Joo-hyuk, a frustrated bank worker, is unhappy with his marriage to Seo Woo-jin, who is struggling to balance work and family life. After a mysterious incident involving a magical coin and a chance encounter with an old acquaintance, Joo-hyuk wakes up in an alternate reality where he never married Woo-jin and is instead married to his first love, Lee Hye-won, who is wealthy and beautiful. As he navigates this new life, he begins to truly understand the value of his original marriage and the deep love he had, desperately seeking a way to return to his familiar life and fix his past mistakes.",
+    mustWatch: false
+  },
+  {
+    id: 64,
+    title: "Dhootha",
+    platform: "Prime Video",
+    genre: "Paranormal Thriller",
+    year: 2023,
+    language: "Telugu",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 85,
+    imdbRating: 7.6,
+    tags: ["newspaper", "fate", "murder", "investigation", "media"],
+    description: "Sagar, a morally ambiguous and ambitious journalist, begins receiving mysterious newspapers that strangely predict gruesome accidents and deaths before they happen. Initially dismissing them, he soon realizes the horrifying truth: the predictions are coming true, and he might be implicated in them. As he races against time to unravel the supernatural mystery behind these newspapers, Sagar must confront his own past actions and the chilling implications of fate, desperate to prevent further deaths and clear his name.",
+    mustWatch: false
+  },
+  {
+    id: 65,
+    title: "Berlin",
+    platform: "Netflix",
+    genre: "Heist Thriller",
+    year: 2023,
+    language: "Spanish",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 88,
+    imdbRating: 7.3,
+    tags: ["money heist", "prequel", "Paris", "charm", "crew"],
+    description: "This prequel to the hit series 'Money Heist' focuses on the charismatic and enigmatic Andres de Fonollosa, a.k.a. Berlin, years before the Royal Mint heist. Set in Paris, Berlin assembles a dazzling new crew of master thieves and con artists for an ambitious new endeavor: to steal 44 million euros worth of jewels in one night from a prestigious auction house. The series delves into his cunning strategies, his love for the art of deception, and the complex relationships within his new team, all set against the romantic backdrop of the French capital.",
+    mustWatch: false
+  },
+  {
+    id: 66,
+    title: "Killer Soup",
+    platform: "Netflix",
+    genre: "Dark Comedy Thriller",
+    year: 2024,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 84,
+    imdbRating: 7.5,
+    tags: ["murder", "food", "imposter", "twist", "chaos"],
+    description: "Swathi Shetty, a seemingly naive and failed home cook, dreams of becoming a famous chef. Her life takes a dark and bizarre turn when she hatches a preposterous plan with her lover to replace her husband, who mysteriously dies. However, as they attempt to execute their scheme, a series of unexpected twists, mistaken identities, and hilariously macabre events unfold, leading to a chaotic and darkly comedic thriller where nothing goes according to their ill-conceived recipe for success.",
+    mustWatch: false
+  },
+  {
+    id: 67,
+    title: "The K2",
+    platform: "Netflix",
+    genre: "Action Thriller",
+    year: 2016,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 85,
+    imdbRating: 7.8,
+    tags: ["bodyguard", "politics", "presidential", "revenge", "romance"],
+    description: "Kim Je-ha, a former mercenary known as 'K2,' is framed for a crime he didn't commit and becomes a fugitive. He is eventually hired as a bodyguard by Choi Yoo-jin, the ruthless wife of a presidential candidate, Jang Se-joon. Je-ha is assigned to protect Go An-na, Jang Se-joon's hidden illegitimate daughter, who lives in fear and isolation. As Je-ha delves deeper into the world of political intrigue, corruption, and dark family secrets, he finds himself caught between duty, revenge, and a growing affection for An-na, whom he vows to protect.",
+    mustWatch: false
+  },
+  {
+    id: 68,
+    title: "Bring It On, Ghost",
+    platform: "Netflix",
+    genre: "Supernatural Comedy",
+    year: 2016,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 81,
+    imdbRating: 7.6,
+    tags: ["ghost", "exorcist", "teen", "funny", "romance"],
+    description: "Park Bong-pal is a college student who can see and interact with ghosts, using his unique ability to work as an exorcist for hire to earn money for a procedure that will remove his ghostly vision. He encounters Kim Hyun-ji, a feisty and amnesiac teenage ghost who died in a car accident and cannot ascend to the afterlife. They form an unlikely partnership, battling various spirits together, as Bong-pal helps Hyun-ji recall her past, while she teaches him the value of human connection, leading to a charming and often hilarious supernatural romance.",
+    mustWatch: false
+  },
+  {
+    id: 69,
+    title: "Catch the Ghost",
+    platform: "Viki",
+    genre: "Crime Comedy",
+    year: 2019,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 79,
+    imdbRating: 7.4,
+    tags: ["subway", "rookie cop", "serial killer", "partner", "underground"],
+    description: "Yoo Ryung is a passionate but reckless rookie detective in the subway police unit, determined to find her missing autistic twin sister, who disappeared in the subway. She is partnered with Go Ji-seok, a meticulous and by-the-book chief detective. Their contrasting personalities lead to constant clashes and comical situations as they investigate cases occurring on the subway system. Their pursuit of a serial killer known as the 'Subway Ghost' forces them to navigate the labyrinthine underground world, unravel a larger conspiracy, and ultimately confront their personal demons.",
+    mustWatch: false
+  },
+  {
+    id: 70,
+    title: "Kill Me, Heal Me",
+    platform: "Viki",
+    genre: "Psychological Romance",
+    year: 2015,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 20,
+    runtime: "16h",
+    popularity: 89,
+    imdbRating: 8.2,
+    tags: ["dissociative identity", "healing", "psychology", "romance", "trauma"],
+    description: "Cha Do-hyun is a wealthy heir suffering from Dissociative Identity Disorder (DID), which causes him to have seven distinct personalities. To avoid public scrutiny and inherit his family's company, he secretly seeks treatment. Oh Ri-jin is a first-year psychiatric resident who becomes his secret physician and quickly finds herself entangled with all seven of his personalities, including a rebellious teenager and a suicidal girl. Together, they embark on a journey of healing, unraveling his traumatic past, and navigating a complex, emotional, and often humorous romance while learning to accept and integrate all aspects of himself.",
+    mustWatch: true
+  },
+  {
+    id: 71,
+    title: "Hotel Del Luna",
+    platform: "Netflix",
+    genre: "Fantasy Romance",
+    year: 2019,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "16h",
+    popularity: 91,
+    imdbRating: 8.1,
+    tags: ["ghosts", "hotel", "afterlife", "past", "CEO"],
+    description: "Jang Man-wol is the beautiful but ill-tempered CEO of Hotel Del Luna, a mysterious hotel that caters exclusively to ghosts who need to settle their unfinished business before moving on to the afterlife. Cursed for a heinous sin committed over a thousand years ago, she is bound to the hotel until she finds someone who committed a worse sin than her. Gu Chan-sung, an elite human hotelier, is forced to become her general manager, and his logical, compassionate nature clashes with her cold exterior, leading to a fantastical romance as they help spirits find peace and unravel Man-wol's tragic past.",
+    mustWatch: true
+  },
+  {
+    id: 72,
+    title: "Miss Hammurabi",
+    platform: "Viki",
+    genre: "Legal Drama",
+    year: 2018,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 80,
+    imdbRating: 7.3,
+    tags: ["court", "judges", "idealism", "law", "slice of life"],
+    description: "Park Cha Oh-reum is a newly appointed, idealistic judge who believes in prioritizing people and their stories over strict adherence to the law, often challenging legal conventions. She works alongside Im Ba-reun, a principled and by-the-book judge who strictly follows rules and logic. Their vastly different judicial philosophies create tension and debate but also lead to a deeper understanding as they handle various civil and criminal cases. The series explores their personal and professional growth, shedding light on the complexities of the legal system and the human stories behind each verdict.",
+    mustWatch: false
+  },
+  {
+    id: 73,
+    title: "Angel's Last Mission: Love",
+    platform: "Viki",
+    genre: "Fantasy Romance",
+    year: 2019,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 84,
+    imdbRating: 7.8,
+    tags: ["angel", "blind ballerina", "forbidden love", "heaven", "destiny"],
+    description: "Dan, a mischievous and optimistic angel, is on the verge of fading away after causing trouble. To avoid this, he is given one final mission by his superior: to find true love for Lee Yeon-seo, a talented but cold-hearted ballerina who lost her sight and her family in an accident. Initially bitter and distrustful, Yeon-seo slowly begins to open up to Dan. As he tries to fulfill his mission, Dan unexpectedly falls in love with Yeon-seo, leading to a beautiful, heart-wrenching, and forbidden romance that defies celestial rules and questions the true meaning of love and destiny.",
+    mustWatch: false
+  },
+  {
+    id: 74,
+    title: "Boys Over Flowers",
+    platform: "Netflix",
+    genre: "Romantic Comedy",
+    year: 2009,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 25,
+    runtime: "20h",
+    popularity: 87,
+    imdbRating: 7.8,
+    tags: ["high school", "rich boys", "Cinderella", "bullying", "makeover"],
+    description: "Geum Jan-di, a feisty and ordinary girl from a working-class family, receives a scholarship to the prestigious Shinhwa High School, an exclusive academy for the wealthiest and most privileged students. There, she clashes with F4, a group of four incredibly rich, handsome, and arrogant boys who rule the school. When Jan-di stands up to their leader, Gu Jun-pyo, a series of hilarious and dramatic events unfold, leading to a classic Cinderella story of love, friendship, bullying, and self-discovery amidst the lavish and often cruel world of the elite.",
+    mustWatch: false
+  },
+  {
+    id: 75,
+    title: "Sweet Sweet",
+    platform: "iQIYI",
+    genre: "C-Romance",
+    year: 2021,
+    language: "Chinese",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 22,
+    runtime: "18h",
+    popularity: 80,
+    imdbRating: 7.3,
+    tags: ["love story", "communication", "quirky", "neighborhood", "AI voice"],
+    description: "The series follows a gifted but socially awkward tech developer who struggles with direct communication and an inability to express his feelings. His life takes an unexpected turn when he meets a sweet and charming girl next door who has a speech impediment that makes her difficult to understand. Despite their communication challenges, they form a unique bond, using technology and unconventional methods to connect. Their heartwarming and often humorous journey explores themes of understanding, patience, and finding love beyond conventional barriers.",
+    mustWatch: false
+  },
+  {
+    id: 76,
+    title: "Fight for My Way",
+    platform: "Netflix",
+    genre: "Slice of Life Romance",
+    year: 2017,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 85,
+    imdbRating: 8.0,
+    tags: ["dreams", "underdogs", "friendship", "struggles", "romance"],
+    description: "Ko Dong-man, a former taekwondo prodigy who now works as a contract employee, and Choi Ae-ra, an aspiring announcer working at a department store information desk, are two childhood best friends stuck in dead-end jobs. Despite facing societal pressures and setbacks, they refuse to give up on their dreams. As they navigate the challenges of careers, life, and love, their platonic friendship slowly evolves into a deeper romance, portraying a realistic and heartwarming story of underdogs fighting for their dreams and each other.",
+    mustWatch: false
+  },
+  {
+    id: 77,
+    title: "Who Are You: School 2015",
+    platform: "Viki",
+    genre: "Teen Mystery",
+    year: 2015,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 83,
+    imdbRating: 7.7,
+    tags: ["twins", "amnesia", "school", "bullying", "drama"],
+    description: "Lee Eun-bi, a kind but heavily bullied orphan, and Go Eun-byul, her identical twin sister living a privileged life at a prestigious school in Seoul, are separated at birth. When Eun-bi attempts suicide and wakes up with amnesia, she is mistaken for Eun-byul. As she navigates her new identity, she uncovers the truth about her sister's mysterious disappearance and confronts the dark secrets and bullying culture of the elite high school, leading to a compelling mystery about identity, justice, and sisterhood.",
+    mustWatch: false
+  },
+  {
+    id: 78,
+    title: "Reacher",
+    platform: "Prime Video",
+    genre: "Action Thriller",
+    year: 2022,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 2,
+    episodes: 16,
+    runtime: "13h",
+    popularity: 88,
+    imdbRating: 8.1,
+    tags: ["ex-military", "investigation", "small town", "brutal", "justice"],
+    description: "Based on Lee Child's 'Jack Reacher' novels, the series follows the titular character, a veteran military police investigator, as he roams the United States. With no phone, no connections, and only the clothes on his back, Reacher arrives in the quiet town of Margrave, Georgia, only to be immediately arrested for a murder he didn't commit. As he fights to prove his innocence, he uncovers a deep-seated conspiracy of corruption and murder, forcing him to use his formidable skills to deliver brutal justice and dismantle the criminal network.",
+    mustWatch: true
+  },
+  {
+    id: 79,
+    title: "Game of Thrones",
+    platform: "HBO Max",
+    genre: "Epic Fantasy",
+    year: 2011,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 8,
+    episodes: 73,
+    runtime: "70h",
+    popularity: 99,
+    imdbRating: 9.2,
+    tags: ["dragons", "throne", "betrayal", "winter", "war"],
+    description: "Set in the fictional continents of Westeros and Essos, this sprawling epic fantasy series intertwines multiple complex storylines. Nine noble families engage in a brutal and often bloody struggle for control of the Iron Throne, the ultimate seat of power. Amidst political intrigue, betrayals, and devastating wars, ancient magical forces awaken, and a terrifying threat from beyond the Wall looms, forcing alliances and testing loyalties as winter, with its mythical creatures, draws near.",
+    mustWatch: true
+  },
+  {
+    id: 80,
+    title: "The Queen's Gambit",
+    platform: "Netflix",
+    genre: "Drama",
+    year: 2020,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 7,
+    runtime: "6h",
+    popularity: 93,
+    imdbRating: 8.6,
+    tags: ["chess", "genius", "orphan", "addiction", "girl power"],
+    description: "Based on the novel by Walter Tevis, this captivating drama follows the extraordinary journey of Beth Harmon, an orphaned chess prodigy in the 1950s. Plagued by personal demons, including a growing addiction to tranquilizers and alcohol, Beth hones her exceptional talent for chess, rising from humble beginnings to become a formidable force in the male-dominated world of competitive chess. The series explores her struggles with addiction, loneliness, and her relentless pursuit of becoming the greatest chess player in the world, all while beautifully capturing the aesthetics of the era.",
+    mustWatch: true
+  },
+  {
+    id: 81,
+    title: "A Simple Murder",
+    platform: "Sony LIV",
+    genre: "Dark Comedy",
+    year: 2020,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 7,
+    runtime: "6h",
+    popularity: 80,
+    imdbRating: 7.0,
+    tags: ["murder-for-hire", "luck", "comedy", "crime", "chaos"],
+    description: "Manish, an ordinary and somewhat down-on-his-luck man, finds his mundane life taking a darkly comedic turn when he is mistakenly given a contract to kill a girl. What should have been a 'simple murder' spirals into an increasingly complicated and hilarious mess involving mistaken identities, double-crosses, a bag full of money, and a host of eccentric criminals. The series cleverly blends elements of crime and comedy, showcasing how one wrong step can lead to a chain of absurd and dangerous events, challenging Manish's morality and his sense of self-preservation.",
+    mustWatch: false
+  },
+  {
+    id: 82,
+    title: "The Wind Blows",
+    platform: "Viki",
+    genre: "Melodrama",
+    year: 2019,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 78,
+    imdbRating: 7.5,
+    tags: ["illness", "divorce", "love", "separation", "marriage"],
+    description: "Do-hoon, a man suffering from Alzheimer's disease, decides to secretly divorce his beloved wife, Soo-jin, to protect her from the pain and burden of his deteriorating condition. Years later, fate brings them back together. Unaware of his past intentions, Soo-jin finds herself drawn to him again, while Do-hoon struggles with his fading memories and the emotional toll of his decision. The series explores the complexities of love, sacrifice, and the impact of illness on relationships, asking whether true love can withstand the test of time and memory.",
+    mustWatch: false
+  },
+  {
+    id: 83,
+    title: "Pill",
+    platform: "YouTube",
+    genre: "Sci-Fi Short Drama",
+    year: 2023,
+    language: "English",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 6,
+    runtime: "2h",
+    popularity: 75,
+    imdbRating: 7.2,
+    tags: ["memory", "dystopia", "short series", "love", "freedom"],
+    description: "Set in a dystopian future where society controls human emotions and memories through a daily 'Pill,' a young man named Alex begins to question the fabricated reality around him. When he stops taking his prescribed dose, he starts to experience suppressed emotions and fragmented memories, particularly those of a woman he once loved. As he slowly reclaims his true self, he embarks on a dangerous journey to uncover the truth behind the system and reclaim his freedom and past, all while challenging the conformity of his world.",
+    mustWatch: false
+  },
+  {
+    id: 84,
+    title: "Gyaarah Gyaarah",
+    platform: "ZEE5",
+    genre: "Time Travel Mystery",
+    year: 2024,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 10,
+    runtime: "9h",
+    popularity: 86,
+    imdbRating: 7.6,
+    tags: ["1990", "2001", "2023", "investigation", "connections"],
+    description: "This intriguing time-traveling mystery spans three distinct time periods: 1990, 2001, and 2023. A chilling, unsolved crime committed in one era leads to ripple effects across the others, drawing different characters into a complex web of investigation. As the story unfolds, unexpected connections are revealed between seemingly disparate events and individuals, forcing them to confront the echoes of the past and the consequences of decisions made generations ago to solve a crime that defies time.",
+    mustWatch: false
+  },
+  {
+    id: 85,
+    title: "Tokyo Swindlers",
+    platform: "Netflix",
+    genre: "Heist Drama",
+    year: 2023,
+    language: "Japanese",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 82,
+    imdbRating: 7.2,
+    tags: ["con artists", "Tokyo", "heist", "deception", "elite"],
+    description: "Set against the glittering backdrop of Tokyo's high society, a slick and sophisticated group of con artists targets the city's corrupt elite. With meticulously planned schemes, dazzling disguises, and a mastery of psychological manipulation, they expose the moral rot beneath the surface of the powerful and wealthy. Each episode features a new elaborate scam, highlighting their cunning and charm as they pull off daring heists, all while navigating the dangerous world of deception and a constant threat of being discovered.",
+    mustWatch: false
+  },
+  {
+    id: 86,
+    title: "Tribhuwan Mishra: C.A Topper",
+    platform: "Sony LIV",
+    genre: "Comedy Drama",
+    year: 2024,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 8,
+    runtime: "6h",
+    popularity: 79,
+    imdbRating: 7.3,
+    tags: ["CA", "small town", "aspiration", "middle class", "drama"],
+    description: "Tribhuwan Mishra, a brilliant but unassuming Chartered Accountant (CA) from a small town, lives a quiet life. However, his life takes an unexpected and chaotic turn when he is appointed to a high-profile government position. He finds himself thrust into a world of complex bureaucracy, political maneuvering, and quirky characters, far removed from his comfortable existence. The series humorously explores his struggles to adapt, his unwavering ethics, and his attempts to navigate the absurdities of the system while maintaining his integrity amidst pressure and corruption.",
+    mustWatch: false
+  },
+  {
+    id: 87,
+    title: "Legend of the Blue Sea",
+    platform: "Netflix",
+    genre: "Fantasy Romance",
+    year: 2016,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 20,
+    runtime: "18h",
+    popularity: 90,
+    imdbRating: 8.1,
+    tags: ["mermaid", "con artist", "reincarnation", "fate", "Joseon"],
+    description: "Inspired by a classic Joseon legend, the story spans across centuries. Shim Cheong, the last mermaid on Earth, travels to modern-day Seoul where she encounters Heo Joon-jae, a charming and cunning con artist who bears an uncanny resemblance to Kim Dam-ryeong, the noble she fell in love with in her past life during the Joseon era. As Shim Cheong navigates the bewildering human world, she and Joon-jae uncover their intertwined destinies from centuries ago, battling enemies from their past lives and falling into a magical, fated romance.",
+    mustWatch: true
+  },
+  {
+    id: 88,
+    title: "My Demon",
+    platform: "Netflix",
+    genre: "Supernatural Romance",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 88,
+    imdbRating: 7.4,
+    tags: ["contract marriage", "heiress", "power loss", "demon", "chaos"],
+    description: "Do Do-hee, a ruthless and cynical heiress to a massive conglomerate, finds herself unexpectedly entangled with Jung Gu-won, a powerful demon who has been making soul-binding contracts with humans for centuries. When Gu-won mysteriously loses his powers, which transfer to a tattoo on Do-hee's wrist, they are forced into a contract marriage for mutual benefit. Their unlikely cohabitation sparks a fierce push-and-pull romance as they navigate corporate espionage, supernatural threats, and a fated connection that goes deeper than either of them imagined.",
+    mustWatch: false
+  },
+  {
+    id: 89,
+    title: "Queen of Tears",
+    platform: "Netflix",
+    genre: "Melodrama",
+    year: 2024,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 92,
+    imdbRating: 8.6,
+    tags: ["marriage", "chaebol", "redemption", "love", "corporate"],
+    description: "Baek Hyun-woo, a successful director of a legal department, and Hong Hae-in, the arrogant but brilliant third-generation heiress of the Queens Group (a major conglomerate), are a married couple on the brink of divorce. Their tumultuous relationship takes an unexpected turn when a life-threatening crisis brings them closer. As they navigate corporate sabotage, family betrayal, and a terminal illness, they rediscover their buried love and fight for their marriage, their legacy, and their lives, proving that true love can conquer even the most daunting adversities.",
+    mustWatch: true
+  },
+  {
+    id: 90,
+    title: "Love to Hate You",
+    platform: "Netflix",
+    genre: "Romantic Comedy",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 10,
+    runtime: "8h",
+    popularity: 85,
+    imdbRating: 7.6,
+    tags: ["fake dating", "celebrity", "lawyer", "opposites attract", "funny"],
+    description: "Yeo Mi-ran is a fierce and competitive rookie lawyer who despises men and hates the idea of losing to them. Nam Kang-ho is a top actor in the entertainment industry who is famous for his good looks and intelligence, but he deeply distrusts women. Due to unforeseen circumstances, they are forced into a contract relationship that requires them to pretend to be dating. Their initial animosity and clashing personalities lead to a series of hilarious misunderstandings and witty banter, gradually blurring the lines between their 'fake' relationship and genuine feelings.",
+    mustWatch: false
+  },
+  {
+    id: 91,
+    title: "No Gain No Love",
+    platform: "YouTube",
+    genre: "Short Romantic Comedy",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 6,
+    runtime: "2h",
+    popularity: 74,
+    imdbRating: 6.9,
+    tags: ["fitness", "bets", "workplace", "mini-series", "romance"],
+    description: "This light-hearted mini-series centers around the dynamic between a charming and confident fitness trainer who loves to flirt and a disciplined, no-nonsense finance manager who is focused solely on her career. Their paths cross in the workplace, and their contrasting personalities lead to a series of comical interactions. What starts as a series of playful bets and challenges quickly evolves into an unexpected romance, as they navigate their professional lives and personal growth, proving that love can be found even in the most competitive of environments.",
+    mustWatch: false
+  },
+  {
+    id: 92,
+    title: "The Law Cafe",
+    platform: "Viki",
+    genre: "Legal Romance",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 80,
+    imdbRating: 7.7,
+    tags: ["cafe", "lawyer", "love story", "tenant", "justice"],
+    description: "Kim Yu-ri, a brilliant and eccentric lawyer with a fiery personality, quits her job at a prestigious law firm to open a 'Law Cafe' – a unique establishment where clients can get coffee and free legal counsel. Her landlord turns out to be Kim Jeong-ho, a former prosecutor and an intelligent, charismatic man who was once her childhood friend and crush. As they work together, solving various legal cases for their quirky clientele, their complicated past and present feelings intertwine, leading to a heartwarming and often humorous romance while fighting for justice.",
+    mustWatch: false
+  },
+  {
+    id: 93,
+    title: "Mere Humsafar",
+    platform: "MX Player",
+    genre: "Pakistani Romance",
+    year: 2022,
+    language: "Urdu",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 40,
+    runtime: "32h",
+    popularity: 87,
+    imdbRating: 8.0,
+    tags: ["arranged marriage", "in-laws", "transformation", "family", "growth"],
+    description: "Hala, a kind-hearted and naive orphan, is raised by her paternal uncle's family, where she endures constant mistreatment and emotional abuse. Her life takes a dramatic turn when her cousin, Hamza, proposes to her. Initially marrying her out of a sense of duty, Hamza slowly realizes Hala's true worth and begins to protect and love her. The series explores Hala's journey of self-discovery, resilience, and transformation as she navigates challenging family dynamics, finds true love, and earns dignity and respect in her new home.",
+    mustWatch: false
+  },
+  {
+    id: 94,
+    title: "Kabhi Main Kabhi Tum",
+    platform: "YouTube",
+    genre: "Romantic Drama",
+    year: 2024,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 10,
+    runtime: "7h",
+    popularity: 76,
+    imdbRating: 7.4,
+    tags: ["strangers", "timing", "missed chances", "fate", "lifetime"],
+    description: "This romantic drama follows the interconnected lives of two individuals whose paths frequently cross but never quite align perfectly. Through a series of chance encounters, missed opportunities, and the ebb and flow of life, they experience love, heartbreak, and growth both independently and in relation to each other. The series explores themes of fate, timing, and the enduring nature of connection, as it depicts how two opposite souls are quietly drawn together across different stages and challenges of their lives, culminating in a poignant and often bittersweet love story.",
+    mustWatch: false
+  },
+  {
+    id: 95,
+    title: "Brinda",
+    platform: "Sony LIV",
+    genre: "Crime Thriller",
+    year: 2024,
+    language: "Telugu",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "6h",
+    popularity: 81,
+    imdbRating: 7.5,
+    tags: ["serial killer", "female lead", "cop", "mystery", "tense"],
+    description: "Brinda, a determined and sharp police officer, finds herself embroiled in a complex and chilling murder investigation. As she delves deeper into the seemingly unrelated cases, she uncovers a sinister pattern that points to a cunning serial killer at large. The pursuit becomes personal as Brinda races against time, facing dangerous obstacles and unexpected twists, all while fighting to protect the innocent and uphold justice, even if it means putting her own life on the line and challenging everything she knows.",
+    mustWatch: false
+  },
+  {
+    id: 96,
+    title: "Paatal Lok",
+    platform: "Prime Video",
+    genre: "Crime Noir",
+    year: 2020,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 9,
+    runtime: "8h",
+    popularity: 92,
+    imdbRating: 8.0,
+    tags: ["journalism", "politics", "violence", "society", "morality"],
+    description: "Hathi Ram Chaudhary, a disillusioned and cynical police officer from Delhi, is assigned a seemingly open-and-shut case involving an attempted assassination of a prominent journalist. However, his investigation soon spirals into the dark and intricate depths of India's criminal underworld, known as 'Paatal Lok' (the netherworld). The series masterfully explores the interconnectedness of crime, politics, caste, religion, and media in modern India, offering a gritty, raw, and morally ambiguous commentary on society through its compelling characters and their descent into darkness.",
+    mustWatch: true
+  },
+  {
+    id: 97,
+    title: "Pinocchio",
+    platform: "Viki",
+    genre: "Romantic Drama",
+    year: 2014,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 20,
+    runtime: "18h",
+    popularity: 84,
+    imdbRating: 8.1,
+    tags: ["journalism", "truth", "hiccups", "childhood trauma", "justice"],
+    description: "Choi In-ha suffers from 'Pinocchio Syndrome,' a fictional condition that causes her to hiccup whenever she tells a lie. Despite this, she dreams of becoming a reporter, believing that a reporter must speak the truth. She crosses paths with Choi Dal-po (who later becomes Ki Ha-myung), a brilliant and charismatic young man who lives under a false identity after his family was destroyed by sensationalist journalism. Together, they embark on careers as broadcast journalists, navigating the ethical dilemmas of their profession, uncovering a deep-seated conspiracy, and seeking justice for their pasts while a complex romance blossoms between them.",
+    mustWatch: false
+  },
+  {
+    id: 98,
+    title: "Destined With You",
+    platform: "Netflix",
+    genre: "Fantasy Romance",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 86,
+    imdbRating: 7.3,
+    tags: ["curse", "lawyer", "magic book", "prophecy", "romance"],
+    description: "Lee Hong-jo, a hardworking and seemingly ordinary civil servant, unexpectedly comes into possession of an ancient wooden box containing a forbidden book that was sealed centuries ago. Jang Shin-yu, a brilliant and successful lawyer, suffers from a mysterious hereditary curse that affects his family line. When Hong-jo becomes the key to breaking his curse, their destinies become irrevocably intertwined. What begins as a magical connection for a pragmatic purpose soon blossoms into a fated romance, challenging their logic and binding them together across time and prophecy.",
+    mustWatch: false
+  },
+  {
+    id: 99,
+    title: "Better Call Saul",
+    platform: "Netflix",
+    genre: "Crime Drama",
+    year: 2015,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 6,
+    episodes: 63,
+    runtime: "55h",
+    popularity: 98,
+    imdbRating: 8.9,
+    tags: ["lawyer", "prequel", "ethics", "Breaking Bad", "corruption"],
+    description: "This acclaimed prequel to 'Breaking Bad' chronicles the transformation of Jimmy McGill, a struggling, well-meaning public defender, into the morally ambiguous criminal lawyer Saul Goodman. Set six years before he meets Walter White, the series delves into Jimmy's attempts to go legitimate, his complex relationship with his brother Chuck, his love for Kim Wexler, and his increasing entanglement with the criminal underworld of Albuquerque. It's a masterful character study exploring ambition, ethics, and the slow, inevitable descent into his infamous alter ego.",
+    mustWatch: true
+  },
+  {
+    id: 100,
+    title: "Mr. & Mrs. Smith",
+    platform: "Prime Video",
+    genre: "Action Romance",
+    year: 2024,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 84,
+    imdbRating: 7.1,
+    tags: ["marriage", "spies", "secrets", "action", "thriller"],
+    description: "Two lonely strangers, who abandon their identities, are paired together by a mysterious spy agency to embark on dangerous missions while posing as a married couple, John and Jane Smith. As they navigate high-stakes espionage, thrilling adventures, and their manufactured domesticity, their relationship slowly and unexpectedly evolves from a professional partnership to a genuine, complex love. The series explores the challenges of balancing a perilous secret life with the intimacy of a real relationship, questioning loyalty, identity, and commitment in a world of deception.",
+    mustWatch: false
+  },
+  {
+    id: 101,
+    title: "XO, Kitty",
+    platform: "Netflix",
+    genre: "Teen Romance",
+    year: 2023,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 10,
+    runtime: "7h",
+    popularity: 78,
+    imdbRating: 6.7,
+    tags: ["spin-off", "To All the Boys", "high school", "Korea", "teen"],
+    description: "A spin-off from the popular 'To All the Boys I've Loved Before' film series, this show follows Lara Jean's younger sister, Kitty Song Covey, as she embarks on her own romantic adventure. Believing she knows everything about love, Kitty moves halfway across the world to Seoul, South Korea, to attend the Korean Independent School of Seoul (KISS) – the same boarding school her late mother attended – and to reunite with her long-distance boyfriend, Dae. However, she quickly discovers that relationships are far more complicated when they involve different cultures, new crushes, and her own evolving identity.",
+    mustWatch: false
+  },
+  {
+    id: 102,
+    title: "Bank Under Siege",
+    platform: "ZEE5",
+    genre: "Thriller",
+    year: 2023,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 7,
+    runtime: "6h",
+    popularity: 80,
+    imdbRating: 7.3,
+    tags: ["bank", "hostage", "conspiracy", "negotiation", "heist"],
+    description: "A seemingly ordinary day at a bustling bank turns into a high-stakes nightmare when a group of heavily armed assailants takes everyone inside hostage. As the police and a determined negotiator try to understand the situation, it becomes clear that the motives of the attackers are far more complex and personal than just money. The thriller unfolds in real-time, showcasing the intense stand-off, the psychological games between the captors and the authorities, and the desperate struggle for survival among the hostages, as hidden agendas and dark conspiracies slowly come to light.",
+    mustWatch: false
+  },
+  {
+    id: 103,
+    title: "Black Warrant",
+    platform: "ZEE5",
+    genre: "Action Thriller",
+    year: 2022,
+    language: "Hindi",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 6,
+    runtime: "5h",
+    popularity: 76,
+    imdbRating: 6.9,
+    tags: ["military", "manhunt", "betrayal", "target", "thriller"],
+    description: "Colonel R.P. Singh, a decorated and highly experienced military officer, is assigned a critical 'black warrant' operation, a top-secret mission that requires extreme precision and discretion. However, as he delves into the assignment, he quickly realizes that he has been betrayed and is now being hunted by forces within his own system. The series is an intense action thriller following Singh's desperate fight for survival, as he uncovers a vast conspiracy within the military establishment and races against time to expose the truth and clear his name.",
+    mustWatch: false
+  },
+  {
+    id: 104,
+    title: "Day of the Jackal",
+    platform: "Peacock",
+    genre: "Espionage Thriller",
+    year: 2024,
+    language: "English",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 10,
+    runtime: "8h",
+    popularity: 83,
+    imdbRating: 7.5,
+    tags: ["assassin", "Europe", "spy", "hunt", "secret operation"],
+    description: "This contemporary reimagining of the classic thriller follows the highly skilled and elusive assassin known only by his code name, 'The Jackal.' Contracted by a shadowy organization for a seemingly impossible political assassination in the heart of Europe, the Jackal begins his meticulous preparations. Hot on his trail is a determined intelligence officer who must anticipate his every move. What unfolds is a tense and gripping game of cat and mouse, as the hunter becomes the hunted, and the line between assassin and target blurs in a high-stakes international operation.",
+    mustWatch: false
+  },
+  {
+    id: 105,
+    title: "Lupin",
+    platform: "Netflix",
+    genre: "Heist Mystery",
+    year: 2021,
+    language: "French",
+    hindiDubbed: true,
+    seasons: 3,
+    episodes: 17,
+    runtime: "14h",
+    popularity: 91,
+    imdbRating: 7.5,
+    tags: ["gentleman thief", "revenge", "Paris", "disguise", "justice"],
+    description: "Inspired by the adventures of Arsène Lupin, the gentleman thief and master of disguise, Assane Diop, a charismatic and cunning thief, orchestrates elaborate heists and intricate schemes. His primary motivation is to avenge his father, who was wrongly accused and framed for a crime by a wealthy and powerful family. Set against the beautiful backdrop of Paris, Assane uses his wit, charm, and mastery of illusion to expose the elite, outsmart the police, and deliver his own unique brand of justice while always staying one step ahead.",
+    mustWatch: true
+  },
+  {
+    id: 106,
+    title: "The Gentlemen",
+    platform: "Netflix",
+    genre: "Crime Drama",
+    year: 2024,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 86,
+    imdbRating: 7.8,
+    tags: ["weed empire", "inheritance", "gangsters", "UK", "violence"],
+    description: "When Eddie Halstead, a decorated soldier, unexpectedly inherits his aristocratic family's sprawling estate, he discovers it's the unwilling host to a massive cannabis empire secretly run by the legendary Mickey Pearson. As Eddie attempts to extract his family from the criminal underworld, he's dragged deeper into a web of eccentric and dangerous British gangsters, cunning deals, betrayals, and high-stakes violence. The series is a stylish and often darkly comedic ride through the criminal underbelly of the UK's upper crust.",
+    mustWatch: false
+  },
+  {
+    id: 107,
+    title: "Marry My Husband",
+    platform: "Prime Video",
+    genre: "Fantasy Revenge Drama",
+    year: 2024,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 90,
+    imdbRating: 8.4,
+    tags: ["time travel", "revenge", "affair", "marriage", "betrayal"],
+    description: "Kang Ji-won, a long-suffering wife, discovers she has terminal cancer and, in her final moments, witnesses her best friend, Jung Soo-min, having an affair with her abusive husband, Park Min-hwan. She is then brutally murdered by her husband. Miraculously, Ji-won wakes up ten years in the past, before her marriage. Armed with the knowledge of her grim future, she embarks on a meticulous plan to alter her destiny, specifically by engineering a plot for her best friend to 'marry her husband' instead, ensuring they face the same miserable fate she did, all while finding unexpected allies and a chance at true love.",
+    mustWatch: true
+  },
+  {
+    id: 108,
+    title: "The Night Agent",
+    platform: "Netflix",
+    genre: "Political Thriller",
+    year: 2023,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 10,
+    runtime: "8h",
+    popularity: 88,
+    imdbRating: 7.5,
+    tags: ["FBI", "White House", "conspiracy", "emergency line", "danger"],
+    description: "Peter Sutherland, a low-level FBI agent, works in the White House basement, manning an emergency phone line that never rings. Until one night, it does. He receives a cryptic call from Rose Larkin, a cybersecurity expert, whose aunt and uncle were just murdered and who uncovers a vast conspiracy within the U.S. government. Peter is quickly thrust into a high-stakes, cross-country hunt for a mole at the highest levels of power, navigating assassinations, betrayals, and a dangerous network of operatives while trying to keep Rose safe and expose the truth.",
+    mustWatch: true
+  },
+  {
+    id: 109,
+    title: "The Trauma Code: Heroes on Call",
+    platform: "YouTube",
+    genre: "Medical Action",
+    year: 2024,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 12,
+    runtime: "10h",
+    popularity: 78,
+    imdbRating: 7.2,
+    tags: ["doctors", "disasters", "ER", "teamwork", "intense"],
+    description: "This fast-paced medical drama plunges viewers into the high-octane world of South Korea’s most demanding emergency room, where a dedicated team of trauma surgeons faces life-and-death situations daily. From mass casualty incidents to complex individual cases, the doctors operate under immense pressure, making split-second decisions that determine patient survival. The series highlights their medical brilliance, personal sacrifices, the intense teamwork required, and the emotional toll of saving lives in a chaotic environment, often revealing profound human stories amidst the medical emergencies.",
+    mustWatch: false
+  },
+  {
+    id: 110,
+    title: "The Lincoln Lawyer",
+    platform: "Netflix",
+    genre: "Legal Drama",
+    year: 2022,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 2,
+    episodes: 20,
+    runtime: "18h",
+    popularity: 87,
+    imdbRating: 7.7,
+    tags: ["defense lawyer", "cases", "Los Angeles", "justice", "court"],
+    description: "Mickey Haller, an idealistic but unconventional defense attorney, operates his practice out of the back of his Lincoln Town Car. After a period of recovery from addiction, he takes over a high-profile murder case from a deceased colleague, pulling him back into the cutthroat legal world of Los Angeles. As he juggles multiple complex cases, navigates personal relationships with his two ex-wives, and confronts his own demons, Haller uses his cunning strategies and unique perspective to seek justice for his clients, often bending the rules to achieve his goals.",
+    mustWatch: true
+  },
+  {
+    id: 111,
+    title: "Melo Movie",
+    platform: "YouTube",
+    genre: "Short Romantic Drama",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 5,
+    runtime: "2h",
+    popularity: 73,
+    imdbRating: 6.8,
+    tags: ["slice of life", "awkward love", "quiet moments", "emotions", "short"],
+    description: "This poignant short drama explores the subtle nuances of budding romance and unspoken feelings between two quiet, introspective individuals. Through a series of tender moments, lingering gazes, and meaningful silences, the series beautifully captures the essence of a love that develops slowly and shyly, without grand gestures or loud declarations. It's a gentle, melancholic exploration of connection, self-discovery, and the emotional complexities that lie beneath the surface, offering a quiet yet powerful look at human relationships.",
+    mustWatch: false
+  },
+  {
+    id: 112,
+    title: "When Life Gives You Tangerines",
+    platform: "YouTube",
+    genre: "K-Romance Mini",
+    year: 2024,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 8,
+    runtime: "3h",
+    popularity: 75,
+    imdbRating: 7.1,
+    tags: ["countryside", "fruit shop", "young love", "Korean mini", "sweet"],
+    description: "Set against the charming backdrop of the Korean countryside, this heartwarming mini-series follows the blossoming romance between a lively tangerine delivery girl and a shy, quiet student. Their daily interactions, filled with awkwardness and sweet moments, slowly build into a tender bond. The series beautifully portrays the simple joys of young love, the beauty of rural life, and the innocent charm of small-town relationships, offering a refreshing and delightful slice-of-life romance.",
+    mustWatch: false
+  },
+  {
+    id: 113,
+    title: "Severance",
+    platform: "Apple TV+",
+    genre: "Sci-Fi Mystery",
+    year: 2022,
+    language: "English",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 9,
+    runtime: "8h",
+    popularity: 92,
+    imdbRating: 8.7,
+    tags: ["memory", "corporate", "dystopia", "consciousness", "thriller"],
+    description: "At Lumon Industries, a mysterious company, employees voluntarily undergo a surgical procedure called 'severance,' which completely separates their non-work memories from their work memories. When they are at work, they have no recollection of their personal lives ('innies'), and when they leave work, they have no recollection of their job ('outies'). Mark Scout, one of these 'severed' employees, begins to question the nature of his existence after a former colleague makes contact, leading him and his coworkers on a thrilling journey to uncover the truth behind Lumon's sinister operations and reclaim their full identities.",
+    mustWatch: true
+  },
+  {
+    id: 114,
+    title: "Start-Up",
+    platform: "Netflix",
+    genre: "Business Romance",
+    year: 2020,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "16h",
+    popularity: 89,
+    imdbRating: 8.1,
+    tags: ["startup", "SandBox", "business", "competition", "love triangle"],
+    description: "Set in South Korea's fictional Silicon Valley called 'Sandbox,' the series follows young entrepreneurs aspiring to launch innovative startup companies. Seo Dal-mi, a bright and ambitious woman who dropped out of college, dreams of becoming the next Steve Jobs. Nam Do-san, a brilliant but socially awkward math genius, is the founder of a struggling tech company. Han Ji-pyeong, a successful investment banker, secretly helps Do-san. The series explores their intertwined stories of ambition, failure, success, and a complex love triangle, as they navigate the cutthroat world of technology startups and chase their dreams.",
+    mustWatch: false
+  },
+  {
+    id: 115,
+    title: "A Killer Paradox",
+    platform: "Netflix",
+    genre: "Thriller",
+    year: 2024,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 8,
+    runtime: "7h",
+    popularity: 84,
+    imdbRating: 7.6,
+    tags: ["serial killer", "vigilante", "student", "investigation", "twist"],
+    description: "Lee Tang, an ordinary and somewhat timid university student, accidentally kills a man in self-defense. To his horror, he later discovers the man was a notorious serial killer. This accidental act ignites a strange and unsettling realization: Lee Tang seems to have an innate ability to identify and kill only those who are truly evil. As he reluctantly embraces his new role as a dark vigilante, a relentless detective, Jang Nan-gam, begins to pursue him, leading to a tense cat-and-mouse chase and a complex moral dilemma about justice, punishment, and who truly defines 'evil.'",
+    mustWatch: false
+  },
+  {
+    id: 116,
+    title: "Juvenile Justice",
+    platform: "Netflix",
+    genre: "Legal Drama",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 10,
+    runtime: "9h",
+    popularity: 86,
+    imdbRating: 8.0,
+    tags: ["juvenile court", "law", "youth crime", "compassion", "tough judge"],
+    description: "Sim Eun-seok, a cold and uncompromising elite judge, who notoriously despises young offenders, is assigned to a juvenile court in a district plagued by youth crime. With her firm belief in holding juvenile delinquents fully accountable for their actions, she presides over various complex and emotionally charged cases, often clashing with her more lenient colleagues. The series delves into the dark realities of juvenile crime, the societal factors contributing to it, and challenges the notion of rehabilitation versus punishment, all while forcing Eun-seok to confront her own traumatic past.",
+    mustWatch: true
+  },
+  {
+    id: 117,
+    title: "The Heirs",
+    platform: "Netflix",
+    genre: "Teen Romance",
+    year: 2013,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 20,
+    runtime: "17h",
+    popularity: 89,
+    imdbRating: 7.5,
+    tags: ["rich teens", "prestige school", "forbidden love", "status", "drama"],
+    description: "Cha Eun-sang, an ordinary, hard-working girl from a poor background, finds herself thrust into the world of Korea's privileged elite when she receives a scholarship to Jeguk High School, an exclusive school catering to the wealthy heirs and heiresses of powerful conglomerates. There, she clashes with Kim Tan, the rebellious and arrogant heir to the Jeguk Group, who was exiled to the U.S. and carries a past secret. Their burgeoning romance is complicated by class differences, family expectations, and a complex love triangle, as they navigate the cutthroat world of their peer group and fight for their forbidden love.",
+    mustWatch: false
+  },
+  {
+    id: 118,
+    title: "My ID is Gangnam Beauty",
+    platform: "Netflix",
+    genre: "Slice of Life Romance",
+    year: 2018,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 85,
+    imdbRating: 7.3,
+    tags: ["plastic surgery", "self-esteem", "bullying", "college", "identity"],
+    description: "Kang Mi-rae, a shy and insecure young woman, decides to undergo extensive plastic surgery after being constantly bullied for her appearance since childhood. She believes a new face will bring her a happy new life, but upon entering college, she faces new challenges, including judgment from her peers who mock her as a 'Gangnam Beauty.' She encounters Do Kyung-seok, a handsome and popular classmate who recognizes her from their middle school days and sees beyond her altered appearance, appreciating her inner self. The series explores themes of beauty standards, self-acceptance, and finding genuine love.",
+    mustWatch: false
+  },
+  {
+    id: 119,
+    title: "Suspicious Partner",
+    platform: "Viki",
+    genre: "Romantic Legal Thriller",
+    year: 2017,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 40,
+    runtime: "32h",
+    popularity: 87,
+    imdbRating: 8.0,
+    tags: ["amnesia", "law", "romance", "killer", "office romance"],
+    description: "Noh Ji-wook, a former prosecutor turned private attorney, and Eun Bong-hee, a rookie prosecutor and later his trainee, find themselves entangled in a mysterious murder case involving a cunning psychopath with amnesia. Bong-hee initially becomes a suspect, but Ji-wook believes in her innocence and helps clear her name. As they work together on this and other legal cases, navigating the complexities of the courtroom and their own past traumas, a passionate and often humorous romance develops between them, while they race against time to catch the real killer and uncover buried secrets.",
+    mustWatch: true
+  },
+  {
+    id: 120,
+    title: "The Glory",
+    platform: "Netflix",
+    genre: "Revenge Drama",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 2,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 93,
+    imdbRating: 8.9,
+    tags: ["bullying", "revenge", "teacher", "trauma", "justice"],
+    description: "Moon Dong-eun's life was shattered by extreme school bullying that left her physically and emotionally scarred. Years later, she meticulously executes a cold and calculated plan for revenge. Having become a homeroom teacher at the elementary school attended by the child of her primary tormentor, she slowly begins to dismantle the lives of her former abusers. The series is a dark and gripping tale of vengeance, exploring the lasting impact of trauma, the corruption of power, and one woman's relentless pursuit of justice, no matter the cost.",
+    mustWatch: true
+  },
+  {
+    id: 121,
+    title: "The Golden Spoon",
+    platform: "Disney+ Hotstar",
+    genre: "Fantasy Drama",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 16,
+    runtime: "14h",
+    popularity: 82,
+    imdbRating: 7.8,
+    tags: ["poverty", "rich switch", "supernatural", "regret", "family"],
+    description: "Lee Seung-cheon is a poor but ambitious high school student who despises his family's poverty and dreams of escaping his grim reality. He encounters a mysterious old woman who sells him a magical golden spoon, promising that if he uses it to eat three meals at another person's house, he will swap lives with them. Seung-cheon uses the spoon to switch lives with his wealthy friend Hwang Tae-yong, becoming a rich heir. However, as he experiences the luxurious life he always craved, he begins to question the true meaning of happiness, family, and identity, realizing that wealth comes with unexpected and devastating costs.",
+    mustWatch: false
+  },
+  {
+    id: 122,
+    title: "Gyeongseong Creature",
+    platform: "Netflix",
+    genre: "Historical Horror",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 1,
+    episodes: 10,
+    runtime: "9h",
+    popularity: 90,
+    imdbRating: 8.1,
+    tags: ["colonialism", "monster", "1945", "mystery", "duo"],
+    description: "Set in the dark spring of 1945, during the Japanese colonial rule of Gyeongseong (now Seoul), the series follows Jang Tae-sang, a wealthy and charismatic pawnbroker known as the most influential man in the city, and Yoon Chae-ok, a skilled missing-person specialist. They are drawn into a chilling investigation when people start disappearing from the city, leading them to a mysterious hospital where grotesque creatures, born from greed and human experimentation, lurk. They must confront unspeakable horrors and uncover the terrifying secrets of the time, fighting for survival and justice amidst a world on the brink of change.",
+    mustWatch: true
+  },
+  {
+    id: 123,
+    title: "Sweet Home",
+    platform: "Netflix",
+    genre: "Apocalyptic Horror",
+    year: 2020,
+    language: "Korean",
+    hindiDubbed: true,
+    seasons: 2,
+    episodes: 20,
+    runtime: "18h",
+    popularity: 91,
+    imdbRating: 7.9,
+    tags: ["monsters", "apocalypse", "survival", "residents", "body horror"],
+    description: "Cha Hyun-su, a reclusive high school student who has just moved into a new apartment building, finds himself trapped with other residents when a mysterious apocalypse turns humans into terrifying monsters that reflect their deepest desires. As the building becomes a last bastion of humanity, Hyun-su and his fellow survivors must band together, fighting grotesque creatures, navigating their own inner demons and desires, and making impossible choices to stay alive in a world rapidly consumed by chaos. The series is a thrilling blend of horror, survival, and a philosophical exploration of what it means to be human.",
+    mustWatch: true
+  },
+  {
+    id: 124,
+    title: "Unlock My Boss",
+    platform: "Viki",
+    genre: "Tech Fantasy Comedy",
+    year: 2022,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 12,
+    runtime: "10h",
+    popularity: 80,
+    imdbRating: 7.4,
+    tags: ["AI", "CEO", "possession", "tech firm", "identity swap"],
+    description: "Park In-sung, a clueless and jobless young man, finds his life turned upside down when he picks up a mysterious smartphone. To his shock, the smartphone contains the soul of Kim Sun-joo, the brilliant CEO of a major IT company, who was murdered and now needs In-sung's help to solve his own death. In-sung is forced to become the 'temporary CEO,' navigating the cutthroat corporate world with the CEO's guidance from the phone. This quirky fantasy-comedy follows their unlikely partnership as they work together to uncover the killer, manage the company, and navigate the hilarious challenges of their identity swap.",
+    mustWatch: false
+  },
+  {
+    id: 125,
+    title: "Peaky Blinders",
+    platform: "Netflix",
+    genre: "Crime Period Drama",
+    year: 2013,
+    language: "English",
+    hindiDubbed: true,
+    seasons: 6,
+    episodes: 36,
+    runtime: "40h",
+    popularity: 96,
+    imdbRating: 8.8,
+    tags: ["gangsters", "1920s", "Birmingham", "Tommy Shelby", "revenge"],
+    description: "Set in the gritty, industrial heartland of post-World War I Birmingham, England, 'Peaky Blinders' follows the notorious Shelby crime family, led by the charismatic, cunning, and brutally ambitious Thomas 'Tommy' Shelby. The gang, distinguished by their razor blades sewn into the peaks of their caps, carves out power through illegal betting, protection rackets, and later, more legitimate ventures. The series delves into Tommy's relentless pursuit of social mobility, political influence, and expansion of his empire, battling rival gangs, corrupt police, and personal demons, all while maintaining a fierce loyalty to his family. It's a dark, stylish, and intense saga of power, ambition, and the harsh realities of the era.",
+    mustWatch: true
+  },
+  {
+    id: 126,
+    title: "Good Boy",
+    platform: "Unknown", // E.g., "Netflix", "Viki", "Disney+"
+    genre: "Action Comedy", // E.g., "Drama", "Thriller"
+    year: 2024, // E.g., 2023, 2024
+    language: "Korean", // E.g., "Korean", "Thai"
+    hindiDubbed: false, // true or false
+    seasons: 1, // Number of seasons
+    episodes: 0, // Number of episodes (if known)
+    runtime: "", // E.g., "1h 15m per episode" or total runtime
+    popularity: 0, // E.g., 75, 80 (your own rating or an estimated one)
+    imdbRating: 0.0, // E.g., 7.8, 8.2
+    tags: ["korean drama", "action", "comedy"], // Add relevant tags
+    description: "A recently watched series that is a placeholder for a detailed description.", // Add the actual description
+    mustWatch: false // Set to false as these were listed as 'recently watched'
+  },
+  {
+    id: 127,
+    title: "The Trunk",
+    platform: "Netflix", // E.g., "Netflix"
+    genre: "Mystery Romance", // E.g., "Mystery", "Romance"
+    year: 2024, // E.g., 2024
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 0,
+    runtime: "",
+    popularity: 0,
+    imdbRating: 0.0,
+    tags: ["korean drama", "mystery", "romance"],
+    description: "A recently watched series that is a placeholder for a detailed description.",
+    mustWatch: false
+  },
+  {
+    id: 128,
+    title: "See You in My 19th Life",
+    platform: "Netflix", // Likely Netflix for this one
+    genre: "Fantasy Romance",
+    year: 2023,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 12, // Known episode count
+    runtime: "1h 10m per episode", // Approximate runtime
+    popularity: 85, // Example
+    imdbRating: 7.9, // Example
+    tags: ["korean drama", "reincarnation", "romance", "fantasy"],
+    description: "Ban Ji-eum has the extraordinary ability to remember all her past lives. When her 18th life is cut short, she sets out to reconnect with the people from her previous life in her 19th life.",
+    mustWatch: false
+  },
+  {
+    id: 129,
+    title: "Strong Girl Bong Soon",
+    platform: "Netflix", // Likely Netflix for this one
+    genre: "Romantic Comedy",
+    year: 2017,
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 16, // Known episode count
+    runtime: "1h 10m per episode", // Approximate runtime
+    popularity: 90, // Example
+    imdbRating: 8.2, // Example
+    tags: ["korean drama", "supernatural", "comedy", "romance", "action"],
+    description: "Do Bong-soon is a young woman born with superhuman strength. She uses her power to fight crime and injustice, while also navigating a complicated love triangle.",
+    mustWatch: false
+  },
+  {
+    id: 130,
+    title: "Karma",
+    platform: "Unknown", // E.g., "Netflix", "Amazon Prime"
+    genre: "Thriller", // E.g., "Crime", "Mystery"
+    year: 2023, // E.g., 2023
+    language: "Korean",
+    hindiDubbed: false,
+    seasons: 1,
+    episodes: 0,
+    runtime: "",
+    popularity: 0,
+    imdbRating: 0.0,
+    tags: ["korean drama", "thriller"],
+    description: "A recently watched series that is a placeholder for a detailed description.",
+    mustWatch: false
+  }
+];
