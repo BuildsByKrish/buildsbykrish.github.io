@@ -133,11 +133,46 @@
       display: inline-block;
       margin-bottom: 0.5em;
     }
+    /* MUST WATCH - Best Design */
     .must-watch {
-      border: 4px solid #ffcc00; /* Gold border for must-watch */
-      background-color: #fffbe6;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      position: relative;
+      border: none;
+      background: #2b0c16; /* Dark background for star glow */
+      color: #fff;
+      box-shadow: 
+        0 0 10px #ffc107,
+        0 0 20px #ffeb3b,
+        0 0 30px #ffd700,
+        0 0 40px #ffc107;
+      animation: pulsate 1.5s infinite alternate;
     }
+    .must-watch h2 {
+      color: #fff;
+      text-shadow: 0 0 8px #ffd700;
+      border-bottom-color: #ffeb3b;
+    }
+    .must-watch .tags .tag {
+      background-color: #ffeb3b;
+      color: #2b0c16;
+    }
+    @keyframes pulsate {
+      from { box-shadow: 0 0 10px #ffc107, 0 0 20px #ffeb3b; }
+      to { box-shadow: 0 0 20px #ffc107, 0 0 40px #ffeb3b; }
+    }
+    /* Star styling */
+    .must-watch-star {
+        font-size: 1.5em;
+        color: #ffeb3b;
+        margin-right: 0.5em;
+        animation: star-spin 2s linear infinite;
+        display: inline-block;
+        transform-origin: center;
+    }
+    @keyframes star-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
     .top-btn,
     .home-btn {
       position: fixed;
@@ -225,6 +260,36 @@
   
   <script src="koreanrecommendations.js"></script>
   <script>
+    const koreanWatchlist = [
+  {
+    title: 'Business Proposal',
+    description: 'A romantic comedy where a young woman goes on a blind date in place of her friend to scare away the suitor, but ends up discovering he is the CEO of her company and he is determined to marry her. Hilarity ensues as she attempts to keep her identity a secret from her boss.',
+    genre: ['Romantic Comedy'],
+    platform: 'Netflix',
+    mustwatch: true,
+  },
+  {
+    title: 'Boys Over Flowers',
+    description: 'The iconic high-school romantic drama about a working-class girl who gets a scholarship to an elite school and stands up to the F4, a group of four rich, handsome, and arrogant bullies. She catches the attention of the leader, Gu Jun-pyo, who begins to fall for her, leading to a classic love triangle.',
+    genre: ['Romantic Drama'],
+    platform: 'Netflix',
+    mustwatch: true,
+  },
+  {
+    title: 'Playful Kiss',
+    description: 'Based on the Japanese manga *Itazura Na Kiss*, this romantic comedy follows a clumsy and unpopular girl, Oh Ha-ni, who has a crush on the smart and perfect Baek Seung-jo. When an earthquake destroys her house, she and her father move in with Seung-jo\'s family, leading to an unexpected cohabitation romance.',
+    genre: ['Romantic Comedy'],
+    platform: ['Viki', 'YouTube'],
+    mustwatch: false,
+  },
+  {
+    title: 'The Legend of the Blue Sea',
+    description: 'A fantasy romance inspired by a classic Joseon legend. The story centers on the love story of a mermaid who travels across the ocean to find her reincarnated love, a con-artist in modern-day Seoul. The drama intertwines their past lives in the Joseon era with their present-day romance.',
+    genre: ['Romantic Comedy', 'Fantasy', 'Drama'],
+    platform: ['Netflix', 'Viki'],
+    mustwatch: false,
+  },
+];
     let currentList = [];
     const container = document.getElementById("vaultContainer");
     const genreFilter = document.getElementById("genreFilter");
@@ -255,8 +320,12 @@
           ? entry.platform.map(p => p.trim()).join(" / ")
           : entry.platform;
 
+        const title = entry.mustwatch 
+            ? `<span class="must-watch-star">⭐</span> ${index + 1}. ${entry.title}`
+            : `${index + 1}. ${entry.title}`;
+
         card.innerHTML = `
-          <h2>${index + 1}. ${entry.title}</h2>
+          <h2>${title}</h2>
           <div class="tags">
             <span class="tag">Genre:</span> ${genreTags}
           </div>
