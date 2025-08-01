@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Krish's Hindi Vault</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="vault-theme.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Krish's Korean Vault</title>
   
   <style>
     body {
@@ -64,6 +62,7 @@
       transition: border-color 0.3s, background-color 0.3s, color 0.3s;
       background: #fff;
       color: #333;
+      flex-shrink: 0;
     }
     .filters button {
       cursor: pointer;
@@ -88,7 +87,7 @@
       max-width: 1200px;
       margin: 0 auto;
     }
-    .poster-tile {
+    .vault-card {
       border: 1px solid #eee;
       padding: 1.5em;
       background: #fff;
@@ -96,19 +95,19 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .poster-tile:hover {
+    .vault-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     }
-    .poster-tile h3 {
+    .vault-card h2 {
       color: #d90429;
       margin-top: 0;
       font-size: 1.5em;
     }
-    .poster-tile p {
+    .vault-card p {
       margin: 0.5em 0;
     }
-    .poster-tile .tags .tag {
+    .vault-card .tags .tag {
       background-color: #ffe8e8;
       color: #d90429;
       padding: 0.2em 0.6em;
@@ -151,146 +150,135 @@
       bottom: 24px;
       right: 90px;
     }
-    /* Genre themes for a more Korean aesthetic */
-    body[data-theme="crime"] .poster-tile .tag[data-genre="Crime"] { background-color: #d8e2dc; color: #4a4e69; }
-    body[data-theme="thriller"] .poster-tile .tag[data-genre="Thriller"] { background-color: #f7ede2; color: #a53860; }
-    body[data-theme="drama"] .poster-tile .tag[data-genre="Drama"] { background-color: #f5c4b8; color: #432818; }
-    body[data-theme="comedy"] .poster-tile .tag[data-genre="Comedy"] { background-color: #e5e5e5; color: #2a9d8f; }
-    body[data-theme="action"] .poster-tile .tag[data-genre="Action"] { background-color: #ffc8dd; color: #c81d25; }
-    body[data-theme="spy"] .poster-tile .tag[data-genre="Spy"] { background-color: #b8c8d8; color: #1f3a5f; }
-    body[data-theme="mythological"] .poster-tile .tag[data-genre="Mythological"] { background-color: #c9e4de; color: #1b4965; }
-    body[data-theme="historical"] .poster-tile .tag[data-genre="Historical"] { background-color: #fae1dd; color: #8e7c68; }
-    body[data-theme="political"] .poster-tile .tag[data-genre="Political"] { background-color: #a7bed3; color: #355070; }
-    body[data-theme="military"] .poster-tile .tag[data-genre="Military"] { background-color: #cfe1b9; color: #386641; }
-    body[data-theme="slice-of-life"] .poster-tile .tag[data-genre="Slice of Life"] { background-color: #fcebeb; color: #e56b6f; }
   </style>
 </head>
-<body class="hindi-vault">
-
+<body>
   <header>
-    <h1>🇮🇳 Krish's Hindi Vault</h1>
+    <h1>🇰🇷 Krish's Korean Vault</h1>
     <nav>
       <a href="collections.html">🏠 Back to Home</a>
     </nav>
   </header>
 
   <div class="filters">
-    <select id="genreFilter">
-      <option value="">All Genres</option>
-      <option value="Crime">Crime</option>
-      <option value="Thriller">Thriller</option>
-      <option value="Drama">Drama</option>
-      <option value="Comedy">Comedy</option>
-      <option value="Action">Action</option>
-      <option value="Spy">Spy</option>
-      <option value="Mythological">Mythological</option>
-      <option value="Historical">Historical</option>
-      <option value="Political">Political</option>
-      <option value="Military">Military</option>
-      <option value="Slice of Life">Slice of Life</option>
-    </select>
-    <button id="mustWatchFilter">🎯 Must Watch (IMDb 9+)</button>
-    <input type="text" id="searchInput" placeholder="Search title..." />
+    <input type="text" id="searchInput" placeholder="Search by title..." />
+    <select id="genreFilter"><option value="">All Genres</option></select>
+    <select id="platformFilter"><option value="">All Platforms</option></select>
     <select id="sortFilter">
-      <option value="">Sort by…</option>
-      <option value="popularity">Popularity</option>
-      <option value="year">Year</option>
-      <option value="titleAsc">A–Z</option>
-      <option value="titleDesc">Z–A</option>
+      <option value="">Sort By</option>
+      <option value="titleAsc">A-Z</option>
+      <option value="titleDesc">Z-A</option>
     </select>
+    <button id="mustWatchFilter">🎯 Must Watch</button>
   </div>
 
   <main>
-    <div id="hindiGrid" class="vault-grid"></div>
+    <div id="vaultContainer" class="vault-grid"></div>
   </main>
-  
+
   <button id="topBtn" class="top-btn">⬆ Top</button>
   <button onclick="goHome()" class="home-btn">🏠 Home</button>
-
-  <script src="hindirecommendations.js"></script>
+  
+  <script src="koreanrecommendations.js"></script>
   <script>
     let currentList = [];
-    const container = document.getElementById("hindiGrid");
+    const container = document.getElementById("vaultContainer");
     const genreFilter = document.getElementById("genreFilter");
+    const platformFilter = document.getElementById("platformFilter");
     const mustWatchButton = document.getElementById("mustWatchFilter");
     const searchInput = document.getElementById("searchInput");
     const sortFilter = document.getElementById("sortFilter");
 
-    function display(list) {
-      if (!list || !list.length) {
+    function renderVault(data) {
+      container.innerHTML = "";
+      if (!data || !data.length) {
         container.innerHTML = "<p style='text-align:center;'>No shows to display. Check filters or data file.</p>";
         return;
       }
-      container.innerHTML = list.map((show, i) => `
-        <div class="poster-tile ${show.imdbRating >= 9 ? 'must-watch' : ''}">
-          <div class="poster-info">
-            <h3>${i + 1}. ${show.title}</h3>
-            <div class="tags">
-              <span class="tag">${show.platform}</span>
-              <span class="tag" data-genre="${show.genre}">${show.genre}</span>
-              <span class="tag">📅 ${show.year}</span>
-              <span class="tag">🔥 ${show.popularity}%</span>
-              <span class="tag">⭐ ${show.imdbRating}</span>
-            </div>
-            <p style="font-size: 0.85rem; margin-top: 0.5rem;">
-              Seasons: ${show.seasons}, Episodes: ${show.episodes}, Runtime: ${show.runtime}
-            </p>
-            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #555;">
-              ${show.description}
-            </p>
+      data.forEach(entry => {
+        const card = document.createElement("div");
+        card.className = "vault-card";
+
+        if (entry.mustwatch) {
+          card.classList.add("must-watch");
+        }
+
+        const genreTags = Array.isArray(entry.genre)
+          ? entry.genre.map(g => `<span class="tag">${g.trim()}</span>`).join(" ")
+          : entry.genre.split("/").map(g => `<span class="tag">${g.trim()}</span>`).join(" ");
+
+        const platformTags = Array.isArray(entry.platform)
+          ? entry.platform.map(p => p.trim()).join(" / ")
+          : entry.platform;
+
+        card.innerHTML = `
+          <h2>${entry.title}</h2>
+          <div class="tags">
+            <span class="tag">Genre:</span> ${genreTags}
           </div>
-        </div>
-      `).join("");
+          <p><strong>Platform:</strong> ${platformTags}</p>
+          <p class="description">${entry.description}</p>
+        `;
+        container.appendChild(card);
+      });
     }
 
-    function applyFiltersAndSort() {
-      let filtered = [...hindiWatchlist];
-      const selectedGenre = genreFilter.value;
-      const searchQuery = searchInput.value.toLowerCase();
+    function populateFilters(data) {
+      const genres = [...new Set(data.flatMap(d => d.genre).flat())].sort();
+      const platforms = [...new Set(data.flatMap(d => d.platform).flat())].sort();
+
+      genres.forEach(g => {
+        const opt = document.createElement("option");
+        opt.value = g;
+        opt.textContent = g;
+        genreFilter.appendChild(opt);
+      });
+
+      platforms.forEach(p => {
+        const opt = document.createElement("option");
+        opt.value = p;
+        opt.textContent = p;
+        platformFilter.appendChild(opt);
+      });
+    }
+
+    function applyFilters() {
+      let filtered = [...koreanWatchlist];
+      const genre = genreFilter.value;
+      const platform = platformFilter.value;
+      const search = searchInput.value.toLowerCase();
       const sortBy = sortFilter.value;
 
-      if (selectedGenre) {
-        filtered = filtered.filter(s => s.genre.toLowerCase() === selectedGenre.toLowerCase());
+      if (genre) filtered = filtered.filter(d => d.genre.includes(genre));
+      if (platform) filtered = filtered.filter(d => d.platform.includes(platform));
+      if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search));
+
+      if (sortBy === "titleAsc") {
+        filtered.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+      } else if (sortBy === "titleDesc") {
+        filtered.sort((a, b) => (b.title || "").localeCompare(a.title || ""));
       }
-      if (searchInput.value) {
-        filtered = filtered.filter(s => s.title.toLowerCase().includes(searchQuery));
-      }
-      
-      switch (sortBy) {
-        case "popularity":
-          filtered.sort((a, b) => (b.popularity || 0) - (a.popularity || 0)); break;
-        case "year":
-          filtered.sort((a, b) => (b.year || 0) - (a.year || 0)); break;
-        case "titleAsc":
-          filtered.sort((a, b) => (a.title || "").localeCompare(b.title || "")); break;
-        case "titleDesc":
-          filtered.sort((a, b) => (b.title || "").localeCompare(a.title || "")); break;
-      }
-      
+
       currentList = filtered;
-      display(currentList);
+      renderVault(currentList);
     }
     
     function filterMustWatch() {
-      currentList = hindiWatchlist.filter(s => s.imdbRating >= 9);
-      display(currentList);
+      currentList = koreanWatchlist.filter(s => s.mustwatch);
+      renderVault(currentList);
     }
 
     function goHome() {
       window.location.href = "collections.html";
     }
 
-    genreFilter.addEventListener("change", () => {
-      document.body.dataset.theme = genreFilter.value.toLowerCase().replace(/\s+/g, "-");
-      applyFiltersAndSort();
-    });
+    [genreFilter, platformFilter, searchInput, sortFilter].forEach(el => el.addEventListener("input", applyFilters));
     mustWatchButton.addEventListener("click", filterMustWatch);
-    searchInput.addEventListener("input", applyFiltersAndSort);
-    sortFilter.addEventListener("change", applyFiltersAndSort);
 
     window.onload = () => {
-      currentList = [...hindiWatchlist];
-      display(currentList);
+      populateFilters(koreanWatchlist);
+      currentList = [...koreanWatchlist];
+      renderVault(currentList);
     };
 
     window.onscroll = () => {
@@ -303,6 +291,5 @@
     }
     document.getElementById("topBtn").onclick = scrollTopSmooth;
   </script>
-
 </body>
 </html>
