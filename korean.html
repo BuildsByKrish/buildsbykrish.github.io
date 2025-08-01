@@ -352,11 +352,11 @@
 
         const genreTags = Array.isArray(entry.genre)
           ? entry.genre.map(g => `<span class="tag">${g.trim()}</span>`).join(" ")
-          : entry.genre.split("/").map(g => `<span class="tag">${g.trim()}</span>`).join(" ");
+          : (entry.genre || '').split("/").map(g => `<span class="tag">${g.trim()}</span>`).join(" ");
 
         const platformTags = Array.isArray(entry.platform)
           ? entry.platform.map(p => p.trim()).join(" / ")
-          : entry.platform;
+          : (entry.platform || '');
 
         const title = entry.mustwatch 
             ? `<span class="must-watch-star">⭐</span> ${index + 1}. ${entry.title}`
@@ -385,11 +385,11 @@
     }
 
     function populateFilters(data) {
-      const allGenres = data.flatMap(d => Array.isArray(d.genre) ? d.genre : d.genre.split('/'));
-      const genres = [...new Set(allGenres)].sort();
+      const allGenres = data.flatMap(d => Array.isArray(d.genre) ? d.genre : (d.genre || '').split('/'));
+      const genres = [...new Set(allGenres)].filter(g => g.trim()).sort();
 
-      const allPlatforms = data.flatMap(d => Array.isArray(d.platform) ? d.platform : [d.platform]);
-      const platforms = [...new Set(allPlatforms)].sort();
+      const allPlatforms = data.flatMap(d => Array.isArray(d.platform) ? d.platform : (d.platform || '').split('/'));
+      const platforms = [...new Set(allPlatforms)].filter(p => p.trim()).sort();
 
       genres.forEach(g => {
         const opt = document.createElement("option");
@@ -415,7 +415,7 @@
         const search = searchInput.value.toLowerCase();
         const sortBy = sortFilter.value;
 
-        if (genre) filtered = filtered.filter(d => (Array.isArray(d.genre) ? d.genre : d.genre.split('/')).map(g => g.trim()).includes(genre));
+        if (genre) filtered = filtered.filter(d => (Array.isArray(d.genre) ? d.genre : (d.genre || '').split('/')).map(g => g.trim()).includes(genre));
         if (platform) filtered = filtered.filter(d => (Array.isArray(d.platform) ? d.platform : [d.platform]).map(p => p.trim()).includes(platform));
         if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search) || d.description.toLowerCase().includes(search));
 
