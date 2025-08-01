@@ -53,7 +53,7 @@ const hindiWatchlist = [
     popularity: 90,
     imdbRating: 8.4,
     description: "A forensic expert and a serial killer clash in a battle of intellect, rooted in ancient mythology.",
-    mustwatch: false
+    mustwatch: true
   },
   {
     id: 5,
@@ -165,7 +165,7 @@ const hindiWatchlist = [
     popularity: 85,
     imdbRating: 8.4,
     description: "A man’s life spirals after a single night. This courtroom-crime drama explores justice, guilt, and redemption.",
-    mustwatch: false
+    mustwatch: true
   },
   {
     id: 13,
@@ -627,7 +627,7 @@ const hindiWatchlist = [
     popularity: 93,
     imdbRating: 8.4,
     description: "A brilliant con artist enters the world of high-stakes counterfeit money, pursued by a fiery task force officer.",
-    mustwatch: false
+    mustwatch: true
   },
   {
     id: 46,
@@ -753,7 +753,7 @@ const hindiWatchlist = [
     popularity: 70,
     imdbRating: 7.7,
     description: "A sanitation worker gains a magical ability to foresee future news headlines, changing his life and the lives of those around him.",
-    mustwatch: false
+    mustwatch: true
   },
   {
     id: 55,
@@ -823,7 +823,7 @@ const hindiWatchlist = [
     popularity: 82,
     imdbRating: 7.8,
     description: "A quirky comedy set in a district court, following the chaotic yet endearing lives of lawyers and their unconventional cases.",
-    mustwatch: false
+    mustwatch: true
   },
   {
     id: 60,
