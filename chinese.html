@@ -4,179 +4,598 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Krish's Chinese Vault</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="vault-theme.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  
   <style>
+    :root {
+      --primary-color: #f7a072; /* Warm Orange */
+      --secondary-color: #ffdab9; /* Peach */
+      --text-dark: #4a4a4a;
+      --text-light: #fff;
+      --background-body: #fff8e1; /* Creamy yellow background for autumn theme */
+      --card-bg: #fff;
+      --border-color: #f5c49b;
+      --must-watch-gold: #ffeb3b;
+      --must-watch-dark: #3a1c00;
+      --primary-color-rgb: 247, 160, 114;
+      --secondary-color-rgb: 255, 218, 185;
+      --card-bg-rgb: 255, 255, 255;
+      --autumn-leaf-url: url('https://user-images.githubusercontent.com/112613650/237937416-8360d032-9014-46c5-849c-e655938d2238.jpg');
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fefefe;
+      font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-body);
+      color: var(--text-dark);
       margin: 0;
       padding: 0;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+      background-image: var(--autumn-leaf-url);
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
     }
     header {
-      background: #ffeccc;
+      padding: 2.5em;
+      background: linear-gradient(to right, rgba(var(--secondary-color-rgb), 0.9), rgba(var(--primary-color-rgb), 0.9));
+      color: var(--text-light);
       text-align: center;
-      padding: 1em;
+      border-bottom: 5px solid var(--primary-color);
+      position: relative;
+      font-family: 'Playfair Display', serif;
+    }
+    header h1 {
+      font-size: 3.5em;
+      margin: 0.2em 0;
+      color: #7b3f00;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    }
+    header nav {
+      margin-top: 1.5em;
+    }
+    header nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5em 1.5em;
+      border: 2px solid var(--primary-color);
+      border-radius: 25px;
+      transition: background-color 0.4s, color 0.4s, transform 0.4s;
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+    }
+    header nav a:hover {
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      transform: scale(1.1);
     }
     .filters {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 1em;
-      margin: 1em auto;
+      justify-content: center;
+      align-items: center;
+      margin: 2em auto;
+      padding: 0 1em;
+      max-width: 1000px;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    .filters input,
+    .filters select,
+    .filters button {
+      padding: 0.9em;
+      border: 1px solid var(--primary-color);
+      border-radius: 8px;
+      font-size: 1em;
+      transition: all 0.3s ease-in-out;
+      background: var(--card-bg);
+      color: var(--text-dark);
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .filters button {
+      cursor: pointer;
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      font-weight: bold;
+    }
+    .filters button:hover {
+      background-color: #c9512c;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    .filters input:focus,
+    .filters select:focus {
+      border-color: #c9512c;
+      box-shadow: 0 0 8px rgba(201, 81, 44, 0.3);
+      outline: none;
     }
     .vault-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1em;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2em;
       padding: 2em;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     .vault-card {
-      border: 1px solid #ddd;
-      padding: 1em;
-      background: #fff;
-      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      padding: 2em;
+      background: rgba(var(--card-bg-rgb), 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s, box-shadow 0.4s, background-color 0.4s;
+      position: relative;
+    }
+    .vault-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .vault-card h2 {
+      color: #7b3f00;
+      margin-top: 0;
+      font-size: 1.6em;
+      border-bottom: 2px solid #ffefe2;
+      padding-bottom: 0.5em;
+      display: flex;
+      align-items: center;
+    }
+    .vault-card p {
+      margin: 0.5em 0;
+    }
+    .vault-card .tags {
+      margin: 1em 0;
+    }
+    .vault-card .tags .tag {
+      background-color: #ffe6c7;
+      color: #7b3f00;
+      padding: 0.4em 0.8em;
+      border-radius: 15px;
+      font-size: 0.85em;
+      font-weight: bold;
+      margin-right: 0.5em;
+      display: inline-block;
+      margin-bottom: 0.5em;
+    }
+    .vault-card .description-container {
+        display: none;
+        margin-top: 1em;
+        padding-top: 1em;
+        border-top: 1px dashed #ccc;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+    .vault-card .description-toggle {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 1em;
+        padding: 0.5em;
+        border: 1px solid var(--primary-color);
+        border-radius: 5px;
+        background-color: transparent;
+        color: var(--primary-color);
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .vault-card .description-toggle:hover {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     .must-watch {
-      border: 2px solid gold;
-      background-color: #fffbe6;
+        border: 3px solid var(--must-watch-gold);
+        box-shadow: 0 0 15px var(--must-watch-gold);
     }
-    #goTopBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 16px;
-      padding: 10px 14px;
-      background-color: #333;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
+    .must-watch h2 {
+        color: var(--must-watch-dark);
+        background-color: var(--must-watch-gold);
+        border-bottom: 3px solid var(--must-watch-dark);
+        padding: 0.5em;
+        margin: -2em -2em 1em -2em;
+        border-radius: 12px 12px 0 0;
+    }
+    .must-watch h2 span.must-watch-star {
+        color: var(--must-watch-dark);
+    }
+    .must-watch p {
+        color: var(--must-watch-dark);
+    }
+    .must-watch .tags .tag {
+        background-color: var(--must-watch-dark);
+        color: var(--must-watch-gold);
+    }
+    .watched-card {
+        opacity: 0.6;
+        background-color: #e0e0e0;
+        border-color: #ccc;
+        position: relative;
+    }
+    .watched-card::after {
+        content: "Watched!";
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #28a745;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.8em;
+    }
+    .random-pick-card {
+        animation: pulse-border 1.5s infinite alternate;
+        box-shadow: 0 0 30px rgba(255, 140, 0, 0.7);
+        border: 3px solid #ff8c00;
+    }
+    @keyframes pulse-border {
+        from { box-shadow: 0 0 10px rgba(255, 140, 0, 0.4); }
+        to { box-shadow: 0 0 30px rgba(255, 140, 0, 0.9); }
+    }
+    .action-buttons {
+      display: flex;
+      gap: 0.5em;
+      margin-top: 1em;
+    }
+    .mark-watched-btn {
+      flex: 1;
+      padding: 0.7em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 14px;
-      opacity: 0.7;
-      z-index: 1000;
+      font-size: 0.9em;
+      background-color: #28a745;
+      color: white;
     }
-    #goTopBtn:hover {
+    .mark-watched-btn.unwatched {
+      background-color: #ffc107;
+      color: #212529;
+    }
+    .top-btn,
+    .home-btn {
+      position: fixed;
+      padding: 12px 16px;
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      opacity: 0.85;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
+    }
+    .top-btn:hover,
+    .home-btn:hover {
       opacity: 1;
-      background-color: #000;
+      background-color: #c9512c;
+      transform: scale(1.05);
+    }
+    .top-btn {
+      bottom: 24px;
+      right: 24px;
+    }
+    .home-btn {
+      bottom: 24px;
+      right: 90px;
+    }
+    .snowflake {
+      color: var(--primary-color);
+      font-size: 1.5em;
+      font-family: Arial, sans-serif;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+      animation: snowfall 15s linear infinite;
+      position: fixed;
+      top: -100px;
+      z-index: -1;
+      pointer-events: none;
+    }
+    @keyframes snowfall {
+      0% { top: -100px; opacity: 0; }
+      20% { opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
     }
   </style>
 </head>
-<body class="chinese-vault" data-theme="dynasty">
+<body>
   <header>
-    <h1>🇨🇳 Krish’s Chinese Vault</h1>
+    <h1>🇨🇳 Krish's Chinese Vault</h1>
     <nav>
       <a href="collections.html">🏠 Back to Home</a>
     </nav>
-    <div class="filters">
-      <input type="text" id="searchInput" placeholder="Search by title..." />
-      <select id="genreFilter"><option value="">All Genres</option></select>
-      <select id="platformFilter"><option value="">All Platforms</option></select>
-      <select id="imdbFilter">
-        <option value="">All Ratings</option>
-        <option value="9">9.0+</option>
-        <option value="8">8.0+</option>
-        <option value="7">7.0+</option>
-      </select>
-      <select id="sortFilter">
-        <option value="">Sort By</option>
-        <option value="imdb">IMDb Rating</option>
-        <option value="year">Year</option>
-        <option value="popularity">Popularity</option>
-      </select>
-      <label><input type="checkbox" id="hindiToggle" /> 🎧 Hindi Dubbed</label>
-    </div>
   </header>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Search by title..." />
+    <select id="genreFilter"><option value="">All Genres</option></select>
+    <select id="platformFilter"><option value="">All Platforms</option></select>
+    <select id="sortFilter">
+      <option value="">Sort By</option>
+      <option value="titleAsc">A-Z</option>
+      <option value="titleDesc">Z-A</option>
+      <option value="ratingDesc">IMDb Rating (High to Low)</option>
+      <option value="popularityDesc">Popularity (High to Low)</option>
+      <option value="yearDesc">Year (New to Old)</option>
+    </select>
+    <button id="hindiDubbedFilter">🎬 Hindi Dubbed</button>
+    <button id="mustWatchFilter">🎯 Must Watch</button>
+    <button id="allSeriesBtn">All Series</button>
+    <button id="randomPickBtn">🎲 Random Pick</button>
+  </div>
 
   <main>
     <div id="vaultContainer" class="vault-grid"></div>
   </main>
 
-  <button id="goTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">🔝 Top</button>
-
+  <button id="topBtn" class="top-btn">⬆ Top</button>
+  <button onclick="goHome()" class="home-btn">🏠 Home</button>
+  
+  <div class="snowflake">🍁</div>
+  <div class="snowflake">🍁</div>
+  <div class="snowflake">🍁</div>
+  <div class="snowflake">🍁</div>
+  <div class="snowflake">🍁</div>
+  <div class="snowflake">🍁</div>
+  <div class="snowflake">🍁</div>
+  <div class="snowflake">🍁</div>
+  <div class="snowflake">🍁</div>
+  <div class="snowflake">🍁</div>
+  
   <script src="chineserecommendations.js"></script>
   <script>
+    let currentList = [];
     const container = document.getElementById("vaultContainer");
     const genreFilter = document.getElementById("genreFilter");
     const platformFilter = document.getElementById("platformFilter");
-    const imdbFilter = document.getElementById("imdbFilter");
-    const hindiToggle = document.getElementById("hindiToggle");
+    const mustWatchButton = document.getElementById("mustWatchFilter");
+    const allSeriesButton = document.getElementById("allSeriesBtn");
+    const hindiDubbedFilter = document.getElementById("hindiDubbedFilter");
+    const randomPickButton = document.getElementById("randomPickBtn");
     const searchInput = document.getElementById("searchInput");
     const sortFilter = document.getElementById("sortFilter");
+    
+    const USER_WATCHED_KEY = 'chinese_watched';
+    let userWatchedList = JSON.parse(localStorage.getItem(USER_WATCHED_KEY)) || {};
 
     function renderVault(data) {
       container.innerHTML = "";
-      data.forEach(entry => {
+      if (!data || !data.length) {
+        container.innerHTML = "<p style='text-align:center;'>No shows to display. Check filters or data file.</p>";
+        return;
+      }
+      data.forEach((entry, index) => {
         const card = document.createElement("div");
         card.className = "vault-card";
-        if (entry.imdbRating >= 8.8 && entry.popularity >= 90) {
+
+        const seriesId = entry.title + entry.year;
+
+        if (entry.mustwatch) {
           card.classList.add("must-watch");
         }
+        if (userWatchedList[seriesId]) {
+          card.classList.add("watched-card");
+        }
+        
+        const genreTags = Array.isArray(entry.genre)
+          ? entry.genre.map(g => `<span class="tag">${g.trim()}</span>`).join(" ")
+          : (entry.genre || '').split("/").map(g => `<span class="tag">${g.trim()}</span>`).join(" ");
 
-        const genreTags = entry.genre
-          .split("/")
-          .map(g => `<span class="tag">${g.trim()}</span>`)
-          .join(" ");
+        const platformTags = Array.isArray(entry.platform)
+          ? entry.platform.map(p => p.trim()).join(" / ")
+          : (entry.platform || '');
+
+        const title = `${index + 1}. ${entry.mustwatch 
+            ? `<span class="must-watch-star">⭐</span> ${entry.title}`
+            : `${entry.title}`}`;
+        
+        const hindiAvailability = entry.hindiDubbed 
+          ? '<p class="hindi-dubbed"><strong>Hindi Dubbed:</strong> Available</p>' 
+          : '<p><strong>Hindi Dubbed:</strong> Not Available</p>';
+
+        const ratingDisplay = entry.imdbRating ? `<p><strong>IMDb Rating:</strong> ${entry.imdbRating}</p>` : '';
+        const popularityDisplay = entry.popularity ? `<p><strong>Popularity:</strong> ${entry.popularity}</p>` : '';
+        const yearDisplay = entry.year ? `<p><strong>Year:</strong> ${entry.year}</p>` : '';
+        
+        const watchedStatus = userWatchedList[seriesId] ? 'Unmark Watched' : 'Mark as Watched';
 
         card.innerHTML = `
-          <h2>${entry.id}. ${entry.title}</h2>
-          <p><strong>Genre:</strong> ${genreTags}</p>
-          <p><strong>Platform:</strong> ${entry.platform}</p>
-          <p><strong>Year:</strong> ${entry.year}</p>
-          <p><strong>IMDb:</strong> ${entry.imdbRating}</p>
-          <p><strong>Runtime:</strong> ${entry.runtime}</p>
-          <p><strong>Hindi Dubbed:</strong> ${entry.hindiDubbed ? "✅" : "❌"}</p>
-          <p class="description">${entry.description}</p>
+          <h2>${title}</h2>
+          <div class="tags">
+            <span class="tag">Genre:</span> ${genreTags}
+          </div>
+          <p><strong>Platform:</strong> ${platformTags}</p>
+          ${yearDisplay}
+          ${ratingDisplay}
+          ${popularityDisplay}
+          ${hindiAvailability}
+          <div class="description-container" id="desc-${index}">
+            <p class="description">${entry.description}</p>
+          </div>
+          <button class="description-toggle" onclick="toggleDescription('desc-${index}', this)">View Description</button>
+          <div class="action-buttons">
+            <button class="mark-watched-btn ${userWatchedList[seriesId] ? 'unwatched' : ''}" onclick="toggleWatchedStatus('${seriesId}')">${watchedStatus}</button>
+          </div>
         `;
         container.appendChild(card);
       });
     }
 
+    function toggleDescription(id, button) {
+        const descriptionContainer = document.getElementById(id);
+        const isVisible = descriptionContainer.style.display === 'block';
+        descriptionContainer.style.display = isVisible ? 'none' : 'block';
+        button.textContent = isVisible ? 'View Description' : 'Hide Description';
+    }
+
+    function toggleWatchedStatus(seriesId) {
+      if (userWatchedList[seriesId]) {
+        delete userWatchedList[seriesId];
+      } else {
+        userWatchedList[seriesId] = true;
+      }
+      localStorage.setItem(USER_WATCHED_KEY, JSON.stringify(userWatchedList));
+      applyFilters(); // Re-render to show the new status
+    }
+
     function populateFilters(data) {
-      const genres = [...new Set(data.flatMap(d => d.genre.split("/").map(g => g.trim())))].sort();
-      const platforms = [...new Set(data.flatMap(d => d.platform.split(" / ").map(p => p.trim())))].sort();
+      const allGenres = data.flatMap(d => Array.isArray(d.genre) ? d.genre : (d.genre || '').split('/'));
+      const genres = [...new Set(allGenres)].filter(g => g.trim()).sort();
+
+      const allPlatforms = data.flatMap(d => Array.isArray(d.platform) ? d.platform : (d.platform || '').split('/'));
+      const platforms = [...new Set(allPlatforms)].filter(p => p.trim()).sort();
 
       genres.forEach(g => {
         const opt = document.createElement("option");
-        opt.value = g;
-        opt.textContent = g;
+        opt.value = g.trim();
+        opt.textContent = g.trim();
         genreFilter.appendChild(opt);
       });
 
       platforms.forEach(p => {
         const opt = document.createElement("option");
-        opt.value = p;
-        opt.textContent = p;
+        opt.value = p.trim();
+        opt.textContent = p.trim();
         platformFilter.appendChild(opt);
       });
     }
 
     function applyFilters() {
-      let filtered = [...chineseWatchlist];
-      const genre = genreFilter.value;
-      const platform = platformFilter.value;
-      const imdb = parseFloat(imdbFilter.value);
-      const hindiOnly = hindiToggle.checked;
-      const search = searchInput.value.toLowerCase();
-      const sortBy = sortFilter.value;
+      let filtered = [];
+      if (typeof chineseWatchlist !== 'undefined') {
+        filtered = [...chineseWatchlist];
+        const genre = genreFilter.value;
+        const platform = platformFilter.value;
+        const search = searchInput.value.toLowerCase();
+        const sortBy = sortFilter.value;
 
-      if (genre) filtered = filtered.filter(d => d.genre.includes(genre));
-      if (platform) filtered = filtered.filter(d => d.platform.includes(platform));
-      if (imdb) filtered = filtered.filter(d => d.imdbRating >= imdb);
-      if (hindiOnly) filtered = filtered.filter(d => d.hindiDubbed);
-      if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search));
+        if (genre) filtered = filtered.filter(d => (Array.isArray(d.genre) ? d.genre : (d.genre || '').split('/')).map(g => g.trim()).includes(genre));
+        if (platform) filtered = filtered.filter(d => (Array.isArray(d.platform) ? d.platform : [d.platform]).map(p => p.trim()).includes(platform));
+        if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search) || (d.description && d.description.toLowerCase().includes(search)));
 
-      if (sortBy === "imdb") filtered.sort((a, b) => b.imdbRating - a.imdbRating);
-      else if (sortBy === "year") filtered.sort((a, b) => b.year - a.year);
-      else if (sortBy === "popularity") filtered.sort((a, b) => b.popularity - a.popularity);
+        if (sortBy === "titleAsc") {
+          filtered.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+        } else if (sortBy === "titleDesc") {
+          filtered.sort((a, b) => (b.title || "").localeCompare(a.title || ""));
+        } else if (sortBy === "ratingDesc") {
+          filtered.sort((a, b) => (parseFloat(b.imdbRating) || 0) - (parseFloat(a.imdbRating) || 0));
+        } else if (sortBy === "popularityDesc") {
+          filtered.sort((a, b) => (parseFloat(b.popularity) || 0) - (parseFloat(a.popularity) || 0));
+        } else if (sortBy === "yearDesc") {
+          filtered.sort((a, b) => (parseFloat(b.year) || 0) - (parseFloat(a.year) || 0));
+        }
 
-      renderVault(filtered);
+        currentList = filtered;
+        renderVault(currentList);
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Chinese series data. Please check your chineserecommendations.js file.</p>";
+      }
+    }
+    
+    function filterMustWatch() {
+      resetFilters();
+      if (typeof chineseWatchlist !== 'undefined') {
+        currentList = chineseWatchlist.filter(s => s.mustwatch);
+        renderVault(currentList);
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Chinese series data. Please check your chineserecommendations.js file.</p>";
+      }
     }
 
-    [genreFilter, platformFilter, imdbFilter, hindiToggle, searchInput, sortFilter]
-      .forEach(el => el.addEventListener("input", applyFilters));
+    function filterHindiDubbed() {
+      resetFilters();
+      if (typeof chineseWatchlist !== 'undefined') {
+        currentList = chineseWatchlist.filter(s => s.hindiDubbed);
+        renderVault(currentList);
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Chinese series data. Please check your chineserecommendations.js file.</p>";
+      }
+    }
 
-    populateFilters(chineseWatchlist);
-    renderVault(chineseWatchlist);
+    function showAllSeries() {
+      resetFilters();
+      if (typeof chineseWatchlist !== 'undefined') {
+        currentList = [...chineseWatchlist];
+        renderVault(currentList);
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Chinese series data. Please check your chineserecommendations.js file.</p>";
+      }
+    }
+
+    function pickRandomSeries() {
+      resetFilters();
+      if (typeof chineseWatchlist !== 'undefined' && chineseWatchlist.length > 0) {
+        const randomIndex = Math.floor(Math.random() * chineseWatchlist.length);
+        const randomSeries = chineseWatchlist[randomIndex];
+        renderVault([randomSeries]);
+        document.querySelector('.vault-card').classList.add('random-pick-card');
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>No series available to pick from.</p>";
+      }
+    }
+
+    function resetFilters() {
+      genreFilter.value = "";
+      platformFilter.value = "";
+      searchInput.value = "";
+      sortFilter.value = "";
+    }
+
+    function goHome() {
+      window.location.href = "collections.html";
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof chineseWatchlist !== 'undefined') {
+        populateFilters(chineseWatchlist);
+        currentList = [...chineseWatchlist];
+        applyFilters();
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Chinese series data. Please check your chineserecommendations.js file and ensure the variable is defined globally (e.g. window.chineseWatchlist).</p>";
+      }
+
+      const filterElements = [genreFilter, platformFilter, searchInput, sortFilter];
+      filterElements.forEach(el => el.addEventListener("input", applyFilters));
+      mustWatchButton.addEventListener("click", filterMustWatch);
+      allSeriesButton.addEventListener("click", showAllSeries);
+      hindiDubbedFilter.addEventListener("click", filterHindiDubbed);
+      randomPickButton.addEventListener("click", pickRandomSeries);
+    });
+
+    window.onscroll = () => {
+      document.getElementById("topBtn").style.display =
+        window.scrollY > 400 ? "block" : "none";
+    };
+    
+    function scrollTopSmooth() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    document.getElementById("topBtn").onclick = scrollTopSmooth;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const snowflakes = document.querySelectorAll(".snowflake");
+      snowflakes.forEach((snowflake) => {
+        const size = Math.random() * 2 + 1;
+        const position = Math.random() * 100;
+        const delay = Math.random() * 10;
+        const duration = Math.random() * 20 + 10;
+
+        snowflake.style.fontSize = `${size}em`;
+        snowflake.style.left = `${position}vw`;
+        snowflake.style.animationDelay = `${delay}s`;
+        snowflake.style.animationDuration = `${duration}s`;
+      });
+    });
   </script>
 </body>
 </html>
