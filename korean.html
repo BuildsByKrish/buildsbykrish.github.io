@@ -8,286 +8,337 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
   
-<style>
-  :root {
-    --primary-color: #ff69b4; /* Hot Pink */
-    --secondary-color: #ffc0cb; /* Lighter Pink */
-    --text-dark: #4a4a4a;
-    --text-light: #fff;
-    --background-body: #fcebeb; /* Light pink background for spring theme */
-    --card-bg: #fff;
-    --border-color: #ffb6c1;
-    --must-watch-gold: #ffeb3b;
-    --must-watch-dark: #2b0c16;
-    --must-watch-neon-blue: #00ffff; /* Neon Blue */
-    --primary-color-rgb: 255, 105, 180;
-    --secondary-color-rgb: 255, 192, 203;
-    --card-bg-rgb: 255, 255, 255;
-    --spring-tree-url: url('https://user-images.githubusercontent.com/112613650/237937409-b427b34b-4a57-418f-a496-e10f135b3769.jpg');
-  }
+  <style>
+    :root {
+      --primary-color: #ff69b4; /* Hot Pink */
+      --secondary-color: #ffc0cb; /* Lighter Pink */
+      --text-dark: #4a4a4a;
+      --text-light: #fff;
+      --background-body: #fcebeb; /* Light pink background for spring theme */
+      --card-bg: #fff;
+      --border-color: #ffb6c1;
+      --must-watch-gold: #ffeb3b;
+      --must-watch-dark: #2b0c16;
+      --primary-color-rgb: 255, 105, 180;
+      --secondary-color-rgb: 255, 192, 203;
+      --card-bg-rgb: 255, 255, 255;
+      --spring-tree-url: url('https://user-images.githubusercontent.com/112613650/237937409-b427b34b-4a57-418f-a496-e10f135b3769.jpg');
+    }
 
-  body {
-    font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--background-body);
-    color: var(--text-dark);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    position: relative;
-    overflow-x: hidden;
-    background-image: var(--spring-tree-url);
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-  }
-  header {
-    padding: 2.5em;
-    background: linear-gradient(to right, rgba(var(--secondary-color-rgb), 0.9), rgba(var(--primary-color-rgb), 0.9));
-    color: var(--text-light);
-    text-align: center;
-    border-bottom: 5px solid var(--primary-color);
-    position: relative;
-    font-family: 'Playfair Display', serif;
-  }
-  header h1 {
-    font-size: 3.5em;
-    margin: 0.2em 0;
-    color: #8b0000;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
-  }
-  header nav {
-    margin-top: 1.5em;
-  }
-  header nav a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.5em 1.5em;
-    border: 2px solid var(--primary-color);
-    border-radius: 25px;
-    transition: background-color 0.4s, color 0.4s, transform 0.4s;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(5px);
-  }
-  header nav a:hover {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    transform: scale(1.1);
-  }
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    justify-content: center;
-    align-items: center;
-    margin: 2em auto;
-    padding: 0 1em;
-    max-width: 1000px;
-    background-color: rgba(255, 255, 255, 0.6);
-    padding: 1.5em;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  }
-  .filters input,
-  .filters select,
-  .filters button {
-    padding: 0.9em;
-    border: 1px solid var(--primary-color);
-    border-radius: 8px;
-    font-size: 1em;
-    transition: all 0.3s ease-in-out;
-    background: var(--card-bg);
-    color: var(--text-dark);
-    flex-shrink: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  .filters button {
-    cursor: pointer;
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    font-weight: bold;
-  }
-  .filters button:hover {
-    background-color: #d90429;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  .filters input:focus,
-  .filters select:focus {
-    border-color: #d90429;
-    box-shadow: 0 0 8px rgba(217, 4, 41, 0.3);
-    outline: none;
-  }
-  .vault-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2em;
-    padding: 2em;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .vault-card {
-    border: 1px solid var(--border-color);
-    padding: 2em;
-    background: rgba(var(--card-bg-rgb), 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s, box-shadow 0.4s;
-  }
-  .vault-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
-  .vault-card h2 {
-    color: #8b0000;
-    margin-top: 0;
-    font-size: 1.6em;
-    border-bottom: 2px solid #ffe4e1;
-    padding-bottom: 0.5em;
-    display: flex;
-    align-items: center;
-  }
-  .vault-card p {
-    margin: 0.5em 0;
-  }
-  .vault-card .tags {
-    margin: 1em 0;
-  }
-  .vault-card .tags .tag {
-    background-color: #ffd1dc;
-    color: #d90429;
-    padding: 0.4em 0.8em;
-    border-radius: 15px;
-    font-size: 0.85em;
-    font-weight: bold;
-    margin-right: 0.5em;
-    display: inline-block;
-    margin-bottom: 0.5em;
-  }
-  .vault-card .description-container {
-      display: none;
-      margin-top: 1em;
-      padding-top: 1em;
-      border-top: 1px dashed #ccc;
-      animation: fadeIn 0.5s ease-in-out;
-  }
-  .vault-card .description-toggle {
-      display: block;
-      width: 100%;
+    body {
+      font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-body);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+      background-image: var(--spring-tree-url);
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+    header {
+      padding: 2.5em;
+      background: linear-gradient(to right, rgba(var(--secondary-color-rgb), 0.9), rgba(var(--primary-color-rgb), 0.9));
+      color: var(--text-light);
       text-align: center;
-      margin-top: 1em;
-      padding: 0.5em;
-      border: 1px solid var(--primary-color);
-      border-radius: 5px;
-      background-color: transparent;
+      border-bottom: 5px solid var(--primary-color);
+      position: relative;
+      font-family: 'Playfair Display', serif;
+    }
+    header h1 {
+      font-size: 3.5em;
+      margin: 0.2em 0;
+      color: #8b0000;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    }
+    header nav {
+      margin-top: 1.5em;
+    }
+    header nav a {
       color: var(--primary-color);
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-  }
-  .vault-card .description-toggle:hover {
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5em 1.5em;
+      border: 2px solid var(--primary-color);
+      border-radius: 25px;
+      transition: background-color 0.4s, color 0.4s, transform 0.4s;
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+    }
+    header nav a:hover {
       background-color: var(--primary-color);
       color: var(--text-light);
-  }
-  @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-  }
-  .must-watch {
-    position: relative;
-    border: none;
-    background: var(--must-watch-neon-blue);
-    color: var(--must-watch-dark);
-    box-shadow: 
-      0 0 10px var(--must-watch-gold),
-      0 0 20px var(--must-watch-gold),
-      0 0 30px var(--must-watch-gold),
-      0 0 40px var(--must-watch-gold);
-    animation: pulsate 1.5s infinite alternate;
-  }
-  .must-watch:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border: 4px solid var(--must-watch-dark);
+      transform: scale(1.1);
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      justify-content: center;
+      align-items: center;
+      margin: 2em auto;
+      padding: 0 1em;
+      max-width: 1000px;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    .filters input,
+    .filters select,
+    .filters button {
+      padding: 0.9em;
+      border: 1px solid var(--primary-color);
+      border-radius: 8px;
+      font-size: 1em;
+      transition: all 0.3s ease-in-out;
+      background: var(--card-bg);
+      color: var(--text-dark);
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .filters button {
+      cursor: pointer;
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      font-weight: bold;
+    }
+    .filters button:hover {
+      background-color: #d90429;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    .filters input:focus,
+    .filters select:focus {
+      border-color: #d90429;
+      box-shadow: 0 0 8px rgba(217, 4, 41, 0.3);
+      outline: none;
+    }
+    .add-series-section {
+      margin: 2em auto;
+      padding: 2em;
+      max-width: 1000px;
+      background-color: rgba(255, 255, 255, 0.8);
       border-radius: 15px;
-      z-index: 1;
-      pointer-events: none;
-  }
-  .must-watch h2 {
-    color: var(--must-watch-dark);
-    text-shadow: none;
-    border-bottom-color: var(--must-watch-dark);
-  }
-  .must-watch .tags .tag {
-    background-color: var(--must-watch-dark);
-    color: var(--must-watch-neon-blue);
-  }
-  @keyframes pulsate {
-    from { box-shadow: 0 0 10px var(--must-watch-gold), 0 0 20px var(--must-watch-gold); }
-    to { box-shadow: 0 0 20px var(--must-watch-gold), 0 0 40px var(--must-watch-gold); }
-  }
-  .must-watch-star {
-      font-size: 1.5em;
-      color: var(--must-watch-dark);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      border: 2px solid var(--primary-color);
+    }
+    .add-series-section h3 {
+      text-align: center;
+      color: #8b0000;
+      margin-top: 0;
+    }
+    .add-series-section input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .vault-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2em;
+      padding: 2em;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .vault-card {
+      border: 1px solid var(--border-color);
+      padding: 2em;
+      background: rgba(var(--card-bg-rgb), 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s, box-shadow 0.4s, background-color 0.4s;
+      position: relative;
+    }
+    .vault-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .vault-card h2 {
+      color: #8b0000;
+      margin-top: 0;
+      font-size: 1.6em;
+      border-bottom: 2px solid #ffe4e1;
+      padding-bottom: 0.5em;
+      display: flex;
+      align-items: center;
+    }
+    .vault-card p {
+      margin: 0.5em 0;
+    }
+    .vault-card .tags {
+      margin: 1em 0;
+    }
+    .vault-card .tags .tag {
+      background-color: #ffd1dc;
+      color: #d90429;
+      padding: 0.4em 0.8em;
+      border-radius: 15px;
+      font-size: 0.85em;
+      font-weight: bold;
       margin-right: 0.5em;
-      animation: star-spin 2s linear infinite;
       display: inline-block;
-      transform-origin: center;
-  }
-  @keyframes star-spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-  }
-  .top-btn,
-  .home-btn {
-    position: fixed;
-    padding: 12px 16px;
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    opacity: 0.85;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
-  }
-  .top-btn:hover,
-  .home-btn:hover {
-    opacity: 1;
-    background-color: #d90429;
-    transform: scale(1.05);
-  }
-  .top-btn {
-    bottom: 24px;
-    right: 24px;
-  }
-  .home-btn {
-    bottom: 24px;
-    right: 90px;
-  }
-  .snowflake {
-    color: var(--primary-color);
-    font-size: 1.5em;
-    font-family: Arial, sans-serif;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
-    animation: snowfall 15s linear infinite;
-    position: fixed;
-    top: -100px;
-    z-index: -1;
-    pointer-events: none;
-  }
-  @keyframes snowfall {
-    0% { top: -100px; opacity: 0; }
-    20% { opacity: 1; }
-    100% { top: 100vh; opacity: 0; }
-  }
-</style>
+      margin-bottom: 0.5em;
+    }
+    .vault-card .description-container {
+        display: none;
+        margin-top: 1em;
+        padding-top: 1em;
+        border-top: 1px dashed #ccc;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+    .vault-card .description-toggle {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 1em;
+        padding: 0.5em;
+        border: 1px solid var(--primary-color);
+        border-radius: 5px;
+        background-color: transparent;
+        color: var(--primary-color);
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .vault-card .description-toggle:hover {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .must-watch {
+        border: 3px solid var(--must-watch-gold);
+        box-shadow: 0 0 15px var(--must-watch-gold);
+    }
+    .must-watch h2 {
+        color: var(--must-watch-dark);
+        background-color: var(--must-watch-gold);
+        border-bottom: 3px solid var(--must-watch-dark);
+        padding: 0.5em;
+        margin: -2em -2em 1em -2em;
+        border-radius: 12px 12px 0 0;
+    }
+    .must-watch h2 span.must-watch-star {
+        color: var(--must-watch-dark);
+    }
+    .must-watch p {
+        color: var(--must-watch-dark);
+    }
+    .must-watch .tags .tag {
+        background-color: var(--must-watch-dark);
+        color: var(--must-watch-gold);
+    }
+    .watched-card {
+        opacity: 0.6;
+        background-color: #e0e0e0;
+        border-color: #ccc;
+        position: relative;
+    }
+    .watched-card::after {
+        content: "Watched!";
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #8b0000;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.8em;
+    }
+    .random-pick-card {
+        animation: pulse-border 1.5s infinite alternate;
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+        border: 3px solid #00ffff;
+    }
+    @keyframes pulse-border {
+        from { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+        to { box-shadow: 0 0 30px rgba(0, 255, 255, 0.9); }
+    }
+    .action-buttons {
+      display: flex;
+      gap: 0.5em;
+      margin-top: 1em;
+    }
+    .mark-watched-btn, .remove-btn {
+      flex: 1;
+      padding: 0.7em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    .mark-watched-btn {
+      background-color: #28a745;
+      color: white;
+    }
+    .mark-watched-btn.unwatched {
+      background-color: #ffc107;
+      color: #212529;
+    }
+    .remove-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+    .top-btn,
+    .home-btn,
+    .add-series-btn {
+      position: fixed;
+      padding: 12px 16px;
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      opacity: 0.85;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
+    }
+    .top-btn:hover,
+    .home-btn:hover,
+    .add-series-btn:hover {
+      opacity: 1;
+      background-color: #d90429;
+      transform: scale(1.05);
+    }
+    .top-btn {
+      bottom: 24px;
+      right: 24px;
+    }
+    .home-btn {
+      bottom: 24px;
+      right: 90px;
+    }
+    .add-series-btn {
+      bottom: 24px;
+      right: 170px;
+    }
+    .snowflake {
+      color: var(--primary-color);
+      font-size: 1.5em;
+      font-family: Arial, sans-serif;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+      animation: snowfall 15s linear infinite;
+      position: fixed;
+      top: -100px;
+      z-index: -1;
+      pointer-events: none;
+    }
+    @keyframes snowfall {
+      0% { top: -100px; opacity: 0; }
+      20% { opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -305,9 +356,30 @@
       <option value="">Sort By</option>
       <option value="titleAsc">A-Z</option>
       <option value="titleDesc">Z-A</option>
+      <option value="ratingDesc">Rating (High to Low)</option>
+      <option value="yearDesc">Year (New to Old)</option>
     </select>
+    <button id="hindiDubbedFilter">🎬 Hindi Dubbed</button>
     <button id="mustWatchFilter">🎯 Must Watch</button>
     <button id="allSeriesBtn">All Series</button>
+    <button id="randomPickBtn">🎲 Random Pick</button>
+  </div>
+
+  <div class="add-series-section">
+    <h3>Add Your Own Series</h3>
+    <input type="text" id="addTitle" placeholder="Title*" required />
+    <input type="text" id="addGenre" placeholder="Genre (e.g. Comedy, Romance)" />
+    <input type="text" id="addPlatform" placeholder="Platform (e.g. Netflix, Viki)" />
+    <input type="text" id="addRating" placeholder="Rating (e.g. 8.5)" />
+    <input type="text" id="addYear" placeholder="Year (e.g. 2023)" />
+    <textarea id="addDescription" placeholder="Description"></textarea>
+    <label>
+      <input type="checkbox" id="addMustWatch" /> Mark as Must Watch
+    </label>
+    <label>
+      <input type="checkbox" id="addHindiDubbed" /> Available in Hindi Dubbed
+    </label>
+    <button id="submitSeriesBtn">Add Series to My Watchlist</button>
   </div>
 
   <main>
@@ -316,6 +388,7 @@
 
   <button id="topBtn" class="top-btn">⬆ Top</button>
   <button onclick="goHome()" class="home-btn">🏠 Home</button>
+  <button id="addSeriesScroll" class="add-series-btn">➕ Add Series</button>
   
   <div class="snowflake">🌸</div>
   <div class="snowflake">🌸</div>
@@ -336,8 +409,16 @@
     const platformFilter = document.getElementById("platformFilter");
     const mustWatchButton = document.getElementById("mustWatchFilter");
     const allSeriesButton = document.getElementById("allSeriesBtn");
+    const hindiDubbedFilter = document.getElementById("hindiDubbedFilter");
+    const randomPickButton = document.getElementById("randomPickBtn");
     const searchInput = document.getElementById("searchInput");
     const sortFilter = document.getElementById("sortFilter");
+    const submitSeriesBtn = document.getElementById("submitSeriesBtn");
+
+    const USER_WATCHED_KEY = 'korean_watched';
+    const USER_ADDED_KEY = 'korean_user_added';
+    let userWatchedList = JSON.parse(localStorage.getItem(USER_WATCHED_KEY)) || {};
+    let userAddedList = JSON.parse(localStorage.getItem(USER_ADDED_KEY)) || [];
 
     function renderVault(data) {
       container.innerHTML = "";
@@ -349,10 +430,15 @@
         const card = document.createElement("div");
         card.className = "vault-card";
 
+        const seriesId = entry.title + entry.year;
+
         if (entry.mustwatch) {
           card.classList.add("must-watch");
         }
-
+        if (userWatchedList[seriesId]) {
+          card.classList.add("watched-card");
+        }
+        
         const genreTags = Array.isArray(entry.genre)
           ? entry.genre.map(g => `<span class="tag">${g.trim()}</span>`).join(" ")
           : (entry.genre || '').split("/").map(g => `<span class="tag">${g.trim()}</span>`).join(" ");
@@ -361,9 +447,17 @@
           ? entry.platform.map(p => p.trim()).join(" / ")
           : (entry.platform || '');
 
-        const title = entry.mustwatch 
+        const title = `${index + 1}. ${entry.mustwatch 
             ? `<span class="must-watch-star">⭐</span> ${entry.title}`
-            : `${entry.title}`;
+            : `${entry.title}`}`;
+        
+        const hindiAvailability = entry.hindiDubbed ? '<p class="hindi-dubbed"><strong>Hindi Dubbed:</strong> Available</p>' : '';
+        const ratingDisplay = entry.rating ? `<p><strong>Rating:</strong> ${entry.rating}</p>` : '';
+        const yearDisplay = entry.year ? `<p><strong>Year:</strong> ${entry.year}</p>` : '';
+        
+        const removeButton = entry.userAdded ? `<button class="remove-btn" onclick="removeSeries('${seriesId}')">Remove</button>` : '';
+        
+        const watchedStatus = userWatchedList[seriesId] ? 'Unmark Watched' : 'Mark as Watched';
 
         card.innerHTML = `
           <h2>${title}</h2>
@@ -371,10 +465,17 @@
             <span class="tag">Genre:</span> ${genreTags}
           </div>
           <p><strong>Platform:</strong> ${platformTags}</p>
+          ${yearDisplay}
+          ${ratingDisplay}
+          ${hindiAvailability}
           <div class="description-container" id="desc-${index}">
             <p class="description">${entry.description}</p>
           </div>
           <button class="description-toggle" onclick="toggleDescription('desc-${index}', this)">View Description</button>
+          <div class="action-buttons">
+            <button class="mark-watched-btn ${userWatchedList[seriesId] ? 'unwatched' : ''}" onclick="toggleWatchedStatus('${seriesId}')">${watchedStatus}</button>
+            ${removeButton}
+          </div>
         `;
         container.appendChild(card);
       });
@@ -385,6 +486,22 @@
         const isVisible = descriptionContainer.style.display === 'block';
         descriptionContainer.style.display = isVisible ? 'none' : 'block';
         button.textContent = isVisible ? 'View Description' : 'Hide Description';
+    }
+
+    function toggleWatchedStatus(seriesId) {
+      if (userWatchedList[seriesId]) {
+        delete userWatchedList[seriesId];
+      } else {
+        userWatchedList[seriesId] = true;
+      }
+      localStorage.setItem(USER_WATCHED_KEY, JSON.stringify(userWatchedList));
+      applyFilters(); // Re-render to show the new status
+    }
+
+    function removeSeries(seriesId) {
+      userAddedList = userAddedList.filter(s => s.title + s.year !== seriesId);
+      localStorage.setItem(USER_ADDED_KEY, JSON.stringify(userAddedList));
+      applyFilters();
     }
 
     function populateFilters(data) {
@@ -410,59 +527,134 @@
     }
 
     function applyFilters() {
-      let filtered = [];
+      let combinedList = [];
       if (window.koreanWatchlist) {
-        filtered = [...window.koreanWatchlist];
-        const genre = genreFilter.value;
-        const platform = platformFilter.value;
-        const search = searchInput.value.toLowerCase();
-        const sortBy = sortFilter.value;
-
-        if (genre) filtered = filtered.filter(d => (Array.isArray(d.genre) ? d.genre : (d.genre || '').split('/')).map(g => g.trim()).includes(genre));
-        if (platform) filtered = filtered.filter(d => (Array.isArray(d.platform) ? d.platform : [d.platform]).map(p => p.trim()).includes(platform));
-        if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search) || d.description.toLowerCase().includes(search));
-
-        if (sortBy === "titleAsc") {
-          filtered.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
-        } else if (sortBy === "titleDesc") {
-          filtered.sort((a, b) => (b.title || "").localeCompare(a.title || ""));
-        }
-
-        currentList = filtered;
-        renderVault(currentList);
+        combinedList = [...window.koreanWatchlist, ...userAddedList];
       } else {
-        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
+        combinedList = [...userAddedList];
       }
+
+      let filtered = [...combinedList];
+      const genre = genreFilter.value;
+      const platform = platformFilter.value;
+      const search = searchInput.value.toLowerCase();
+      const sortBy = sortFilter.value;
+
+      if (genre) filtered = filtered.filter(d => (Array.isArray(d.genre) ? d.genre : (d.genre || '').split('/')).map(g => g.trim()).includes(genre));
+      if (platform) filtered = filtered.filter(d => (Array.isArray(d.platform) ? d.platform : [d.platform]).map(p => p.trim()).includes(platform));
+      if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search) || (d.description && d.description.toLowerCase().includes(search)));
+
+      if (sortBy === "titleAsc") {
+        filtered.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+      } else if (sortBy === "titleDesc") {
+        filtered.sort((a, b) => (b.title || "").localeCompare(a.title || ""));
+      } else if (sortBy === "ratingDesc") {
+        filtered.sort((a, b) => (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0));
+      } else if (sortBy === "yearDesc") {
+        filtered.sort((a, b) => (parseFloat(b.year) || 0) - (parseFloat(a.year) || 0));
+      }
+
+      currentList = filtered;
+      renderVault(currentList);
     }
     
     function filterMustWatch() {
+      // Clear other filters before applying this one
+      resetFilters();
+      
+      let combinedList = [];
       if (window.koreanWatchlist) {
-        // Clear other filters before applying this one
-        genreFilter.value = "";
-        platformFilter.value = "";
-        searchInput.value = "";
-        sortFilter.value = "";
-        
-        currentList = koreanWatchlist.filter(s => s.mustwatch);
-        renderVault(currentList);
+        combinedList = [...window.koreanWatchlist, ...userAddedList];
       } else {
-        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
+        combinedList = [...userAddedList];
       }
+
+      currentList = combinedList.filter(s => s.mustwatch);
+      renderVault(currentList);
+    }
+
+    function filterHindiDubbed() {
+      resetFilters();
+      let combinedList = [];
+      if (window.koreanWatchlist) {
+        combinedList = [...window.koreanWatchlist, ...userAddedList];
+      } else {
+        combinedList = [...userAddedList];
+      }
+      currentList = combinedList.filter(s => s.hindiDubbed);
+      renderVault(currentList);
     }
 
     function showAllSeries() {
-      // Clear all filters before displaying all series
+      resetFilters();
+      let combinedList = [];
+      if (window.koreanWatchlist) {
+        combinedList = [...window.koreanWatchlist, ...userAddedList];
+      } else {
+        combinedList = [...userAddedList];
+      }
+      currentList = combinedList;
+      renderVault(currentList);
+    }
+
+    function pickRandomSeries() {
+      resetFilters();
+      let combinedList = [];
+      if (window.koreanWatchlist) {
+        combinedList = [...window.koreanWatchlist, ...userAddedList];
+      } else {
+        combinedList = [...userAddedList];
+      }
+      if (combinedList.length > 0) {
+        const randomIndex = Math.floor(Math.random() * combinedList.length);
+        const randomSeries = combinedList[randomIndex];
+        renderVault([randomSeries]);
+        document.querySelector('.vault-card').classList.add('random-pick-card');
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>No series available to pick from.</p>";
+      }
+    }
+
+    function resetFilters() {
       genreFilter.value = "";
       platformFilter.value = "";
       searchInput.value = "";
       sortFilter.value = "";
-      
-      if (window.koreanWatchlist) {
-        currentList = [...window.koreanWatchlist];
-        renderVault(currentList);
-      } else {
-        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
+    }
+
+    function addNewSeries() {
+      const title = document.getElementById('addTitle').value;
+      if (!title) {
+        alert("Title is required!");
+        return;
       }
+      const newSeries = {
+        title: title,
+        genre: document.getElementById('addGenre').value.split(',').map(g => g.trim()),
+        platform: document.getElementById('addPlatform').value.split(',').map(p => p.trim()),
+        description: document.getElementById('addDescription').value,
+        rating: document.getElementById('addRating').value,
+        year: document.getElementById('addYear').value,
+        mustwatch: document.getElementById('addMustWatch').checked,
+        hindiDubbed: document.getElementById('addHindiDubbed').checked,
+        userAdded: true
+      };
+
+      userAddedList.push(newSeries);
+      localStorage.setItem(USER_ADDED_KEY, JSON.stringify(userAddedList));
+      alert("Series added successfully!");
+      
+      // Clear form
+      document.getElementById('addTitle').value = '';
+      document.getElementById('addGenre').value = '';
+      document.getElementById('addPlatform').value = '';
+      document.getElementById('addRating').value = '';
+      document.getElementById('addYear').value = '';
+      document.getElementById('addDescription').value = '';
+      document.getElementById('addMustWatch').checked = false;
+      document.getElementById('addHindiDubbed').checked = false;
+
+      showAllSeries(); // Refresh the list
     }
 
     function goHome() {
@@ -471,21 +663,29 @@
 
     // Event listeners
     document.addEventListener('DOMContentLoaded', () => {
-      // The script will wait for korean.js to load before running this
+      let combinedList = [];
       if (window.koreanWatchlist) {
-        populateFilters(window.koreanWatchlist);
-        currentList = [...window.koreanWatchlist];
-        renderVault(currentList);
-        // Initial render on page load
-        applyFilters();
+        combinedList = [...window.koreanWatchlist, ...userAddedList];
+        populateFilters(combinedList);
       } else {
-        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file and ensure the variable is defined globally (e.g. window.koreanWatchlist).</p>";
+        combinedList = [...userAddedList];
+        populateFilters(combinedList);
       }
+      currentList = combinedList;
+      renderVault(currentList);
+      applyFilters();
 
       const filterElements = [genreFilter, platformFilter, searchInput, sortFilter];
       filterElements.forEach(el => el.addEventListener("input", applyFilters));
       mustWatchButton.addEventListener("click", filterMustWatch);
       allSeriesButton.addEventListener("click", showAllSeries);
+      hindiDubbedFilter.addEventListener("click", filterHindiDubbed);
+      randomPickButton.addEventListener("click", pickRandomSeries);
+      submitSeriesBtn.addEventListener("click", addNewSeries);
+      
+      document.getElementById("addSeriesScroll").addEventListener("click", () => {
+        document.querySelector('.add-series-section').scrollIntoView({ behavior: 'smooth' });
+      });
     });
 
     window.onscroll = () => {
