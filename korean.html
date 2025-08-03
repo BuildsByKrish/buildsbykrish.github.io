@@ -247,7 +247,7 @@
         position: absolute;
         top: 10px;
         right: 10px;
-        background-color: #8b0000;
+        background-color: #28a745;
         color: white;
         padding: 5px 10px;
         border-radius: 5px;
@@ -283,13 +283,8 @@
       background-color: #ffc107;
       color: #212529;
     }
-    .remove-btn {
-      background-color: #dc3545;
-      color: white;
-    }
     .top-btn,
-    .home-btn,
-    .add-series-btn {
+    .home-btn {
       position: fixed;
       padding: 12px 16px;
       background-color: var(--primary-color);
@@ -304,8 +299,7 @@
       transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
     }
     .top-btn:hover,
-    .home-btn:hover,
-    .add-series-btn:hover {
+    .home-btn:hover {
       opacity: 1;
       background-color: #d90429;
       transform: scale(1.05);
@@ -317,10 +311,6 @@
     .home-btn {
       bottom: 24px;
       right: 90px;
-    }
-    .add-series-btn {
-      bottom: 24px;
-      right: 170px;
     }
     .snowflake {
       color: var(--primary-color);
@@ -365,30 +355,12 @@
     <button id="randomPickBtn">🎲 Random Pick</button>
   </div>
 
-  <div class="add-series-section">
-    <h3>Add Your Own Series</h3>
-    <input type="text" id="addTitle" placeholder="Title*" required />
-    <input type="text" id="addGenre" placeholder="Genre (e.g. Comedy, Romance)" />
-    <input type="text" id="addPlatform" placeholder="Platform (e.g. Netflix, Viki)" />
-    <input type="text" id="addRating" placeholder="Rating (e.g. 8.5)" />
-    <input type="text" id="addYear" placeholder="Year (e.g. 2023)" />
-    <textarea id="addDescription" placeholder="Description"></textarea>
-    <label>
-      <input type="checkbox" id="addMustWatch" /> Mark as Must Watch
-    </label>
-    <label>
-      <input type="checkbox" id="addHindiDubbed" /> Available in Hindi Dubbed
-    </label>
-    <button id="submitSeriesBtn">Add Series to My Watchlist</button>
-  </div>
-
   <main>
     <div id="vaultContainer" class="vault-grid"></div>
   </main>
 
   <button id="topBtn" class="top-btn">⬆ Top</button>
   <button onclick="goHome()" class="home-btn">🏠 Home</button>
-  <button id="addSeriesScroll" class="add-series-btn">➕ Add Series</button>
   
   <div class="snowflake">🌸</div>
   <div class="snowflake">🌸</div>
@@ -413,12 +385,9 @@
     const randomPickButton = document.getElementById("randomPickBtn");
     const searchInput = document.getElementById("searchInput");
     const sortFilter = document.getElementById("sortFilter");
-    const submitSeriesBtn = document.getElementById("submitSeriesBtn");
-
+    
     const USER_WATCHED_KEY = 'korean_watched';
-    const USER_ADDED_KEY = 'korean_user_added';
     let userWatchedList = JSON.parse(localStorage.getItem(USER_WATCHED_KEY)) || {};
-    let userAddedList = JSON.parse(localStorage.getItem(USER_ADDED_KEY)) || [];
 
     function renderVault(data) {
       container.innerHTML = "";
@@ -455,8 +424,6 @@
         const ratingDisplay = entry.rating ? `<p><strong>Rating:</strong> ${entry.rating}</p>` : '';
         const yearDisplay = entry.year ? `<p><strong>Year:</strong> ${entry.year}</p>` : '';
         
-        const removeButton = entry.userAdded ? `<button class="remove-btn" onclick="removeSeries('${seriesId}')">Remove</button>` : '';
-        
         const watchedStatus = userWatchedList[seriesId] ? 'Unmark Watched' : 'Mark as Watched';
 
         card.innerHTML = `
@@ -474,7 +441,6 @@
           <button class="description-toggle" onclick="toggleDescription('desc-${index}', this)">View Description</button>
           <div class="action-buttons">
             <button class="mark-watched-btn ${userWatchedList[seriesId] ? 'unwatched' : ''}" onclick="toggleWatchedStatus('${seriesId}')">${watchedStatus}</button>
-            ${removeButton}
           </div>
         `;
         container.appendChild(card);
@@ -496,12 +462,6 @@
       }
       localStorage.setItem(USER_WATCHED_KEY, JSON.stringify(userWatchedList));
       applyFilters(); // Re-render to show the new status
-    }
-
-    function removeSeries(seriesId) {
-      userAddedList = userAddedList.filter(s => s.title + s.year !== seriesId);
-      localStorage.setItem(USER_ADDED_KEY, JSON.stringify(userAddedList));
-      applyFilters();
     }
 
     function populateFilters(data) {
@@ -527,87 +487,70 @@
     }
 
     function applyFilters() {
-      let combinedList = [];
+      let filtered = [];
       if (window.koreanWatchlist) {
-        combinedList = [...window.koreanWatchlist, ...userAddedList];
+        filtered = [...window.koreanWatchlist];
+        const genre = genreFilter.value;
+        const platform = platformFilter.value;
+        const search = searchInput.value.toLowerCase();
+        const sortBy = sortFilter.value;
+
+        if (genre) filtered = filtered.filter(d => (Array.isArray(d.genre) ? d.genre : (d.genre || '').split('/')).map(g => g.trim()).includes(genre));
+        if (platform) filtered = filtered.filter(d => (Array.isArray(d.platform) ? d.platform : [d.platform]).map(p => p.trim()).includes(platform));
+        if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search) || (d.description && d.description.toLowerCase().includes(search)));
+
+        if (sortBy === "titleAsc") {
+          filtered.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+        } else if (sortBy === "titleDesc") {
+          filtered.sort((a, b) => (b.title || "").localeCompare(a.title || ""));
+        } else if (sortBy === "ratingDesc") {
+          filtered.sort((a, b) => (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0));
+        } else if (sortBy === "yearDesc") {
+          filtered.sort((a, b) => (parseFloat(b.year) || 0) - (parseFloat(a.year) || 0));
+        }
+
+        currentList = filtered;
+        renderVault(currentList);
       } else {
-        combinedList = [...userAddedList];
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
       }
-
-      let filtered = [...combinedList];
-      const genre = genreFilter.value;
-      const platform = platformFilter.value;
-      const search = searchInput.value.toLowerCase();
-      const sortBy = sortFilter.value;
-
-      if (genre) filtered = filtered.filter(d => (Array.isArray(d.genre) ? d.genre : (d.genre || '').split('/')).map(g => g.trim()).includes(genre));
-      if (platform) filtered = filtered.filter(d => (Array.isArray(d.platform) ? d.platform : [d.platform]).map(p => p.trim()).includes(platform));
-      if (search) filtered = filtered.filter(d => d.title.toLowerCase().includes(search) || (d.description && d.description.toLowerCase().includes(search)));
-
-      if (sortBy === "titleAsc") {
-        filtered.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
-      } else if (sortBy === "titleDesc") {
-        filtered.sort((a, b) => (b.title || "").localeCompare(a.title || ""));
-      } else if (sortBy === "ratingDesc") {
-        filtered.sort((a, b) => (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0));
-      } else if (sortBy === "yearDesc") {
-        filtered.sort((a, b) => (parseFloat(b.year) || 0) - (parseFloat(a.year) || 0));
-      }
-
-      currentList = filtered;
-      renderVault(currentList);
     }
     
     function filterMustWatch() {
-      // Clear other filters before applying this one
       resetFilters();
-      
-      let combinedList = [];
       if (window.koreanWatchlist) {
-        combinedList = [...window.koreanWatchlist, ...userAddedList];
+        currentList = koreanWatchlist.filter(s => s.mustwatch);
+        renderVault(currentList);
       } else {
-        combinedList = [...userAddedList];
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
       }
-
-      currentList = combinedList.filter(s => s.mustwatch);
-      renderVault(currentList);
     }
 
     function filterHindiDubbed() {
       resetFilters();
-      let combinedList = [];
       if (window.koreanWatchlist) {
-        combinedList = [...window.koreanWatchlist, ...userAddedList];
+        currentList = koreanWatchlist.filter(s => s.hindiDubbed);
+        renderVault(currentList);
       } else {
-        combinedList = [...userAddedList];
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
       }
-      currentList = combinedList.filter(s => s.hindiDubbed);
-      renderVault(currentList);
     }
 
     function showAllSeries() {
       resetFilters();
-      let combinedList = [];
       if (window.koreanWatchlist) {
-        combinedList = [...window.koreanWatchlist, ...userAddedList];
+        currentList = [...window.koreanWatchlist];
+        renderVault(currentList);
       } else {
-        combinedList = [...userAddedList];
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
       }
-      currentList = combinedList;
-      renderVault(currentList);
     }
 
     function pickRandomSeries() {
       resetFilters();
-      let combinedList = [];
-      if (window.koreanWatchlist) {
-        combinedList = [...window.koreanWatchlist, ...userAddedList];
-      } else {
-        combinedList = [...userAddedList];
-      }
-      if (combinedList.length > 0) {
-        const randomIndex = Math.floor(Math.random() * combinedList.length);
-        const randomSeries = combinedList[randomIndex];
+      if (window.koreanWatchlist && window.koreanWatchlist.length > 0) {
+        const randomIndex = Math.floor(Math.random() * window.koreanWatchlist.length);
+        const randomSeries = window.koreanWatchlist[randomIndex];
         renderVault([randomSeries]);
         document.querySelector('.vault-card').classList.add('random-pick-card');
       } else {
@@ -622,58 +565,20 @@
       sortFilter.value = "";
     }
 
-    function addNewSeries() {
-      const title = document.getElementById('addTitle').value;
-      if (!title) {
-        alert("Title is required!");
-        return;
-      }
-      const newSeries = {
-        title: title,
-        genre: document.getElementById('addGenre').value.split(',').map(g => g.trim()),
-        platform: document.getElementById('addPlatform').value.split(',').map(p => p.trim()),
-        description: document.getElementById('addDescription').value,
-        rating: document.getElementById('addRating').value,
-        year: document.getElementById('addYear').value,
-        mustwatch: document.getElementById('addMustWatch').checked,
-        hindiDubbed: document.getElementById('addHindiDubbed').checked,
-        userAdded: true
-      };
-
-      userAddedList.push(newSeries);
-      localStorage.setItem(USER_ADDED_KEY, JSON.stringify(userAddedList));
-      alert("Series added successfully!");
-      
-      // Clear form
-      document.getElementById('addTitle').value = '';
-      document.getElementById('addGenre').value = '';
-      document.getElementById('addPlatform').value = '';
-      document.getElementById('addRating').value = '';
-      document.getElementById('addYear').value = '';
-      document.getElementById('addDescription').value = '';
-      document.getElementById('addMustWatch').checked = false;
-      document.getElementById('addHindiDubbed').checked = false;
-
-      showAllSeries(); // Refresh the list
-    }
-
     function goHome() {
       window.location.href = "collections.html";
     }
 
     // Event listeners
     document.addEventListener('DOMContentLoaded', () => {
-      let combinedList = [];
       if (window.koreanWatchlist) {
-        combinedList = [...window.koreanWatchlist, ...userAddedList];
-        populateFilters(combinedList);
+        populateFilters(window.koreanWatchlist);
+        currentList = [...window.koreanWatchlist];
+        renderVault(currentList);
+        applyFilters();
       } else {
-        combinedList = [...userAddedList];
-        populateFilters(combinedList);
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file and ensure the variable is defined globally (e.g. window.koreanWatchlist).</p>";
       }
-      currentList = combinedList;
-      renderVault(currentList);
-      applyFilters();
 
       const filterElements = [genreFilter, platformFilter, searchInput, sortFilter];
       filterElements.forEach(el => el.addEventListener("input", applyFilters));
@@ -681,11 +586,6 @@
       allSeriesButton.addEventListener("click", showAllSeries);
       hindiDubbedFilter.addEventListener("click", filterHindiDubbed);
       randomPickButton.addEventListener("click", pickRandomSeries);
-      submitSeriesBtn.addEventListener("click", addNewSeries);
-      
-      document.getElementById("addSeriesScroll").addEventListener("click", () => {
-        document.querySelector('.add-series-section').scrollIntoView({ behavior: 'smooth' });
-      });
     });
 
     window.onscroll = () => {
