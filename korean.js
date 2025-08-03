@@ -1,4 +1,4 @@
-const koreanWatchlist = [
+window.koreanWatchlist= [
   {
     id: 1,
     title: "Mouse",
