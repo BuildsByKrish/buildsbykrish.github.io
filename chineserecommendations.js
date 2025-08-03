@@ -1,4 +1,4 @@
-const mustWatchSeries = [
+window.mustWatchSeries = [
   {
     id: 1,
     title: "The Untamed",
