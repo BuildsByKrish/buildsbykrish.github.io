@@ -117,27 +117,6 @@
       box-shadow: 0 0 8px rgba(217, 4, 41, 0.3);
       outline: none;
     }
-    .add-series-section {
-      margin: 2em auto;
-      padding: 2em;
-      max-width: 1000px;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-      border: 2px solid var(--primary-color);
-    }
-    .add-series-section h3 {
-      text-align: center;
-      color: #8b0000;
-      margin-top: 0;
-    }
-    .add-series-section input {
-      width: 100%;
-      box-sizing: border-box;
-    }
     .vault-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -267,15 +246,13 @@
       gap: 0.5em;
       margin-top: 1em;
     }
-    .mark-watched-btn, .remove-btn {
+    .mark-watched-btn {
       flex: 1;
       padding: 0.7em;
       border: 1px solid #ccc;
       border-radius: 5px;
       cursor: pointer;
       font-size: 0.9em;
-    }
-    .mark-watched-btn {
       background-color: #28a745;
       color: white;
     }
@@ -420,8 +397,10 @@
             ? `<span class="must-watch-star">⭐</span> ${entry.title}`
             : `${entry.title}`}`;
         
-        const hindiAvailability = entry.hindiDubbed ? '<p class="hindi-dubbed"><strong>Hindi Dubbed:</strong> Available</p>' : '';
-        const ratingDisplay = entry.rating ? `<p><strong>Rating:</strong> ${entry.rating}</p>` : '';
+        const hindiAvailability = entry.hindiDubbed 
+          ? '<p class="hindi-dubbed"><strong>Hindi Dubbed:</strong> Available</p>' 
+          : '<p><strong>Hindi Dubbed:</strong> Not Available</p>';
+        const ratingDisplay = entry.rating ? `<p><strong>IMDb Rating:</strong> ${entry.rating}</p>` : '';
         const yearDisplay = entry.year ? `<p><strong>Year:</strong> ${entry.year}</p>` : '';
         
         const watchedStatus = userWatchedList[seriesId] ? 'Unmark Watched' : 'Mark as Watched';
