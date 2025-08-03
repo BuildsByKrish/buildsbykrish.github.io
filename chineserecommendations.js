@@ -1,4 +1,4 @@
-window.mustWatchSeries = [
+window.chineseWatchlist= [
   {
     id: 1,
     title: "The Untamed",
