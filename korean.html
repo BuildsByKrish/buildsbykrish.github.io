@@ -329,7 +329,10 @@
     <button id="hindiDubbedFilter">🎬 Hindi Dubbed</button>
     <button id="mustWatchFilter">🎯 Must Watch</button>
     <button id="allSeriesBtn">All Series</button>
+<<<<<<< Updated upstream
     <button id="randomPickBtn">🎲 Random Pick</button>
+=======
+>>>>>>> Stashed changes
   </div>
 
   <main>
@@ -358,8 +361,11 @@
     const platformFilter = document.getElementById("platformFilter");
     const mustWatchButton = document.getElementById("mustWatchFilter");
     const allSeriesButton = document.getElementById("allSeriesBtn");
+<<<<<<< Updated upstream
     const hindiDubbedFilter = document.getElementById("hindiDubbedFilter");
     const randomPickButton = document.getElementById("randomPickBtn");
+=======
+>>>>>>> Stashed changes
     const searchInput = document.getElementById("searchInput");
     const sortFilter = document.getElementById("sortFilter");
     
@@ -393,6 +399,7 @@
           ? entry.platform.map(p => p.trim()).join(" / ")
           : (entry.platform || '');
 
+<<<<<<< Updated upstream
         const title = `${index + 1}. ${entry.mustwatch 
             ? `<span class="must-watch-star">⭐</span> ${entry.title}`
             : `${entry.title}`}`;
@@ -406,6 +413,11 @@
         const yearDisplay = entry.year ? `<p><strong>Year:</strong> ${entry.year}</p>` : '';
         
         const watchedStatus = userWatchedList[seriesId] ? 'Unmark Watched' : 'Mark as Watched';
+=======
+        const title = entry.mustwatch 
+            ? `<span class="must-watch-star">⭐</span> ${entry.title}`
+            : `${entry.title}`;
+>>>>>>> Stashed changes
 
         card.innerHTML = `
           <h2>${title}</h2>
@@ -501,10 +513,37 @@
     function filterMustWatch() {
       resetFilters();
       if (window.koreanWatchlist) {
+<<<<<<< Updated upstream
+=======
+        // Clear other filters before applying this one
+        genreFilter.value = "";
+        platformFilter.value = "";
+        searchInput.value = "";
+        sortFilter.value = "";
+        
+>>>>>>> Stashed changes
         currentList = koreanWatchlist.filter(s => s.mustwatch);
         renderVault(currentList);
       } else {
         container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
+<<<<<<< Updated upstream
+=======
+      }
+    }
+
+    function showAllSeries() {
+      // Clear all filters before displaying all series
+      genreFilter.value = "";
+      platformFilter.value = "";
+      searchInput.value = "";
+      sortFilter.value = "";
+      
+      if (window.koreanWatchlist) {
+        currentList = [...window.koreanWatchlist];
+        renderVault(currentList);
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
+>>>>>>> Stashed changes
       }
     }
 
@@ -553,9 +592,18 @@
 
     // Event listeners
     document.addEventListener('DOMContentLoaded', () => {
+<<<<<<< Updated upstream
       if (window.koreanWatchlist) {
         populateFilters(window.koreanWatchlist);
         currentList = [...window.koreanWatchlist];
+=======
+      // The script will wait for korean.js to load before running this
+      if (window.koreanWatchlist) {
+        populateFilters(window.koreanWatchlist);
+        currentList = [...window.koreanWatchlist];
+        renderVault(currentList);
+        // Initial render on page load
+>>>>>>> Stashed changes
         applyFilters();
       } else {
         container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file and ensure the variable is defined globally (e.g. window.koreanWatchlist).</p>";
@@ -565,8 +613,11 @@
       filterElements.forEach(el => el.addEventListener("input", applyFilters));
       mustWatchButton.addEventListener("click", filterMustWatch);
       allSeriesButton.addEventListener("click", showAllSeries);
+<<<<<<< Updated upstream
       hindiDubbedFilter.addEventListener("click", filterHindiDubbed);
       randomPickButton.addEventListener("click", pickRandomSeries);
+=======
+>>>>>>> Stashed changes
     });
 
     window.onscroll = () => {

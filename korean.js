@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 window.koreanWatchlist= [
+=======
+window.koreanWatchlist = [
+>>>>>>> Stashed changes
   {
     id: 1,
     title: "Mouse",
