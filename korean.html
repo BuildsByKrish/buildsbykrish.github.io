@@ -306,6 +306,7 @@
       <option value="titleDesc">Z-A</option>
     </select>
     <button id="mustWatchFilter">🎯 Must Watch</button>
+    <button id="allSeriesBtn">All Series</button>
   </div>
 
   <main>
@@ -333,6 +334,7 @@
     const genreFilter = document.getElementById("genreFilter");
     const platformFilter = document.getElementById("platformFilter");
     const mustWatchButton = document.getElementById("mustWatchFilter");
+    const allSeriesButton = document.getElementById("allSeriesBtn");
     const searchInput = document.getElementById("searchInput");
     const sortFilter = document.getElementById("sortFilter");
 
@@ -359,8 +361,8 @@
           : (entry.platform || '');
 
         const title = entry.mustwatch 
-            ? `<span class="must-watch-star">⭐</span> ${index + 1}. ${entry.title}`
-            : `${index + 1}. ${entry.title}`;
+            ? `<span class="must-watch-star">⭐</span> ${entry.title}`
+            : `${entry.title}`;
 
         card.innerHTML = `
           <h2>${title}</h2>
@@ -428,16 +430,37 @@
         currentList = filtered;
         renderVault(currentList);
       } else {
-        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data.</p>";
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
       }
     }
     
     function filterMustWatch() {
       if (window.koreanWatchlist) {
-        currentList = window.koreanWatchlist.filter(s => s.mustwatch);
+        // Clear other filters before applying this one
+        genreFilter.value = "";
+        platformFilter.value = "";
+        searchInput.value = "";
+        sortFilter.value = "";
+        
+        currentList = koreanWatchlist.filter(s => s.mustwatch);
         renderVault(currentList);
       } else {
-        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data.</p>";
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
+      }
+    }
+
+    function showAllSeries() {
+      // Clear all filters before displaying all series
+      genreFilter.value = "";
+      platformFilter.value = "";
+      searchInput.value = "";
+      sortFilter.value = "";
+      
+      if (window.koreanWatchlist) {
+        currentList = [...window.koreanWatchlist];
+        renderVault(currentList);
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
       }
     }
 
@@ -447,19 +470,21 @@
 
     // Event listeners
     document.addEventListener('DOMContentLoaded', () => {
-      // Ensure koreanWatchlist is available after script loads
+      // The script will wait for korean.js to load before running this
       if (window.koreanWatchlist) {
         populateFilters(window.koreanWatchlist);
         currentList = [...window.koreanWatchlist];
         renderVault(currentList);
+        // Initial render on page load
         applyFilters();
       } else {
-        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data.</p>";
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file and ensure the variable is defined globally (e.g. window.koreanWatchlist).</p>";
       }
 
       const filterElements = [genreFilter, platformFilter, searchInput, sortFilter];
       filterElements.forEach(el => el.addEventListener("input", applyFilters));
       mustWatchButton.addEventListener("click", filterMustWatch);
+      allSeriesButton.addEventListener("click", showAllSeries);
     });
 
     window.onscroll = () => {
