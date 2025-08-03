@@ -323,7 +323,7 @@
       <option value="">Sort By</option>
       <option value="titleAsc">A-Z</option>
       <option value="titleDesc">Z-A</option>
-      <option value="ratingDesc">Rating (High to Low)</option>
+      <option value="ratingDesc">IMDb Rating (High to Low)</option>
       <option value="yearDesc">Year (New to Old)</option>
     </select>
     <button id="hindiDubbedFilter">🎬 Hindi Dubbed</button>
@@ -400,7 +400,9 @@
         const hindiAvailability = entry.hindiDubbed 
           ? '<p class="hindi-dubbed"><strong>Hindi Dubbed:</strong> Available</p>' 
           : '<p><strong>Hindi Dubbed:</strong> Not Available</p>';
-        const ratingDisplay = entry.rating ? `<p><strong>IMDb Rating:</strong> ${entry.rating}</p>` : '';
+
+        const ratingDisplay = entry.imdbRating ? `<p><strong>IMDb Rating:</strong> ${entry.imdbRating}</p>` : '';
+        const popularityDisplay = entry.popularity ? `<p><strong>Popularity:</strong> ${entry.popularity}</p>` : '';
         const yearDisplay = entry.year ? `<p><strong>Year:</strong> ${entry.year}</p>` : '';
         
         const watchedStatus = userWatchedList[seriesId] ? 'Unmark Watched' : 'Mark as Watched';
@@ -413,6 +415,7 @@
           <p><strong>Platform:</strong> ${platformTags}</p>
           ${yearDisplay}
           ${ratingDisplay}
+          ${popularityDisplay}
           ${hindiAvailability}
           <div class="description-container" id="desc-${index}">
             <p class="description">${entry.description}</p>
@@ -483,7 +486,7 @@
         } else if (sortBy === "titleDesc") {
           filtered.sort((a, b) => (b.title || "").localeCompare(a.title || ""));
         } else if (sortBy === "ratingDesc") {
-          filtered.sort((a, b) => (parseFloat(b.rating) || 0) - (parseFloat(a.rating) || 0));
+          filtered.sort((a, b) => (parseFloat(b.imdbRating) || 0) - (parseFloat(a.imdbRating) || 0));
         } else if (sortBy === "yearDesc") {
           filtered.sort((a, b) => (parseFloat(b.year) || 0) - (parseFloat(a.year) || 0));
         }
@@ -553,7 +556,6 @@
       if (window.koreanWatchlist) {
         populateFilters(window.koreanWatchlist);
         currentList = [...window.koreanWatchlist];
-        renderVault(currentList);
         applyFilters();
       } else {
         container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file and ensure the variable is defined globally (e.g. window.koreanWatchlist).</p>";
