@@ -1,4 +1,4 @@
-const englishWatchlist = [
+window.englishWatchlist = [
   {
     id: 1,
     title: "Breaking Bad",
