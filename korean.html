@@ -330,7 +330,10 @@
     <button id="mustWatchFilter">🎯 Must Watch</button>
     <button id="allSeriesBtn">All Series</button>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <button id="randomPickBtn">🎲 Random Pick</button>
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   </div>
@@ -362,8 +365,11 @@
     const mustWatchButton = document.getElementById("mustWatchFilter");
     const allSeriesButton = document.getElementById("allSeriesBtn");
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     const hindiDubbedFilter = document.getElementById("hindiDubbedFilter");
     const randomPickButton = document.getElementById("randomPickBtn");
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     const searchInput = document.getElementById("searchInput");
@@ -417,6 +423,9 @@
         const title = entry.mustwatch 
             ? `<span class="must-watch-star">⭐</span> ${entry.title}`
             : `${entry.title}`;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
         card.innerHTML = `
@@ -514,20 +523,44 @@
       resetFilters();
       if (window.koreanWatchlist) {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         // Clear other filters before applying this one
         genreFilter.value = "";
         platformFilter.value = "";
         searchInput.value = "";
         sortFilter.value = "";
         
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         currentList = koreanWatchlist.filter(s => s.mustwatch);
         renderVault(currentList);
       } else {
         container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+      }
+    }
+
+    function showAllSeries() {
+      // Clear all filters before displaying all series
+      genreFilter.value = "";
+      platformFilter.value = "";
+      searchInput.value = "";
+      sortFilter.value = "";
+      
+      if (window.koreanWatchlist) {
+        currentList = [...window.koreanWatchlist];
+        renderVault(currentList);
+      } else {
+        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
+>>>>>>> Stashed changes
       }
     }
 
@@ -593,16 +626,22 @@
     // Event listeners
     document.addEventListener('DOMContentLoaded', () => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       if (window.koreanWatchlist) {
         populateFilters(window.koreanWatchlist);
         currentList = [...window.koreanWatchlist];
 =======
+=======
+>>>>>>> Stashed changes
       // The script will wait for korean.js to load before running this
       if (window.koreanWatchlist) {
         populateFilters(window.koreanWatchlist);
         currentList = [...window.koreanWatchlist];
         renderVault(currentList);
         // Initial render on page load
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         applyFilters();
       } else {
@@ -614,8 +653,11 @@
       mustWatchButton.addEventListener("click", filterMustWatch);
       allSeriesButton.addEventListener("click", showAllSeries);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       hindiDubbedFilter.addEventListener("click", filterHindiDubbed);
       randomPickButton.addEventListener("click", pickRandomSeries);
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     });
