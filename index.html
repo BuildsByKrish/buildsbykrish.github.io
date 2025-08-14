@@ -66,7 +66,7 @@
     }
     
     .particle {
-        position: fixed; /* Changed to fixed so they float over everything */
+        position: fixed;
         background-color: var(--primary-neon);
         border-radius: 50%;
         opacity: 0;
@@ -205,7 +205,13 @@
 
     @media (max-width: 600px) {
       .vault-buttons {
-        grid-template-columns: 1fr;
+        /* Mobile-first: 2 buttons per row */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .vault-buttons button {
+        padding: 0.8rem;
+        font-size: 0.9rem;
       }
       h1 {
           font-size: clamp(1.5rem, 10vw, 3rem);
@@ -259,11 +265,9 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      // Create initial particles with a short delay
       for (let i = 0; i < 50; i++) {
         setTimeout(createParticle, Math.random() * 5000);
       }
-      // Continuously create new particles
       setInterval(createParticle, 500); 
     });
   </script>
