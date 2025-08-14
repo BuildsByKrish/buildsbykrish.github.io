@@ -24,7 +24,7 @@
     }
     
     html, body {
-      height: 100%;
+      min-height: 100%;
       font-family: 'Poppins', sans-serif;
       color: var(--text-color);
       line-height: 1.6;
@@ -35,19 +35,28 @@
       align-items: center;
       padding: 20px;
       position: relative;
-      overflow: hidden;
+      background-image:
+        linear-gradient(rgba(0, 234, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 234, 255, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: backgroundFlow 30s linear infinite;
+    }
+
+    @keyframes backgroundFlow {
+      from { background-position: 0 0; }
+      to { background-position: 50px 50px; }
     }
 
     body::before {
       content: '';
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, rgba(0, 234, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+      background: radial-gradient(circle at center, rgba(0, 234, 255, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
       pointer-events: none;
-      animation: neonPulse 10s infinite;
+      animation: neonPulse 15s ease infinite;
     }
     
     @keyframes neonPulse {
@@ -57,7 +66,7 @@
     }
     
     .particle {
-        position: absolute;
+        position: fixed; /* Changed to fixed so they float over everything */
         background-color: var(--primary-neon);
         border-radius: 50%;
         opacity: 0;
@@ -66,10 +75,10 @@
     }
 
     @keyframes particle-flow {
-        0% { transform: translateY(0vh) scale(0.5); opacity: 0; }
+        0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
         5% { opacity: 1; }
         95% { opacity: 1; }
-        100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        100% { transform: translateY(-20vh) scale(1); opacity: 0; }
     }
 
     .container {
@@ -84,6 +93,7 @@
       backdrop-filter: blur(15px);
       box-shadow: 0 0 40px var(--primary-neon);
       transition: all 0.5s ease;
+      margin: 20px 0;
     }
 
     .container:hover {
@@ -246,16 +256,14 @@
       particle.style.animationDuration = Math.random() * 20 + 10 + 's';
       particle.style.animationDelay = Math.random() * 5 + 's';
       document.body.appendChild(particle);
-
-      particle.addEventListener('animationend', () => {
-        particle.remove();
-      });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+      // Create initial particles with a short delay
       for (let i = 0; i < 50; i++) {
         setTimeout(createParticle, Math.random() * 5000);
       }
+      // Continuously create new particles
       setInterval(createParticle, 500); 
     });
   </script>
