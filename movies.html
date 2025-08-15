@@ -2,293 +2,323 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Movie Vault</title>
+  <title>Movies Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="vault-theme.css" />
+  <script src="movie.js"></script>
   <style>
-    /* Global Styles */
-    :root {
-      --bg-color: #1a1a2e;
-      --card-bg: rgba(255, 255, 255, 0.05);
-      --card-border: rgba(255, 255, 255, 0.1);
-      --primary-color: #00d2ff;
-      --secondary-color: #ff2d55;
-      --text-color: #f0f0f0;
-      --light-text: #ccc;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      padding: 2rem;
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #232526 0%, #414345 100%);
+      min-height: 100vh;
+      color: #f3f3f3;
+      overflow-x: hidden;
     }
     h1 {
       text-align: center;
-      color: var(--primary-color);
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+      font-size: 3rem;
+      margin: 2rem 0 1rem;
+      letter-spacing: 2px;
+      color: #00d2ff;
+      text-shadow: 0 4px 32px #00d2ff44;
+      animation: fadeInDown 1s;
     }
-    .container {
-      max-width: 1200px;
-      margin: auto;
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px);}
+      to { opacity: 1; transform: translateY(0);}
     }
-    
-    /* Control Panel */
-    .controls {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 15px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    }
-    .filters, .sort-controls, .genre-buttons {
+    .filters, .sort-controls {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 1rem;
       justify-content: center;
       align-items: center;
-      margin-bottom: 1.5rem;
+      margin: 1.5rem 0 2rem;
+      animation: fadeIn 1.2s;
     }
-    .filters input[type="text"] {
-      flex-grow: 1;
-      padding: 0.75rem 1rem;
-      background: #2a2a47;
-      color: var(--text-color);
-      border: none;
-      border-radius: 6px;
+    .filters input[type="text"], .filters button, .sort-controls select {
+      padding: 0.7rem 1.2rem;
+      background: rgba(30, 30, 40, 0.7);
+      color: #00d2ff;
+      border: 1px solid #00d2ff55;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-shadow: 0 2px 12px #00d2ff22;
+      transition: background 0.3s, color 0.3s, border 0.3s;
       outline: none;
-      transition: box-shadow 0.2s;
     }
-    .filters input[type="text"]:focus {
-      box-shadow: 0 0 8px rgba(0, 210, 255, 0.5);
+    .filters button.active, .filters button:hover {
+      background: #00d2ff;
+      color: #232526;
+      border: 1px solid #00d2ff;
+      font-weight: bold;
     }
-    .controls button, .sort-controls select {
-      white-space: nowrap;
-      flex-shrink: 0;
-      padding: 0.75rem 1.5rem;
-      background: var(--bg-color);
-      color: var(--primary-color);
-      border: 1px solid var(--primary-color);
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    }
-    .controls button:hover {
-      background: var(--primary-color);
-      color: var(--bg-color);
-      box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
-    }
-    .controls button.active {
-      background: var(--primary-color);
-      color: var(--bg-color);
-    }
-    .sort-controls select {
-      background: #2a2a47;
-      border: 1px solid #444;
-      color: var(--text-color);
-      cursor: pointer;
-      font-weight: 400;
-    }
-    .sort-controls select:focus {
-      outline: none;
-      box-shadow: 0 0 8px rgba(0, 210, 255, 0.5);
-    }
-    
-    /* Movie Grid */
     .movie-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      padding: 2.5rem 2vw;
+      max-width: 1400px;
+      margin: 0 auto;
+      animation: fadeIn 1.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
     }
     .movie-card {
-      padding: 1.5rem;
-      border-radius: 15px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      transition: transform 0.2s, box-shadow 0.2s;
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 #00d2ff33;
+      border: 1.5px solid rgba(0,210,255,0.18);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 0.7rem;
+      position: relative;
+      overflow: hidden;
+      animation: cardFadeIn 0.8s;
+      transition: transform 0.25s, box-shadow 0.25s;
     }
     .movie-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.5);
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 16px 64px 0 #00d2ff55;
+      border-color: #00d2ff;
+    }
+    @keyframes cardFadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
     }
     .movie-card h2 {
-      color: var(--primary-color);
-      margin-top: 0;
-      font-size: 1.5rem;
-      text-shadow: 1px 1px 2px #000;
+      color: #00d2ff;
+      margin: 0 0 0.3rem 0;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #00d2ff33;
     }
     .info-line {
-      margin-bottom: 0.5rem;
-      color: var(--light-text);
-      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
     }
     .info-line span {
       font-weight: 600;
-      color: var(--text-color);
+      color: #fff;
+      opacity: 0.8;
     }
     .clickable {
       cursor: pointer;
-      color: var(--primary-color);
+      color: #00d2ff;
       text-decoration: underline;
       transition: color 0.2s;
     }
     .clickable:hover {
-      color: #0087ff;
-    }
-    .description-container {
-      margin-top: 1rem;
-    }
-    .synopsis {
-      font-style: italic;
-      color: var(--light-text);
-      margin-top: 0.5rem;
-      display: none; /* Initially hidden */
+      color: #00bfff;
     }
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
     .tag {
-      background: rgba(0, 210, 255, 0.1);
-      color: var(--primary-color);
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
+      background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+      color: #fff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px #00d2ff33;
       cursor: pointer;
       transition: background 0.2s;
+      border: none;
     }
     .tag:hover {
-      background: rgba(0, 210, 255, 0.3);
+      background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
     }
-    .show-more-btn {
-      background: var(--secondary-color);
-      color: white;
+    .must-watch-badge {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: linear-gradient(90deg, #ffd700 0%, #ffb300 100%);
+      color: #232526;
+      font-weight: bold;
+      padding: 0.3rem 0.9rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px #ffd70055;
+      animation: pulse 1.5s infinite alternate;
+      z-index: 2;
+    }
+    @keyframes pulse {
+      from { box-shadow: 0 0 8px #ffd70055;}
+      to { box-shadow: 0 0 24px #ffd70099;}
+    }
+    .fab {
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+      color: #fff;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 2rem;
+      box-shadow: 0 4px 24px #00d2ff55;
       cursor: pointer;
-      font-weight: 600;
-      margin-top: 0.5rem;
-      transition: background 0.2s;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, transform 0.2s;
+      opacity: 0.85;
     }
-    .show-more-btn:hover {
-      background: #d42247;
+    .fab:hover {
+      background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+      transform: scale(1.08);
+      opacity: 1;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .movie-card { padding: 1.2rem 0.7rem; }
+      .movie-grid { gap: 1.2rem; padding: 1.2rem 1vw; }
+      .fab { width: 48px; height: 48px; font-size: 1.5rem; bottom: 1.2rem; right: 1.2rem;}
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <h1>Movie Vault</h1>
-
-    <div class="controls">
-      <div class="filters">
-        <input type="text" id="search-input" placeholder="Search movies..." onkeyup="searchTitles(this.value)">
-        <button onclick="filterBy('isMustWatch', true)" class="filter-btn">Must Watch</button>
-        <button onclick="filterBy('isHindiDubbed', true)" class="filter-btn">Hindi Dubbed</button>
-        <button onclick="resetFilters()">Show All</button>
-      </div>
-
-      <div class="genre-buttons" id="genre-buttons-container">
-        </div>
-
-      <div class="sort-controls">
-        <select onchange="sortBy(this.value)">
-          <option value="">Sort By...</option>
-          <option value="yearDesc">Year (Newest First)</option>
-          <option value="yearAsc">Year (Oldest First)</option>
-          <option value="titleAsc">Title (A-Z)</option>
-          <option value="titleDesc">Title (Z-A)</option>
-          <option value="imdbRating">IMDb Rating</option>
-        </select>
-      </div>
-    </div>
-
-    <div id="movie-list" class="movie-grid">
-      </div>
+  <h1>Movies Vault</h1>
+  <div id="genre-bar" class="genre-bar"></div>
+  <div class="filters">
+    <input type="text" id="search-input" placeholder="Search movies..." onkeyup="searchTitles(this.value)">
+    <button onclick="filterBy('isMustWatch', true)" class="filter-btn">Must Watch</button>
+    <button onclick="filterBy('isHindiDubbed', true)" class="filter-btn">Hindi Dubbed</button>
+    <button onclick="resetFilters()">Show All</button>
   </div>
-
-  <script src="movie.js"></script>
-
+  <div class="sort-controls">
+    <select onchange="sortBy(this.value)">
+      <option value="">Sort By...</option>
+      <option value="yearDesc">Year (Newest First)</option>
+      <option value="yearAsc">Year (Oldest First)</option>
+      <option value="titleAsc">Title (A-Z)</option>
+      <option value="titleDesc">Title (Z-A)</option>
+      <option value="imdbRating">IMDb Rating</option>
+    </select>
+  </div>
+  <div id="result-count" style="text-align:center;font-size:1.1em;color:#00d2ff;margin-bottom:1em;"></div>
+  <div id="movie-list" class="movie-grid"></div>
+  <button class="fab" id="topBtn" title="Back to Top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+    .genre-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+      margin: 1.2rem 0 0.5rem 0;
+      padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+      background: rgba(0,210,255,0.07);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #00d2ff11;
+      position: relative;
+      z-index: 2;
+    }
+    .genre-chip {
+      background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+      color: #fff;
+      border: none;
+      border-radius: 16px;
+      padding: 0.4em 1.1em;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #00d2ff33;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      margin-bottom: 0.3em;
+    }
+    .genre-chip.active, .genre-chip:hover {
+      background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
+      color: #232526;
+      transform: scale(1.08);
+    }
   <script>
     let currentList = [];
     let initialMovies = [];
 
     window.onload = () => {
-      // Check if the movies constant is defined in movie.js
       if (typeof movies !== 'undefined' && movies.length > 0) {
         initialMovies = [...movies];
         currentList = [...initialMovies];
+        renderGenreBar(initialMovies);
         display(currentList);
-        generateGenreButtons();
-        console.log("✅ Movie Vault Loaded:", currentList.length);
       } else {
-        document.getElementById("movie-list").innerHTML = "<p style='text-align: center; color: var(--light-text);'>No movies found in movie.js.</p>";
-        console.error("❌ movies array not found in movie.js or is empty.");
+        document.getElementById("movie-list").innerHTML = "<p style='text-align: center; color: #ccc;'>No movies found in movie.js.</p>";
       }
     };
 
     function display(movieList) {
       const container = document.getElementById("movie-list");
-      container.innerHTML = ""; // Clear existing content
-
+      const resultCount = document.getElementById("result-count");
+      container.innerHTML = "";
+      resultCount.textContent = `Showing ${movieList.length} movie${movieList.length !== 1 ? 's' : ''}`;
       if (movieList.length === 0) {
-        container.innerHTML = "<p style='text-align: center; color: var(--light-text);'>No movies match your search or filter.</p>";
+        container.innerHTML = "<p style='text-align: center; color: #ccc;'>No movies match your search or filter.</p>";
         return;
       }
-
-      movieList.forEach(movie => {
-        const movieCard = document.createElement("div");
-        movieCard.className = "movie-card";
-        movieCard.innerHTML = `
-          <h2><span style="color: var(--light-text);">#${movie.id}</span> ${movie.title} (${movie.yearOfRelease})</h2>
-          <p class="info-line"><span>Director:</span> <span class="clickable" onclick="filterBy('director', '${movie.director.replace(/'/g, "\\'")}')">${movie.director}</span></p>
+      movieList.forEach((movie, idx) => {
+        const card = document.createElement("div");
+        card.className = "movie-card";
+        // Must Watch star before number
+        let number = `<span style='font-weight:bold;color:#00d2ff;'>${idx+1}.</span>`;
+        let star = movie.isMustWatch ? `<span title='Must Watch' style='color:#ffd700;font-size:1.2em;margin-right:0.3em;'>⭐</span>` : "";
+        card.innerHTML += `
+          <h2>${star}${number} ${movie.title} <span style="font-size:0.9em; color:#fff7;">(${movie.yearOfRelease})</span></h2>
+          <p class="info-line"><span>Director:</span> <span class="clickable" onclick="filterBy('director', '${movie.director.replace(/'/g, "&#39;")}')">${movie.director}</span></p>
           <p class="info-line"><span>Main Cast:</span> ${movie.mainCast}</p>
+          <p class="info-line"><span>Genre:</span> <span class="clickable" onclick="filterBy('genre', '${movie.genre.split(',')[0].trim()}')">${movie.genre}</span></p>
           <p class="info-line"><span>Runtime:</span> ${movie.runtime}</p>
-          <p class="info-line"><span>IMDb Rating:</span> ${movie.rating.imdb}</p>
+          <p class="info-line"><span>IMDb Rating:</span> ${movie.rating && movie.rating.imdb ? movie.rating.imdb : 'N/A'}</p>
           <p class="info-line"><span>Must Watch:</span> ${movie.isMustWatch ? '✅' : '❌'}</p>
           <p class="info-line"><span>Hindi Dubbed:</span> ${movie.isHindiDubbed ? '✅' : '❌'}</p>
-          <p class="info-line"><span>Country:</span> <span class="clickable" onclick="filterBy('countryOfOrigin', '${movie.countryOfOrigin}')">${movie.countryOfOrigin}</span></p>
-          <p class="info-line"><span>Awards:</span> ${movie.awards}</p>
-
-          <div class="description-container">
-            <button class="show-more-btn" onclick="toggleDescription(${movie.id})">Show Description</button>
-            <p id="synopsis-${movie.id}" class="synopsis">${movie.synopsis}</p>
-          </div>
-
-          <div class="tags">${movie.tags.map(tag => `<span class="tag clickable" onclick="filterByTag('${tag}')">${tag}</span>`).join('')}</div>
+          <p class="info-line"><span>Synopsis:</span> ${movie.synopsis}</p>
+          <div class="tags">${(movie.tags || []).map(tag => `<span class="tag clickable" onclick="filterByTag('${tag}')">${tag}</span>`).join('')}</div>
         `;
-        container.appendChild(movieCard);
+        container.appendChild(card);
       });
     }
+    // --- Genre Bar ---
+    function getMajorGenres(movies, topN=8) {
+      const genreCount = {};
+      movies.forEach(m => {
+        if (!m.genre) return;
+        m.genre.split(',').map(g => g.trim()).forEach(g => {
+          if (!genreCount[g]) genreCount[g] = 0;
+          genreCount[g]++;
+        });
+      });
+      return Object.entries(genreCount)
+        .sort((a,b) => b[1]-a[1])
+        .slice(0, topN)
+        .map(([g]) => g);
+    }
 
-    function generateGenreButtons() {
-      const allGenres = initialMovies.flatMap(movie => movie.genre.split(',').map(g => g.trim()));
-      const uniqueGenres = [...new Set(allGenres)];
-      const container = document.getElementById("genre-buttons-container");
-
-      uniqueGenres.forEach(genre => {
-        const button = document.createElement("button");
-        button.textContent = genre;
-        button.onclick = () => filterBy('genre', genre);
-        container.appendChild(button);
+    function renderGenreBar(movies) {
+      const bar = document.getElementById('genre-bar');
+      bar.innerHTML = '';
+      const majorGenres = getMajorGenres(movies);
+      majorGenres.forEach(genre => {
+        const btn = document.createElement('button');
+        btn.className = 'genre-chip';
+        btn.textContent = genre;
+        btn.onclick = () => {
+          filterBy('genre', genre);
+          // Highlight active
+          document.querySelectorAll('.genre-chip').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+        };
+        bar.appendChild(btn);
       });
     }
 
@@ -302,21 +332,18 @@
     }
 
     function filterBy(key, value) {
-      let filteredList;
       if (typeof value === 'boolean') {
-        filteredList = initialMovies.filter(m => m[key] === value);
+        currentList = initialMovies.filter(m => m[key] === value);
       } else if (key === 'genre') {
-        filteredList = initialMovies.filter(m => m.genre.includes(value));
+        currentList = initialMovies.filter(m => m.genre && m.genre.includes(value));
       } else {
-        filteredList = initialMovies.filter(m => m[key] === value);
+        currentList = initialMovies.filter(m => m[key] === value);
       }
-      
-      currentList = filteredList;
       display(currentList);
     }
 
     function filterByTag(tag) {
-      currentList = initialMovies.filter(m => m.tags.includes(tag));
+      currentList = initialMovies.filter(m => m.tags && m.tags.includes(tag));
       display(currentList);
     }
 
@@ -342,27 +369,23 @@
           sorted.sort((a, b) => b.title.localeCompare(a.title));
           break;
         case "imdbRating":
-          sorted.sort((a, b) => parseFloat(b.rating.imdb) - parseFloat(a.rating.imdb));
+          sorted.sort((a, b) => {
+            const aRating = a.rating && a.rating.imdb ? parseFloat(a.rating.imdb) : 0;
+            const bRating = b.rating && b.rating.imdb ? parseFloat(b.rating.imdb) : 0;
+            return bRating - aRating;
+          });
           break;
         default:
           break;
       }
       display(sorted);
     }
-    
-    function toggleDescription(id) {
-        const synopsisElement = document.getElementById(`synopsis-${id}`);
-        const button = synopsisElement.previousElementSibling;
-        
-        if (synopsisElement.style.display === 'none' || synopsisElement.style.display === '') {
-            synopsisElement.style.display = 'block';
-            button.textContent = 'Hide Description';
-        } else {
-            synopsisElement.style.display = 'none';
-            button.textContent = 'Show Description';
-        }
-    }
-  </script>
 
+    // Show/hide floating action button
+    window.addEventListener('scroll', () => {
+      document.getElementById('topBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
+    });
+    document.getElementById('topBtn').style.display = 'none';
+  </script>
 </body>
 </html>
