@@ -1,4 +1,4 @@
-const movies = [
+window.movies = [
   {
     id: 1,
     title: "The Shawshank Redemption",
