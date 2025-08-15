@@ -2591,7 +2591,8 @@ window.movies = [
     synopsis: "A former neo-Nazi skinhead tries to prevent his younger brother from going down the same wrong path that he did. The film is a raw, powerful, and unflinching examination of racism and redemption. The non-linear narrative, told through flashbacks, explores the origins of hatred and the possibility of change. Edward Norton's Oscar-nominated performance as Derek Vinyard is a career-defining turn. It's a difficult but essential film that forces the viewer to confront uncomfortable truths about hate and its devastating consequences.",
     awards: "Nominated for 1 Academy Award",
     rating: {
-      imdb: "8.5/1rottenTomatoes: "83%"
+      imdb: "8.5/10",
+      rottenTomatoes: "88%"
     },
     countryOfOrigin: "USA",
     runtime: "1 hr 59 min",
@@ -3078,4 +3079,4 @@ window.movies = [
     sequelPrequelAvailable: true,
     tags: ["drama", "comedy-drama", "british", "addiction", "cult classic"]
   }
-  ];
+];

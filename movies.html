@@ -2,78 +2,162 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Movies Vault</title>
+  <title>Movie Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="vault-theme.css" />
-
-  <script defer src="movie.js"></script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* In-page styles for maximized design */
-    .filters, .sort-controls {
+    /* Global Styles */
+    :root {
+      --bg-color: #1a1a2e;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --primary-color: #00d2ff;
+      --secondary-color: #ff2d55;
+      --text-color: #f0f0f0;
+      --light-text: #ccc;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      color: var(--primary-color);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+    
+    /* Control Panel */
+    .controls {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    .filters, .sort-controls, .genre-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
       justify-content: center;
       align-items: center;
-      margin: 1.5rem 0 2rem;
+      margin-bottom: 1.5rem;
     }
-    .filters input[type="text"], .filters button, .sort-controls select {
-      white-space: nowrap;
-      flex-shrink: 0;
-      padding: 0.5rem 1rem;
-      background: #1c1c1c;
-      color: #00d2ff;
+    .filters input[type="text"] {
+      flex-grow: 1;
+      padding: 0.75rem 1rem;
+      background: #2a2a47;
+      color: var(--text-color);
       border: none;
       border-radius: 6px;
-      box-shadow: 0 0 8px rgba(0, 210, 255, 0.3);
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    .filters input[type="text"]:focus {
+      box-shadow: 0 0 8px rgba(0, 210, 255, 0.5);
+    }
+    .controls button, .sort-controls select {
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-color);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+      border-radius: 6px;
       cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     }
-    .filters button.active {
-      background: #00d2ff;
-      color: #1c1c1c;
+    .controls button:hover {
+      background: var(--primary-color);
+      color: var(--bg-color);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
     }
+    .controls button.active {
+      background: var(--primary-color);
+      color: var(--bg-color);
+    }
+    .sort-controls select {
+      background: #2a2a47;
+      border: 1px solid #444;
+      color: var(--text-color);
+      cursor: pointer;
+      font-weight: 400;
+    }
+    .sort-controls select:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(0, 210, 255, 0.5);
+    }
+    
+    /* Movie Grid */
     .movie-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
-      padding: 2rem;
     }
     .movie-card {
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
       transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .movie-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.5);
     }
     .movie-card h2 {
-      color: #00d2ff;
+      color: var(--primary-color);
       margin-top: 0;
       font-size: 1.5rem;
+      text-shadow: 1px 1px 2px #000;
     }
     .info-line {
       margin-bottom: 0.5rem;
+      color: var(--light-text);
+      font-size: 0.9rem;
     }
     .info-line span {
       font-weight: 600;
-      color: #ccc;
+      color: var(--text-color);
     }
     .clickable {
       cursor: pointer;
-      color: #00d2ff;
+      color: var(--primary-color);
       text-decoration: underline;
       transition: color 0.2s;
     }
     .clickable:hover {
       color: #0087ff;
+    }
+    .description-container {
+      margin-top: 1rem;
+    }
+    .synopsis {
+      font-style: italic;
+      color: var(--light-text);
+      margin-top: 0.5rem;
+      display: none; /* Initially hidden */
     }
     .tags {
       display: flex;
@@ -83,6 +167,7 @@
     }
     .tag {
       background: rgba(0, 210, 255, 0.1);
+      color: var(--primary-color);
       padding: 0.3rem 0.6rem;
       border-radius: 4px;
       font-size: 0.8rem;
@@ -92,32 +177,55 @@
     .tag:hover {
       background: rgba(0, 210, 255, 0.3);
     }
+    .show-more-btn {
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+    }
+    .show-more-btn:hover {
+      background: #d42247;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Movies Vault</h1>
+  <div class="container">
+    <h1>Movie Vault</h1>
 
-  <div class="filters">
-    <input type="text" id="search-input" placeholder="Search movies..." onkeyup="searchTitles(this.value)">
-    <button onclick="filterBy('isMustWatch', true)" class="filter-btn">Must Watch</button>
-    <button onclick="filterBy('isHindiDubbed', true)" class="filter-btn">Hindi Dubbed</button>
-    <button onclick="resetFilters()">Show All</button>
-  </div>
+    <div class="controls">
+      <div class="filters">
+        <input type="text" id="search-input" placeholder="Search movies..." onkeyup="searchTitles(this.value)">
+        <button onclick="filterBy('isMustWatch', true)" class="filter-btn">Must Watch</button>
+        <button onclick="filterBy('isHindiDubbed', true)" class="filter-btn">Hindi Dubbed</button>
+        <button onclick="resetFilters()">Show All</button>
+      </div>
 
-  <div class="sort-controls">
-    <select onchange="sortBy(this.value)">
-      <option value="">Sort By...</option>
-      <option value="yearDesc">Year (Newest First)</option>
-      <option value="yearAsc">Year (Oldest First)</option>
-      <option value="titleAsc">Title (A-Z)</option>
-      <option value="titleDesc">Title (Z-A)</option>
-      <option value="imdbRating">IMDb Rating</option>
-    </select>
-  </div>
+      <div class="genre-buttons" id="genre-buttons-container">
+        </div>
 
-  <div id="movie-list" class="movie-grid">
+      <div class="sort-controls">
+        <select onchange="sortBy(this.value)">
+          <option value="">Sort By...</option>
+          <option value="yearDesc">Year (Newest First)</option>
+          <option value="yearAsc">Year (Oldest First)</option>
+          <option value="titleAsc">Title (A-Z)</option>
+          <option value="titleDesc">Title (Z-A)</option>
+          <option value="imdbRating">IMDb Rating</option>
+        </select>
+      </div>
     </div>
+
+    <div id="movie-list" class="movie-grid">
+      </div>
+  </div>
+
+  <script src="movie.js"></script>
 
   <script>
     let currentList = [];
@@ -129,9 +237,10 @@
         initialMovies = [...movies];
         currentList = [...initialMovies];
         display(currentList);
+        generateGenreButtons();
         console.log("✅ Movie Vault Loaded:", currentList.length);
       } else {
-        document.getElementById("movie-list").innerHTML = "<p style='text-align: center; color: #ccc;'>No movies found in movie.js.</p>";
+        document.getElementById("movie-list").innerHTML = "<p style='text-align: center; color: var(--light-text);'>No movies found in movie.js.</p>";
         console.error("❌ movies array not found in movie.js or is empty.");
       }
     };
@@ -141,7 +250,7 @@
       container.innerHTML = ""; // Clear existing content
 
       if (movieList.length === 0) {
-        container.innerHTML = "<p style='text-align: center; color: #ccc;'>No movies match your search or filter.</p>";
+        container.innerHTML = "<p style='text-align: center; color: var(--light-text);'>No movies match your search or filter.</p>";
         return;
       }
 
@@ -149,18 +258,37 @@
         const movieCard = document.createElement("div");
         movieCard.className = "movie-card";
         movieCard.innerHTML = `
-          <h2>${movie.title} (${movie.yearOfRelease})</h2>
+          <h2><span style="color: var(--light-text);">#${movie.id}</span> ${movie.title} (${movie.yearOfRelease})</h2>
           <p class="info-line"><span>Director:</span> <span class="clickable" onclick="filterBy('director', '${movie.director.replace(/'/g, "\\'")}')">${movie.director}</span></p>
           <p class="info-line"><span>Main Cast:</span> ${movie.mainCast}</p>
-          <p class="info-line"><span>Genre:</span> <span class="clickable" onclick="filterBy('genre', '${movie.genre.split(',')[0].trim()}')">${movie.genre}</span></p>
           <p class="info-line"><span>Runtime:</span> ${movie.runtime}</p>
           <p class="info-line"><span>IMDb Rating:</span> ${movie.rating.imdb}</p>
           <p class="info-line"><span>Must Watch:</span> ${movie.isMustWatch ? '✅' : '❌'}</p>
           <p class="info-line"><span>Hindi Dubbed:</span> ${movie.isHindiDubbed ? '✅' : '❌'}</p>
-          <p class="info-line"><span>Synopsis:</span> ${movie.synopsis}</p>
+          <p class="info-line"><span>Country:</span> <span class="clickable" onclick="filterBy('countryOfOrigin', '${movie.countryOfOrigin}')">${movie.countryOfOrigin}</span></p>
+          <p class="info-line"><span>Awards:</span> ${movie.awards}</p>
+
+          <div class="description-container">
+            <button class="show-more-btn" onclick="toggleDescription(${movie.id})">Show Description</button>
+            <p id="synopsis-${movie.id}" class="synopsis">${movie.synopsis}</p>
+          </div>
+
           <div class="tags">${movie.tags.map(tag => `<span class="tag clickable" onclick="filterByTag('${tag}')">${tag}</span>`).join('')}</div>
         `;
         container.appendChild(movieCard);
+      });
+    }
+
+    function generateGenreButtons() {
+      const allGenres = initialMovies.flatMap(movie => movie.genre.split(',').map(g => g.trim()));
+      const uniqueGenres = [...new Set(allGenres)];
+      const container = document.getElementById("genre-buttons-container");
+
+      uniqueGenres.forEach(genre => {
+        const button = document.createElement("button");
+        button.textContent = genre;
+        button.onclick = () => filterBy('genre', genre);
+        container.appendChild(button);
       });
     }
 
@@ -174,13 +302,16 @@
     }
 
     function filterBy(key, value) {
+      let filteredList;
       if (typeof value === 'boolean') {
-        currentList = initialMovies.filter(m => m[key] === value);
+        filteredList = initialMovies.filter(m => m[key] === value);
       } else if (key === 'genre') {
-        currentList = initialMovies.filter(m => m.genre.includes(value));
+        filteredList = initialMovies.filter(m => m.genre.includes(value));
       } else {
-        currentList = initialMovies.filter(m => m[key] === value);
+        filteredList = initialMovies.filter(m => m[key] === value);
       }
+      
+      currentList = filteredList;
       display(currentList);
     }
 
@@ -217,6 +348,19 @@
           break;
       }
       display(sorted);
+    }
+    
+    function toggleDescription(id) {
+        const synopsisElement = document.getElementById(`synopsis-${id}`);
+        const button = synopsisElement.previousElementSibling;
+        
+        if (synopsisElement.style.display === 'none' || synopsisElement.style.display === '') {
+            synopsisElement.style.display = 'block';
+            button.textContent = 'Hide Description';
+        } else {
+            synopsisElement.style.display = 'none';
+            button.textContent = 'Show Description';
+        }
     }
   </script>
 
