@@ -3078,5 +3078,3509 @@ window.movies = [
     runtime: "1 hr 33 min",
     sequelPrequelAvailable: true,
     tags: ["drama", "comedy-drama", "british", "addiction", "cult classic"]
+  },
+  {
+    "id": 155,
+    "title": "Cinema Paradiso (155)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1974,
+    "director": "Danny Boyle",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.8/10",
+      "rottenTomatoes": "78%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "3 hr 53 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "animation",
+      "award-winning",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 156,
+    "title": "Roma (156)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1968,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.8/10",
+      "rottenTomatoes": "84%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "2 hr 8 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "animation",
+      "thriller"
+    ]
+  },
+  {
+    "id": 157,
+    "title": "Lagaan (157)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2001,
+    "director": "Fernando Meirelles",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.9/10",
+      "rottenTomatoes": "92%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "1 hr 36 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "award-winning",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 158,
+    "title": "Slumdog Millionaire (158)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1963,
+    "director": "Zoya Akhtar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.8/10",
+      "rottenTomatoes": "70%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "1 hr 10 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "classic",
+      "drama"
+    ]
+  },
+  {
+    "id": 159,
+    "title": "Lagaan (159)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2013,
+    "director": "Bong Joon-ho",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.9/10",
+      "rottenTomatoes": "85%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "1 hr 46 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "drama",
+      "international"
+    ]
+  },
+  {
+    "id": 160,
+    "title": "Lagaan (160)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1986,
+    "director": "Asghar Farhadi",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "85%"
+    },
+    "countryOfOrigin": "Argentina",
+    "runtime": "2 hr 59 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "international",
+      "drama"
+    ]
+  },
+  {
+    "id": 161,
+    "title": "Memories of Murder (161)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1977,
+    "director": "Bong Joon-ho",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.1/10",
+      "rottenTomatoes": "72%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "1 hr 22 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "thriller",
+      "international"
+    ]
+  },
+  {
+    "id": 162,
+    "title": "The Handmaiden (162)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2022,
+    "director": "Akira Kurosawa",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.1/10",
+      "rottenTomatoes": "74%"
+    },
+    "countryOfOrigin": "Argentina",
+    "runtime": "2 hr 37 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "award-winning",
+      "classic"
+    ]
+  },
+  {
+    "id": 163,
+    "title": "Amores Perros (163)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2006,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.5/10",
+      "rottenTomatoes": "72%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "2 hr 31 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "thriller",
+      "animation"
+    ]
+  },
+  {
+    "id": 164,
+    "title": "Hero (164)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2020,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.9/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "1 hr 48 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "animation",
+      "thriller"
+    ]
+  },
+  {
+    "id": 165,
+    "title": "Parasite (165)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1964,
+    "director": "Asghar Farhadi",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.4/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "1 hr 59 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "thriller",
+      "thriller"
+    ]
+  },
+  {
+    "id": 166,
+    "title": "Run Lola Run (166)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1993,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.2/10",
+      "rottenTomatoes": "83%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "2 hr 50 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "thriller",
+      "thriller",
+      "animation"
+    ]
+  },
+  {
+    "id": 167,
+    "title": "Dangal (167)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1990,
+    "director": "Bong Joon-ho",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.3/10",
+      "rottenTomatoes": "94%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "2 hr 30 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "classic",
+      "drama"
+    ]
+  },
+  {
+    "id": 168,
+    "title": "Gully Boy (168)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1965,
+    "director": "Guillermo del Toro",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.0/10",
+      "rottenTomatoes": "88%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "3 hr 43 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "animation",
+      "classic"
+    ]
+  },
+  {
+    "id": 169,
+    "title": "Battle Royale (169)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2004,
+    "director": "Bong Joon-ho",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.9/10",
+      "rottenTomatoes": "93%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "2 hr 2 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "classic",
+      "drama"
+    ]
+  },
+  {
+    "id": 170,
+    "title": "Lagaan (170)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1957,
+    "director": "Akira Kurosawa",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.1/10",
+      "rottenTomatoes": "77%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "2 hr 46 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "award-winning",
+      "classic"
+    ]
+  },
+  {
+    "id": 171,
+    "title": "Lagaan (171)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2006,
+    "director": "Akira Kurosawa",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.4/10",
+      "rottenTomatoes": "93%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "2 hr 6 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "animation",
+      "award-winning",
+      "international"
+    ]
+  },
+  {
+    "id": 172,
+    "title": "Infernal Affairs (172)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1983,
+    "director": "Bong Joon-ho",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.4/10",
+      "rottenTomatoes": "85%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "3 hr 24 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "drama",
+      "animation"
+    ]
+  },
+  {
+    "id": 173,
+    "title": "Shoplifters (173)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2001,
+    "director": "Asghar Farhadi",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.7/10",
+      "rottenTomatoes": "94%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "3 hr 19 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "classic",
+      "thriller"
+    ]
+  },
+  {
+    "id": 174,
+    "title": "Parasite (174)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1953,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.2/10",
+      "rottenTomatoes": "71%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "1 hr 7 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "drama",
+      "thriller",
+      "classic"
+    ]
+  },
+  {
+    "id": 175,
+    "title": "Crouching Tiger, Hidden Dragon (175)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1954,
+    "director": "Guillermo del Toro",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.9/10",
+      "rottenTomatoes": "98%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "3 hr 11 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "award-winning",
+      "animation"
+    ]
+  },
+  {
+    "id": 176,
+    "title": "Seven Samurai (176)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1953,
+    "director": "Danny Boyle",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.7/10",
+      "rottenTomatoes": "70%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "2 hr 20 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 177,
+    "title": "Battle Royale (177)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1983,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.9/10",
+      "rottenTomatoes": "74%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "1 hr 43 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "thriller",
+      "thriller"
+    ]
+  },
+  {
+    "id": 178,
+    "title": "Portrait of a Lady on Fire (178)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1962,
+    "director": "Danny Boyle",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.4/10",
+      "rottenTomatoes": "84%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "2 hr 51 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "drama",
+      "animation"
+    ]
+  },
+  {
+    "id": 179,
+    "title": "Lagaan (179)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2013,
+    "director": "Zoya Akhtar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.1/10",
+      "rottenTomatoes": "91%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "3 hr 8 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "thriller",
+      "award-winning",
+      "thriller"
+    ]
+  },
+  {
+    "id": 180,
+    "title": "Barfi! (180)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1989,
+    "director": "Akira Kurosawa",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.6/10",
+      "rottenTomatoes": "79%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "2 hr 52 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "international",
+      "animation"
+    ]
+  },
+  {
+    "id": 181,
+    "title": "Crouching Tiger, Hidden Dragon (181)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1991,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.1/10",
+      "rottenTomatoes": "93%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "2 hr 40 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "drama",
+      "international",
+      "drama"
+    ]
+  },
+  {
+    "id": 182,
+    "title": "A Separation (182)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1973,
+    "director": "Akira Kurosawa",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.7/10",
+      "rottenTomatoes": "77%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "3 hr 5 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "award-winning",
+      "animation"
+    ]
+  },
+  {
+    "id": 183,
+    "title": "Memories of Murder (183)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1963,
+    "director": "Guillermo del Toro",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.5/10",
+      "rottenTomatoes": "91%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "2 hr 9 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "drama",
+      "animation"
+    ]
+  },
+  {
+    "id": 184,
+    "title": "The Lives of Others (184)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1990,
+    "director": "Zoya Akhtar",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "77%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "1 hr 6 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "animation",
+      "animation"
+    ]
+  },
+  {
+    "id": 185,
+    "title": "Cinema Paradiso (185)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1959,
+    "director": "Asghar Farhadi",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.4/10",
+      "rottenTomatoes": "91%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "1 hr 59 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "classic",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 186,
+    "title": "The Lives of Others (186)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2004,
+    "director": "Bong Joon-ho",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.2/10",
+      "rottenTomatoes": "89%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "2 hr 11 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "international",
+      "thriller"
+    ]
+  },
+  {
+    "id": 187,
+    "title": "Memories of Murder (187)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2001,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.1/10",
+      "rottenTomatoes": "71%"
+    },
+    "countryOfOrigin": "Argentina",
+    "runtime": "2 hr 21 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "animation",
+      "thriller"
+    ]
+  },
+  {
+    "id": 188,
+    "title": "Hero (188)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2010,
+    "director": "Akira Kurosawa",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.2/10",
+      "rottenTomatoes": "74%"
+    },
+    "countryOfOrigin": "South Korea",
+    "runtime": "2 hr 54 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "thriller",
+      "international",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 189,
+    "title": "Ikiru (189)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1997,
+    "director": "Danny Boyle",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.2/10",
+      "rottenTomatoes": "97%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "3 hr 47 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 190,
+    "title": "3 Idiots (190)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2016,
+    "director": "Fernando Meirelles",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "81%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "2 hr 35 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "award-winning",
+      "international"
+    ]
+  },
+  {
+    "id": 191,
+    "title": "City of God (191)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2018,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.1/10",
+      "rottenTomatoes": "88%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "1 hr 56 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "classic",
+      "drama"
+    ]
+  },
+  {
+    "id": 192,
+    "title": "3 Idiots (192)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1996,
+    "director": "Zoya Akhtar",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "70%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "1 hr 29 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "award-winning",
+      "classic"
+    ]
+  },
+  {
+    "id": 193,
+    "title": "Infernal Affairs (193)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1952,
+    "director": "Bong Joon-ho",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.6/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "3 hr 9 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 194,
+    "title": "Hero (194)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2009,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.4/10",
+      "rottenTomatoes": "73%"
+    },
+    "countryOfOrigin": "Japan",
+    "runtime": "1 hr 0 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "thriller",
+      "animation",
+      "thriller"
+    ]
+  },
+  {
+    "id": 195,
+    "title": "The Handmaiden (195)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2002,
+    "director": "Asghar Farhadi",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.7/10",
+      "rottenTomatoes": "89%"
+    },
+    "countryOfOrigin": "Japan",
+    "runtime": "2 hr 48 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "drama",
+      "animation",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 196,
+    "title": "The Intouchables (196)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1983,
+    "director": "Asghar Farhadi",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.1/10",
+      "rottenTomatoes": "98%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "1 hr 22 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "classic",
+      "classic"
+    ]
+  },
+  {
+    "id": 197,
+    "title": "Pan's Labyrinth (197)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2010,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.9/10",
+      "rottenTomatoes": "91%"
+    },
+    "countryOfOrigin": "Japan",
+    "runtime": "2 hr 2 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 198,
+    "title": "A Separation (198)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1965,
+    "director": "Fernando Meirelles",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.0/10",
+      "rottenTomatoes": "91%"
+    },
+    "countryOfOrigin": "Argentina",
+    "runtime": "3 hr 47 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "animation",
+      "drama"
+    ]
+  },
+  {
+    "id": 199,
+    "title": "Amores Perros (199)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1970,
+    "director": "Asghar Farhadi",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.1/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "3 hr 24 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "thriller",
+      "thriller"
+    ]
+  },
+  {
+    "id": 200,
+    "title": "Gully Boy (200)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2002,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "92%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "2 hr 54 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "animation",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 201,
+    "title": "Lagaan (201)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2000,
+    "director": "Danny Boyle",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "94%"
+    },
+    "countryOfOrigin": "Japan",
+    "runtime": "2 hr 48 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "classic",
+      "thriller"
+    ]
+  },
+  {
+    "id": 202,
+    "title": "Roma (202)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1951,
+    "director": "Akira Kurosawa",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.1/10",
+      "rottenTomatoes": "97%"
+    },
+    "countryOfOrigin": "Argentina",
+    "runtime": "1 hr 21 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "animation",
+      "international"
+    ]
+  },
+  {
+    "id": 203,
+    "title": "Pan's Labyrinth (203)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1953,
+    "director": "Fernando Meirelles",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.6/10",
+      "rottenTomatoes": "80%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "2 hr 35 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "award-winning",
+      "drama"
+    ]
+  },
+  {
+    "id": 204,
+    "title": "Shoplifters (204)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1971,
+    "director": "Bong Joon-ho",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.0/10",
+      "rottenTomatoes": "74%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "3 hr 29 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "animation",
+      "drama"
+    ]
+  },
+  {
+    "id": 205,
+    "title": "The Intouchables (205)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1978,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.3/10",
+      "rottenTomatoes": "82%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "3 hr 48 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "classic",
+      "classic"
+    ]
+  },
+  {
+    "id": 206,
+    "title": "Barfi! (206)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1996,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.9/10",
+      "rottenTomatoes": "94%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "1 hr 15 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "drama",
+      "animation",
+      "animation"
+    ]
+  },
+  {
+    "id": 207,
+    "title": "The Handmaiden (207)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1971,
+    "director": "Asghar Farhadi",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.5/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "3 hr 1 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "animation",
+      "drama"
+    ]
+  },
+  {
+    "id": 208,
+    "title": "The Handmaiden (208)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1971,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.7/10",
+      "rottenTomatoes": "80%"
+    },
+    "countryOfOrigin": "Japan",
+    "runtime": "2 hr 55 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "international",
+      "international"
+    ]
+  },
+  {
+    "id": 209,
+    "title": "Battle Royale (209)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2004,
+    "director": "Guillermo del Toro",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.4/10",
+      "rottenTomatoes": "92%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "1 hr 24 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "international",
+      "animation"
+    ]
+  },
+  {
+    "id": 210,
+    "title": "Roma (210)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2021,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.5/10",
+      "rottenTomatoes": "93%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "1 hr 48 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "award-winning",
+      "award-winning",
+      "international"
+    ]
+  },
+  {
+    "id": 211,
+    "title": "Gully Boy (211)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1966,
+    "director": "Danny Boyle",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.5/10",
+      "rottenTomatoes": "90%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "1 hr 27 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "classic",
+      "thriller"
+    ]
+  },
+  {
+    "id": 212,
+    "title": "Portrait of a Lady on Fire (212)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2012,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.7/10",
+      "rottenTomatoes": "88%"
+    },
+    "countryOfOrigin": "South Korea",
+    "runtime": "2 hr 27 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "classic",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 213,
+    "title": "Run Lola Run (213)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2003,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "79%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "2 hr 11 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "thriller",
+      "thriller",
+      "drama"
+    ]
+  },
+  {
+    "id": 214,
+    "title": "Bicycle Thieves (214)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1964,
+    "director": "Fernando Meirelles",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.6/10",
+      "rottenTomatoes": "73%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "3 hr 10 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "international",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 215,
+    "title": "Battle Royale (215)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2007,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.0/10",
+      "rottenTomatoes": "98%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "2 hr 12 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "thriller",
+      "animation"
+    ]
+  },
+  {
+    "id": 216,
+    "title": "Spirited Away (216)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2005,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.5/10",
+      "rottenTomatoes": "80%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "3 hr 52 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "animation",
+      "animation"
+    ]
+  },
+  {
+    "id": 217,
+    "title": "Hero (217)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1971,
+    "director": "Guillermo del Toro",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "87%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "1 hr 54 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "drama",
+      "international",
+      "international"
+    ]
+  },
+  {
+    "id": 218,
+    "title": "Bicycle Thieves (218)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1999,
+    "director": "Guillermo del Toro",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.6/10",
+      "rottenTomatoes": "73%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "3 hr 34 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "animation",
+      "international"
+    ]
+  },
+  {
+    "id": 219,
+    "title": "City of God (219)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1977,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.0/10",
+      "rottenTomatoes": "75%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "1 hr 42 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "thriller",
+      "thriller",
+      "thriller"
+    ]
+  },
+  {
+    "id": 220,
+    "title": "Shoplifters (220)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1991,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "89%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "2 hr 12 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "award-winning",
+      "thriller",
+      "drama"
+    ]
+  },
+  {
+    "id": 221,
+    "title": "The Intouchables (221)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1992,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.3/10",
+      "rottenTomatoes": "81%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "1 hr 20 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "thriller",
+      "drama",
+      "international"
+    ]
+  },
+  {
+    "id": 222,
+    "title": "PK (222)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1966,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.8/10",
+      "rottenTomatoes": "77%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "2 hr 5 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "animation",
+      "thriller"
+    ]
+  },
+  {
+    "id": 223,
+    "title": "Ikiru (223)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2004,
+    "director": "Bong Joon-ho",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.5/10",
+      "rottenTomatoes": "94%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "3 hr 22 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "award-winning",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 224,
+    "title": "Ikiru (224)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1999,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "87%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "2 hr 48 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "drama",
+      "drama"
+    ]
+  },
+  {
+    "id": 225,
+    "title": "Memories of Murder (225)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2005,
+    "director": "Zoya Akhtar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.9/10",
+      "rottenTomatoes": "98%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "2 hr 57 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "animation",
+      "classic",
+      "classic"
+    ]
+  },
+  {
+    "id": 226,
+    "title": "Gully Boy (226)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1955,
+    "director": "Fernando Meirelles",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "75%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "1 hr 27 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "animation",
+      "drama",
+      "animation"
+    ]
+  },
+  {
+    "id": 227,
+    "title": "Train to Busan (227)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2008,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "71%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "3 hr 25 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "classic",
+      "thriller"
+    ]
+  },
+  {
+    "id": 228,
+    "title": "Battle Royale (228)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2022,
+    "director": "Asghar Farhadi",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.4/10",
+      "rottenTomatoes": "73%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "3 hr 25 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "drama",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 229,
+    "title": "Seven Samurai (229)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1972,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.8/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "3 hr 20 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "classic",
+      "international"
+    ]
+  },
+  {
+    "id": 230,
+    "title": "Roma (230)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1962,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.6/10",
+      "rottenTomatoes": "77%"
+    },
+    "countryOfOrigin": "Japan",
+    "runtime": "1 hr 41 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "award-winning",
+      "award-winning",
+      "thriller"
+    ]
+  },
+  {
+    "id": 231,
+    "title": "Train to Busan (231)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1992,
+    "director": "Akira Kurosawa",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.8/10",
+      "rottenTomatoes": "98%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "3 hr 46 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "animation",
+      "drama",
+      "international"
+    ]
+  },
+  {
+    "id": 232,
+    "title": "Rashomon (232)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1989,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.7/10",
+      "rottenTomatoes": "72%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "3 hr 2 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "classic",
+      "classic"
+    ]
+  },
+  {
+    "id": 233,
+    "title": "Crouching Tiger, Hidden Dragon (233)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1955,
+    "director": "Akira Kurosawa",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.1/10",
+      "rottenTomatoes": "99%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "3 hr 30 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "classic",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 234,
+    "title": "Rashomon (234)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1994,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.4/10",
+      "rottenTomatoes": "99%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "2 hr 4 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "international",
+      "animation"
+    ]
+  },
+  {
+    "id": 235,
+    "title": "Hero (235)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2022,
+    "director": "Bong Joon-ho",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.7/10",
+      "rottenTomatoes": "99%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "2 hr 46 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "classic",
+      "thriller"
+    ]
+  },
+  {
+    "id": 236,
+    "title": "Seven Samurai (236)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1958,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.0/10",
+      "rottenTomatoes": "88%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "3 hr 22 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "animation",
+      "international"
+    ]
+  },
+  {
+    "id": 237,
+    "title": "Memories of Murder (237)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2023,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.3/10",
+      "rottenTomatoes": "95%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "1 hr 14 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "animation",
+      "drama"
+    ]
+  },
+  {
+    "id": 238,
+    "title": "3 Idiots (238)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2017,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.4/10",
+      "rottenTomatoes": "73%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "2 hr 59 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "classic",
+      "international"
+    ]
+  },
+  {
+    "id": 239,
+    "title": "Cinema Paradiso (239)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1979,
+    "director": "Akira Kurosawa",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.2/10",
+      "rottenTomatoes": "86%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "1 hr 3 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "award-winning",
+      "animation"
+    ]
+  },
+  {
+    "id": 240,
+    "title": "Shoplifters (240)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1967,
+    "director": "Guillermo del Toro",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.4/10",
+      "rottenTomatoes": "95%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "1 hr 56 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "international",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 241,
+    "title": "Seven Samurai (241)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2016,
+    "director": "Asghar Farhadi",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.9/10",
+      "rottenTomatoes": "95%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "2 hr 2 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "international",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 242,
+    "title": "City of God (242)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1983,
+    "director": "Guillermo del Toro",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.4/10",
+      "rottenTomatoes": "78%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "2 hr 35 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "animation",
+      "animation",
+      "classic"
+    ]
+  },
+  {
+    "id": 243,
+    "title": "Your Name (243)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1974,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "73%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "2 hr 31 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "classic",
+      "drama"
+    ]
+  },
+  {
+    "id": 244,
+    "title": "Slumdog Millionaire (244)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1965,
+    "director": "Zoya Akhtar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "78%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "1 hr 9 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "thriller",
+      "international",
+      "drama"
+    ]
+  },
+  {
+    "id": 245,
+    "title": "Rashomon (245)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2015,
+    "director": "Asghar Farhadi",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.8/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "South Korea",
+    "runtime": "1 hr 29 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "animation",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 246,
+    "title": "Ikiru (246)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1972,
+    "director": "Bong Joon-ho",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.1/10",
+      "rottenTomatoes": "91%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "1 hr 41 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "award-winning",
+      "classic",
+      "thriller"
+    ]
+  },
+  {
+    "id": 247,
+    "title": "Gully Boy (247)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1991,
+    "director": "Danny Boyle",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.6/10",
+      "rottenTomatoes": "89%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "2 hr 38 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "drama",
+      "drama",
+      "animation"
+    ]
+  },
+  {
+    "id": 248,
+    "title": "Dangal (248)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1999,
+    "director": "Guillermo del Toro",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.1/10",
+      "rottenTomatoes": "90%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "2 hr 1 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "classic",
+      "drama"
+    ]
+  },
+  {
+    "id": 249,
+    "title": "Gully Boy (249)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2007,
+    "director": "Zoya Akhtar",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.4/10",
+      "rottenTomatoes": "97%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "2 hr 22 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 250,
+    "title": "Seven Samurai (250)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1998,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.0/10",
+      "rottenTomatoes": "80%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "2 hr 8 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "international",
+      "drama"
+    ]
+  },
+  {
+    "id": 251,
+    "title": "Ikiru (251)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2012,
+    "director": "Akira Kurosawa",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.5/10",
+      "rottenTomatoes": "89%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "1 hr 47 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "international",
+      "animation"
+    ]
+  },
+  {
+    "id": 252,
+    "title": "3 Idiots (252)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1967,
+    "director": "Bong Joon-ho",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.1/10",
+      "rottenTomatoes": "84%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "1 hr 1 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 253,
+    "title": "City of God (253)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1961,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.5/10",
+      "rottenTomatoes": "90%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "1 hr 37 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "animation",
+      "classic"
+    ]
+  },
+  {
+    "id": 254,
+    "title": "Train to Busan (254)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1951,
+    "director": "Guillermo del Toro",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.1/10",
+      "rottenTomatoes": "81%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "1 hr 18 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "thriller",
+      "drama"
+    ]
+  },
+  {
+    "id": 255,
+    "title": "A Separation (255)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1966,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.1/10",
+      "rottenTomatoes": "85%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "3 hr 12 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "drama",
+      "drama",
+      "drama"
+    ]
+  },
+  {
+    "id": 256,
+    "title": "Portrait of a Lady on Fire (256)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1999,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.3/10",
+      "rottenTomatoes": "90%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "3 hr 33 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "international",
+      "classic"
+    ]
+  },
+  {
+    "id": 257,
+    "title": "Battle Royale (257)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2018,
+    "director": "Danny Boyle",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.2/10",
+      "rottenTomatoes": "97%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "2 hr 12 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "thriller",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 258,
+    "title": "Portrait of a Lady on Fire (258)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1964,
+    "director": "Guillermo del Toro",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.4/10",
+      "rottenTomatoes": "86%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "2 hr 30 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "thriller",
+      "drama",
+      "animation"
+    ]
+  },
+  {
+    "id": 259,
+    "title": "Gully Boy (259)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1981,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.4/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "South Korea",
+    "runtime": "1 hr 0 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "drama",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 260,
+    "title": "Seven Samurai (260)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1979,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.1/10",
+      "rottenTomatoes": "79%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "1 hr 24 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "drama",
+      "animation",
+      "thriller"
+    ]
+  },
+  {
+    "id": 261,
+    "title": "Your Name (261)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1990,
+    "director": "Zoya Akhtar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "79%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "1 hr 55 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "thriller",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 262,
+    "title": "Infernal Affairs (262)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2000,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.9/10",
+      "rottenTomatoes": "73%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "1 hr 44 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "drama",
+      "thriller"
+    ]
+  },
+  {
+    "id": 263,
+    "title": "The Intouchables (263)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1958,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.5/10",
+      "rottenTomatoes": "93%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "1 hr 18 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 264,
+    "title": "Hero (264)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1957,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.3/10",
+      "rottenTomatoes": "83%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "3 hr 7 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "drama",
+      "animation"
+    ]
+  },
+  {
+    "id": 265,
+    "title": "The Host (265)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1979,
+    "director": "Zoya Akhtar",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.2/10",
+      "rottenTomatoes": "78%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "1 hr 42 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "international",
+      "drama"
+    ]
+  },
+  {
+    "id": 266,
+    "title": "Rashomon (266)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1962,
+    "director": "Asghar Farhadi",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "82%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "1 hr 59 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "award-winning",
+      "drama",
+      "international"
+    ]
+  },
+  {
+    "id": 267,
+    "title": "Pan's Labyrinth (267)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1970,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "78%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "1 hr 22 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "award-winning",
+      "thriller"
+    ]
+  },
+  {
+    "id": 268,
+    "title": "Roma (268)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1950,
+    "director": "Fernando Meirelles",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.0/10",
+      "rottenTomatoes": "88%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "1 hr 42 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "award-winning",
+      "classic"
+    ]
+  },
+  {
+    "id": 269,
+    "title": "Parasite (269)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1996,
+    "director": "Danny Boyle",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.7/10",
+      "rottenTomatoes": "83%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "1 hr 27 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 270,
+    "title": "The Host (270)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1963,
+    "director": "Danny Boyle",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.0/10",
+      "rottenTomatoes": "84%"
+    },
+    "countryOfOrigin": "China",
+    "runtime": "3 hr 5 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "award-winning",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 271,
+    "title": "Cinema Paradiso (271)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1955,
+    "director": "Bong Joon-ho",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.2/10",
+      "rottenTomatoes": "99%"
+    },
+    "countryOfOrigin": "Argentina",
+    "runtime": "1 hr 2 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "thriller",
+      "classic"
+    ]
+  },
+  {
+    "id": 272,
+    "title": "Rashomon (272)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2015,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "2 hr 42 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "international",
+      "drama",
+      "international"
+    ]
+  },
+  {
+    "id": 273,
+    "title": "A Separation (273)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1983,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.6/10",
+      "rottenTomatoes": "78%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "2 hr 16 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "animation",
+      "classic"
+    ]
+  },
+  {
+    "id": 274,
+    "title": "The Intouchables (274)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1982,
+    "director": "Fernando Meirelles",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.5/10",
+      "rottenTomatoes": "94%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "2 hr 52 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "award-winning",
+      "thriller",
+      "international"
+    ]
+  },
+  {
+    "id": 275,
+    "title": "Parasite (275)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2007,
+    "director": "Asghar Farhadi",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.5/10",
+      "rottenTomatoes": "72%"
+    },
+    "countryOfOrigin": "Japan",
+    "runtime": "3 hr 28 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "drama",
+      "drama",
+      "drama"
+    ]
+  },
+  {
+    "id": 276,
+    "title": "Battle Royale (276)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1975,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Drama, Thriller",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.0/10",
+      "rottenTomatoes": "75%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "2 hr 47 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "international",
+      "thriller"
+    ]
+  },
+  {
+    "id": 277,
+    "title": "Spirited Away (277)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1951,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.0/10",
+      "rottenTomatoes": "83%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "3 hr 6 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "international",
+      "thriller"
+    ]
+  },
+  {
+    "id": 278,
+    "title": "Hero (278)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1958,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.2/10",
+      "rottenTomatoes": "91%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "3 hr 9 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "animation",
+      "international",
+      "international"
+    ]
+  },
+  {
+    "id": 279,
+    "title": "Bicycle Thieves (279)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1970,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.4/10",
+      "rottenTomatoes": "81%"
+    },
+    "countryOfOrigin": "Japan",
+    "runtime": "1 hr 2 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "award-winning",
+      "animation",
+      "drama"
+    ]
+  },
+  {
+    "id": 280,
+    "title": "Amores Perros (280)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1995,
+    "director": "Fernando Meirelles",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.7/10",
+      "rottenTomatoes": "86%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "1 hr 11 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "award-winning",
+      "animation"
+    ]
+  },
+  {
+    "id": 281,
+    "title": "Portrait of a Lady on Fire (281)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1983,
+    "director": "Danny Boyle",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.6/10",
+      "rottenTomatoes": "99%"
+    },
+    "countryOfOrigin": "Brazil",
+    "runtime": "1 hr 25 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "drama",
+      "classic"
+    ]
+  },
+  {
+    "id": 282,
+    "title": "Shoplifters (282)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1993,
+    "director": "Guillermo del Toro",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.5/10",
+      "rottenTomatoes": "92%"
+    },
+    "countryOfOrigin": "South Korea",
+    "runtime": "3 hr 35 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "award-winning",
+      "drama"
+    ]
+  },
+  {
+    "id": 283,
+    "title": "Bicycle Thieves (283)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2003,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.0/10",
+      "rottenTomatoes": "87%"
+    },
+    "countryOfOrigin": "USA",
+    "runtime": "1 hr 30 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "international",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 284,
+    "title": "The Lives of Others (284)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1965,
+    "director": "Fernando Meirelles",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.0/10",
+      "rottenTomatoes": "84%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "3 hr 32 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "animation",
+      "classic",
+      "classic"
+    ]
+  },
+  {
+    "id": 285,
+    "title": "PK (285)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1998,
+    "director": "Danny Boyle",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.3/10",
+      "rottenTomatoes": "73%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "2 hr 21 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "drama",
+      "international",
+      "drama"
+    ]
+  },
+  {
+    "id": 286,
+    "title": "Spirited Away (286)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1978,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.9/10",
+      "rottenTomatoes": "91%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "3 hr 2 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "award-winning",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 287,
+    "title": "Bicycle Thieves (287)",
+    "isMustWatch": false,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1977,
+    "director": "Danny Boyle",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.6/10",
+      "rottenTomatoes": "79%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "1 hr 14 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "award-winning",
+      "thriller"
+    ]
+  },
+  {
+    "id": 288,
+    "title": "Run Lola Run (288)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2004,
+    "director": "Rajkumar Hirani",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.0/10",
+      "rottenTomatoes": "93%"
+    },
+    "countryOfOrigin": "Japan",
+    "runtime": "2 hr 19 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "classic",
+      "classic"
+    ]
+  },
+  {
+    "id": 289,
+    "title": "Memories of Murder (289)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1953,
+    "director": "Bong Joon-ho",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.2/10",
+      "rottenTomatoes": "75%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "2 hr 24 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "classic",
+      "thriller"
+    ]
+  },
+  {
+    "id": 290,
+    "title": "The Host (290)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1967,
+    "director": "Danny Boyle",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.7/10",
+      "rottenTomatoes": "83%"
+    },
+    "countryOfOrigin": "Spain",
+    "runtime": "3 hr 32 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "animation",
+      "thriller",
+      "animation"
+    ]
+  },
+  {
+    "id": 291,
+    "title": "Lagaan (291)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1968,
+    "director": "Sanjay Leela Bhansali",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.6/10",
+      "rottenTomatoes": "92%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "1 hr 12 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "thriller",
+      "international"
+    ]
+  },
+  {
+    "id": 292,
+    "title": "The Secret in Their Eyes (292)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1954,
+    "director": "Zoya Akhtar",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.2/10",
+      "rottenTomatoes": "70%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "2 hr 31 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "animation",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 293,
+    "title": "Roma (293)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1988,
+    "director": "Danny Boyle",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Historical, War",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.0/10",
+      "rottenTomatoes": "81%"
+    },
+    "countryOfOrigin": "Germany",
+    "runtime": "2 hr 29 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "animation",
+      "drama"
+    ]
+  },
+  {
+    "id": 294,
+    "title": "The Intouchables (294)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1953,
+    "director": "Asghar Farhadi",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.7/10",
+      "rottenTomatoes": "77%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "2 hr 28 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "international",
+      "animation",
+      "drama"
+    ]
+  },
+  {
+    "id": 295,
+    "title": "Rashomon (295)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2009,
+    "director": "Asghar Farhadi",
+    "mainCast": "Actor A, Actor B, Actor C",
+    "genre": "Comedy, Romance",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.1/10",
+      "rottenTomatoes": "76%"
+    },
+    "countryOfOrigin": "Mexico",
+    "runtime": "2 hr 57 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "classic",
+      "classic",
+      "animation"
+    ]
+  },
+  {
+    "id": 296,
+    "title": "Amores Perros (296)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1968,
+    "director": "Pedro Almodóvar",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Animation, Fantasy",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.6/10",
+      "rottenTomatoes": "86%"
+    },
+    "countryOfOrigin": "UK",
+    "runtime": "1 hr 8 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "classic",
+      "animation",
+      "classic"
+    ]
+  },
+  {
+    "id": 297,
+    "title": "Infernal Affairs (297)",
+    "isMustWatch": false,
+    "isHindiDubbed": false,
+    "yearOfRelease": 1993,
+    "director": "Bong Joon-ho",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "8.8/10",
+      "rottenTomatoes": "84%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "3 hr 49 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "animation",
+      "classic",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 298,
+    "title": "Dangal (298)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 1966,
+    "director": "Zoya Akhtar",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Crime, Mystery",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "9.0/10",
+      "rottenTomatoes": "73%"
+    },
+    "countryOfOrigin": "India",
+    "runtime": "3 hr 29 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "award-winning",
+      "drama",
+      "award-winning"
+    ]
+  },
+  {
+    "id": 299,
+    "title": "Crouching Tiger, Hidden Dragon (299)",
+    "isMustWatch": true,
+    "isHindiDubbed": false,
+    "yearOfRelease": 2023,
+    "director": "Hayao Miyazaki",
+    "mainCast": "Star X, Star Y, Star Z",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.6/10",
+      "rottenTomatoes": "93%"
+    },
+    "countryOfOrigin": "France",
+    "runtime": "2 hr 26 min",
+    "sequelPrequelAvailable": true,
+    "tags": [
+      "award-winning",
+      "international",
+      "thriller"
+    ]
+  },
+  {
+    "id": 300,
+    "title": "Gully Boy (300)",
+    "isMustWatch": true,
+    "isHindiDubbed": true,
+    "yearOfRelease": 2001,
+    "director": "Akira Kurosawa",
+    "mainCast": "Performer 1, Performer 2, Performer 3",
+    "genre": "Action, Adventure",
+    "synopsis": "This is a detailed synopsis of the movie, covering the full plot, characters, themes, and conflicts in depth for viewers to understand its story arc and cultural significance.",
+    "awards": "Won/Nominated for multiple international awards.",
+    "rating": {
+      "imdb": "7.9/10",
+      "rottenTomatoes": "80%"
+    },
+    "countryOfOrigin": "Italy",
+    "runtime": "3 hr 55 min",
+    "sequelPrequelAvailable": false,
+    "tags": [
+      "thriller",
+      "classic",
+      "thriller"
+    ]
   }
 ];
