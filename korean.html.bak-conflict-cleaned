@@ -329,6 +329,7 @@
     <button id="hindiDubbedFilter">🎬 Hindi Dubbed</button>
     <button id="mustWatchFilter">🎯 Must Watch</button>
     <button id="allSeriesBtn">All Series</button>
+    <button id="randomPickBtn">🎲 Random Pick</button>
   </div>
 
   <main>
@@ -357,6 +358,8 @@
     const platformFilter = document.getElementById("platformFilter");
     const mustWatchButton = document.getElementById("mustWatchFilter");
     const allSeriesButton = document.getElementById("allSeriesBtn");
+    const hindiDubbedFilter = document.getElementById("hindiDubbedFilter");
+    const randomPickButton = document.getElementById("randomPickBtn");
     const searchInput = document.getElementById("searchInput");
     const sortFilter = document.getElementById("sortFilter");
     
@@ -390,9 +393,19 @@
           ? entry.platform.map(p => p.trim()).join(" / ")
           : (entry.platform || '');
 
-        const title = entry.mustwatch 
+        const title = `${index + 1}. ${entry.mustwatch 
             ? `<span class="must-watch-star">⭐</span> ${entry.title}`
-            : `${entry.title}`;
+            : `${entry.title}`}`;
+        
+        const hindiAvailability = entry.hindiDubbed 
+          ? '<p class="hindi-dubbed"><strong>Hindi Dubbed:</strong> Available</p>' 
+          : '<p><strong>Hindi Dubbed:</strong> Not Available</p>';
+
+        const ratingDisplay = entry.imdbRating ? `<p><strong>IMDb Rating:</strong> ${entry.imdbRating}</p>` : '';
+        const popularityDisplay = entry.popularity ? `<p><strong>Popularity:</strong> ${entry.popularity}</p>` : '';
+        const yearDisplay = entry.year ? `<p><strong>Year:</strong> ${entry.year}</p>` : '';
+        
+        const watchedStatus = userWatchedList[seriesId] ? 'Unmark Watched' : 'Mark as Watched';
 
         card.innerHTML = `
           <h2>${title}</h2>
@@ -488,28 +501,7 @@
     function filterMustWatch() {
       resetFilters();
       if (window.koreanWatchlist) {
-        // Clear other filters before applying this one
-        genreFilter.value = "";
-        platformFilter.value = "";
-        searchInput.value = "";
-        sortFilter.value = "";
-        
         currentList = koreanWatchlist.filter(s => s.mustwatch);
-        renderVault(currentList);
-      } else {
-        container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
-      }
-    }
-
-    function showAllSeries() {
-      // Clear all filters before displaying all series
-      genreFilter.value = "";
-      platformFilter.value = "";
-      searchInput.value = "";
-      sortFilter.value = "";
-      
-      if (window.koreanWatchlist) {
-        currentList = [...window.koreanWatchlist];
         renderVault(currentList);
       } else {
         container.innerHTML = "<p style='text-align:center;'>Error: Could not load Korean series data. Please check your korean.js file.</p>";
