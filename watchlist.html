@@ -214,34 +214,36 @@
             padding: 0.3rem 0.8rem;
         }
         .vault-poster-grid {
-            /* Adjust the minmax to fit more cards horizontally on smaller screens */
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 1rem;
+            /* This will force 3 columns on mobile */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
         }
         .vault-card {
-            padding: 1rem;
+            padding: 0.5rem;
+            border-radius: 10px;
         }
         .vault-card h2 {
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.2rem;
         }
         .vault-card h2 span.id {
-            font-size: 0.7rem;
+            display: none; /* Hide the ID on mobile for a cleaner look */
         }
         .info-line {
-            font-size: 0.7rem;
-            margin-top: 0.2rem;
+            font-size: 0.6rem;
+            margin-top: 0.1rem;
         }
         .badges, .tags {
-            margin-top: 0.5rem;
-            gap: 0.25rem;
+            margin-top: 0.25rem;
+            gap: 0.2rem;
+            display: none; /* Hide badges and tags on mobile to make the card smaller */
         }
         .badge, .tag {
-            padding: 0.2rem 0.5rem;
-            font-size: 0.6rem;
+            padding: 0.1rem 0.3rem;
+            font-size: 0.5rem;
         }
         .sidebar-filters {
-            padding: 1rem;
+            padding: 0.5rem;
             flex-direction: column;
             align-items: stretch;
             gap: 0.5rem;
