@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watch & Download</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Bebas+Neue&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-neon: #00eaff;
+      --secondary-neon: #ff00c8;
+      --dark-bg: #0a0a0e;
+      --card-bg: rgba(18, 18, 22, 0.7);
+      --card-border: rgba(0, 234, 255, 0.2);
+      --text-color: #f0f0f0;
+      --glow-shadow: 0 0 10px var(--primary-neon), 0 0 20px var(--primary-neon);
+      --button-hover-bg: rgba(0, 234, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 2px solid var(--primary-neon);
+      box-shadow: 0 0 40px var(--primary-neon);
+      transition: all 0.5s ease;
+      backdrop-filter: blur(15px);
+      margin: 20px 0;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 8vw, 4rem);
+      color: #fff;
+      text-shadow: var(--glow-shadow);
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    .header p {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      color: var(--secondary-neon);
+      text-shadow: 0 0 5px var(--secondary-neon);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .back-link a {
+      color: var(--primary-neon);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease-in-out;
+    }
+
+    .back-link a:hover {
+      color: var(--text-color);
+    }
+
+    .links-section {
+      background: rgba(18, 18, 22, 0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 234, 255, 0.1);
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: inset 0 0 10px rgba(0, 234, 255, 0.1);
+      margin-bottom: 2.5rem;
+      transition: all 0.5s ease;
+    }
+
+    .links-section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.2), 0 8px 32px rgba(0, 0, 0, 0.37);
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      color: var(--primary-neon);
+      text-shadow: 0 0 5px var(--primary-neon);
+      margin-bottom: 1rem;
+    }
+
+    .links-section a {
+      display: block;
+      margin-top: 1rem;
+      color: var(--text-color);
+      background: var(--button-hover-bg);
+      border: 1px solid var(--primary-neon);
+      border-radius: 8px;
+      padding: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-shadow: 0 0 5px var(--text-color);
+    }
+
+    .links-section a:hover {
+      background: rgba(0, 234, 255, 0.2);
+      box-shadow: 0 0 10px var(--primary-neon);
+    }
+
+    .screenshots-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .screenshot-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 0 10px var(--primary-neon);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .screenshot-item img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--primary-neon);
+    }
+
+    .download-list li {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--secondary-neon);
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      .container {
+        padding: 1.5rem;
+      }
+      .header h1 {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="back-link">
+      <a href="index.html">← Back to Home</a>
+    </div>
+    <header class="header">
+      <h1>Watch & Download</h1>
+      <p>Your Portal to Curated Entertainment</p>
+    </header>
+
+    <div class="links-section">
+      <h2 class="section-title">Watch on Mobile</h2>
+      <p>Get the official PP Cine app to stream on your mobile device.</p>
+      
+      <div class="screenshots-container">
+        <div class="screenshot-item">
+          <img src="buildsbykrish/ss1.jpg" alt="App Screenshot 1" />
+        </div>
+        <div class="screenshot-item">
+          <img src="buildsbykrish/ss2.jpg" alt="App Screenshot 2" />
+        </div>
+        <div class="screenshot-item">
+          <img src="buildsbykrish/ss3.jpg" alt="App Screenshot 3" />
+        </div>
+      </div>
+      <a href="https://www.ppcine.com/app" target="_blank">Download PP Cine for Mobile</a>
+    </div>
+
+    <div class="links-section">
+      <h2 class="section-title">Watch on PC</h2>
+      <p>Stream directly on your computer with a single click.</p>
+      <a href="https://net2025.cc/login2" target="_blank">Watch on PC</a>
+    </div>
+
+    <div class="links-section">
+      <h2 class="section-title">Popular Download Sites</h2>
+      <p>Find and download your favorite movies and series from these trusted sites:</p>
+      <ul class="download-list">
+        <li>BollyFlix</li>
+        <li>VegaMovies</li>
+        <li>FZMovies</li>
+        <li>ExtraMovies</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
