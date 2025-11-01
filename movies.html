@@ -2,390 +2,483 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Movies Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="vault-theme.css" />
-  <script src="movie.js"></script>
+  <title>Movie Recommendations | Krish Vault</title>
+  
+  <!-- Poppins (General Text), Bebas Neue (Headers), Orbitron (Techy/Neon) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Bebas+Neue&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+
   <style>
+    /* New Neon Dark Theme Variables */
+    :root {
+      --primary-neon: #00eaff;
+      --secondary-neon: #ff00c8;
+      --dark-bg: #0a0a0e;
+      --card-bg: rgba(18, 18, 22, 0.7);
+      --card-border: rgba(0, 234, 255, 0.2);
+      --text-color: #f0f0f0;
+      --glow-shadow: 0 0 10px var(--primary-neon);
+      --input-focus: #ff00c8;
+      --must-watch-color: #ffc107;
+      --hindi-dubbed-color: #28a745;
+      --hover-color: #00eaff;
+    }
+    
     body {
-      margin: 0;
-      font-family: 'Montserrat', Arial, sans-serif;
-      background: linear-gradient(135deg, #232526 0%, #414345 100%);
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-color);
       min-height: 100vh;
-      color: #f3f3f3;
-      overflow-x: hidden;
-    }
-    h1 {
-      text-align: center;
-      font-size: 3rem;
-      margin: 2rem 0 1rem;
-      letter-spacing: 2px;
-      color: #00d2ff;
-      text-shadow: 0 4px 32px #00d2ff44;
-      animation: fadeInDown 1s;
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-40px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .filters, .sort-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-      margin: 1.5rem 0 2rem;
-      animation: fadeIn 1.2s;
-    }
-    .filters input[type="text"], .filters button, .sort-controls select {
-      padding: 0.7rem 1.2rem;
-      background: rgba(30, 30, 40, 0.7);
-      color: #00d2ff;
-      border: 1px solid #00d2ff55;
-      border-radius: 8px;
-      font-size: 1rem;
-      box-shadow: 0 2px 12px #00d2ff22;
-      transition: background 0.3s, color 0.3s, border 0.3s;
-      outline: none;
-    }
-    .filters button.active, .filters button:hover {
-      background: #00d2ff;
-      color: #232526;
-      border: 1px solid #00d2ff;
-      font-weight: bold;
-    }
-    .movie-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
-      padding: 2.5rem 2vw;
-      max-width: 1400px;
-      margin: 0 auto;
-      animation: fadeIn 1.5s;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0;}
-      to { opacity: 1;}
-    }
-    .movie-card {
-      background: rgba(255,255,255,0.08);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px 0 #00d2ff33;
-      border: 1.5px solid rgba(0,210,255,0.18);
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.7rem;
+      align-items: center;
+      padding: 20px;
       position: relative;
-      overflow: hidden;
-      animation: cardFadeIn 0.8s;
-      transition: transform 0.25s, box-shadow 0.25s;
+      overflow-x: hidden;
     }
-    .movie-card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 16px 64px 0 #00d2ff55;
-      border-color: #00d2ff;
+
+    /* Background Particles */
+    .particle {
+        position: fixed;
+        background-color: var(--primary-neon);
+        border-radius: 50%;
+        box-shadow: 0 0 5px var(--primary-neon);
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: 0;
+        animation: float-up linear infinite;
     }
-    @keyframes cardFadeIn {
-      from { opacity: 0; transform: translateY(40px);}
-      to { opacity: 1; transform: translateY(0);}
+
+    @keyframes float-up {
+        0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+        50% { opacity: 0.8; }
+        100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
-    .movie-card h2 {
-      color: #00d2ff;
-      margin: 0 0 0.3rem 0;
-      font-size: 1.4rem;
+
+    /* Header and Main Content Styling */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      z-index: 1; /* Keep content above particles */
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
       font-weight: 700;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 8px #00d2ff33;
+      font-size: 2.5rem;
+      color: var(--primary-neon);
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: var(--glow-shadow);
+      letter-spacing: 2px;
     }
-    .info-line {
-      margin-bottom: 0.2rem;
-      font-size: 1rem;
-    }
-    .info-line span {
-      font-weight: 600;
-      color: #fff;
+
+    .subtitle {
+      text-align: center;
+      color: var(--text-color);
+      margin-bottom: 40px;
+      font-size: 1.1rem;
       opacity: 0.8;
     }
-    .clickable {
-      cursor: pointer;
-      color: #00d2ff;
-      text-decoration: underline;
-      transition: color 0.2s;
+
+    /* Back Button Style */
+    .back-link {
+        display: block;
+        margin: 0 auto 30px auto;
+        width: fit-content;
+        padding: 10px 20px;
+        background-color: var(--secondary-neon);
+        color: var(--dark-bg);
+        text-decoration: none;
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 1px;
+        border-radius: 8px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        text-shadow: none;
+        font-size: 1.1rem;
+        box-shadow: 0 0 15px rgba(255, 0, 200, 0.5);
     }
-    .clickable:hover {
-      color: #00bfff;
+    .back-link:hover {
+        background-color: #ff33d4;
+        box-shadow: 0 0 25px rgba(255, 0, 200, 1);
     }
-    .tags {
+
+    /* Filter Bar */
+    .filter-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
+      gap: 15px;
+      margin-bottom: 30px;
+      padding: 15px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 0 5px var(--card-border);
     }
-    .tag {
-      background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
-      color: #fff;
-      padding: 0.3rem 0.8rem;
+
+    .filter-bar input,
+    .filter-bar select {
+      flex: 1;
+      min-width: 150px;
+      padding: 10px;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      background-color: #1a1a20;
+      color: var(--text-color);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .filter-bar input:focus,
+    .filter-bar select:focus {
+      outline: none;
+      border-color: var(--input-focus);
+      box-shadow: 0 0 8px var(--input-focus);
+    }
+
+    /* Watchlist Card Grid */
+    #vaultContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .vault-card {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      padding: 20px;
       border-radius: 12px;
-      font-size: 0.85rem;
+      box-shadow: 0 0 10px rgba(0, 234, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vault-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px var(--hover-color), 0 0 30px rgba(0, 234, 255, 0.3);
+    }
+
+    .vault-card h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--primary-neon);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .vault-card .id {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: var(--secondary-neon);
+      margin-right: 5px;
+    }
+
+    .info-line {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: #b0b0b0;
+    }
+
+    .info-line span {
       font-weight: 600;
-      box-shadow: 0 2px 8px #00d2ff33;
-      cursor: pointer;
-      transition: background 0.2s;
-      border: none;
+      color: var(--text-color);
+      margin-right: 5px;
     }
-    .tag:hover {
-      background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
+
+    .description {
+      font-size: 0.9rem;
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      line-height: 1.5;
+      color: #cccccc;
     }
-    .must-watch-badge {
-      position: absolute;
-      top: 1.2rem;
-      right: 1.2rem;
-      background: linear-gradient(90deg, #ffd700 0%, #ffb300 100%);
-      color: #232526;
-      font-weight: bold;
-      padding: 0.3rem 0.9rem;
-      border-radius: 12px;
-      font-size: 1rem;
-      box-shadow: 0 2px 8px #ffd70055;
-      animation: pulse 1.5s infinite alternate;
-      z-index: 2;
-    }
-    @keyframes pulse {
-      from { box-shadow: 0 0 8px #ffd70055;}
-      to { box-shadow: 0 0 24px #ffd70099;}
-    }
-    .fab {
-      position: fixed;
-      bottom: 2.5rem;
-      right: 2.5rem;
-      background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 2rem;
-      box-shadow: 0 4px 24px #00d2ff55;
-      cursor: pointer;
-      z-index: 100;
+
+    /* Poster and card inner layout */
+    .card-inner {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s, transform 0.2s;
-      opacity: 0.85;
+      gap: 12px;
+      align-items: flex-start;
     }
-    .fab:hover {
-      background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
-      transform: scale(1.08);
-      opacity: 1;
+    .poster-wrap {
+      flex: 0 0 140px;
+      max-width: 140px;
     }
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      .movie-card { padding: 1.2rem 0.7rem; }
-      .movie-grid { gap: 1.2rem; padding: 1.2rem 1vw; }
-      .fab { width: 48px; height: 48px; font-size: 1.5rem; bottom: 1.2rem; right: 1.2rem;}
+    .poster-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+      background: #111;
+    }
+    .poster-placeholder {
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+      background: linear-gradient(135deg,#111 0%, #222 100%);
+      color: #888;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0.85rem;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .card-details { flex: 1 1 auto; }
+
+    /* Badges */
+    .badges {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .must-watch-badge {
+      background-color: var(--must-watch-color);
+      color: #333;
+      box-shadow: 0 0 8px rgba(255, 193, 7, 0.7);
+    }
+
+    .hindi-dubbed-badge {
+      background-color: var(--hindi-dubbed-color);
+      color: white;
+    }
+
+    .tag-list {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--primary-neon);
+      opacity: 0.7;
+      font-style: italic;
+    }
+    
+    .no-results {
+        text-align: center;
+        width: 100%;
+        grid-column: 1 / -1;
+        font-size: 1.2rem;
+        color: var(--secondary-neon);
+        margin-top: 50px;
+        padding: 20px;
+        border: 1px dashed var(--secondary-neon);
+        border-radius: 8px;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .card-inner { flex-direction: column; }
+      .poster-wrap { flex: 0 0 auto; max-width: 100%; }
+      .filter-bar {
+        flex-direction: column;
+        gap: 10px;
+      }
+      #vaultContainer {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Movies Vault</h1>
-  <div id="genre-bar" class="genre-bar"></div>
-  <div class="filters">
-    <input type="text" id="search-input" placeholder="Search movies..." onkeyup="searchTitles(this.value)">
-    <button onclick="filterBy('isMustWatch', true)" class="filter-btn">Must Watch</button>
-    <button onclick="filterBy('isHindiDubbed', true)" class="filter-btn">Hindi Dubbed</button>
-    <button onclick="resetFilters()">Show All</button>
-  </div>
-  <div class="sort-controls">
-    <select onchange="sortBy(this.value)">
-      <option value="">Sort By...</option>
-      <option value="yearDesc">Year (Newest First)</option>
-      <option value="yearAsc">Year (Oldest First)</option>
-      <option value="titleAsc">Title (A-Z)</option>
-      <option value="titleDesc">Title (Z-A)</option>
-      <option value="imdbRating">IMDb Rating</option>
-    </select>
-  </div>
-  <div id="result-count" style="text-align:center;font-size:1.1em;color:#00d2ff;margin-bottom:1em;"></div>
-  <div id="movie-list" class="movie-grid"></div>
-  <button class="fab" id="topBtn" title="Back to Top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-    .genre-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      justify-content: center;
-      margin: 1.2rem 0 0.5rem 0;
-      padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-      background: rgba(0,210,255,0.07);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px #00d2ff11;
-      position: relative;
-      z-index: 2;
-    }
-    .genre-chip {
-      background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
-      color: #fff;
-      border: none;
-      border-radius: 16px;
-      padding: 0.4em 1.1em;
-      font-size: 1em;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 2px 8px #00d2ff33;
-      transition: background 0.2s, color 0.2s, transform 0.2s;
-      margin-bottom: 0.3em;
-    }
-    .genre-chip.active, .genre-chip:hover {
-      background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
-      color: #232526;
-      transform: scale(1.08);
-    }
+  <!-- Particle Generation Script (same as index.html) -->
   <script>
-    let currentList = [];
-    let initialMovies = [];
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.width = Math.random() * 3 + 1 + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.animationDuration = Math.random() * 20 + 10 + 's';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(particle);
+    }
 
-    window.onload = () => {
-      if (typeof movies !== 'undefined' && movies.length > 0) {
-        initialMovies = [...movies];
-        currentList = [...initialMovies];
-        renderGenreBar(initialMovies);
-        display(currentList);
-      } else {
-        document.getElementById("movie-list").innerHTML = "<p style='text-align: center; color: #ccc;'>No movies found in movie.js.</p>";
+    document.addEventListener("DOMContentLoaded", () => {
+      for (let i = 0; i < 30; i++) {
+        createParticle();
       }
-    };
+    });
+  </script>
+  
+  <!-- Link to the data files: movie.js contains recommendations; data.js contains the broader watchlist. -->
+  <script src="./movie.js"></script>
+  <script src="./data.js"></script>
 
-    function display(movieList) {
-      const container = document.getElementById("movie-list");
-      const resultCount = document.getElementById("result-count");
-      container.innerHTML = "";
-      resultCount.textContent = `Showing ${movieList.length} movie${movieList.length !== 1 ? 's' : ''}`;
-      if (movieList.length === 0) {
-        container.innerHTML = "<p style='text-align: center; color: #ccc;'>No movies match your search or filter.</p>";
+  <div class="container">
+    <a href="./index.html" class="back-link">← Go Back to Main Hub</a>
+    
+    <h1>🎬 Movie Recommendations Vault</h1>
+    <p class="subtitle">A curated list of must-watch movies (non-series) recommended for you.</p>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <input type="text" id="searchInput" placeholder="Search by title, genre, or tag..." onkeyup="applyFilters()" />
+      <select id="yearFilter" onchange="applyFilters()">
+        <option value="">All Years</option>
+      </select>
+      <select id="platformFilter" onchange="applyFilters()">
+        <option value="">All Platforms</option>
+      </select>
+      <select id="ratingFilter" onchange="applyFilters()">
+        <option value="">All Ratings</option>
+        <option value="8.0">IMDb 8.0+</option>
+        <option value="7.5">IMDb 7.5+</option>
+      </select>
+      <select id="mustWatchFilter" onchange="applyFilters()">
+        <option value="">All Statuses</option>
+        <option value="true">Must Watch</option>
+      </select>
+    </div>
+
+    <!-- Watchlist Grid Container -->
+    <div id="vaultContainer">
+      <!-- Movie cards will be rendered here by JavaScript -->
+      <p class="no-results" style="grid-column: 1 / -1; display: none;">Loading movie data...</p>
+    </div>
+  </div>
+
+  <script>
+    let movieData = [];
+    
+  document.addEventListener('DOMContentLoaded', () => {
+    // Accept data from either movie.js (window.movieRecommendations)
+    // or data.js (window.myWatchlist). Prefer movieRecommendations when present.
+    const srcRecommendations = window.movieRecommendations;
+    const srcWatchlist = window.myWatchlist;
+
+    if (Array.isArray(srcRecommendations) && srcRecommendations.length > 0) {
+      movieData = srcRecommendations.slice();
+    } else if (Array.isArray(srcWatchlist) && srcWatchlist.length > 0) {
+      // data.js doesn't tag movies explicitly; treat items without 'seasons' as movies
+      movieData = srcWatchlist.filter(item => !item.seasons && !item.episodes);
+    } else {
+      console.error('Error: No movie data found. Ensure movie.js or data.js is loaded and defines the expected arrays.');
+      document.getElementById('vaultContainer').innerHTML = '<p class="no-results" style="color: red;">Failed to load data.</p>';
+      return;
+    }
+
+    // 2. Initialize filter options (Years and Platforms)
+    initializeFilters(movieData);
+
+    // 3. Initial render
+    applyFilters();
+  });
+
+    // Helper function to dynamically populate dropdowns
+    function initializeFilters(data) {
+        const years = new Set();
+        const platforms = new Set();
+
+        data.forEach(item => {
+            if (item.year) years.add(item.year);
+            if (item.platform) platforms.add(item.platform);
+        });
+
+        const yearFilter = document.getElementById('yearFilter');
+        Array.from(years).sort((a, b) => b - a).forEach(year => {
+            yearFilter.innerHTML += `<option value="${year}">${year}</option>`;
+        });
+
+        const platformFilter = document.getElementById('platformFilter');
+        Array.from(platforms).sort().forEach(platform => {
+            platformFilter.innerHTML += `<option value="${platform}">${platform}</option>`;
+        });
+    }
+
+    // Main filtering and rendering function
+    function applyFilters() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const year = document.getElementById('yearFilter').value;
+      const platform = document.getElementById('platformFilter').value;
+      const minRating = parseFloat(document.getElementById('ratingFilter').value);
+      const mustWatch = document.getElementById('mustWatchFilter').value;
+      
+      let filteredList = movieData.filter(item => {
+        // Search Term Filter (Title, Genre, Tags)
+        const matchesSearch = item.title.toLowerCase().includes(searchTerm) ||
+                              item.genre.toLowerCase().includes(searchTerm) ||
+                              (item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchTerm)));
+
+        // Year Filter
+        const matchesYear = !year || item.year.toString() === year;
+
+        // Platform Filter
+        const matchesPlatform = !platform || item.platform === platform;
+
+        // Rating Filter
+        const matchesRating = !minRating || (item.imdbRating && item.imdbRating >= minRating);
+
+        // Must Watch Filter
+        const matchesMustWatch = !mustWatch || item.mustWatch.toString() === mustWatch;
+
+        return matchesSearch && matchesYear && matchesPlatform && matchesRating && matchesMustWatch;
+      });
+
+      renderWatchlist(filteredList);
+    }
+
+    // Function to draw the cards on the screen
+    function renderWatchlist(list) {
+      const container = document.getElementById('vaultContainer');
+      container.innerHTML = ''; // Clear previous results
+
+      if (list.length === 0) {
+        container.innerHTML = '<p class="no-results">No movies match your filters.</p>';
         return;
       }
-      movieList.forEach((movie, idx) => {
-        const card = document.createElement("div");
-        card.className = "movie-card";
-        // Must Watch star before number
-        let number = `<span style='font-weight:bold;color:#00d2ff;'>${idx+1}.</span>`;
-        let star = movie.isMustWatch ? `<span title='Must Watch' style='color:#ffd700;font-size:1.2em;margin-right:0.3em;'>⭐</span>` : "";
-        card.innerHTML += `
-          <h2>${star}${number} ${movie.title} <span style="font-size:0.9em; color:#fff7;">(${movie.yearOfRelease})</span></h2>
-          <p class="info-line"><span>Director:</span> <span class="clickable" onclick="filterBy('director', '${movie.director.replace(/'/g, "&#39;")}')">${movie.director}</span></p>
-          <p class="info-line"><span>Main Cast:</span> ${movie.mainCast}</p>
-          <p class="info-line"><span>Genre:</span> <span class="clickable" onclick="filterBy('genre', '${movie.genre.split(',')[0].trim()}')">${movie.genre}</span></p>
-          <p class="info-line"><span>Runtime:</span> ${movie.runtime}</p>
-          <p class="info-line"><span>IMDb Rating:</span> ${movie.rating && movie.rating.imdb ? movie.rating.imdb : 'N/A'}</p>
-          <p class="info-line"><span>Must Watch:</span> ${movie.isMustWatch ? '✅' : '❌'}</p>
-          <p class="info-line"><span>Hindi Dubbed:</span> ${movie.isHindiDubbed ? '✅' : '❌'}</p>
-          <p class="info-line"><span>Synopsis:</span> ${movie.synopsis}</p>
-          <div class="tags">${(movie.tags || []).map(tag => `<span class="tag clickable" onclick="filterByTag('${tag}')">${tag}</span>`).join('')}</div>
+
+      list.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'vault-card';
+        
+        // Tags display
+        const tagsHtml = item.tags && item.tags.length > 0 
+          ? `<p class="tag-list">#${item.tags.join(' #')}</p>`
+          : '';
+
+        // Poster HTML (lazy load). Provide a simple fallback when posterUrl is missing.
+        const posterHtml = item.posterUrl
+          ? `<img class="poster-img" src="${item.posterUrl}" alt="${(item.title||'movie').replace(/"/g,'&quot;')} poster" loading="lazy">`
+          : `<div class="poster-placeholder">No Image</div>`;
+
+        // Movie-specific details with a two-column layout (poster + details)
+        card.innerHTML = `
+          <div class="card-inner">
+            <div class="poster-wrap">${posterHtml}</div>
+            <div class="card-details">
+              <h2><span class="id">${index + 1}.</span> ${item.title}</h2>
+              <p class="info-line"><span>Year:</span> ${item.year || 'N/A'}</p>
+              <p class="info-line"><span>Genre:</span> ${item.genre || 'N/A'}</p>
+              <p class="info-line"><span>IMDb Rating:</span> ${item.imdbRating || 'N/A'}</p>
+              <p class="info-line"><span>Platform:</span> ${item.platform || 'N/A'}</p>
+              <p class="info-line"><span>Runtime:</span> ${item.runtime || 'N/A'}</p>
+              <div class="badges">
+                <span class="badge must-watch-badge" style="display: ${item.mustWatch ? 'inline-block' : 'none'};">Must Watch</span>
+                <span class="badge hindi-dubbed-badge" style="display: ${item.hindiDubbed ? 'inline-block' : 'none'};">Hindi Dubbed</span>
+              </div>
+              <p class="description">${item.description}</p>
+              ${tagsHtml}
+            </div>
+          </div>
         `;
         container.appendChild(card);
       });
     }
-    // --- Genre Bar ---
-    function getMajorGenres(movies, topN=8) {
-      const genreCount = {};
-      movies.forEach(m => {
-        if (!m.genre) return;
-        m.genre.split(',').map(g => g.trim()).forEach(g => {
-          if (!genreCount[g]) genreCount[g] = 0;
-          genreCount[g]++;
-        });
-      });
-      return Object.entries(genreCount)
-        .sort((a,b) => b[1]-a[1])
-        .slice(0, topN)
-        .map(([g]) => g);
-    }
-
-    function renderGenreBar(movies) {
-      const bar = document.getElementById('genre-bar');
-      bar.innerHTML = '';
-      const majorGenres = getMajorGenres(movies);
-      majorGenres.forEach(genre => {
-        const btn = document.createElement('button');
-        btn.className = 'genre-chip';
-        btn.textContent = genre;
-        btn.onclick = () => {
-          filterBy('genre', genre);
-          // Highlight active
-          document.querySelectorAll('.genre-chip').forEach(b=>b.classList.remove('active'));
-          btn.classList.add('active');
-        };
-        bar.appendChild(btn);
-      });
-    }
-
-    function searchTitles(query) {
-      if (!query) {
-        currentList = [...initialMovies];
-      } else {
-        currentList = initialMovies.filter(m => m.title.toLowerCase().includes(query.toLowerCase()));
-      }
-      display(currentList);
-    }
-
-    function filterBy(key, value) {
-      if (typeof value === 'boolean') {
-        currentList = initialMovies.filter(m => m[key] === value);
-      } else if (key === 'genre') {
-        currentList = initialMovies.filter(m => m.genre && m.genre.includes(value));
-      } else {
-        currentList = initialMovies.filter(m => m[key] === value);
-      }
-      display(currentList);
-    }
-
-    function filterByTag(tag) {
-      currentList = initialMovies.filter(m => m.tags && m.tags.includes(tag));
-      display(currentList);
-    }
-
-    function resetFilters() {
-      currentList = [...initialMovies];
-      display(currentList);
-      document.getElementById("search-input").value = "";
-    }
-
-    function sortBy(type) {
-      let sorted = [...currentList];
-      switch (type) {
-        case "yearDesc":
-          sorted.sort((a, b) => b.yearOfRelease - a.yearOfRelease);
-          break;
-        case "yearAsc":
-          sorted.sort((a, b) => a.yearOfRelease - b.yearOfRelease);
-          break;
-        case "titleAsc":
-          sorted.sort((a, b) => a.title.localeCompare(b.title));
-          break;
-        case "titleDesc":
-          sorted.sort((a, b) => b.title.localeCompare(a.title));
-          break;
-        case "imdbRating":
-          sorted.sort((a, b) => {
-            const aRating = a.rating && a.rating.imdb ? parseFloat(a.rating.imdb) : 0;
-            const bRating = b.rating && b.rating.imdb ? parseFloat(b.rating.imdb) : 0;
-            return bRating - aRating;
-          });
-          break;
-        default:
-          break;
-      }
-      display(sorted);
-    }
-
-    // Show/hide floating action button
-    window.addEventListener('scroll', () => {
-      document.getElementById('topBtn').style.display = window.scrollY > 300 ? 'flex' : 'none';
-    });
-    document.getElementById('topBtn').style.display = 'none';
   </script>
 </body>
 </html>
