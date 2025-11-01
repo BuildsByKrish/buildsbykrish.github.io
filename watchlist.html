@@ -270,49 +270,43 @@
   <script src="data.js"></script>
   
   <script>
-    // Define the global variable here, but assign it inside the event listener
-    let myWatchlist = []; 
+    // FIX: Access the global array directly and use DOMContentLoaded for maximum compatibility.
+    // The variable 'myWatchlist' must exist globally after data.js executes.
+    const myWatchlist = window.myWatchlist || []; 
 
-    // The event listener is changed to 'load' to ensure data.js has executed.
-    window.addEventListener('load', () => {
-      
-      // Attempt to access the global variable defined in data.js
-      if (typeof window.myWatchlist !== 'undefined' && Array.isArray(window.myWatchlist)) {
-        myWatchlist = window.myWatchlist;
+    document.addEventListener("DOMContentLoaded", initWatchlist);
+
+    function initWatchlist() {
+      // 1. Check if the variable exists and is a non-empty array
+      if (myWatchlist.length > 0) {
         
-        // Data is ready, initialize the page
-        if (myWatchlist.length > 0) {
-          updateSeriesCounter(myWatchlist.length);
-          populateFilters();
-          applyFilters();
+        // Data is successfully loaded
+        updateSeriesCounter(myWatchlist.length);
+        populateFilters();
+        
+        // Initial render and attaching listeners
+        applyFilters(); 
 
-          // Attach all event listeners
-          document.getElementById('searchInput').addEventListener('input', applyFilters);
-          document.getElementById('languageFilter').addEventListener('change', applyFilters);
-          document.getElementById('genreFilter').addEventListener('change', applyFilters);
-          document.getElementById('platformFilter').addEventListener('change', applyFilters);
-          document.getElementById('imdbFilter').addEventListener('change', applyFilters);
-          document.getElementById('hindiToggle').addEventListener('change', applyFilters);
-        } else {
-          document.getElementById('vaultContainer').innerHTML = '<p class="no-results">The `data.js` file was loaded, but the `myWatchlist` array is empty.</p>';
-        }
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('languageFilter').addEventListener('change', applyFilters);
+        document.getElementById('genreFilter').addEventListener('change', applyFilters);
+        document.getElementById('platformFilter').addEventListener('change', applyFilters);
+        document.getElementById('imdbFilter').addEventListener('change', applyFilters);
+        document.getElementById('hindiToggle').addEventListener('change', applyFilters);
+
       } else {
-        document.getElementById('vaultContainer').innerHTML = '<p class="no-results">Error: Could not find the `myWatchlist` array. Check if `data.js` is in the same directory and the array is named correctly.</p>';
+        // Fallback message if the script failed to load/execute
+        document.getElementById('vaultContainer').innerHTML = '<p class="no-results" style="color: var(--secondary-neon); padding: 2rem; border: 1px dashed var(--secondary-neon);">❌ ERROR: Data not loaded. Check the **Browser Console (F12)** for errors. **Fix Action: Please try a Hard Refresh (Ctrl+Shift+R or Cmd+Shift+R) to clear your browser cache.**</p>';
       }
-
-      // Show/hide the "go to top" button
-      window.onscroll = () => {
-        const goTopBtn = document.getElementById("goTopBtn");
-        goTopBtn.style.display = (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? "block" : "none";
-      };
-    });
-
+    }
+    
     function updateSeriesCounter(count) {
       const counterElement = document.getElementById('series-counter');
       counterElement.textContent = `${count} / 1000 Watched`;
     }
 
     function populateFilters() {
+      // Functions now use the globally scoped `myWatchlist`
       const languages = [...new Set(myWatchlist.map(item => item.language).filter(Boolean))].sort();
       const genres = [...new Set(myWatchlist.map(item => item.genre).filter(Boolean))].sort();
       const platforms = [...new Set(myWatchlist.map(item => item.platform).filter(Boolean))].sort();
@@ -394,6 +388,14 @@
         container.appendChild(card);
       });
     }
+
+    // Show/hide the "go to top" button
+    window.onscroll = () => {
+      const goTopBtn = document.getElementById("goTopBtn");
+      if (goTopBtn) {
+        goTopBtn.style.display = (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? "block" : "none";
+      }
+    };
   </script>
 </body>
 </html>
