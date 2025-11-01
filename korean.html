@@ -236,6 +236,38 @@
       gap: 0.5rem;
       margin-top: 0.5rem;
     }
+    /* Poster styles */
+    .poster-wrap {
+      width: 100%;
+      height: 420px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f8eaf3, #fff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+    }
+    .poster-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+    .series-card:hover .poster-img {
+      transform: scale(1.03);
+    }
+    .poster-placeholder {
+      width: 60%;
+      height: 60%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 1rem;
+    }
     .star-icon {
       color: var(--must-watch-gold);
       font-size: 1.2rem;
@@ -402,7 +434,12 @@
       seriesList.forEach(series => {
         const seriesCard = document.createElement("div");
         seriesCard.className = "series-card";
+        // Use posterUrl when available, otherwise show a placeholder image
+        const posterSrc = series.posterUrl || 'https://via.placeholder.com/500x750?text=No+Poster';
         seriesCard.innerHTML = `
+          <div class="poster-wrap">
+            <img class="poster-img" loading="lazy" src="${posterSrc}" alt="${series.title} poster" onerror="this.onerror=null;this.src='https://via.placeholder.com/500x750?text=No+Poster'" />
+          </div>
           <h2><span style="color: var(--text-dark); font-weight: 400;">#${series.id}</span> ${series.title} <span style="font-size: 1.2rem; color: #aaa; font-weight: 400;">(${series.year})</span></h2>
           <p class="info-line"><span>Director:</span> <span class="clickable">${series.director || 'N/A'}</span></p>
           <p class="info-line"><span>Main Cast:</span> ${series.mainCast || 'N/A'}</p>
