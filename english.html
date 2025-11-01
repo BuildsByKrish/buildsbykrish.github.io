@@ -166,6 +166,28 @@
             margin-top: 0.5rem;
         }
 
+        /* Poster styles */
+        .poster-wrap {
+            width: 100%;
+            height: 420px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #111 0%, #222 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .poster-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+        .series-card:hover .poster-img { transform: scale(1.03); }
+        .poster-placeholder { color: #888; font-size: 0.95rem; }
+
         .genre, .tag {
             display: inline-block;
             background-color: #333;
@@ -347,9 +369,14 @@
                 const mustWatchClass = series.mustwatch ? 'must-watch' : '';
                 const watchedClass = isWatched ? 'watched' : '';
 
+                // Use posterUrl when available; fallback to placeholder
+                const posterSrc = series.posterUrl || 'https://via.placeholder.com/500x750?text=No+Poster';
                 grid.innerHTML += `
                     <div class="series-card ${mustWatchClass} ${watchedClass}" id="series-${series.id}">
                         <button class="watched-btn" onclick="toggleWatchedStatus(${series.id})">${isWatched ? '✅' : '👀'}</button>
+                        <div class="poster-wrap">
+                            <img class="poster-img" loading="lazy" src="${posterSrc}" alt="${(series.title||'series').replace(/"/g,'&quot;')} poster" onerror="this.onerror=null;this.src='https://via.placeholder.com/500x750?text=No+Poster'" />
+                        </div>
                         <h2 class="series-title">${series.title} ${isNewTag}</h2>
                         <p class="series-info">
                             <span class="platform ${platformClass}">${series.platform}</span>
