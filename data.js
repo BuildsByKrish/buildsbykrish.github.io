@@ -1,4 +1,4 @@
-const myWatchlist = [
+window.myWatchlist = [
   {
     id: 1,
     title: "Farzi",
