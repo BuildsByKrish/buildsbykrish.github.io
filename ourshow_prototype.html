@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OurShow Prototype</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* small utility for placeholder poster */
+    .poster-placeholder { background: linear-gradient(135deg,#0ea5e9,#ec4899); display:flex;align-items:center;justify-content:center;color:white;font-weight:700 }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
+  <div class="max-w-6xl mx-auto p-6">
+    <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-3">
+        <button id="menuBtn" class="p-2 rounded-md bg-gray-800 hover:bg-gray-700">☰</button>
+        <h1 class="text-3xl font-extrabold tracking-tight"><span class="text-white">our</span><span class="text-pink-500">show</span></h1>
+      </div>
+      <nav class="hidden md:flex gap-4 items-center text-sm text-gray-300">
+        <a href="#watchlist" class="hover:text-white">Watchlist</a>
+        <a href="#movies" class="hover:text-white">Movies</a>
+        <a href="#series" class="hover:text-white">Series</a>
+        <a href="#submit" class="hover:text-white">Submit</a>
+      </nav>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <aside id="sidebar" class="col-span-1 hidden md:block bg-gray-800 p-4 rounded-md">
+        <h3 class="text-sm font-semibold text-gray-200 mb-3">Categories</h3>
+        <ul class="text-sm space-y-2 text-gray-300">
+          <li><a href="#best-english" class="hover:text-white">Best English Series</a></li>
+          <li><a href="#best-hindi" class="hover:text-white">Best Hindi Series</a></li>
+          <li><a href="#best-kdrama" class="hover:text-white">Best K-Dramas</a></li>
+          <li><a href="#best-cdrama" class="hover:text-white">Best C-Dramas</a></li>
+          <li><a href="#best-movies" class="hover:text-white">Best Movies</a></li>
+          <li><a href="#submit" class="hover:text-white">Submit Recommendation</a></li>
+        </ul>
+      </aside>
+
+      <main class="col-span-1 md:col-span-3 space-y-8">
+        <section id="watchlist" class="bg-gray-800 p-4 rounded-md">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold">Your Watchlist</h2>
+            <div class="text-sm text-gray-400">Total: <span id="watchlistCount">0</span></div>
+          </div>
+          <div id="watchlistGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+        </section>
+
+        <section id="movies" class="bg-gray-800 p-4 rounded-md">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold">Movies</h2>
+            <div class="text-sm text-gray-400">Total: <span id="moviesCount">0</span></div>
+          </div>
+          <div id="moviesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+        </section>
+
+        <section id="series" class="bg-gray-800 p-4 rounded-md">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-semibold">Series (all languages)</h2>
+            <div class="text-sm text-gray-400">Total: <span id="seriesCount">0</span></div>
+          </div>
+          <div id="seriesGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+        </section>
+
+        <section id="submit" class="bg-gray-800 p-4 rounded-md">
+          <h2 class="text-xl font-semibold mb-3">Submit a Recommendation</h2>
+          <p class="text-sm text-gray-400">Drop a quick PR or use the submit page in the repo to add recommendations.</p>
+        </section>
+      </main>
+    </div>
+
+    <footer class="text-center text-sm text-gray-500 mt-8">Prototype - data-powered by your local JS files & TMDB</footer>
+  </div>
+
+  <!-- Load your data files (they must attach arrays to window.*) -->
+  <script src="./data.js"></script>
+  <script src="./movie.js"></script>
+  <script src="./korean.js"></script>
+  <script src="./englishrecommendations.js"></script>
+  <script src="./hindirecommendations.js"></script>
+  <script src="./chineserecommendations.js"></script>
+
+  <!-- Prototype app logic -->
+  <script src="./prototype.js"></script>
+</body>
+</html>
