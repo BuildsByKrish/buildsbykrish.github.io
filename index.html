@@ -1,204 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Krish's Watchlist & Recommendation Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Bebas+Neue&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OurShow Prototype</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --primary-neon: #00eaff;
-      --secondary-neon: #ff00c8;
-      --dark-bg: #0a0a0e;
-      --card-bg: rgba(18, 18, 22, 0.7);
-      --card-border: rgba(0, 234, 255, 0.2);
-      --text-color: #f0f0f0;
-      --glow-shadow: 0 0 10px var(--primary-neon), 0 0 20px var(--primary-neon), 0 0 30px var(--primary-neon);
-      --button-hover-bg: rgba(0, 234, 255, 0.1);
-    }
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    html, body {
-      min-height: 100%;
-      font-family: 'Poppins', sans-serif;
-      color: var(--text-color);
-      line-height: 1.6;
-      background-color: var(--dark-bg);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      position: relative;
-      background-image:
-        linear-gradient(rgba(0, 234, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 234, 255, 0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: backgroundFlow 30s linear infinite;
-    }
+    /* small utility for placeholder poster */
+    .poster-placeholder { background: linear-gradient(135deg,#0ea5e9,#ec4899); display:flex;align-items:center;justify-content:center;color:white;font-weight:700 }
+    /* hide native scrollbars for carousels */
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
+  <div class="max-w-6xl mx-auto p-6">
+    <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-3">
+        <button id="menuBtn" class="p-2 rounded-md bg-gray-800 hover:bg-gray-700">☰</button>
+        <h1 class="text-3xl font-extrabold tracking-tight"><span class="text-white">our</span><span class="text-pink-500">show</span></h1>
+      </div>
+      <nav class="hidden md:flex gap-4 items-center text-sm text-gray-300">
+        <a href="#watchlist" class="hover:text-white">Watchlist</a>
+        <a href="#movies" class="hover:text-white">Movies</a>
+        <a href="#series" class="hover:text-white">Series</a>
+        <a href="#submit" class="hover:text-white">Submit</a>
+      </nav>
+    </header>
 
-    @keyframes backgroundFlow {
-      from { background-position: 0 0; }
-      to { background-position: 50px 50px; }
-    }
+    <div class="grid grid-cols-1 gap-6">
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at center, rgba(0, 234, 255, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
-      pointer-events: none;
-      animation: neonPulse 15s ease infinite;
-    }
-    
-    @keyframes neonPulse {
-      0% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.2); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 0.5; }
-    }
-    
-    .particle {
-        position: fixed;
-        background-color: var(--primary-neon);
-        border-radius: 50%;
-        opacity: 0;
-        animation: particle-flow linear infinite;
-        box-shadow: 0 0 5px var(--primary-neon);
-    }
+      <!-- Mobile / Global sliding menu (hidden by default) -->
+      <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
+        <div class="absolute inset-0 bg-black opacity-60" id="menuOverlay"></div>
+        <nav class="absolute left-0 top-0 h-full w-72 bg-gray-900 p-6 overflow-auto transform -translate-x-0">
+          <button id="closeMenu" class="mb-4 px-2 py-1 bg-gray-800 rounded">Close ✕</button>
+          <h3 class="text-lg font-semibold text-white mb-3">Navigation</h3>
+          <ul class="space-y-2 text-gray-300">
+            <li><a href="index.html" class="block hover:text-white">Home</a></li>
+            <li><a href="korean.html" class="block hover:text-white">Best K-Dramas</a></li>
+            <li><a href="chinese.html" class="block hover:text-white">Best C-Dramas</a></li>
+            <li><a href="english.html" class="block hover:text-white">Best English Series</a></li>
+            <li><a href="hindi.html" class="block hover:text-white">Best Hindi Series</a></li>
+            <li><a href="movies.html" class="block hover:text-white">Movies</a></li>
+            <li><a href="collections.html" class="block hover:text-white">Collections</a></li>
+            <li><a href="watchlist.html" class="block hover:text-white">Watchlist</a></li>
+            <li><a href="submit.html" class="block hover:text-white">Submit</a></li>
+            <li><a href="mustwatchvault.html" class="block hover:text-white">Must Watch Vault</a></li>
+          </ul>
+        </nav>
+      </div>
 
-    @keyframes particle-flow {
-        0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-        5% { opacity: 1; }
-        95% { opacity: 1; }
-        100% { transform: translateY(-20vh) scale(1); opacity: 0; }
-    }
+      <main class="space-y-8">
 
-    .container {
-      max-width: 900px;
-      width: 100%;
-      z-index: 10;
-      position: relative;
-      border: 2px solid var(--primary-neon);
-      border-radius: 25px;
-      padding: 30px;
-      background: var(--card-bg);
-      backdrop-filter: blur(15px);
-      box-shadow: 0 0 40px var(--primary-neon);
-      transition: all 0.5s ease;
-      margin: 20px 0;
-    }
+        <!-- Recently Released Movies (horizontal carousel) -->
+        <section id="recentMovies" class="bg-gray-800 p-4 rounded-md">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xl font-semibold">Recently Released Movies</h2>
+            <div class="flex gap-2">
+              <button data-scroll-target="recentMoviesRow" data-dir="left" class="px-2 py-1 bg-gray-700 rounded">◀</button>
+              <button data-scroll-target="recentMoviesRow" data-dir="right" class="px-2 py-1 bg-gray-700 rounded">▶</button>
+            </div>
+          </div>
+          <div id="recentMoviesRow" class="flex gap-3 overflow-x-auto scrollbar-hide py-2"></div>
+        </section>
 
-    .container:hover {
-        box-shadow: 0 0 60px var(--primary-neon), 0 0 80px var(--primary-neon);
-    }
-    
-    h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 8vw, 4rem);
-      text-align: center;
-      color: #fff;
-      text-shadow: var(--glow-shadow);
-      margin-bottom: 0.5rem;
-      letter-spacing: 2px;
-      animation: flicker 1s infinite alternate;
-    }
+        <!-- Recently Released Series (horizontal carousel) -->
+        <section id="recentSeries" class="bg-gray-800 p-4 rounded-md">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xl font-semibold">Recently Released Series</h2>
+            <div class="flex gap-2">
+              <button data-scroll-target="recentSeriesRow" data-dir="left" class="px-2 py-1 bg-gray-700 rounded">◀</button>
+              <button data-scroll-target="recentSeriesRow" data-dir="right" class="px-2 py-1 bg-gray-700 rounded">▶</button>
+            </div>
+          </div>
+          <div id="recentSeriesRow" class="flex gap-3 overflow-x-auto scrollbar-hide py-2"></div>
+        </section>
 
-    @keyframes flicker {
-      0% { text-shadow: var(--glow-shadow); }
-      50% { text-shadow: none; }
-      100% { text-shadow: var(--glow-shadow); }
-    }
+        <!-- Recently Released Dramas (K-Dramas) -->
+        <section id="recentDramas" class="bg-gray-800 p-4 rounded-md">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xl font-semibold">Recently Released Dramas (K-Dramas)</h2>
+            <div class="flex gap-2">
+              <button data-scroll-target="recentDramasRow" data-dir="left" class="px-2 py-1 bg-gray-700 rounded">◀</button>
+              <button data-scroll-target="recentDramasRow" data-dir="right" class="px-2 py-1 bg-gray-700 rounded">▶</button>
+            </div>
+          </div>
+          <div id="recentDramasRow" class="flex gap-3 overflow-x-auto scrollbar-hide py-2"></div>
+        </section>
 
-    .subtitle {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1rem;
-        text-align: center;
-        color: var(--secondary-neon);
-        text-shadow: 0 0 5px var(--secondary-neon);
-        margin-bottom: 2rem;
-        letter-spacing: 1px;
-    }
-    
-    .glass-card {
-      background: rgba(18, 18, 22, 0.4);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 234, 255, 0.1);
-      border-radius: 15px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: inset 0 0 10px rgba(0, 234, 255, 0.1);
-      margin-bottom: 2.5rem;
-      transition: all 0.5s ease;
-    }
+        <!-- Random Movies & Series (mixed grid) -->
+        <section id="randomGridSection" class="bg-gray-800 p-4 rounded-md">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xl font-semibold">Random Movies & Series</h2>
+            <button id="reshuffle" class="px-2 py-1 bg-gray-700 rounded">Reshuffle</button>
+          </div>
+          <div id="randomGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+        </section>
 
-    .glass-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(0, 234, 255, 0.2), 0 8px 32px rgba(0, 0, 0, 0.37);
-    }
-    
-    .glass-card p {
-      margin-bottom: 1rem;
-      color: var(--text-color);
-    }
+        <section id="submit" class="bg-gray-800 p-4 rounded-md">
+          <h2 class="text-xl font-semibold mb-3">Submit a Recommendation</h2>
+          <p class="text-sm text-gray-400">Drop a quick PR or use the submit page in the repo to add recommendations.</p>
+        </section>
+      </main>
+    </div>
 
-    .glass-card p:last-child {
-      margin-bottom: 0;
-    }
+    <footer class="text-center text-sm text-gray-500 mt-8">Prototype - data-powered by your local JS files & TMDB</footer>
+  </div>
 
-    .glass-card p strong {
-      color: var(--primary-neon);
-      text-shadow: 0 0 5px var(--primary-neon);
-    }
-    
-    .vault-buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-    
-    .vault-buttons button {
-      background: rgba(18, 18, 22, 0.5);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--card-border);
-      border-radius: 15px;
-      color: var(--text-color);
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    .vault-buttons button:hover {
-      background: var(--button-hover-bg);
-      transform: translateY(-5px) scale(1.03);
-      border-color: var(--primary-neon);
-      box-shadow: 0 0 15px var(--primary-neon), 0 8px 25px rgba(0, 0, 0, 0.4);
-      text-shadow: 0 0 5px #fff;
-    }
-    
-    .vault-buttons button:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    footer {
-      margin-top: 4rem;
-      text-align: center;
-      font-size: 0.9rem;
+  <!-- Load your data files (they must attach arrays to window.*) -->
+  <script src="./data.js"></script>
+  <script src="./movie.js"></script>
+  <script src="./korean.js"></script>
+  <script src="./englishrecommendations.js"></script>
+  <script src="./hindirecommendations.js"></script>
+  <script src="./chineserecommendations.js"></script>
+
+  <!-- Prototype app logic -->
+  <script src="./prototype.js"></script>
+</body>
+</html>
       color: rgba(255, 255, 255, 0.4);
       text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     }
