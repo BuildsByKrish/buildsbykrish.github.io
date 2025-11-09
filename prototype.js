@@ -1,255 +1,237 @@
-/* prototype.js - Fetches real-time movie and TV data from The Movie Database (TMDB) API.
-   Requires TMDB_API_KEY, TMDB_BASE_URL, and TMDB_IMAGE_BASE_URL to be defined globally.
-*/
+// ===== CONFIG =====
+const TMDB_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYTc1YzQ4MzJjZDQwY2YyYmY3NTMwN2ZkNGFiZTczNiIsIm5iZiI6MTc2MTk2MDQzNC42MzIsInN1YiI6IjY5MDU2MWYyNGQ0ZDdkYzlhYTU5N2IwZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Pj6KWB1P8WQZ-GmMIrhjK8Jb5yo_sbLuGIjFTuRC-aY";
+const TMDB_API_BASE = "https://api.themoviedb.org/3";
+const IMG_BASE = "https://image.tmdb.org/t/p/w500";
+const BACKDROP_BASE = "https://image.tmdb.org/t/p/original";
 
-// --- Utility Functions ---
-
-/**
- * Creates an HTML card element for a TMDB item (Movie or TV).
- * @param {object} tmdbItem - The data object from TMDB API.
- * @returns {HTMLElement} The created div element.
- */
-function makeCard(tmdbItem){
-  const div = document.createElement('div');
-  
-  // Determine if it's a carousel item
-  const isCarousel = div.parentElement && div.parentElement.classList.contains('flex');
-
-  // Use 'title' for movies, 'name' for TV series
-  const title = tmdbItem.title || tmdbItem.name || 'Untitled';
-  const year = (tmdbItem.release_date || tmdbItem.first_air_date || '').split('-')[0] || 'N/A';
-  const posterPath = tmdbItem.poster_path;
-  const rating = tmdbItem.vote_average ? tmdbItem.vote_average.toFixed(1) : 'N/A';
-
-  // Adjust card size and styling
-  div.className = isCarousel 
-    ? 'flex-shrink-0 w-32 md:w-40 bg-gray-900 rounded-lg overflow-hidden shadow-xl transition transform hover:scale-[1.02] duration-300'
-    : 'bg-gray-900 rounded-lg overflow-hidden shadow-xl transition transform hover:scale-[1.02] duration-300';
-  
-  // The poster area
-  const poster = document.createElement('div');
-  poster.className = isCarousel 
-    ? 'w-full h-48 md:h-60 bg-gray-800 poster-placeholder'
-    : 'w-full h-48 md:h-60 bg-gray-800 poster-placeholder';
-
-  if(posterPath){
-    const img = document.createElement('img');
-    img.src = `${TMDB_IMAGE_BASE_URL}${posterPath}`;
-    img.alt = title + ' Poster';
-    img.loading = 'lazy';
-    img.className = 'w-full h-full object-cover';
-    // Fallback for broken image or missing path
-    img.onerror = ()=>{ 
-        img.parentNode.innerHTML = '';
-        img.parentNode.textContent = title.slice(0, 16);
-        img.parentNode.classList.add('flex', 'items-center', 'justify-center', 'text-center', 'p-2');
-    };
-    poster.innerHTML = '';
-    poster.appendChild(img);
-  } else {
-    poster.textContent = title.slice(0, 16);
-    poster.classList.add('flex', 'items-center', 'justify-center', 'text-center', 'p-2');
+// ===== FETCH =====
+async function fetchTMDB(endpoint) {
+  try {
+    const res = await fetch(`${TMDB_API_BASE}${endpoint}`, {
+      headers: { Authorization: TMDB_TOKEN },
+    });
+    if (!res.ok) {
+      console.error("API error:", res.status, await res.text());
+      return { results: [] };
+    }
+    return await res.json();
+  } catch (err) {
+    console.error("Fetch error:", err);
+    return { results: [] };
   }
-  div.appendChild(poster);
-  
-  // The meta information area
-  const meta = document.createElement('div');
-  meta.className = 'p-2 text-xs h-12 flex flex-col justify-center';
-  meta.innerHTML = `
-    <h4 class="font-bold truncate text-gray-100">${title}</h4>
-    <p class="text-gray-400">${year} | ${rating !== 'N/A' ? '⭐' + rating : ''}</p>
-  `;
-  div.appendChild(meta);
-  
-  return div;
 }
 
-/**
- * Renders a list of TMDB items into a specified carousel row container.
- * @param {string} containerId - The ID of the HTML container.
- * @param {Array} items - The array of TMDB results.
- */
-function renderCarousel(containerId, items) {
+// ===== DOM HELPERS =====
+// makeCard now shows rating beside year
+function makeCard(item, type) {
+  const title = item.title || item.name || "Unknown";
+  const year = (item.release_date || item.first_air_date || "").split("-")[0] || "N/A";
+  const vote = (typeof item.vote_average === "number") ? item.vote_average.toFixed(1) : (item.vote_average ? item.vote_average : "N/A");
+  const img = item.poster_path ? IMG_BASE + item.poster_path : "https://via.placeholder.com/300x450?text=No+Image";
+
+  // card min width allows horizontal rows to scroll nicely
+  return `
+    <div class="cursor-pointer min-w-[150px]" data-id="${item.id}" data-type="${type}">
+      <img src="${img}" class="rounded-lg aspect-[2/3] object-cover hover:opacity-80 transition" alt="${escapeHtml(title)}">
+      <h3 class="mt-1 text-sm font-medium">${escapeHtml(title)}</h3>
+      <p class="text-gray-400 text-xs">${escapeHtml(year)} • ⭐ ${escapeHtml(vote)}</p>
+    </div>`;
+}
+
+function renderRow(containerId, data, type) {
   const container = document.getElementById(containerId);
-  console.log(`[RENDER] Attempting to render ${items.length} items to container: #${containerId}`); // DEBUG LOG
-  
-  if (!container) {
-    console.error(`Container ID ${containerId} not found.`);
+  if (!container) return;
+  if (!data || !data.results || data.results.length === 0) {
+    container.innerHTML = `<p class="text-gray-400 text-sm">No results found.</p>`;
     return;
   }
+  container.innerHTML = data.results.map(item => makeCard(item, type)).join("");
+}
 
-  // Clear existing placeholder content
-  container.innerHTML = ''; 
-
-  if (!Array.isArray(items) || items.length === 0) {
-    container.innerHTML = '<p class="text-gray-400 p-4">Could not load content from TMDB.</p>';
+function renderSection(containerId, data, type) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  if (!data || !data.results || data.results.length === 0) {
+    container.innerHTML = `<p class="text-gray-400 text-sm">No results found.</p>`;
     return;
   }
+  container.innerHTML = data.results.map(item => makeCard(item, type)).join("");
+}
 
-  items.forEach(item => {
-    container.appendChild(makeCard(item));
+// small helper to avoid injection if any field contains odd characters
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, function (m) {
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m];
   });
 }
 
-/**
- * Fetches data from a TMDB endpoint with exponential backoff for retries.
- * @param {string} endpoint - The TMDB API path (e.g., '/trending/movie/day').
- * @param {number} retries - Current retry count (default 3).
- */
-async function fetchData(endpoint, retries = 3) {
-  if (TMDB_API_KEY === "YOUR_TMDB_API_KEY_HERE" || !TMDB_API_KEY) {
-    console.error("Please set your TMDB API Key in index.html to load data.");
-    return [];
-  }
-  
-  const url = `${TMDB_BASE_URL}${endpoint}?api_key=${TMDB_API_KEY}`;
-  
-  for (let attempt = 1; attempt <= retries; attempt++) {
-    try {
-      console.log(`[FETCH] Attempt ${attempt}: Fetching ${endpoint}`); // DEBUG LOG
-      const response = await fetch(url);
-      
-      if (!response.ok) {
-        // Log the exact error status and message from TMDB if possible
-        const errorText = await response.text();
-        console.error(`[FETCH ERROR] TMDB request failed for ${endpoint} with status ${response.status}. Response body: ${errorText}`); // DEBUG LOG
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      console.log(`[FETCH SUCCESS] Received ${data.results ? data.results.length : 0} results for ${endpoint}.`); // DEBUG LOG
-      return data.results || []; // Return the array of results
-      
-    } catch (error) {
-      if (attempt === retries) {
-        console.error(`[FATAL] Failed to fetch ${endpoint} after ${retries} attempts.`); // DEBUG LOG
-        return [];
-      }
-      // Exponential backoff: 1s, 2s, 4s delay
-      const delay = Math.pow(2, attempt) * 1000; 
-      await new Promise(resolve => setTimeout(resolve, delay));
-    }
-  }
+// ===== PAGE NAV =====
+function showPage(pageId) {
+  document.querySelectorAll(".spa-page").forEach(p => p.classList.add("hidden"));
+  const el = document.getElementById(pageId);
+  if (el) el.classList.remove("hidden");
 }
 
-/**
- * Shuffles an array in place (Fisher-Yates algorithm).
- * @param {Array} array - The array to shuffle.
- * @returns {Array} The shuffled array.
- */
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
+// ===== SEARCH =====
+const searchInput = document.getElementById("search-input");
+if (searchInput) {
+  searchInput.addEventListener("keypress", e => {
+    if (e.key === "Enter") performSearch(e.target.value.trim());
+  });
 }
 
-// --- Main Application Execution ---
+async function performSearch(query) {
+  if (!query) return;
+  showPage("page-search");
+  const data = await fetchTMDB(`/search/multi?query=${encodeURIComponent(query)}&language=en-US`);
+  const container = document.getElementById("search-content");
+  if (!container) return;
+  container.innerHTML = (data.results || []).map(item => makeCard(item, item.media_type || "movie")).join("");
+}
 
-document.addEventListener('DOMContentLoaded', () => {
+// ===== MODAL =====
+const modal = document.getElementById("detail-modal");
+const modalContent = document.getElementById("modal-content");
 
-    // --- Mobile Menu Toggle Logic ---
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeMenu = document.getElementById('closeMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    function toggleMenu() {
-        if(mobileMenu) mobileMenu.classList.toggle('hidden');
-        document.body.classList.toggle('overflow-hidden'); 
+// robust lookup for close button (supports id "close-modal" or "close_modal" or class "close-modal")
+const closeBtn = document.getElementById("close-modal") || document.getElementById("close_modal") || document.querySelector(".close-modal");
+
+// close click
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    if (modal) modal.classList.add("hidden");
+  });
+}
+
+// close by clicking overlay (outside modal content)
+if (modal) {
+  modal.addEventListener("click", (e) => {
+    // if clicked directly on the overlay (id detail-modal), close
+    if (e.target && e.target.id === "detail-modal") {
+      modal.classList.add("hidden");
     }
+  });
+}
 
-    if(menuBtn) menuBtn.addEventListener('click', toggleMenu);
-    if(closeMenu) closeMenu.addEventListener('click', toggleMenu);
-    if(menuOverlay) menuOverlay.addEventListener('click', toggleMenu);
+// Prevent global click handler from firing when interacting with modal
+document.body.addEventListener("click", (e) => {
+  // if click occurs inside the modal (either the overlay or its content), ignore for card-open logic
+  if (e.target.closest("#detail-modal")) return;
 
-    // --- Carousel Scroll Buttons Logic ---
-    document.querySelectorAll('[data-scroll-target]').forEach(btn => {
-        btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-scroll-target');
-        const dir = btn.getAttribute('data-dir');
-        const el = document.getElementById(targetId);
-        if(!el) return;
-        
-        const amount = Math.round(el.clientWidth * 0.7) * (dir === 'left' ? -1 : 1);
-        el.scrollBy({ left: amount, behavior: 'smooth' });
-        });
-    });
-
-
-    // --- TMDB Data Loading ---
-    async function loadTMDBData() {
-        console.log("[INIT] Starting TMDB data load..."); // DEBUG LOG
-        const endpoints = {
-            trendingMovies: '/trending/movie/day',
-            topRatedTV: '/tv/top_rated',
-            popularWeek: '/trending/all/week',
-            upcomingMovies: '/movie/upcoming',
-        };
-
-        const [
-            trendingMoviesData, 
-            topRatedTVData, 
-            popularWeekData, 
-            upcomingMoviesData
-        ] = await Promise.all([
-            fetchData(endpoints.trendingMovies),
-            fetchData(endpoints.topRatedTV),
-            fetchData(endpoints.popularWeek),
-            fetchData(endpoints.upcomingMovies)
-        ]);
-        
-        // Check collected data lengths - DEBUG LOG
-        console.log(`[DATA SUMMARY] Trending Movies: ${trendingMoviesData.length}, Top TV: ${topRatedTVData.length}, Popular Week: ${popularWeekData.length}`); 
-
-        // 1. Render Carousels
-        renderCarousel('trendingMoviesRow', trendingMoviesData);
-        renderCarousel('topRatedTVRow', topRatedTVData);
-        renderCarousel('popularWeekRow', popularWeekData);
-
-        // 2. Prepare data for the Random Grid
-        // Combine all fetched data into the global array
-        window.allFetchedData = [
-            ...trendingMoviesData, 
-            ...topRatedTVData, 
-            ...popularWeekData, 
-            ...upcomingMoviesData
-        ].filter(item => item && item.poster_path); // Filter out items without posters
-        
-        console.log(`[RANDOM GRID] Total items collected for grid: ${window.allFetchedData.length}`); // DEBUG LOG
-        
-        // Initial render of the random grid
-        renderRandomGrid();
-    }
-    
-    // Function to render the random grid using the globally aggregated data
-    function renderRandomGrid() {
-        const randomGridContainer = document.getElementById('randomGrid');
-        const combinedData = window.allFetchedData;
-
-        if (!randomGridContainer || combinedData.length === 0) {
-             randomGridContainer.innerHTML = '<p class="text-gray-400 col-span-full p-4">No content available for random selection.</p>';
-             return;
-        }
-        
-        // Shuffle the data and pick the first 12 items
-        const randomizedItems = shuffleArray([...combinedData]).slice(0, 12);
-        
-        // Clear and render
-        randomGridContainer.innerHTML = '';
-        randomizedItems.forEach(item => {
-            randomGridContainer.appendChild(makeCard(item));
-        });
-    }
-
-    // Reshuffle random grid button logic
-    const reshuffle = document.getElementById('reshuffle');
-    if(reshuffle){
-        reshuffle.addEventListener('click', renderRandomGrid);
-    }
-    
-    // Start data loading
-    loadTMDBData();
-
+  // otherwise treat as a potential card click
+  const card = e.target.closest("[data-id]");
+  if (card) {
+    // get media type (movie/tv) but for "mixed" results media_type might already be present in markup
+    const type = card.dataset.type || "movie";
+    fetchDetailsAndShowModal(card.dataset.id, type);
+  }
 });
+
+// ===== FETCH & SHOW DETAILS (two-step) =====
+async function fetchDetailsAndShowModal(id, type) {
+  if (!id || !type) return;
+  const data = await fetchTMDB(`/${type}/${id}?language=en-US`);
+  // safe-fallback fields
+  const title = data.title || data.name || "Untitled";
+  const date = data.release_date || data.first_air_date || "Unknown";
+  const genres = (data.genres || []).map(g => g.name).join(", ") || "N/A";
+  const runtime = data.runtime || data.episode_run_time?.[0] || "N/A";
+  const languages = (data.spoken_languages || data.languages || []).map(l => l.english_name || l.name || l.iso_639_1).join(", ") || "N/A";
+  const status = data.status || "N/A";
+
+  modalContent.innerHTML = `
+    <div>
+      ${data.backdrop_path ? `<img src="${BACKDROP_BASE + data.backdrop_path}" class="w-full h-60 object-cover rounded-t-lg opacity-80">` : ""}
+      <div class="p-4">
+        <h2 class="text-2xl font-bold mb-2">${escapeHtml(title)}</h2>
+        <p class="text-gray-400 mb-2">${escapeHtml(date)}</p>
+        <p class="mb-3 text-sm">${escapeHtml(data.overview || "No description available.")}</p>
+        <p class="text-sm"><strong>Rating:</strong> ${escapeHtml(data.vote_average ?? "N/A")}/10</p>
+        <p class="text-sm"><strong>Genres:</strong> ${escapeHtml(genres)}</p>
+        <p class="text-sm"><strong>Runtime:</strong> ${escapeHtml(runtime)}</p>
+        <p class="text-sm"><strong>Languages:</strong> ${escapeHtml(languages)}</p>
+        <p class="text-sm"><strong>Status:</strong> ${escapeHtml(status)}</p>
+      </div>
+    </div>
+  `;
+  if (modal) modal.classList.remove("hidden");
+}
+
+// ===== "MORE" BUTTONS =====
+document.body.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-more]");
+  if (!btn) return;
+
+  const section = btn.dataset.more;
+  showPage("page-all");
+  let endpoint = "";
+  let title = "";
+  let type = "movie";
+
+  switch (section) {
+    case "trending": endpoint = "/trending/all/week"; title = "🔥 Trending This Week"; break;
+    case "popular-movies": endpoint = "/movie/popular"; title = "🎬 Popular Movies"; break;
+    case "top-movies": endpoint = "/movie/top_rated"; title = "⭐ Top Rated Movies"; break;
+    case "upcoming": endpoint = "/movie/upcoming"; title = "🕒 Upcoming Movies"; break;
+    case "popular-tv": endpoint = "/tv/popular"; title = "📺 Popular TV Shows"; type = "tv"; break;
+    case "top-tv": endpoint = "/tv/top_rated"; title = "🏆 Top Rated TV Shows"; type = "tv"; break;
+    case "now-playing": endpoint = "/movie/now_playing"; title = "🍿 Now Playing in Theatres"; break;
+    case "action": endpoint = "/discover/movie?with_genres=28"; title = "💥 Action & Adventure"; break;
+    case "romance": endpoint = "/discover/movie?with_genres=10749"; title = "💘 Romantic Movies"; break;
+    case "horror": endpoint = "/discover/movie?with_genres=27"; title = "👻 Horror Picks"; break;
+    case "scifi": endpoint = "/discover/movie?with_genres=878"; title = "🧠 Mind-Bending Sci-Fi"; break;
+    case "comedy": endpoint = "/discover/tv?with_genres=35"; title = "😂 Comedy TV Shows"; type = "tv"; break;
+    default:
+      endpoint = "/movie/popular"; title = "🎬 Movies";
+  }
+
+  const data = await fetchTMDB(`${endpoint}?language=en-US&page=1`);
+  document.getElementById("all-title").innerText = title;
+  document.getElementById("all-content").innerHTML = (data.results || []).map(item => makeCard(item, type)).join("");
+});
+
+// ===== BACK TO HOME =====
+const backHomeBtn = document.getElementById("back-home");
+if (backHomeBtn) backHomeBtn.addEventListener("click", () => showPage("page-home"));
+
+// ===== INITIAL LOAD =====
+async function init() {
+  showPage("page-home");
+
+  const sections = [
+    { id: "trending", title: "🔥 Trending This Week", endpoint: "/trending/all/week", type: "movie" },
+    { id: "popular-movies", title: "🎬 Popular Movies", endpoint: "/movie/popular", type: "movie" },
+    { id: "top-movies", title: "⭐ Top Rated Movies", endpoint: "/movie/top_rated", type: "movie" },
+    { id: "upcoming", title: "🕒 Upcoming Movies", endpoint: "/movie/upcoming", type: "movie" },
+    { id: "popular-tv", title: "📺 Popular TV Shows", endpoint: "/tv/popular", type: "tv" },
+    { id: "top-tv", title: "🏆 Top Rated TV Shows", endpoint: "/tv/top_rated", type: "tv" },
+    { id: "now-playing", title: "🍿 Now Playing in Theatres", endpoint: "/movie/now_playing", type: "movie" },
+    { id: "action", title: "💥 Action & Adventure", endpoint: "/discover/movie?with_genres=28", type: "movie" },
+    { id: "romance", title: "💘 Romantic Movies", endpoint: "/discover/movie?with_genres=10749", type: "movie" },
+    { id: "horror", title: "👻 Horror Picks", endpoint: "/discover/movie?with_genres=27", type: "movie" },
+    { id: "scifi", title: "🧠 Mind-Bending Sci-Fi", endpoint: "/discover/movie?with_genres=878", type: "movie" },
+    { id: "comedy", title: "😂 Comedy TV Shows", endpoint: "/discover/tv?with_genres=35", type: "tv" },
+  ];
+
+  const container = document.getElementById("sections-container");
+  if (!container) return;
+
+  for (const s of sections) {
+    container.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-semibold">${s.title}</h2>
+          <button class="text-red-500 hover:underline" data-more="${s.id}">More ›</button>
+        </div>
+        <div id="${s.id}-row" class="flex overflow-x-auto space-x-3 pb-2"></div>
+      </div>`
+    );
+
+    const data = await fetchTMDB(`${s.endpoint}?language=en-US`);
+    renderRow(`${s.id}-row`, data, s.type);
+  }
+}
+
+init();
