@@ -1,159 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>OurShow Prototype</title>
-  <!-- Tailwind CDN -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OurShow</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* small utility for placeholder poster */
-    .poster-placeholder { background: linear-gradient(135deg,#0ea5e9,#ec4899); display:flex;align-items:center;justify-content:center;color:white;font-weight:700 }
-    /* hide native scrollbars for carousels */
-    .scrollbar-hide::-webkit-scrollbar { display: none; }
-    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-  </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen antialiased">
-  <div class="max-w-6xl mx-auto p-6">
-    <header class="flex items-center justify-between mb-6">
-      <div class="flex items-center gap-3">
-        <!-- Menu Button for Mobile -->
-        <button id="menuBtn" class="p-2 rounded-md bg-gray-800 hover:bg-gray-700">☰</button>
-        <h1 class="text-3xl font-extrabold tracking-tight"><span class="text-white">our</span><span class="text-pink-500">show</span></h1>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-gray-800 shadow-md">
+    <h1 class="text-3xl font-bold select-none">
+      <span class="bg-white text-black px-2 py-1 rounded">Our</span>
+      <span class="text-red-500">Show</span>
+    </h1>
+
+    <!-- Hamburger -->
+    <button id="menu-btn" class="block md:hidden focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Navigation -->
+    <nav id="menu" class="hidden md:flex space-x-6 text-lg font-medium">
+      <a href="english.html" class="hover:text-red-500 transition">Best English Series</a>
+      <a href="hindi.html" class="hover:text-red-500 transition">Best Hindi Series</a>
+      <a href="korean.html" class="hover:text-red-500 transition">Best K-Dramas</a>
+      <a href="chinise.html" class="hover:text-red-500 transition">Best C-Dramas</a>
+      <a href="watchlist.html" class="hover:text-red-500 transition">Krish's Watchlist</a>
+      <a href="watchanddownload.html" class="hover:text-red-500 transition">Watch & Download</a>
+    </nav>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden flex-col bg-gray-800 md:hidden">
+    <a href="english.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Best English Series</a>
+    <a href="hindi.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Best Hindi Series</a>
+    <a href="korean.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Best K-Dramas</a>
+    <a href="chinise.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Best C-Dramas</a>
+    <a href="watchlist.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Krish's Watchlist</a>
+    <a href="watchanddownload.html" class="py-2 px-4 hover:bg-gray-700">Watch & Download</a>
+  </div>
+
+  <!-- Search -->
+  <div class="p-4">
+    <input id="search-input" type="text" placeholder="Search for movies or series..."
+           class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+  </div>
+
+  <!-- Pages -->
+  <main class="p-4">
+    <!-- Home Page -->
+    <section id="page-home" class="spa-page space-y-10">
+      <!-- Dynamic Sections -->
+      <div id="sections-container" class="space-y-10"></div>
+    </section>
+
+    <!-- All Results -->
+    <section id="page-all" class="spa-page hidden">
+      <div class="flex justify-between items-center mb-3">
+        <h2 id="all-title" class="text-xl font-semibold"></h2>
+        <button id="back-home" class="text-red-500 hover:underline">‹ Back to Home</button>
       </div>
-      
-      <!-- Desktop Navigation Links (Visible on large screens) -->
-      <nav class="hidden lg:flex gap-6 items-center text-sm font-semibold text-gray-300">
-        <a href="english.html" class="hover:text-white transition duration-150">English Series</a>
-        <a href="hindi.html" class="hover:text-white transition duration-150">Hindi Series</a>
-        <a href="korean.html" class="hover:text-white transition duration-150">K-Dramas</a>
-        <a href="chinese.html" class="hover:text-white transition duration-150">C-Dramas</a>
-        <a href="watchlist.html" class="hover:text-white transition duration-150">Watchlist</a>
-        <a href="watch&download.html" class="text-pink-400 hover:text-pink-300 transition duration-150">Watch & Download</a>
-      </nav>
-      
-    </header>
+      <div id="all-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+    </section>
 
-    <div class="grid grid-cols-1 gap-6">
+    <!-- Search -->
+    <section id="page-search" class="spa-page hidden">
+      <h2 class="text-xl font-semibold mb-3">🔎 Search Results</h2>
+      <div id="search-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+    </section>
+  </main>
 
-      <!-- Mobile / Global sliding menu (hidden by default) -->
-      <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
-        <div class="absolute inset-0 bg-black opacity-60" id="menuOverlay"></div>
-        <nav class="absolute left-0 top-0 h-full w-72 bg-gray-900 p-6 overflow-auto transform -translate-x-0">
-          <button id="closeMenu" class="mb-6 px-3 py-1 bg-gray-800 rounded-lg text-lg">Close ✕</button>
-          <h3 class="text-xl font-bold text-white mb-4">Recommendations Hub</h3>
-          
-          <!-- Mobile Menu Links -->
-          <ul class="space-y-3 text-gray-300">
-            <li><a href="index.html" class="block py-1 hover:text-white font-bold text-pink-500">Home</a></li>
-            <li class="border-t border-gray-700 my-2"></li>
-            <li><a href="english.html" class="block py-1 hover:text-white">Best English Series</a></li>
-            <li><a href="hindi.html" class="block py-1 hover:text-white">Best Hindi Series</a></li>
-            <li><a href="korean.html" class="block py-1 hover:text-white">Best K-Dramas</a></li>
-            <li><a href="chinese.html" class="block py-1 hover:text-white">Best C-Dramas</a></li>
-            <li><a href="watchlist.html" class="block py-1 hover:text-white">Krish's Watchlist</a></li>
-            <li><a href="watch&download.html" class="block py-1 text-pink-400 hover:text-pink-300 font-semibold">Watch & Download Movie Series For Free</a></li>
-            <li class="border-t border-gray-700 my-2"></li>
-            <li><a href="movies.html" class="block py-1 hover:text-white">Movie Recommendations</a></li>
-            <li><a href="mustwatchvault.html" class="block py-1 hover:text-white">Must Watch Vault</a></li>
-            <li><a href="submit.html" class="block py-1 hover:text-white">Submit a Recommendation</a></li>
-          </ul>
-          
-        </nav>
-      </div>
-      
-      <main class="space-y-8">
-
-        <!-- NEW: Trending Movies Today -->
-        <section id="trendingMovies" class="bg-gray-800 p-4 rounded-xl shadow-lg">
-          <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xl font-bold">🔥 Trending Movies Today</h2>
-            <div class="flex gap-2">
-              <button data-scroll-target="trendingMoviesRow" data-dir="left" class="w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-pink-600 rounded-full transition duration-150">◀</button>
-              <button data-scroll-target="trendingMoviesRow" data-dir="right" class="w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-pink-600 rounded-full transition duration-150">▶</button>
-            </div>
-          </div>
-          <div id="trendingMoviesRow" class="flex gap-4 overflow-x-auto scrollbar-hide py-2 scroll-smooth">
-             <!-- Placeholder Content for Loading -->
-             <div class="poster-placeholder w-32 h-48 flex-shrink-0 rounded-lg">Loading...</div>
-             <div class="poster-placeholder w-32 h-48 flex-shrink-0 rounded-lg">Loading...</div>
-             <div class="poster-placeholder w-32 h-48 flex-shrink-0 rounded-lg">Loading...</div>
-          </div>
-        </section>
-
-        <!-- NEW: Top Rated TV Series -->
-        <section id="topRatedTV" class="bg-gray-800 p-4 rounded-xl shadow-lg">
-          <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xl font-bold">⭐ Top Rated TV Series</h2>
-            <div class="flex gap-2">
-              <button data-scroll-target="topRatedTVRow" data-dir="left" class="w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-pink-600 rounded-full transition duration-150">◀</button>
-              <button data-scroll-target="topRatedTVRow" data-dir="right" class="w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-pink-600 rounded-full transition duration-150">▶</button>
-            </div>
-          </div>
-          <div id="topRatedTVRow" class="flex gap-4 overflow-x-auto scrollbar-hide py-2 scroll-smooth">
-            <!-- Placeholder Content for Loading -->
-            <div class="poster-placeholder w-32 h-48 flex-shrink-0 rounded-lg">Loading...</div>
-            <div class="poster-placeholder w-32 h-48 flex-shrink-0 rounded-lg">Loading...</div>
-            <div class="poster-placeholder w-32 h-48 flex-shrink-0 rounded-lg">Loading...</div>
-          </div>
-        </section>
-
-        <!-- NEW: Popular This Week (Mixed) -->
-        <section id="popularWeek" class="bg-gray-800 p-4 rounded-xl shadow-lg">
-          <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xl font-bold">📈 Popular This Week (Movies & TV)</h2>
-            <div class="flex gap-2">
-              <button data-scroll-target="popularWeekRow" data-dir="left" class="w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-pink-600 rounded-full transition duration-150">◀</button>
-              <button data-scroll-target="popularWeekRow" data-dir="right" class="w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-pink-600 rounded-full transition duration-150">▶</button>
-            </div>
-          </div>
-          <div id="popularWeekRow" class="flex gap-4 overflow-x-auto scrollbar-hide py-2 scroll-smooth">
-            <!-- Placeholder Content for Loading -->
-            <div class="poster-placeholder w-32 h-48 flex-shrink-0 rounded-lg">Loading...</div>
-            <div class="poster-placeholder w-32 h-48 flex-shrink-0 rounded-lg">Loading...</div>
-            <div class="poster-placeholder w-32 h-48 flex-shrink-0 rounded-lg">Loading...</div>
-          </div>
-        </section>
-
-        <!-- Random Movies & Series (now powered by TMDB data) -->
-        <section id="randomGridSection" class="bg-gray-800 p-4 rounded-xl shadow-lg">
-          <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xl font-bold">Discover More Random Titles</h2>
-            <button id="reshuffle" class="px-4 py-1.5 bg-pink-500 hover:bg-pink-600 rounded-lg font-semibold transition duration-150">Reshuffle</button>
-          </div>
-          <div id="randomGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-             <!-- Placeholder Content for Loading -->
-             <div class="poster-placeholder h-48 rounded-lg text-sm">Loading...</div>
-             <div class="poster-placeholder h-48 rounded-lg text-sm">Loading...</div>
-             <div class="poster-placeholder h-48 rounded-lg text-sm">Loading...</div>
-             <div class="poster-placeholder h-48 rounded-lg text-sm hidden sm:block">Loading...</div>
-          </div>
-        </section>
-
-      </main>
+  <!-- Modal -->
+  <div id="detail-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+    <div class="bg-gray-900 rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-1/2 overflow-y-auto max-h-[90vh] relative">
+      <button id="close-modal" class="absolute top-4 right-6 text-2xl text-white hover:text-red-500">✖</button>
+      <div id="modal-content" class="p-4"></div>
     </div>
   </div>
 
-  <!-- TMDB API KEY Configuration -->
+  <script src="prototype.js"></script>
   <script>
-    // *** YOUR TMDB API KEY IS NOW INSERTED HERE ***
-    const TMDB_API_KEY = "fa75c4832cd40cf2bf75307fd4abe736"; 
-    const TMDB_BASE_URL = "https://api.themoviedb.org/3";
-    const TMDB_IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
-    // Define an empty array to hold all fetched data for the random grid
-    let allFetchedData = []; 
+    document.getElementById("menu-btn").addEventListener("click", () => {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    });
   </script>
-
-  <!-- Load your data files (local data will be ignored by new prototype.js, but left here for other pages) -->
-  <script src="./data.js"></script>
-  <script src="./movie.js"></script>
-  <script src="./korean.js"></script>
-  <script src="./englishrecommendations.js"></script>
-  <script src="./hindirecommendations.js"></script>
-  <script src="./chineserecommendations.js"></script>
-
-  <!-- Prototype app logic -->
-  <script src="./prototype.js"></script>
 </body>
 </html>
