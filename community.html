@@ -3,43 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OurShow Community</title>
+  <title>Community Chat | OurShow</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="bg-gray-900 text-white font-sans flex flex-col min-h-screen">
 
   <!-- Header -->
   <header class="flex items-center justify-between p-4 bg-gray-800 shadow-md">
-    <h1 class="text-3xl font-bold select-none cursor-pointer" onclick="location.href='index.html'">
+    <h1 class="text-3xl font-bold cursor-pointer select-none" onclick="window.location.href='index.html'">
       <span class="bg-white text-black px-2 py-1 rounded">Our</span>
       <span class="text-red-500">Show</span>
     </h1>
-    <nav class="hidden md:flex space-x-6 text-lg font-medium">
-      <a href="index.html" class="hover:text-red-500 transition">Home</a>
-      <a href="community.html" class="hover:text-red-500 transition">Community</a>
-    </nav>
+    <button onclick="window.location.href='index.html'" class="text-red-500 hover:underline">‹ Back to Home</button>
   </header>
 
-  <!-- Global Chat -->
-  <section class="p-4">
-    <h2 class="text-xl font-semibold mb-2">🌐 Global Chat</h2>
-    <div id="global-chat" class="bg-gray-800 rounded-lg p-4 h-80 overflow-y-auto mb-2"></div>
-    <input id="global-input" type="text" placeholder="Type a message..." 
-           class="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
-  </section>
+  <!-- Chat Container -->
+  <main class="flex-1 flex flex-col max-w-3xl mx-auto w-full p-4">
+    <h2 class="text-2xl font-semibold mb-4 text-center">🌐 Global Community Chat</h2>
 
-  <!-- Per-Movie Chat -->
-  <section class="p-4">
-    <h2 class="text-xl font-semibold mb-2">🎬 Per-Movie Chat</h2>
-    <input id="movie-id-input" type="text" placeholder="Enter Movie/Series ID..." 
-           class="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500 mb-2">
-    <div id="movie-chat" class="bg-gray-800 rounded-lg p-4 h-80 overflow-y-auto mb-2"></div>
-    <input id="movie-input" type="text" placeholder="Type a message for this movie..." 
-           class="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
-  </section>
+    <!-- Chat Box -->
+    <div id="chat-box" class="flex-1 overflow-y-auto bg-gray-800 p-4 rounded-lg shadow-inner space-y-3 border border-gray-700"></div>
+
+    <!-- Message Form -->
+    <div class="mt-4 flex space-x-2">
+      <input id="message-input" type="text" placeholder="Type a message..."
+        class="flex-1 p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500" />
+      <button id="send-btn"
+        class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md font-medium transition">Send</button>
+    </div>
+  </main>
+
+  <!-- Name Modal -->
+  <div id="name-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden">
+    <div class="bg-gray-800 p-6 rounded-lg w-80 text-center">
+      <h3 class="text-xl font-semibold mb-4">Enter your name</h3>
+      <input id="name-input" type="text" placeholder="Your name..."
+        class="w-full p-2 rounded-md bg-gray-700 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-red-500" />
+      <button id="save-name"
+        class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md font-medium transition">Continue</button>
+    </div>
+  </div>
 
   <script src="community.js"></script>
 </body>
