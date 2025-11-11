@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OurShow Community</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-gray-800 shadow-md">
+    <h1 class="text-3xl font-bold select-none cursor-pointer" onclick="location.href='index.html'">
+      <span class="bg-white text-black px-2 py-1 rounded">Our</span>
+      <span class="text-red-500">Show</span>
+    </h1>
+    <nav class="hidden md:flex space-x-6 text-lg font-medium">
+      <a href="index.html" class="hover:text-red-500 transition">Home</a>
+      <a href="community.html" class="hover:text-red-500 transition">Community</a>
+    </nav>
+  </header>
+
+  <!-- Global Chat -->
+  <section class="p-4">
+    <h2 class="text-xl font-semibold mb-2">🌐 Global Chat</h2>
+    <div id="global-chat" class="bg-gray-800 rounded-lg p-4 h-80 overflow-y-auto mb-2"></div>
+    <input id="global-input" type="text" placeholder="Type a message..." 
+           class="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+  </section>
+
+  <!-- Per-Movie Chat -->
+  <section class="p-4">
+    <h2 class="text-xl font-semibold mb-2">🎬 Per-Movie Chat</h2>
+    <input id="movie-id-input" type="text" placeholder="Enter Movie/Series ID..." 
+           class="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500 mb-2">
+    <div id="movie-chat" class="bg-gray-800 rounded-lg p-4 h-80 overflow-y-auto mb-2"></div>
+    <input id="movie-input" type="text" placeholder="Type a message for this movie..." 
+           class="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+  </section>
+
+  <script src="community.js"></script>
+</body>
+</html>
