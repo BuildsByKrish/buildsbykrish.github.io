@@ -129,30 +129,23 @@ async function openDetailModal(id, type="movie"){
   const similar = (data.similar && data.similar.results) ? data.similar.results.slice(0,8) : [];
 
   // build modal HTML
-  modalContent.innerHTML = `
-    <div class="relative text-white">
-      <div class="w-full h-64 md:h-72 bg-black/30" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.85)), url('${esc(backdrop)}'); background-size: cover; background-position: center;">
-        <button id="modal-close-btn" class="absolute top-4 right-4 text-2xl text-white/90 hover:text-red-500">✖</button>
-        <div class="flex flex-col md:flex-row items-start gap-4 p-6 md:pl-10">
-          <img src="${data.poster_path ? (IMG_BASE + data.poster_path) : 'https://via.placeholder.com/300x450?text=No+Image'}" alt="${esc(title)}" class="w-36 md:w-48 rounded-lg shadow-lg">
-          <div class="flex-1">
-            <h1 class="text-2xl md:text-3xl font-bold">${esc(title)} <span class="text-gray-300 text-sm">(${esc(year)})</span></h1>
-            ${tagline ? `<p class="text-gray-300 italic">${esc(tagline)}</p>` : ""}
-            <div class="mt-2 flex flex-wrap gap-2 items-center">
-              <span class="px-2 py-1 rounded bg-white/10 text-sm">⭐ ${esc(rating)}</span>
-              <span class="px-2 py-1 rounded bg-white/10 text-sm">Popularity: ${esc(popularity)}</span>
-              ${runtime ? `<span class="px-2 py-1 rounded bg-white/10 text-sm">${esc(runtime)} min</span>` : ""}
-              ${status ? `<span class="px-2 py-1 rounded bg-white/10 text-sm">${esc(status)}</span>` : ""}
-              ${languages.length ? `<span class="px-2 py-1 rounded bg-white/10 text-sm">${esc(languages.join(", "))}</span>` : ""}
-            </div>
-            <div class="mt-3 text-sm text-gray-200">${esc(overview)}</div>
-            <div class="mt-4 flex gap-2">
-              ${trailerUrl ? `<a class="inline-block px-4 py-2 bg-red-600 rounded hover:bg-red-700" href="${trailerUrl}" target="_blank" rel="noopener">Watch Trailer</a>` : ""}
-              <button id="open-similar" class="inline-block px-4 py-2 bg-white/10 rounded hover:bg-white/20">Similar Titles</button>
-            </div>
-          </div>
-        </div>
+ modalContent.innerHTML = `
+  <div class="flex flex-col md:flex-row gap-4">
+    <img src="${poster}" 
+         class="w-full md:w-1/3 rounded-lg object-cover" 
+         alt="${title}">
+    <div class="flex-1">
+      <h2 class="text-2xl font-bold mb-2">${title}</h2>
+      <p class="text-gray-300 leading-relaxed mb-3">${overview || "No description available."}</p>
+      
+      <div class="mt-2 text-sm text-gray-400 space-y-1">
+        <p><strong>Release Year:</strong> ${year || "N/A"}</p>
+        <p><strong>IMDb:</strong> ⭐ ${rating || "N/A"}</p>
+        <p><strong>Popularity:</strong> 🔥 ${popularity || "N/A"}</p>
       </div>
+    </div>
+  </div>
+`;
 
       <div class="p-4">
         <h3 class="text-lg font-semibold mb-2">Top Cast</h3>
