@@ -29,15 +29,9 @@ if (!username) {
   nameModal.classList.remove("hidden");
   saveNameBtn.addEventListener("click", () => {
     const name = nameInput.value.trim();
-    if (name) {
-      username = name;
-      localStorage.setItem("ourshow_username", username);
-      nameModal.classList.add("hidden");
-    } else {
-      username = "Anonymous";
-      localStorage.setItem("ourshow_username", username);
-      nameModal.classList.add("hidden");
-    }
+    username = name || "Anonymous";
+    localStorage.setItem("ourshow_username", username);
+    nameModal.classList.add("hidden");
   });
 }
 
@@ -57,13 +51,13 @@ function sendMessage() {
     timestamp: Date.now()
   };
 
-  db.ref("globalChat/messages").push(message);
+  db.ref("globalChat").push(message); // ✅ Simpler path
   messageInput.value = "";
   stopTyping();
 }
 
 // ====== Display Messages ======
-db.ref("globalChat/messages").on("child_added", (snapshot) => {
+db.ref("globalChat").on("child_added", (snapshot) => {
   const msg = snapshot.val();
   displayMessage(msg);
 });
@@ -71,20 +65,26 @@ db.ref("globalChat/messages").on("child_added", (snapshot) => {
 function displayMessage(msg) {
   const time = new Date(msg.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   const msgDiv = document.createElement("div");
-  msgDiv.className = "bg-gray-700 p-3 rounded-md";
+
+  // Different color for your own messages
+  const isOwn = msg.name === username;
+  msgDiv.className = `p-3 rounded-md ${
+    isOwn ? "bg-red-700 text-white self-end ml-auto" : "bg-gray-700 text-white"
+  }`;
+
   msgDiv.innerHTML = `
-    <p class="text-sm text-gray-300 mb-1">
-      <span class="font-semibold text-red-400">${msg.name}</span>
-      <span class="text-gray-500 text-xs ml-2">${time}</span>
+    <p class="text-sm mb-1">
+      <span class="font-semibold ${isOwn ? "text-white" : "text-red-400"}">${msg.name}</span>
+      <span class="text-gray-400 text-xs ml-2">${time}</span>
     </p>
-    <p class="text-white text-sm">${msg.text}</p>
+    <p class="text-sm">${msg.text}</p>
   `;
   chatBox.appendChild(msgDiv);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 // ====== Typing Indicator ======
-const typingRef = db.ref("globalChat/typing");
+const typingRef = db.ref("typing");
 const typingIndicator = document.createElement("p");
 typingIndicator.className = "text-gray-400 text-sm mt-2 italic hidden";
 typingIndicator.id = "typing-indicator";
@@ -92,7 +92,6 @@ chatBox.parentElement.appendChild(typingIndicator);
 
 let typingTimeout;
 
-// Notify when user types
 messageInput.addEventListener("input", () => {
   setTypingStatus(true);
   clearTimeout(typingTimeout);
@@ -104,7 +103,7 @@ function setTypingStatus(isTyping) {
   const userTypingRef = typingRef.child(username);
   if (isTyping) {
     userTypingRef.set(true);
-    userTypingRef.onDisconnect().remove(); // Clean up when disconnected
+    userTypingRef.onDisconnect().remove();
   } else {
     userTypingRef.remove();
   }
@@ -114,7 +113,6 @@ function stopTyping() {
   setTypingStatus(false);
 }
 
-// Listen for others typing
 typingRef.on("value", (snapshot) => {
   const typingUsers = snapshot.val();
   if (typingUsers) {
