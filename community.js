@@ -1,75 +1,131 @@
-// ================== FIREBASE CONFIG ==================
+// ====== Firebase Config ======
 const firebaseConfig = {
   apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
   authDomain: "krishs-watchlist-vault.firebaseapp.com",
-  databaseURL: "https://krishs-watchlist-vault-default-rtdb.firebaseio.com",
   projectId: "krishs-watchlist-vault",
-  storageBucket: "krishs-watchlist-vault.appspot.com",
+  storageBucket: "krishs-watchlist-vault.firebasestorage.app",
   messagingSenderId: "1085194969409",
-  appId: "1:1085194969409:web:45becd2ef6afe86e0741c0"
+  appId: "1:1085194969409:web:45becd2ef6afe86e0741c0",
+  measurementId: "G-C8VJHYRDTQ",
+  databaseURL: "https://krishs-watchlist-vault-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ================== GLOBAL CHAT ==================
-const globalChat = document.getElementById("global-chat");
-const globalInput = document.getElementById("global-input");
+// ====== DOM Elements ======
+const chatBox = document.getElementById("chat-box");
+const messageInput = document.getElementById("message-input");
+const sendBtn = document.getElementById("send-btn");
+const nameModal = document.getElementById("name-modal");
+const nameInput = document.getElementById("name-input");
+const saveNameBtn = document.getElementById("save-name");
 
-// Send message
-globalInput.addEventListener("keypress", e=>{
-  if(e.key==="Enter" && e.target.value.trim()!==""){
-    const msg = { text: e.target.value.trim(), time: Date.now() };
-    db.ref("global_chat").push(msg);
-    e.target.value="";
-  }
-});
+let username = localStorage.getItem("ourshow_username");
 
-// Listen for messages
-db.ref("global_chat").on("value", snapshot=>{
-  const msgs = snapshot.val() || {};
-  globalChat.innerHTML="";
-  Object.values(msgs).forEach(m=>{
-    const div=document.createElement("div");
-    div.className="mb-1";
-    div.textContent=m.text;
-    globalChat.appendChild(div);
-  });
-  globalChat.scrollTop = globalChat.scrollHeight;
-});
-
-// ================== PER-MOVIE CHAT ==================
-const movieChat = document.getElementById("movie-chat");
-const movieInput = document.getElementById("movie-input");
-const movieIdInput = document.getElementById("movie-id-input");
-
-let currentMovieId = null;
-
-movieIdInput.addEventListener("keypress", e=>{
-  if(e.key==="Enter" && e.target.value.trim()!==""){
-    currentMovieId = e.target.value.trim();
-    loadMovieChat(currentMovieId);
-  }
-});
-
-movieInput.addEventListener("keypress", e=>{
-  if(e.key==="Enter" && e.target.value.trim()!=="" && currentMovieId){
-    const msg = { text: e.target.value.trim(), time: Date.now() };
-    db.ref(`movie_chat/${currentMovieId}`).push(msg);
-    e.target.value="";
-  }
-});
-
-function loadMovieChat(movieId){
-  db.ref(`movie_chat/${movieId}`).on("value", snapshot=>{
-    const msgs = snapshot.val() || {};
-    movieChat.innerHTML="";
-    Object.values(msgs).forEach(m=>{
-      const div=document.createElement("div");
-      div.className="mb-1";
-      div.textContent=m.text;
-      movieChat.appendChild(div);
-    });
-    movieChat.scrollTop = movieChat.scrollHeight;
+// ====== Ask for Name ======
+if (!username) {
+  nameModal.classList.remove("hidden");
+  saveNameBtn.addEventListener("click", () => {
+    const name = nameInput.value.trim();
+    if (name) {
+      username = name;
+      localStorage.setItem("ourshow_username", username);
+      nameModal.classList.add("hidden");
+    } else {
+      username = "Anonymous";
+      localStorage.setItem("ourshow_username", username);
+      nameModal.classList.add("hidden");
+    }
   });
 }
+
+// ====== Send Message ======
+sendBtn.addEventListener("click", sendMessage);
+messageInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendMessage();
+});
+
+function sendMessage() {
+  const text = messageInput.value.trim();
+  if (text === "") return;
+
+  const message = {
+    name: username || "Anonymous",
+    text,
+    timestamp: Date.now()
+  };
+
+  db.ref("globalChat/messages").push(message);
+  messageInput.value = "";
+  stopTyping();
+}
+
+// ====== Display Messages ======
+db.ref("globalChat/messages").on("child_added", (snapshot) => {
+  const msg = snapshot.val();
+  displayMessage(msg);
+});
+
+function displayMessage(msg) {
+  const time = new Date(msg.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const msgDiv = document.createElement("div");
+  msgDiv.className = "bg-gray-700 p-3 rounded-md";
+  msgDiv.innerHTML = `
+    <p class="text-sm text-gray-300 mb-1">
+      <span class="font-semibold text-red-400">${msg.name}</span>
+      <span class="text-gray-500 text-xs ml-2">${time}</span>
+    </p>
+    <p class="text-white text-sm">${msg.text}</p>
+  `;
+  chatBox.appendChild(msgDiv);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// ====== Typing Indicator ======
+const typingRef = db.ref("globalChat/typing");
+const typingIndicator = document.createElement("p");
+typingIndicator.className = "text-gray-400 text-sm mt-2 italic hidden";
+typingIndicator.id = "typing-indicator";
+chatBox.parentElement.appendChild(typingIndicator);
+
+let typingTimeout;
+
+// Notify when user types
+messageInput.addEventListener("input", () => {
+  setTypingStatus(true);
+  clearTimeout(typingTimeout);
+  typingTimeout = setTimeout(() => setTypingStatus(false), 3000);
+});
+
+function setTypingStatus(isTyping) {
+  if (!username) return;
+  const userTypingRef = typingRef.child(username);
+  if (isTyping) {
+    userTypingRef.set(true);
+    userTypingRef.onDisconnect().remove(); // Clean up when disconnected
+  } else {
+    userTypingRef.remove();
+  }
+}
+
+function stopTyping() {
+  setTypingStatus(false);
+}
+
+// Listen for others typing
+typingRef.on("value", (snapshot) => {
+  const typingUsers = snapshot.val();
+  if (typingUsers) {
+    const activeUsers = Object.keys(typingUsers).filter(u => u !== username);
+    if (activeUsers.length > 0) {
+      typingIndicator.textContent = `💬 ${activeUsers.join(", ")} ${activeUsers.length === 1 ? "is" : "are"} typing...`;
+      typingIndicator.classList.remove("hidden");
+    } else {
+      typingIndicator.classList.add("hidden");
+    }
+  } else {
+    typingIndicator.classList.add("hidden");
+  }
+});
