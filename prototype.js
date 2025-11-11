@@ -1,192 +1,135 @@
-// ================= CONFIG =================
-const TMDB_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYTc1YzQ4MzJjZDQwY2YyYmY3NTMwN2ZkNGFiZTczNiIsIm5iZiI6MTc2MTk2MDQzNC42MzIsInN1YiI6IjY5MDU2MWYyNGQ0ZDdkYzlhYTU5N2IwZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Pj6KWB1P8WQZ-GmMIrhjK8Jb5yo_sbLuGIjFTuRC-aY";
-const TMDB_API_BASE = "https://api.themoviedb.org/3";
-const IMG_BASE = "https://image.tmdb.org/t/p/w500";
-const BACKDROP_BASE = "https://image.tmdb.org/t/p/original";
-
-// ================= HELPERS =================
-async function fetchTMDB(endpoint) {
-  try {
-    const res = await fetch(`${TMDB_API_BASE}${endpoint}`, {
-      headers: { Authorization: TMDB_TOKEN },
-    });
-    if (!res.ok) {
-      console.error("TMDB API error", res.status, await res.text());
-      return { results: [] };
-    }
-    return await res.json();
-  } catch (err) {
-    console.error("Fetch error", err);
-    return { results: [] };
+// ===== TMDB CONFIG =====
+const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+const TMDB_IMG_URL = "https://image.tmdb.org/t/p/w500";
+const TMDB_BACKDROP_URL = "https://image.tmdb.org/t/p/original";
+const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYTc1YzQ4MzJjZDQwY2YyYmY3NTMwN2ZkNGFiZTczNiIsIm5iZiI6MTc2MTk2MDQzNC42MzIsInN1YiI6IjY5MDU2MWYyNGQ0ZDdkYzlhYTU5N2IwZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Pj6KWB1P8WQZ-GmMIrhjK8Jb5yo_sbLuGIjFTuRC-aY"
   }
-}
+};
 
-function escapeHtml(str) {
-  return String(str || "").replace(/[&<>"']/g, m => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;",
-  }[m]));
-}
-
-// ================= CARD & RENDER =================
-function makeCard(item, type) {
-  const title = item.title || item.name || "Unknown";
-  const year = (item.release_date || item.first_air_date || "").split("-")[0] || "N/A";
-  const vote = (typeof item.vote_average === 'number') ? item.vote_average.toFixed(1) : (item.vote_average ? item.vote_average : "N/A");
-  const img = item.poster_path ? IMG_BASE + item.poster_path : "https://via.placeholder.com/300x450?text=No+Image";
-  return `
-    <div class="cursor-pointer min-w-[150px]" data-id="${item.id}" data-type="${type}">
-      <img src="${img}" class="rounded-lg aspect-[2/3] object-cover hover:opacity-80 transition" alt="${escapeHtml(title)}">
-      <h3 class="mt-1 text-sm font-medium">${escapeHtml(title)}</h3>
-      <p class="text-gray-400 text-xs">${escapeHtml(year)} • ⭐ ${escapeHtml(vote)}</p>
-    </div>`;
-}
-
-function renderRow(containerId, data, type) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  if (!data || !Array.isArray(data.results) || data.results.length === 0) {
-    container.innerHTML = `<p class="text-gray-400 text-sm">No results found.</p>`;
-    return;
-  }
-  container.innerHTML = data.results.map(item => makeCard(item, type)).join('');
-}
-
-// ================= SPA NAV =================
-function showPage(pageId) {
-  document.querySelectorAll(".spa-page").forEach(p => p.classList.add("hidden"));
-  const el = document.getElementById(pageId);
-  if (el) el.classList.remove("hidden");
-}
-
-// ================= SEARCH =================
+// ===== ELEMENTS =====
+const pageHome = document.getElementById("page-home");
+const pageAll = document.getElementById("page-all");
+const allTitle = document.getElementById("all-title");
+const allContent = document.getElementById("all-content");
+const searchContent = document.getElementById("search-content");
 const searchInput = document.getElementById("search-input");
-if (searchInput) {
-  searchInput.addEventListener("keypress", e => {
-    if (e.key === "Enter") performSearch(e.target.value.trim());
-  });
-}
-
-async function performSearch(query) {
-  if (!query) return;
-  showPage("page-search");
-  const data = await fetchTMDB(`/search/multi?query=${encodeURIComponent(query)}&language=en-US`);
-  const container = document.getElementById("search-content");
-  if (!container) return;
-  container.innerHTML = (data.results || []).map(item => makeCard(item, item.media_type || "movie")).join("");
-}
-
-// ================= MODAL =================
+const pageSearch = document.getElementById("page-search");
 const modal = document.getElementById("detail-modal");
 const modalContent = document.getElementById("modal-content");
+const closeModal = document.getElementById("close-modal");
+const backHomeBtn = document.getElementById("back-home");
 
-document.getElementById("close-modal")?.addEventListener("click", () => modal.classList.add("hidden"));
-modal.addEventListener("click", e => {
-  if (e.target && e.target.id === "detail-modal") modal.classList.add("hidden");
-});
-document.body.addEventListener("click", e => {
-  if (e.target.closest("#detail-modal")) return;
-  const card = e.target.closest("[data-id]");
-  if (!card) return;
-  const id = card.dataset.id;
-  const type = card.dataset.type || "movie";
-  fetchDetailsAndShowModal(id, type);
+// ===== FETCH FUNCTION =====
+async function fetchData(endpoint) {
+  const res = await fetch(`${TMDB_BASE_URL}${endpoint}`, API_OPTIONS);
+  const data = await res.json();
+  return data.results || [];
+}
+
+// ===== CARD GENERATOR =====
+function makeCard(item, type = "movie") {
+  const imgSrc = item.poster_path ? TMDB_IMG_URL + item.poster_path : "https://via.placeholder.com/300x450?text=No+Image";
+  const title = item.title || item.name;
+  return `
+    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:scale-105 transition cursor-pointer"
+         onclick="openDetail(${item.id}, '${type}')">
+      <img src="${imgSrc}" alt="${title}" class="w-full h-64 object-cover">
+      <div class="p-2 text-center text-sm">${title}</div>
+    </div>
+  `;
+}
+
+// ===== SECTION CREATOR =====
+async function createSection(title, endpoint, type = "movie") {
+  const items = await fetchData(endpoint);
+  const visibleItems = items.slice(0, 10);
+  const section = document.createElement("div");
+  section.className = "space-y-2";
+  section.innerHTML = `
+    <div class="flex justify-between items-center">
+      <h2 class="text-xl font-semibold">${title}</h2>
+      <button class="text-red-500 hover:underline" onclick="showAll('${title}', '${endpoint}', '${type}')">More ›</button>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">${visibleItems.map(i => makeCard(i, type)).join("")}</div>
+  `;
+  pageHome.appendChild(section);
+}
+
+// ===== SHOW ALL PAGE =====
+async function showAll(title, endpoint, type) {
+  pageHome.classList.add("hidden");
+  pageSearch.classList.add("hidden");
+  pageAll.classList.remove("hidden");
+  allTitle.textContent = title;
+  const items = await fetchData(endpoint);
+  allContent.innerHTML = items.length
+    ? items.map(i => makeCard(i, type)).join("")
+    : `<p class='text-gray-400'>No results found.</p>`;
+}
+
+backHomeBtn.addEventListener("click", () => {
+  pageAll.classList.add("hidden");
+  pageHome.classList.remove("hidden");
 });
 
-async function fetchDetailsAndShowModal(id, type) {
-  if (!id) return;
-  const data = await fetchTMDB(`/${type}/${id}?language=en-US`);
-  const title = data.title || data.name || "Untitled";
-  const date = data.release_date || data.first_air_date || "Unknown";
-  const genres = (data.genres || []).map(g => g.name).join(", ") || "N/A";
-  const runtime = data.runtime || data.episode_run_time?.[0] || "N/A";
-  const languages = (data.spoken_languages || data.languages || []).map(l => l.english_name || l.name || l.iso_639_1).join(", ") || "N/A";
-  const status = data.status || "N/A";
+// ===== DETAIL MODAL =====
+async function openDetail(id, type) {
+  const res = await fetch(`${TMDB_BASE_URL}/${type}/${id}?append_to_response=videos`, API_OPTIONS);
+  const item = await res.json();
+  const img = item.backdrop_path ? TMDB_BACKDROP_URL + item.backdrop_path : TMDB_IMG_URL + item.poster_path;
+  const title = item.title || item.name;
+  const desc = item.overview || "No description available.";
+  const video = item.videos.results.find(v => v.site === "YouTube" && v.type === "Trailer");
+  const trailer = video ? `https://www.youtube.com/embed/${video.key}` : null;
+
   modalContent.innerHTML = `
-    <div>
-      ${data.backdrop_path ? `<img src="${BACKDROP_BASE + data.backdrop_path}" class="w-full h-60 object-cover rounded-t-lg opacity-80">` : ""}
-      <div class="p-4">
-        <h2 class="text-2xl font-bold mb-2">${escapeHtml(title)}</h2>
-        <p class="text-gray-400 mb-2">${escapeHtml(date)} • ⭐ ${escapeHtml(data.vote_average ?? "N/A")}</p>
-        <p class="mb-3 text-sm">${escapeHtml(data.overview || "No description available.")}</p>
-        <p class="text-sm"><strong>Genres:</strong> ${escapeHtml(genres)}</p>
-        <p class="text-sm"><strong>Runtime:</strong> ${escapeHtml(runtime)}</p>
-        <p class="text-sm"><strong>Languages:</strong> ${escapeHtml(languages)}</p>
-        <p class="text-sm"><strong>Status:</strong> ${escapeHtml(status)}</p>
-      </div>
-    </div>`;
+    <img src="${img}" class="w-full h-64 object-cover rounded-t-lg">
+    <div class="p-4 space-y-2">
+      <h2 class="text-2xl font-bold">${title}</h2>
+      <p class="text-sm text-gray-300">${desc}</p>
+      ${trailer ? `<iframe width="100%" height="315" src="${trailer}" class="rounded-lg mt-2"></iframe>` : ""}
+    </div>
+  `;
   modal.classList.remove("hidden");
 }
+closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+window.addEventListener("click", e => { if (e.target === modal) modal.classList.add("hidden"); });
 
-// ================= MORE BUTTONS =================
-document.body.addEventListener("click", async e => {
-  const btn = e.target.closest("[data-more]");
-  if (!btn) return;
-  const section = btn.dataset.more;
-  showPage("page-all");
-
-  let endpoint = "", title = "", type = "movie";
-  switch (section) {
-    case "trending": endpoint = "/trending/all/week"; title = "🔥 Trending This Week"; break;
-    case "popular-movies": endpoint = "/movie/popular"; title = "🎬 Popular Movies"; break;
-
-    // Hindi sections
-    case "hindi-top": endpoint = "/discover/movie?with_original_language=hi&sort_by=vote_average.desc&vote_count.gte=50"; title = "🎥 Top Hindi Movies"; break;
-    case "hindi-best": endpoint = "/discover/movie?with_original_language=hi&sort_by=popularity.desc"; title = "🇮🇳 Best Hindi Movies"; break;
-    case "hindi-now": endpoint = "/discover/movie?with_original_language=hi&sort_by=release_date.desc"; title = "🔥 Hindi Movies Popular Now"; break;
-
-    case "top-movies": endpoint = "/movie/top_rated"; title = "⭐ Top Rated Movies"; break;
-    case "upcoming": endpoint = "/movie/upcoming"; title = "🕒 Upcoming Movies"; break;
-    case "popular-tv": endpoint = "/tv/popular"; title = "📺 Popular TV Shows"; type = "tv"; break;
-    case "top-tv": endpoint = "/tv/top_rated"; title = "🏆 Top Rated TV Shows"; type = "tv"; break;
-    default: endpoint = "/movie/popular"; title = "🎬 Movies";
+// ===== SEARCH =====
+searchInput.addEventListener("input", async e => {
+  const query = e.target.value.trim();
+  if (!query) {
+    pageSearch.classList.add("hidden");
+    pageHome.classList.remove("hidden");
+    return;
   }
+  pageHome.classList.add("hidden");
+  pageAll.classList.add("hidden");
+  pageSearch.classList.remove("hidden");
 
-  const data = await fetchTMDB(`${endpoint}&language=en-US&page=1`);
-  document.getElementById("all-title").innerText = title;
-  document.getElementById("all-content").innerHTML = (data.results || []).map(item => makeCard(item, type)).join("");
+  const movieResults = await fetchData(`/search/movie?query=${query}`);
+  const tvResults = await fetchData(`/search/tv?query=${query}`);
+  const results = [...movieResults, ...tvResults];
+  searchContent.innerHTML = results.length
+    ? results.map(i => makeCard(i, i.title ? "movie" : "tv")).join("")
+    : `<p class='text-gray-400'>No results found.</p>`;
 });
 
-document.getElementById("back-home")?.addEventListener("click", () => showPage("page-home"));
-
-// ================= INIT =================
-async function init() {
-  showPage("page-home");
-
-  const sections = [
-    { id: "trending", title: "🔥 Trending This Week", endpoint: "/trending/all/week", type: "movie" },
-    { id: "popular-movies", title: "🎬 Popular Movies", endpoint: "/movie/popular", type: "movie" },
-
-    // Hindi 3 sections (3rd–5th rows)
-    { id: "hindi-top", title: "🎥 Top Hindi Movies", endpoint: "/discover/movie?with_original_language=hi&sort_by=vote_average.desc&vote_count.gte=50", type: "movie" },
-    { id: "hindi-best", title: "🇮🇳 Best Hindi Movies", endpoint: "/discover/movie?with_original_language=hi&sort_by=popularity.desc", type: "movie" },
-    { id: "hindi-now", title: "🔥 Hindi Movies Popular Now", endpoint: "/discover/movie?with_original_language=hi&sort_by=release_date.desc", type: "movie" },
-
-    { id: "top-movies", title: "⭐ Top Rated Movies", endpoint: "/movie/top_rated", type: "movie" },
-    { id: "upcoming", title: "🕒 Upcoming Movies", endpoint: "/movie/upcoming", type: "movie" },
-    { id: "popular-tv", title: "📺 Popular TV Shows", endpoint: "/tv/popular", type: "tv" },
-    { id: "top-tv", title: "🏆 Top Rated TV Shows", endpoint: "/tv/top_rated", type: "tv" },
-  ];
-
-  const container = document.getElementById("page-home");
-  if (!container) return;
-
-  for (const s of sections) {
-    container.insertAdjacentHTML("beforeend", `
-      <div>
-        <div class="flex items-center justify-between mb-3">
-          <h2 class="text-xl font-semibold">${s.title}</h2>
-          <button class="text-red-500 hover:underline" data-more="${s.id}">More ›</button>
-        </div>
-        <div id="${s.id}-row" class="flex overflow-x-auto space-x-3 pb-2"></div>
-      </div>
-    `);
-    const data = await fetchTMDB(`${s.endpoint}&language=en-US`);
-    renderRow(`${s.id}-row`, data, s.type);
-  }
-}
-
-init();
+// ===== HOME PAGE LOAD =====
+(async function loadHome() {
+  await createSection("Trending Movies", "/trending/movie/week", "movie");
+  await createSection("Trending TV Shows", "/trending/tv/week", "tv");
+  await createSection("Top Hindi Movies", "/discover/movie?with_original_language=hi&sort_by=vote_average.desc", "movie");
+  await createSection("Best Hindi Movies", "/discover/movie?with_original_language=hi&sort_by=popularity.desc", "movie");
+  await createSection("Hindi Movies Popular Now", "/movie/popular?region=IN", "movie");
+  await createSection("Best Web Series", "/tv/top_rated", "tv");
+  await createSection("Upcoming Hindi Movies", "/movie/upcoming?region=IN", "movie");
+  await createSection("Upcoming Hollywood Movies", "/movie/upcoming?region=US", "movie");
+  await createSection("Best Comedy Movies", "/discover/movie?with_genres=35&sort_by=popularity.desc", "movie");
+  await createSection("Best Action Movies", "/discover/movie?with_genres=28&sort_by=popularity.desc", "movie");
+  await createSection("Best Dramas", "/discover/movie?with_genres=18&sort_by=vote_average.desc", "movie");
+})();
