@@ -12,27 +12,20 @@
 
   <!-- Header -->
   <header class="flex items-center justify-between p-4 bg-gray-800 shadow-md">
+    <!-- Logo -->
     <h1 class="text-3xl font-bold select-none cursor-pointer" onclick="location.reload()">
       <span class="bg-white text-black px-2 py-1 rounded">Our</span>
       <span class="text-red-500">Show</span>
     </h1>
-    <!-- Global Chat -->
-<div id="global-chat-container" class="bg-gray-800 p-2 text-white fixed top-16 right-4 w-80 h-96 rounded-lg shadow-lg z-50 flex flex-col">
-  <h3 class="font-bold mb-2">🌐 Global Chat</h3>
-  <div id="global-chat-messages" class="flex-1 overflow-y-auto mb-2"></div>
-  <input id="global-chat-input" type="text" placeholder="Say something..." 
-         class="w-full p-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
-</div>
 
-
-    <!-- Hamburger -->
+    <!-- Hamburger Menu (Mobile) -->
     <button id="menu-btn" class="block md:hidden focus:outline-none">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
 
-    <!-- Navigation -->
+    <!-- Navigation Menu (Desktop) -->
     <nav id="menu" class="hidden md:flex space-x-6 text-lg font-medium">
       <a href="english.html" class="hover:text-red-500 transition">Best English Series</a>
       <a href="hindi.html" class="hover:text-red-500 transition">Best Hindi Series</a>
@@ -55,7 +48,7 @@
     <a href="community.html" class="py-2 px-4 hover:bg-gray-700">Community Chat</a>
   </div>
 
-  <!-- Search -->
+  <!-- Search Bar -->
   <div class="p-4">
     <input id="search-input" type="text" placeholder="Search for movies or series..."
            class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
@@ -64,9 +57,12 @@
   <!-- Pages -->
   <main class="p-4">
     <!-- Home Page -->
-    <section id="page-home" class="spa-page space-y-10"></section>
+    <section id="page-home" class="spa-page space-y-10">
+      <!-- Movie/Series sections will be dynamically loaded by prototype.js -->
+      <div id="sections-container" class="space-y-10"></div>
+    </section>
 
-    <!-- All Results -->
+    <!-- All Results Page -->
     <section id="page-all" class="spa-page hidden">
       <div class="flex justify-between items-center mb-3">
         <h2 id="all-title" class="text-xl font-semibold"></h2>
@@ -75,14 +71,14 @@
       <div id="all-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
     </section>
 
-    <!-- Search -->
+    <!-- Search Results Page -->
     <section id="page-search" class="spa-page hidden">
       <h2 class="text-xl font-semibold mb-3">🔎 Search Results</h2>
       <div id="search-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
     </section>
   </main>
 
-  <!-- Modal -->
+  <!-- Movie Detail Modal -->
   <div id="detail-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
     <div class="bg-gray-900 rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-1/2 overflow-y-auto max-h-[90vh] relative">
       <button id="close-modal" class="absolute top-4 right-6 text-2xl text-white hover:text-red-500">✖</button>
@@ -90,8 +86,10 @@
     </div>
   </div>
 
+  <!-- Script Links -->
   <script src="prototype.js"></script>
   <script>
+    // Toggle Mobile Menu
     document.getElementById("menu-btn").addEventListener("click", () => {
       document.getElementById("mobile-menu").classList.toggle("hidden");
     });
