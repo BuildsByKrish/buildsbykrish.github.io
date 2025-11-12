@@ -9,13 +9,55 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body class="bg-gray-900 text-white font-sans">
+  <script>
+  if (!localStorage.getItem("ourshow_username")) {
+    window.location.href = "login.html";
+  }
+</script>
 
-  <!-- Header -->
-  <header class="flex items-center justify-between p-4 bg-gray-800 shadow-md">
-    <h1 class="text-3xl font-bold select-none cursor-pointer" onclick="location.reload()">
-      <span class="bg-white text-black px-2 py-1 rounded">Our</span>
-      <span class="text-red-500">Show</span>
-    </h1>
+
+ <header class="flex items-center justify-between p-4 bg-gray-800 shadow-md relative">
+  <!-- Logo -->
+  <h1 class="text-3xl font-bold select-none cursor-pointer" onclick="location.href='index.html'">
+    <span class="bg-white text-black px-2 py-1 rounded">Our</span>
+    <span class="text-red-500">Show</span>
+  </h1>
+
+  <!-- Navigation Menu -->
+  <nav class="hidden md:flex space-x-6 text-lg font-medium">
+    <a href="english.html" class="hover:text-red-500 transition">Best English Series</a>
+    <a href="hindi.html" class="hover:text-red-500 transition">Best Hindi Series</a>
+    <a href="korean.html" class="hover:text-red-500 transition">Best K-Dramas</a>
+    <a href="chinise.html" class="hover:text-red-500 transition">Best C-Dramas</a>
+    <a href="watchlist.html" class="hover:text-red-500 transition">Krish's Watchlist</a>
+    <a href="watch&download.html" class="hover:text-red-500 transition">Watch & Download</a>
+    <a href="community.html" class="hover:text-red-500 transition">Community Chat</a>
+  </nav>
+
+  <!-- Profile Dropdown -->
+  <div class="relative" id="profile-section">
+    <button id="profile-btn" class="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg">
+      <img id="profile-pic" src="https://via.placeholder.com/32" alt="User" class="w-8 h-8 rounded-full border border-gray-500">
+      <span id="profile-name" class="font-medium text-sm">User</span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <div id="profile-dropdown" class="hidden absolute right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg w-40 z-50">
+      <a href="profile.html" class="block px-4 py-2 text-sm hover:bg-gray-700">View Profile</a>
+      <button id="logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</button>
+    </div>
+  </div>
+
+  <!-- Hamburger (mobile) -->
+  <button id="menu-btn" class="block md:hidden focus:outline-none ml-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+</header>
+
 
     <!-- Hamburger Menu (Mobile) -->
     <button id="menu-btn" class="block md:hidden focus:outline-none">
@@ -89,5 +131,6 @@
   </script>
 
   <script src="prototype.js"></script>
+  <script src="user.js"></script>
 </body>
 </html>
