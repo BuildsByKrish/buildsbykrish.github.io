@@ -9,64 +9,74 @@ const firebaseConfig = {
   measurementId: "G-C8VJHYRDTQ"
 };
 
+// ===== Initialize Firebase =====
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
+// ===== DOM =====
 const emailField = document.getElementById("email");
 const passwordField = document.getElementById("password");
 const loginBtn = document.getElementById("login-btn");
 const signupBtn = document.getElementById("signup-btn");
 const googleBtn = document.getElementById("google-btn");
+const guestBtn = document.getElementById("guest-btn");
 const errorMsg = document.getElementById("error-msg");
 
-// ====== Email/Password Login ======
+// ===== Email/Password Login =====
 loginBtn.addEventListener("click", async () => {
   const email = emailField.value.trim();
   const pw = passwordField.value.trim();
   if (!email || !pw) return showError("Please enter email and password.");
   try {
     await auth.signInWithEmailAndPassword(email, pw);
-    redirectToCommunity();
+    saveUser(auth.currentUser);
   } catch (err) {
     showError(err.message);
   }
 });
 
-// ====== Sign Up ======
+// ===== Sign Up =====
 signupBtn.addEventListener("click", async () => {
   const email = emailField.value.trim();
   const pw = passwordField.value.trim();
   if (!email || !pw) return showError("Please enter email and password.");
   try {
     await auth.createUserWithEmailAndPassword(email, pw);
-    redirectToCommunity();
+    saveUser(auth.currentUser);
   } catch (err) {
     showError(err.message);
   }
 });
 
-// ====== Google Sign In ======
+// ===== Google Sign In =====
 googleBtn.addEventListener("click", async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   try {
     await auth.signInWithPopup(provider);
-    redirectToCommunity();
+    saveUser(auth.currentUser);
   } catch (err) {
     showError(err.message);
   }
 });
 
-// ====== Helper Functions ======
+// ===== Continue as Guest =====
+guestBtn.addEventListener("click", () => {
+  localStorage.setItem("ourshow_username", "Guest");
+  localStorage.setItem("ourshow_logged_in", "false");
+  window.location.href = "index.html";
+});
+
+// ===== Helper =====
 function showError(msg) {
   errorMsg.textContent = msg;
   errorMsg.classList.remove("hidden");
   setTimeout(() => errorMsg.classList.add("hidden"), 4000);
 }
 
-function redirectToCommunity() {
-  const user = auth.currentUser;
+function saveUser(user) {
   if (user) {
-    localStorage.setItem("ourshow_username", user.displayName || user.email);
-    window.location.href = "community.html";
+    localStorage.setItem("ourshow_username", user.displayName || user.email || "User");
+    localStorage.setItem("ourshow_logged_in", "true");
+    window.location.href = "index.html";
   }
 }
