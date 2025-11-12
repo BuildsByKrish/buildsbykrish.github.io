@@ -44,6 +44,21 @@
       <!-- Save Button -->
       <button id="save-profile" class="bg-red-600 hover:bg-red-700 w-full py-2 rounded-lg font-semibold">Save Changes</button>
 
+      <!-- My Watchlist + Watch Later -->
+      <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+        <button 
+          onclick="location.href='watchlist.html'" 
+          class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-white text-center w-full sm:w-auto">
+          ✅ My Watchlist
+        </button>
+
+        <button 
+          onclick="location.href='watchlater.html'" 
+          class="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-md text-black text-center w-full sm:w-auto">
+          ⏳ My Watch Later
+        </button>
+      </div>
+
       <!-- Status Message -->
       <p id="status-msg" class="mt-4 text-center text-sm text-gray-400"></p>
     </div>
