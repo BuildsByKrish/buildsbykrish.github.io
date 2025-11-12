@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Watchlist | Krish Vault</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Bebas+Neue&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* New Neon Dark Theme Variables */
+    :root {
+      --primary-neon: #00eaff;
+      --secondary-neon: #ff00c8;
+      --dark-bg: #0a0a0e;
+      --card-bg: rgba(18, 18, 22, 0.7);
+      --card-border: rgba(0, 234, 255, 0.2);
+      --text-color: #f0f0f0;
+      --glow-shadow: 0 0 10px var(--primary-neon);
+      --input-focus: #ff00c8;
+      --must-watch-color: #ffc107;
+      --hindi-dubbed-color: #28a745;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    .hero-banner {
+      text-align: center;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, var(--dark-bg) 50%, rgba(0, 234, 255, 0.1) 100%);
+      color: var(--text-color);
+      border: 1px solid var(--card-border);
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 25px rgba(0, 234, 255, 0.3);
+      position: relative;
+    }
+    .hero-banner h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--primary-neon);
+      text-shadow: 0 0 10px var(--primary-neon);
+      letter-spacing: 2px;
+    }
+    .hero-banner p {
+      font-size: 1rem;
+      opacity: 0.8;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .series-counter {
+      margin-top: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--secondary-neon);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px var(--secondary-neon);
+    }
+    .hero-banner nav a {
+      color: var(--primary-neon);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--primary-neon);
+      transition: all 0.3s ease;
+    }
+    .hero-banner nav a:hover {
+      border-bottom-style: solid;
+      color: var(--secondary-neon);
+    }
+
+    /* Filters Section - Styled for Dark Theme */
+    .sidebar-filters {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;
+      border: 1px solid var(--card-border);
+    }
+    .sidebar-filters h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: var(--primary-neon);
+      text-shadow: 0 0 5px rgba(0, 234, 255, 0.5);
+      margin-right: 1rem;
+    }
+    .sidebar-filters input,
+    .sidebar-filters select {
+      flex-grow: 1;
+      min-width: 150px;
+      padding: 0.75rem;
+      border-radius: 5px;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-color);
+      font-size: 0.9rem;
+    }
+    .sidebar-filters input:focus,
+    .sidebar-filters select:focus {
+      outline: 1px solid var(--input-focus);
+      box-shadow: 0 0 8px var(--input-focus);
+    }
+    .sidebar-filters label {
+      color: var(--text-color);
+    }
+
+    /* Grid and Card Styling */
+    .vault-poster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .vault-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 15px rgba(255, 0, 200, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Poster styles for watchlist cards */
+    .poster-wrap {
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+    }
+    .poster-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
+    .poster-wrap:hover .poster-img { transform: scale(1.03); }
+    .vault-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 0 30px var(--primary-neon);
+    }
+    .vault-card h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+    }
+    /* Serial Number Styling */
+    .vault-card h2 span.id {
+      font-size: 1.5rem;
+      color: var(--primary-neon);
+      text-shadow: 0 0 5px var(--primary-neon);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+    .info-line {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 0.3rem;
+    }
+    .info-line span {
+      font-weight: bold;
+      color: var(--text-color);
+    }
+    .badges, .tags {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .badge, .tag {
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      opacity: 0.9;
+    }
+    .must-watch-badge {
+      background-color: var(--must-watch-color);
+      color: var(--dark-bg);
+    }
+    .hindi-dubbed-badge {
+      background-color: var(--hindi-dubbed-color);
+      color: var(--text-light);
+    }
+    .tag {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--primary-neon);
+      border: 1px solid rgba(0, 234, 255, 0.3);
+    }
+    .no-results {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
+      color: #999;
+      grid-column: 1 / -1;
+    }
+    .go-top-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary-neon);
+      color: var(--dark-bg);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      box-shadow: 0 0 15px var(--primary-neon);
+      cursor: pointer;
+      display: none;
+      z-index: 99;
+    }
+    .go-top-btn:hover {
+      background: var(--secondary-neon);
+      box-shadow: 0 0 20px var(--secondary-neon);
+    }
+
+    /* Mobile-first adjustments for a better layout */
+    @media (max-width: 768px) {
+        body { padding: 1rem; }
+        .hero-banner h1 { font-size: 1.8rem; }
+        .hero-banner p { font-size: 0.8rem; }
+        .series-counter { font-size: 1rem; padding: 0.3rem 0.8rem; }
+        .vault-poster-grid { 
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        .vault-card { padding: 0.75rem; border-radius: 10px; }
+        .vault-card h2 { font-size: 0.9rem; margin-bottom: 0.2rem; }
+        .vault-card h2 span.id { font-size: 1.1rem; }
+        .info-line { font-size: 0.65rem; margin-top: 0.1rem; }
+        .badges, .tags { display: none; }
+        .sidebar-filters { padding: 0.5rem; flex-direction: column; align-items: stretch; gap: 0.5rem; }
+        .sidebar-filters h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .sidebar-filters input, .sidebar-filters select { font-size: 0.8rem; padding: 0.5rem; }
+        .go-top-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body class="vault watchlist-theme">
+  <header class="hero-banner">
+    <h1>📌 Krish's Watchlist</h1>
+    <p>I'm **Krish Acharya**, a passionate series and movie enthusiast. This is my personal vault, where I collect and track my progress towards my ambitious goal of watching 1000 epic series and movies. I have also provided a free app where you all can watch all the series and movies.</p>
+    <div id="series-counter" class="series-counter"></div>
+    <nav style="margin-top: 1.5rem;"><a href="collections.html">← Back to Vaults</a></nav>
+  </header>
+
+  <section class="sidebar-filters">
+    <h3>🔍 Filter Your Watchlist</h3>
+    <input type="text" id="searchInput" placeholder="Search by title, description, tags..." />
+    <select id="languageFilter"><option value="">All Languages</option></select>
+    <select id="genreFilter"><option value="">All Genres</option></select>
+    <select id="platformFilter"><option value="">All Platforms</option></select>
+    <select id="imdbFilter">
+      <option value="">All Ratings</option>
+      <option value="9">9.0+</option>
+      <option value="8">8.0+</option>
+      <option value="7">7.0+</option>
+      <option value="6">6.0+</option>
+    </select>
+    <label><input type="checkbox" id="hindiToggle" /> 🎧 Hindi Dubbed Only</label>
+  </section>
+
+  <main>
+    <div id="vaultContainer" class="vault-poster-grid"></div>
+  </main>
+
+  <button id="goTopBtn" class="go-top-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">🔝</button>
+
+  <script src="data.js"></script>
+  
+  <script>
+    // FIX: Access the global array directly and use DOMContentLoaded for maximum compatibility.
+    // The variable 'myWatchlist' must exist globally after data.js executes.
+    const myWatchlist = window.myWatchlist || []; 
+
+    document.addEventListener("DOMContentLoaded", initWatchlist);
+
+    function initWatchlist() {
+      // 1. Check if the variable exists and is a non-empty array
+      if (myWatchlist.length > 0) {
+        
+        // Data is successfully loaded
+        updateSeriesCounter(myWatchlist.length);
+        populateFilters();
+        
+        // Initial render and attaching listeners
+        applyFilters(); 
+
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('languageFilter').addEventListener('change', applyFilters);
+        document.getElementById('genreFilter').addEventListener('change', applyFilters);
+        document.getElementById('platformFilter').addEventListener('change', applyFilters);
+        document.getElementById('imdbFilter').addEventListener('change', applyFilters);
+        document.getElementById('hindiToggle').addEventListener('change', applyFilters);
+
+      } else {
+        // Fallback message if the script failed to load/execute
+        document.getElementById('vaultContainer').innerHTML = '<p class="no-results" style="color: var(--secondary-neon); padding: 2rem; border: 1px dashed var(--secondary-neon);">❌ ERROR: Data not loaded. Check the **Browser Console (F12)** for errors. **Fix Action: Please try a Hard Refresh (Ctrl+Shift+R or Cmd+Shift+R) to clear your browser cache.**</p>';
+      }
+    }
+    
+    function updateSeriesCounter(count) {
+      const counterElement = document.getElementById('series-counter');
+      counterElement.textContent = `${count} / 1000 Watched`;
+    }
+
+    function populateFilters() {
+      // Functions now use the globally scoped `myWatchlist`
+      const languages = [...new Set(myWatchlist.map(item => item.language).filter(Boolean))].sort();
+      const genres = [...new Set(myWatchlist.map(item => item.genre).filter(Boolean))].sort();
+      const platforms = [...new Set(myWatchlist.map(item => item.platform).filter(Boolean))].sort();
+
+      populateDropdown('languageFilter', languages);
+      populateDropdown('genreFilter', genres);
+      populateDropdown('platformFilter', platforms);
+    }
+
+    function populateDropdown(selectId, options) {
+      const selectElement = document.getElementById(selectId);
+      selectElement.querySelectorAll('option:not(:first-child)').forEach(option => option.remove());
+      
+      options.forEach(option => {
+        const opt = document.createElement('option');
+        opt.value = option;
+        opt.textContent = option;
+        selectElement.appendChild(opt);
+      });
+    }
+
+    function applyFilters() {
+      const searchValue = document.getElementById('searchInput').value.toLowerCase();
+      const languageValue = document.getElementById('languageFilter').value;
+      const genreValue = document.getElementById('genreFilter').value;
+      const platformValue = document.getElementById('platformFilter').value;
+      const imdbRatingValue = document.getElementById('imdbFilter').value;
+      const hindiToggleChecked = document.getElementById('hindiToggle').checked;
+
+      // Filter logic
+      const filteredList = myWatchlist.filter(item => {
+        const matchesSearch = !searchValue ||
+          item.title.toLowerCase().includes(searchValue) ||
+          (item.description && item.description.toLowerCase().includes(searchValue)) ||
+          (item.tags && item.tags.join(', ').toLowerCase().includes(searchValue));
+
+        const matchesLanguage = !languageValue || item.language === languageValue;
+        const matchesGenre = !genreValue || item.genre === genreValue;
+        const matchesPlatform = !platformValue || item.platform === platformValue;
+        const matchesHindiDubbed = !hindiToggleChecked || item.hindiDubbed;
+
+        let matchesImdb = true;
+        if (imdbRatingValue) {
+          const currentRating = parseFloat(item.imdbRating);
+          matchesImdb = currentRating >= parseFloat(imdbRatingValue);
+        }
+
+        return matchesSearch && matchesLanguage && matchesGenre && matchesPlatform && matchesHindiDubbed && matchesImdb;
+      });
+
+      renderWatchlist(filteredList);
+    }
+
+    function renderWatchlist(list) {
+      const container = document.getElementById('vaultContainer');
+      container.innerHTML = '';
+
+      if (list.length === 0) {
+        container.innerHTML = '<p class="no-results">No items match your filters.</p>';
+        return;
+      }
+
+      list.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'vault-card';
+        const placeholder = 'https://via.placeholder.com/500x750?text=No+Poster';
+        const posterSrc = item.posterUrl || placeholder;
+        card.innerHTML = `
+          <div class="poster-wrap">
+            <img class="poster-img" loading="lazy" src="${posterSrc}" alt="${(item.title||'series').replace(/"/g,'&quot;')} poster" onerror="this.onerror=null;this.src='${placeholder}'" />
+          </div>
+          <h2><span class="id">${index + 1}.</span> ${item.title}</h2>
+          <p class="info-line"><span>Year:</span> ${item.year || 'N/A'}</p>
+          <p class="info-line"><span>Genre:</span> ${item.genre || 'N/A'}</p>
+          <p class="info-line"><span>IMDb Rating:</span> ${item.imdbRating || 'N/A'}</p>
+          <p class="info-line"><span>Platform:</span> ${item.platform || 'N/A'}</p>
+          <p class="info-line"><span>Runtime:</span> ${item.runtime || 'N/A'}</p>
+          <div class="badges">
+            <span class="badge must-watch-badge" style="display: ${item.mustWatch ? 'inline-block' : 'none'};">Must Watch</span>
+            <span class="badge hindi-dubbed-badge" style="display: ${item.hindiDubbed ? 'inline-block' : 'none'};">Hindi Dubbed</span>
+          </div>
+          <div class="tags">${item.tags ? item.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Show/hide the "go to top" button
+    window.onscroll = () => {
+      const goTopBtn = document.getElementById("goTopBtn");
+      if (goTopBtn) {
+        goTopBtn.style.display = (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? "block" : "none";
+      }
+    };
+  </script>
+</body>
+</html>
