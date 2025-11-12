@@ -152,5 +152,22 @@
       }
     });
   </script>
+  <script>
+  // Load saved profile data from localStorage
+  const savedUser = JSON.parse(localStorage.getItem("ourshow_user"));
+
+  if (savedUser) {
+    // Update desktop profile
+    const profilePic = document.getElementById("profile-pic");
+    const profileName = document.getElementById("profile-name");
+    if (profilePic) profilePic.src = savedUser.photo || "https://via.placeholder.com/32";
+    if (profileName) profileName.textContent = savedUser.name || "User";
+
+    // Update mobile profile
+    const mobilePic = document.getElementById("mobile-profile-pic");
+    if (mobilePic) mobilePic.src = savedUser.photo || "https://via.placeholder.com/32";
+  }
+</script>
+
 </body>
 </html>
