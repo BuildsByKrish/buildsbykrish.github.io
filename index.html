@@ -9,98 +9,91 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body class="bg-gray-900 text-white font-sans">
-  <script>
-  if (!localStorage.getItem("ourshow_username")) {
-    window.location.href = "login.html";
-  }
-</script>
 
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-md p-4 relative z-50">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <h1 class="text-3xl font-bold select-none cursor-pointer" onclick="location.href='index.html'">
+        <span class="bg-white text-black px-2 py-1 rounded">Our</span>
+        <span class="text-red-500">Show</span>
+      </h1>
 
- <header class="flex items-center justify-between p-4 bg-gray-800 shadow-md relative">
-  <!-- Logo -->
-  <h1 class="text-3xl font-bold select-none cursor-pointer" onclick="location.href='index.html'">
-    <span class="bg-white text-black px-2 py-1 rounded">Our</span>
-    <span class="text-red-500">Show</span>
-  </h1>
+      <!-- Desktop Navigation -->
+      <nav id="menu" class="hidden md:flex space-x-6 text-lg font-medium">
+        <a href="english.html" class="hover:text-red-500 transition">Best English Series</a>
+        <a href="hindi.html" class="hover:text-red-500 transition">Best Hindi Series</a>
+        <a href="korean.html" class="hover:text-red-500 transition">Best K-Dramas</a>
+        <a href="chinise.html" class="hover:text-red-500 transition">Best C-Dramas</a>
+        <a href="watchlist.html" class="hover:text-red-500 transition">Krish's Watchlist</a>
+        <a href="watch&download.html" class="hover:text-red-500 transition">Watch & Download</a>
+        <a href="community.html" class="hover:text-red-500 transition">Community Chat</a>
+      </nav>
 
-  <!-- Navigation Menu -->
-  <nav class="hidden md:flex space-x-6 text-lg font-medium">
-    <a href="english.html" class="hover:text-red-500 transition">Best English Series</a>
-    <a href="hindi.html" class="hover:text-red-500 transition">Best Hindi Series</a>
-    <a href="korean.html" class="hover:text-red-500 transition">Best K-Dramas</a>
-    <a href="chinise.html" class="hover:text-red-500 transition">Best C-Dramas</a>
-    <a href="watchlist.html" class="hover:text-red-500 transition">Krish's Watchlist</a>
-    <a href="watch&download.html" class="hover:text-red-500 transition">Watch & Download</a>
-    <a href="community.html" class="hover:text-red-500 transition">Community Chat</a>
-  </nav>
-
-  <!-- Profile Dropdown -->
-  <div class="relative" id="profile-section">
-    <button id="profile-btn" class="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg">
-      <img id="profile-pic" src="https://via.placeholder.com/32" alt="User" class="w-8 h-8 rounded-full border border-gray-500">
-      <span id="profile-name" class="font-medium text-sm">User</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-    </button>
-
-    <div id="profile-dropdown" class="hidden absolute right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg w-40 z-50">
-      <a href="profile.html" class="block px-4 py-2 text-sm hover:bg-gray-700">View Profile</a>
-      <button id="logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</button>
+      <!-- Profile (Desktop) -->
+      <div class="hidden md:block relative" id="profile-section">
+        <button id="profile-btn" class="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg">
+          <img id="profile-pic" src="https://via.placeholder.com/32" alt="User" class="w-8 h-8 rounded-full border border-gray-500">
+          <span id="profile-name" class="font-medium text-sm">User</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="profile-dropdown" class="hidden absolute right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg w-44 z-50">
+          <a href="profile.html" class="block px-4 py-2 text-sm hover:bg-gray-700">Edit Profile</a>
+          <button id="logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</button>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- Hamburger (mobile) -->
-  <button id="menu-btn" class="block md:hidden focus:outline-none ml-4">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  </button>
-</header>
+    <!-- Mobile Header Row -->
+    <div class="flex justify-between items-center mt-3 md:hidden">
+      <!-- Hamburger -->
+      <button id="menu-btn" class="focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
+      <!-- Profile -->
+      <div class="relative" id="mobile-profile-section">
+        <button id="mobile-profile-btn" class="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg">
+          <img id="mobile-profile-pic" src="https://via.placeholder.com/32" alt="User" class="w-8 h-8 rounded-full border border-gray-500">
+        </button>
+        <div id="mobile-profile-dropdown" class="hidden absolute right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg w-44 z-50">
+          <a href="profile.html" class="block px-4 py-2 text-sm hover:bg-gray-700">Edit Profile</a>
+          <button id="mobile-logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</button>
+        </div>
+      </div>
+    </div>
 
-    <!-- Hamburger Menu (Mobile) -->
-    <button id="menu-btn" class="block md:hidden focus:outline-none">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-
-    <!-- Desktop Menu -->
-    <nav id="menu" class="hidden md:flex space-x-6 text-lg font-medium">
-      <a href="english.html" class="hover:text-red-500 transition">Best English Series</a>
-      <a href="hindi.html" class="hover:text-red-500 transition">Best Hindi Series</a>
-      <a href="korean.html" class="hover:text-red-500 transition">Best K-Dramas</a>
-      <a href="chinise.html" class="hover:text-red-500 transition">Best C-Dramas</a>
-      <a href="watchlist.html" class="hover:text-red-500 transition">Krish's Watchlist</a>
-      <a href="watch&download.html" class="hover:text-red-500 transition">Watch & Download</a>
-      <a href="community.html" class="hover:text-red-500 transition">Community Chat</a>
-    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-900 bg-opacity-90 backdrop-blur-md flex flex-col items-center justify-center space-y-5 text-lg font-medium z-40">
+      <a href="english.html" class="hover:text-red-500">Best English Series</a>
+      <a href="hindi.html" class="hover:text-red-500">Best Hindi Series</a>
+      <a href="korean.html" class="hover:text-red-500">Best K-Dramas</a>
+      <a href="chinise.html" class="hover:text-red-500">Best C-Dramas</a>
+      <a href="watchlist.html" class="hover:text-red-500">Krish's Watchlist</a>
+      <a href="watch&download.html" class="hover:text-red-500">Watch & Download</a>
+      <a href="community.html" class="hover:text-red-500">Community Chat</a>
+      <button id="close-menu" class="text-red-400 mt-5">Close ✖</button>
+    </div>
   </header>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden flex-col bg-gray-800 md:hidden">
-    <a href="english.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Best English Series</a>
-    <a href="hindi.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Best Hindi Series</a>
-    <a href="korean.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Best K-Dramas</a>
-    <a href="chinise.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Best C-Dramas</a>
-    <a href="watchlist.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Krish's Watchlist</a>
-    <a href="watch&download.html" class="py-2 px-4 border-b border-gray-700 hover:bg-gray-700">Watch & Download</a>
-    <a href="community.html" class="py-2 px-4 hover:bg-gray-700">Community Chat</a>
-  </div>
 
   <!-- Search Bar -->
   <div class="p-4">
     <input id="search-input" type="text" placeholder="Search for movies or series..."
-           class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+      class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
   </div>
 
-  <!-- Main Content -->
+  <!-- Pages -->
   <main class="p-4">
+    <!-- Home Page -->
     <section id="page-home" class="spa-page space-y-10">
       <div id="sections-container" class="space-y-10"></div>
     </section>
 
+    <!-- All Results Page -->
     <section id="page-all" class="spa-page hidden">
       <div class="flex justify-between items-center mb-3">
         <h2 id="all-title" class="text-xl font-semibold"></h2>
@@ -109,13 +102,14 @@
       <div id="all-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
     </section>
 
+    <!-- Search Results Page -->
     <section id="page-search" class="spa-page hidden">
       <h2 class="text-xl font-semibold mb-3">🔎 Search Results</h2>
       <div id="search-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
     </section>
   </main>
 
-  <!-- Modal for Details -->
+  <!-- Movie Detail Modal -->
   <div id="detail-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
     <div class="bg-gray-900 rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-1/2 overflow-y-auto max-h-[90vh] relative">
       <button id="close-modal" class="absolute top-4 right-6 text-2xl text-white hover:text-red-500">✖</button>
@@ -123,14 +117,40 @@
     </div>
   </div>
 
-  <!-- JS -->
+  <!-- JS Scripts -->
+  <script src="prototype.js"></script>
   <script>
-    document.getElementById("menu-btn").addEventListener("click", () => {
-      document.getElementById("mobile-menu").classList.toggle("hidden");
+    // Mobile Menu
+    const menuBtn = document.getElementById("menu-btn");
+    const closeMenu = document.getElementById("close-menu");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+    closeMenu.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+
+    // Profile dropdowns
+    const profileBtn = document.getElementById("profile-btn");
+    const profileDropdown = document.getElementById("profile-dropdown");
+    const mobileProfileBtn = document.getElementById("mobile-profile-btn");
+    const mobileProfileDropdown = document.getElementById("mobile-profile-dropdown");
+
+    if (profileBtn) {
+      profileBtn.addEventListener("click", () => profileDropdown.classList.toggle("hidden"));
+    }
+    if (mobileProfileBtn) {
+      mobileProfileBtn.addEventListener("click", () => mobileProfileDropdown.classList.toggle("hidden"));
+    }
+
+    document.addEventListener("click", (e) => {
+      if (
+        !profileBtn?.contains(e.target) &&
+        !profileDropdown?.contains(e.target) &&
+        !mobileProfileBtn?.contains(e.target) &&
+        !mobileProfileDropdown?.contains(e.target)
+      ) {
+        profileDropdown?.classList.add("hidden");
+        mobileProfileDropdown?.classList.add("hidden");
+      }
     });
   </script>
-
-  <script src="prototype.js"></script>
-  <script src="user.js"></script>
 </body>
 </html>
