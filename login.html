@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | OurShow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans flex items-center justify-center min-h-screen">
+
+  <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-96 space-y-6">
+    <h1 class="text-3xl font-bold text-center">
+      <span class="bg-white text-black px-2 py-1 rounded">Our</span>
+      <span class="text-red-500">Show</span>
+    </h1>
+    <h2 class="text-xl text-center font-semibold">Sign In / Register</h2>
+
+    <div id="error-msg" class="text-red-400 text-sm text-center hidden"></div>
+
+    <!-- Email/Password form -->
+    <input id="email" type="email" placeholder="Email"
+           class="w-full p-2 rounded-md bg-gray-700 text-white focus:ring-2 focus:ring-red-500 focus:outline-none" />
+    <input id="password" type="password" placeholder="Password"
+           class="w-full p-2 rounded-md bg-gray-700 text-white focus:ring-2 focus:ring-red-500 focus:outline-none" />
+
+    <div class="flex justify-between">
+      <button id="login-btn" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-md font-medium transition">Login</button>
+      <button id="signup-btn" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-md font-medium transition">Sign Up</button>
+    </div>
+
+    <div class="flex items-center justify-center">
+      <hr class="border-gray-600 flex-grow"><span class="mx-2 text-gray-400">or</span><hr class="border-gray-600 flex-grow">
+    </div>
+
+    <!-- Google Sign In -->
+    <button id="google-btn"
+            class="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-200 transition">
+      Sign in with Google
+    </button>
+
+    <p class="text-center text-sm text-gray-400 mt-4">
+      ← <a href="index.html" class="hover:text-red-400">Back to Home</a>
+    </p>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>
