@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Profile | OurShow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Header -->
+  <header class="p-4 bg-gray-800 flex justify-between items-center shadow-md">
+    <h1 class="text-3xl font-bold cursor-pointer" onclick="location.href='index.html'">
+      <span class="bg-white text-black px-2 py-1 rounded">Our</span>
+      <span class="text-red-500">Show</span>
+    </h1>
+    <button onclick="logout()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm">Logout</button>
+  </header>
+
+  <!-- Profile Form -->
+  <main class="p-6 flex flex-col items-center justify-center min-h-[80vh]">
+    <div class="bg-gray-800 p-6 rounded-xl shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-semibold mb-4 text-center">Edit Your Profile</h2>
+
+      <!-- Profile Picture -->
+      <div class="flex flex-col items-center mb-4">
+        <img id="profile-pic" src="https://via.placeholder.com/100" alt="Profile Picture" class="rounded-full w-24 h-24 mb-2 border border-gray-500">
+        <input type="file" id="pic-upload" accept="image/*" class="text-sm text-gray-300 mb-2" />
+      </div>
+
+      <!-- Name -->
+      <label for="display-name" class="block mb-2 font-medium">Display Name</label>
+      <input id="display-name" type="text" placeholder="Enter your name" 
+        class="w-full p-2 rounded-md bg-gray-700 text-white mb-4 focus:outline-none focus:ring-2 focus:ring-red-500" />
+
+      <!-- Email (read-only) -->
+      <label for="email" class="block mb-2 font-medium">Email</label>
+      <input id="email" type="text" readonly 
+        class="w-full p-2 rounded-md bg-gray-700 text-gray-400 mb-4 cursor-not-allowed" />
+
+      <!-- Save Button -->
+      <button id="save-profile" class="bg-red-600 hover:bg-red-700 w-full py-2 rounded-lg font-semibold">Save Changes</button>
+
+      <!-- Status Message -->
+      <p id="status-msg" class="mt-4 text-center text-sm text-gray-400"></p>
+    </div>
+  </main>
+
+  <!-- Firebase Logic -->
+  <script>
+    // ===== Firebase Configuration =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
+      authDomain: "krishs-watchlist-vault.firebaseapp.com",
+      projectId: "krishs-watchlist-vault",
+      storageBucket: "krishs-watchlist-vault.appspot.com",
+      messagingSenderId: "1085194969409",
+      appId: "1:1085194969409:web:45becd2ef6afe86e0741c0",
+      measurementId: "G-C8VJHYRDTQ"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+    const displayNameInput = document.getElementById("display-name");
+    const emailInput = document.getElementById("email");
+    const profilePic = document.getElementById("profile-pic");
+    const fileInput = document.getElementById("pic-upload");
+    const statusMsg = document.getElementById("status-msg");
+
+    // Load current user
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        displayNameInput.value = user.displayName || "";
+        emailInput.value = user.email || "";
+        profilePic.src = user.photoURL || "https://via.placeholder.com/100";
+      } else {
+        window.location.href = "login.html"; // redirect if not logged in
+      }
+    });
+
+    // Upload new profile picture (local preview)
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          profilePic.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Save Profile
+    document.getElementById("save-profile").addEventListener("click", async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const newName = displayNameInput.value.trim();
+      const newPhoto = profilePic.src;
+
+      try {
+        await user.updateProfile({
+          displayName: newName,
+          photoURL: newPhoto
+        });
+
+        localStorage.setItem("ourshow_user", JSON.stringify({
+          name: newName,
+          photo: newPhoto,
+          email: user.email
+        }));
+
+        statusMsg.textContent = "✅ Profile updated successfully!";
+        statusMsg.classList.add("text-green-400");
+        setTimeout(() => (statusMsg.textContent = ""), 3000);
+      } catch (error) {
+        statusMsg.textContent = "❌ Error updating profile.";
+        statusMsg.classList.add("text-red-400");
+        console.error(error);
+      }
+    });
+
+    // Logout
+    function logout() {
+      auth.signOut().then(() => {
+        localStorage.removeItem("ourshow_user");
+        window.location.href = "login.html";
+      });
+    }
+  </script>
+</body>
+</html>
