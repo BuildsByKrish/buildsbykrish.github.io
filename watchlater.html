@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watch Later | OurShow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-gray-800 shadow-md">
+    <h1 class="text-3xl font-bold cursor-pointer select-none" onclick="location.href='index.html'">
+      <span class="bg-white text-black px-2 py-1 rounded">Our</span>
+      <span class="text-red-500">Show</span>
+    </h1>
+    <button onclick="location.href='profile.html'" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">👤 Profile</button>
+  </header>
+
+  <!-- Main -->
+  <main class="p-4">
+    <h2 class="text-2xl font-semibold mb-4">📌 Watch Later</h2>
+    <div id="watchlater-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+  </main>
+
+  <!-- Firebase + JS -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
+      authDomain: "krishs-watchlist-vault.firebaseapp.com",
+      projectId: "krishs-watchlist-vault",
+      storageBucket: "krishs-watchlist-vault.appspot.com",
+      messagingSenderId: "1085194969409",
+      appId: "1:1085194969409:web:45becd2ef6afe86e0741c0"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const user = JSON.parse(localStorage.getItem("ourshow_user")) || { uid: "guest" };
+    const container = document.getElementById("watchlater-container");
+
+    function loadWatchLater() {
+      db.ref(`watchlater/${user.uid}`).on("value", snapshot => {
+        const data = snapshot.val();
+        container.innerHTML = "";
+        if (!data) {
+          container.innerHTML = `<p class="text-gray-400">No movies saved yet.</p>`;
+          return;
+        }
+        Object.values(data).forEach(item => {
+          const card = `
+            <div class="bg-gray-800 p-2 rounded-lg hover:scale-105 transition cursor-pointer">
+              <img src="${item.poster || 'https://via.placeholder.com/200x300?text=No+Image'}" 
+                   class="rounded-lg w-full object-cover aspect-[2/3]" alt="${item.title}">
+              <h3 class="mt-2 text-sm font-semibold">${item.title}</h3>
+              <p class="text-xs text-gray-400">${new Date(item.timestamp).toLocaleString()}</p>
+            </div>`;
+          container.insertAdjacentHTML("beforeend", card);
+        });
+      });
+    }
+
+    loadWatchLater();
+  </script>
+</body>
+</html>
