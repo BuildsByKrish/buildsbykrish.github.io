@@ -46,15 +46,10 @@
 
       <!-- My Watchlist + Watch Later -->
       <div class="mt-6 flex flex-col sm:flex-row justify-center gap-4">
-        <button 
-          onclick="location.href='watchlist.html'" 
-          class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-white text-center w-full sm:w-auto">
+        <button onclick="location.href='watchlist.html'" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-white text-center w-full sm:w-auto">
           ✅ My Watchlist
         </button>
-
-        <button 
-          onclick="location.href='watchlater.html'" 
-          class="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-md text-black text-center w-full sm:w-auto">
+        <button onclick="location.href='watchlater.html'" class="bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-md text-black text-center w-full sm:w-auto">
           ⏳ My Watch Later
         </button>
       </div>
@@ -64,9 +59,8 @@
     </div>
   </main>
 
-  <!-- Firebase Logic -->
   <script>
-    // ===== Firebase Configuration =====
+    // Firebase config (same as other files)
     const firebaseConfig = {
       apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
       authDomain: "krishs-watchlist-vault.firebaseapp.com",
@@ -76,8 +70,7 @@
       appId: "1:1085194969409:web:45becd2ef6afe86e0741c0",
       measurementId: "G-C8VJHYRDTQ"
     };
-
-    firebase.initializeApp(firebaseConfig);
+    if (!window.firebase.apps?.length) firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.database();
 
@@ -87,18 +80,43 @@
     const fileInput = document.getElementById("pic-upload");
     const statusMsg = document.getElementById("status-msg");
 
-    // Load current user
+    // prefer persistent auth
+    try { auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL); } catch(e){}
+
+    // Load current user (and ensure localStorage ourshow_user contains uid)
     auth.onAuthStateChanged((user) => {
       if (user) {
         displayNameInput.value = user.displayName || "";
         emailInput.value = user.email || "";
         profilePic.src = user.photoURL || "https://via.placeholder.com/100";
+
+        // store in ourshow/users and localStorage for global use
+        const obj = { uid: user.uid, name: user.displayName || user.email, email: user.email, photo: user.photoURL || "" };
+        localStorage.setItem('ourshow_user', JSON.stringify(obj));
+        localStorage.setItem('ourshow_uid', user.uid);
+        localStorage.setItem('ourshow_username', obj.name);
+
+        // write basic user node to Realtime DB under ourshow/users
+        db.ref(`ourshow/users/${user.uid}`).update({ name: obj.name, email: obj.email, photo: obj.photo, lastSeen: Date.now() });
+
       } else {
-        window.location.href = "login.html"; // redirect if not logged in
+        // no user -> still allow editing local profile? redirect to login
+        // redirect to login if you prefer forced auth
+        // window.location.href = "login.html";
+        const saved = JSON.parse(localStorage.getItem('ourshow_user') || 'null');
+        if(saved){
+          displayNameInput.value = saved.name || '';
+          emailInput.value = saved.email || '';
+          profilePic.src = saved.photo || 'https://via.placeholder.com/100';
+        } else {
+          // no saved profile; show placeholder
+          displayNameInput.value = '';
+          emailInput.value = '';
+        }
       }
     });
 
-    // Upload new profile picture (local preview)
+    // local preview for uploaded picture
     fileInput.addEventListener("change", (e) => {
       const file = e.target.files[0];
       if (file) {
@@ -110,40 +128,53 @@
       }
     });
 
-    // Save Profile
+    // Save button: update firebase profile (if logged in) and localStorage + ourshow/users
     document.getElementById("save-profile").addEventListener("click", async () => {
       const user = auth.currentUser;
-      if (!user) return;
-
       const newName = displayNameInput.value.trim();
       const newPhoto = profilePic.src;
 
-      try {
-        await user.updateProfile({
-          displayName: newName,
-          photoURL: newPhoto
-        });
-
-        localStorage.setItem("ourshow_user", JSON.stringify({
-          name: newName,
-          photo: newPhoto,
-          email: user.email
-        }));
-
-        statusMsg.textContent = "✅ Profile updated successfully!";
-        statusMsg.classList.add("text-green-400");
-        setTimeout(() => (statusMsg.textContent = ""), 3000);
-      } catch (error) {
-        statusMsg.textContent = "❌ Error updating profile.";
-        statusMsg.classList.add("text-red-400");
-        console.error(error);
+      if(user){
+        try{
+          await user.updateProfile({ displayName: newName || user.displayName, photoURL: newPhoto || user.photoURL });
+          // update ourshow_user in localStorage
+          const obj = { uid: user.uid, name: newName || user.displayName || user.email, email: user.email, photo: newPhoto || user.photoURL || "" };
+          localStorage.setItem('ourshow_user', JSON.stringify(obj));
+          localStorage.setItem('ourshow_uid', user.uid);
+          localStorage.setItem('ourshow_username', obj.name);
+          // update DB
+          db.ref(`ourshow/users/${user.uid}`).update({ name: obj.name, photo: obj.photo, email: obj.email, lastUpdated: Date.now() });
+          statusMsg.textContent = "✅ Profile updated successfully!";
+          statusMsg.classList.remove('text-red-400'); statusMsg.classList.add('text-green-400');
+          setTimeout(()=> statusMsg.textContent = '', 3000);
+        }catch(e){
+          console.error(e);
+          statusMsg.textContent = "❌ Error updating profile.";
+          statusMsg.classList.remove('text-green-400'); statusMsg.classList.add('text-red-400');
+        }
+      } else {
+        // not logged in: simply store locally
+        const obj = { uid: 'guest', name: newName, email: emailInput.value || '', photo: newPhoto };
+        localStorage.setItem('ourshow_user', JSON.stringify(obj));
+        localStorage.setItem('ourshow_username', obj.name);
+        statusMsg.textContent = "✅ Profile saved locally (not signed in).";
+        statusMsg.classList.remove('text-red-400'); statusMsg.classList.add('text-green-400');
+        setTimeout(()=> statusMsg.textContent = '', 3000);
       }
     });
 
-    // Logout
-    function logout() {
-      auth.signOut().then(() => {
-        localStorage.removeItem("ourshow_user");
+    // logout helper
+    function logout(){
+      auth.signOut().then(()=> {
+        localStorage.removeItem('ourshow_user');
+        localStorage.removeItem('ourshow_username');
+        localStorage.removeItem('ourshow_uid');
+        window.location.href = "login.html";
+      }).catch(()=> {
+        // fallback: clear local and redirect
+        localStorage.removeItem('ourshow_user');
+        localStorage.removeItem('ourshow_username');
+        localStorage.removeItem('ourshow_uid');
         window.location.href = "login.html";
       });
     }
