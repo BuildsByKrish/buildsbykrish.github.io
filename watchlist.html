@@ -8,58 +8,62 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="bg-gray-900 text-white min-h-screen font-sans">
 
-  <!-- Header -->
-  <header class="flex items-center justify-between p-4 bg-gray-800 shadow-md">
-    <h1 class="text-3xl font-bold cursor-pointer select-none" onclick="location.href='index.html'">
-      <span class="bg-white text-black px-2 py-1 rounded">Our</span>
-      <span class="text-red-500">Show</span>
+  <header class="bg-gray-800 p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold cursor-pointer" onclick="location.href='index.html'">
+      <span class="bg-white text-black px-2 py-1 rounded">Our</span><span class="text-red-500">Show</span>
     </h1>
-    <button onclick="location.href='profile.html'" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">👤 Profile</button>
+    <button onclick="location.href='index.html'" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded">🏠 Home</button>
   </header>
 
-  <!-- Main -->
-  <main class="p-4">
-    <h2 class="text-2xl font-semibold mb-4">🎯 My Watchlist</h2>
-    <div id="watchlist-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+  <main class="p-6">
+    <h2 class="text-2xl font-semibold mb-4">📺 My Watchlist</h2>
+    <div id="watchlist-container" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+    <p id="empty-msg" class="text-gray-400 text-center mt-10 hidden">No movies/series added yet.</p>
   </main>
 
-  <!-- Firebase + JS -->
   <script>
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
       authDomain: "krishs-watchlist-vault.firebaseapp.com",
+      databaseURL: "https://krishs-watchlist-vault-default-rtdb.asia-southeast1.firebasedatabase.app/",
       projectId: "krishs-watchlist-vault",
       storageBucket: "krishs-watchlist-vault.appspot.com",
       messagingSenderId: "1085194969409",
       appId: "1:1085194969409:web:45becd2ef6afe86e0741c0"
     };
+
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    const user = JSON.parse(localStorage.getItem("ourshow_user")) || { uid: "guest" };
     const container = document.getElementById("watchlist-container");
+    const emptyMsg = document.getElementById("empty-msg");
 
     function loadWatchlist() {
-      db.ref(`watched/${user.uid}`).on("value", snapshot => {
+      db.ref("ourshow/watchlist").on("value", (snapshot) => {
         const data = snapshot.val();
         container.innerHTML = "";
         if (!data) {
-          container.innerHTML = `<p class="text-gray-400">No movies watched yet.</p>`;
+          emptyMsg.classList.remove("hidden");
           return;
         }
-        Object.values(data).forEach(item => {
-          const card = `
-            <div class="bg-gray-800 p-2 rounded-lg hover:scale-105 transition cursor-pointer">
-              <img src="${item.poster || 'https://via.placeholder.com/200x300?text=No+Image'}" 
-                   class="rounded-lg w-full object-cover aspect-[2/3]" alt="${item.title}">
-              <h3 class="mt-2 text-sm font-semibold">${item.title}</h3>
-              <p class="text-xs text-gray-400">${new Date(item.timestamp).toLocaleString()}</p>
-            </div>`;
-          container.insertAdjacentHTML("beforeend", card);
+        emptyMsg.classList.add("hidden");
+        Object.keys(data).forEach((key) => {
+          const item = data[key];
+          container.insertAdjacentHTML("beforeend", `
+            <div class="bg-gray-800 p-3 rounded-lg flex flex-col justify-between hover:bg-gray-700 transition">
+              <p class="text-sm mb-2 font-medium">${item.title}</p>
+              <button onclick="removeItem('${key}')" class="text-red-400 hover:text-red-600 text-xs">❌ Remove</button>
+            </div>
+          `);
         });
       });
+    }
+
+    function removeItem(id) {
+      db.ref("ourshow/watchlist/" + id).remove();
     }
 
     loadWatchlist();
