@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Watch Later | OurShow</title>
+  <meta charset="UTF-8">
+  <title>My Watchlist</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
 </head>
 <body class="bg-gray-900 text-white p-6">
-  <h1 class="text-3xl font-bold mb-6">🕒 Watch Later</h1>
-  <div id="later-container" class="space-y-2 text-lg"></div>
+  <h1 class="text-2xl font-bold mb-4">📺 My Watchlist</h1>
+  <div id="list" class="space-y-2"></div>
 
   <script>
-    firebase.initializeApp({
-      apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
-      authDomain: "krishs-watchlist-vault.firebaseapp.com",
-      databaseURL: "https://krishs-watchlist-vault-default-rtdb.asia-southeast1.firebasedatabase.app/",
-      projectId: "krishs-watchlist-vault"
-    });
-    const db = firebase.database();
-    const container = document.getElementById("later-container");
-    db.ref("ourshow/watchlater").on("value", (snap) => {
+    const list = document.getElementById("list");
+    db.ref("ourshow/watchlater").on("value", ...
+
       const data = snap.val();
-      if (!data) return container.innerHTML = "<p>No movies added yet.</p>";
-      container.innerHTML = Object.values(data).map(i => `<p>🎥 ${i.title}</p>`).join("");
+      list.innerHTML = "";
+      if (!data) return list.innerHTML = "<p class='text-gray-400'>Empty watchlist.</p>";
+      Object.entries(data).forEach(([id, item]) => {
+        list.insertAdjacentHTML("beforeend",
+          `<div class="bg-gray-800 p-3 rounded">${item.title}</div>`);
+      });
     });
   </script>
 </body>
