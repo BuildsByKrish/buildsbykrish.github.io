@@ -1,72 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Watchlist | OurShow</title>
+  <meta charset="UTF-8">
+  <title>My Watchlist</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
 </head>
-<body class="bg-gray-900 text-white min-h-screen font-sans">
-
-  <header class="bg-gray-800 p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold cursor-pointer" onclick="location.href='index.html'">
-      <span class="bg-white text-black px-2 py-1 rounded">Our</span><span class="text-red-500">Show</span>
-    </h1>
-    <button onclick="location.href='index.html'" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded">🏠 Home</button>
-  </header>
-
-  <main class="p-6">
-    <h2 class="text-2xl font-semibold mb-4">📺 My Watchlist</h2>
-    <div id="watchlist-container" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
-    <p id="empty-msg" class="text-gray-400 text-center mt-10 hidden">No movies/series added yet.</p>
-  </main>
+<body class="bg-gray-900 text-white p-6">
+  <h1 class="text-2xl font-bold mb-4">📺 My Watchlist</h1>
+  <div id="list" class="space-y-2"></div>
 
   <script>
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
-      authDomain: "krishs-watchlist-vault.firebaseapp.com",
-      databaseURL: "https://krishs-watchlist-vault-default-rtdb.asia-southeast1.firebasedatabase.app/",
-      projectId: "krishs-watchlist-vault",
-      storageBucket: "krishs-watchlist-vault.appspot.com",
-      messagingSenderId: "1085194969409",
-      appId: "1:1085194969409:web:45becd2ef6afe86e0741c0"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    const container = document.getElementById("watchlist-container");
-    const emptyMsg = document.getElementById("empty-msg");
-
-    function loadWatchlist() {
-      db.ref("ourshow/watchlist").on("value", (snapshot) => {
-        const data = snapshot.val();
-        container.innerHTML = "";
-        if (!data) {
-          emptyMsg.classList.remove("hidden");
-          return;
-        }
-        emptyMsg.classList.add("hidden");
-        Object.keys(data).forEach((key) => {
-          const item = data[key];
-          container.insertAdjacentHTML("beforeend", `
-            <div class="bg-gray-800 p-3 rounded-lg flex flex-col justify-between hover:bg-gray-700 transition">
-              <p class="text-sm mb-2 font-medium">${item.title}</p>
-              <button onclick="removeItem('${key}')" class="text-red-400 hover:text-red-600 text-xs">❌ Remove</button>
-            </div>
-          `);
-        });
+    const list = document.getElementById("list");
+    db.ref("ourshow/watchlist").on("value", (snap) => {
+      const data = snap.val();
+      list.innerHTML = "";
+      if (!data) return list.innerHTML = "<p class='text-gray-400'>Empty watchlist.</p>";
+      Object.entries(data).forEach(([id, item]) => {
+        list.insertAdjacentHTML("beforeend",
+          `<div class="bg-gray-800 p-3 rounded">${item.title}</div>`);
       });
-    }
-
-    function removeItem(id) {
-      db.ref("ourshow/watchlist/" + id).remove();
-    }
-
-    loadWatchlist();
+    });
   </script>
 </body>
 </html>
