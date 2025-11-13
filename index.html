@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>OurShow</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Firebase (compat) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body class="bg-gray-900 text-white font-sans">
@@ -14,19 +17,28 @@
   <header class="bg-gray-800 shadow-md p-4 relative z-50">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <h1 class="text-3xl font-bold select-none cursor-pointer" onclick="location.href='index.html'">
+      <h1 class="text-3xl font-bold select-none cursor-pointer" id="site-logo" onclick="location.href='index.html'">
         <span class="bg-white text-black px-2 py-1 rounded">Our</span>
         <span class="text-red-500">Show</span>
       </h1>
 
       <!-- Desktop Navigation -->
-      <nav id="menu" class="hidden md:flex space-x-6 text-lg font-medium">
+      <nav id="menu" class="hidden md:flex space-x-6 text-lg font-medium items-center">
         <a href="english.html" class="hover:text-red-500 transition">Best English Series</a>
         <a href="hindi.html" class="hover:text-red-500 transition">Best Hindi Series</a>
         <a href="korean.html" class="hover:text-red-500 transition">Best K-Dramas</a>
         <a href="chinise.html" class="hover:text-red-500 transition">Best C-Dramas</a>
-        <a href="watchlist.html" class="hover:text-red-500 transition">Krish's Watchlist</a>
-        <a href="watch&download.html" class="hover:text-red-500 transition">Watch & Download</a>
+
+        <!-- Watchlist badges -->
+        <a href="watchlist.html" class="hover:text-red-500 transition flex items-center gap-2">
+          My Watchlist
+          <span id="watchlist-count" class="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">0</span>
+        </a>
+        <a href="watchlater.html" class="hover:text-red-500 transition flex items-center gap-2">
+          My Watch Later
+          <span id="watchlater-count" class="text-xs bg-yellow-500 text-black px-2 py-0.5 rounded-full">0</span>
+        </a>
+
         <a href="community.html" class="hover:text-red-500 transition">Community Chat</a>
       </nav>
 
@@ -39,29 +51,31 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <div id="profile-dropdown" class="hidden absolute right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg w-44 z-50">
+        <div id="profile-dropdown" class="hidden absolute right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg w-48 z-50">
           <a href="profile.html" class="block px-4 py-2 text-sm hover:bg-gray-700">Edit Profile</a>
+          <a href="watchlist.html" class="block px-4 py-2 text-sm hover:bg-gray-700">My Watchlist</a>
+          <a href="watchlater.html" class="block px-4 py-2 text-sm hover:bg-gray-700">My Watch Later</a>
           <button id="logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</button>
         </div>
       </div>
     </div>
 
-    <!-- Mobile Header Row -->
+    <!-- Mobile header row -->
     <div class="flex justify-between items-center mt-3 md:hidden">
-      <!-- Hamburger -->
       <button id="menu-btn" class="focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
 
-      <!-- Profile -->
       <div class="relative" id="mobile-profile-section">
         <button id="mobile-profile-btn" class="flex items-center space-x-2 bg-gray-700 hover:bg-gray-600 px-3 py-2 rounded-lg">
           <img id="mobile-profile-pic" src="https://via.placeholder.com/32" alt="User" class="w-8 h-8 rounded-full border border-gray-500">
         </button>
         <div id="mobile-profile-dropdown" class="hidden absolute right-0 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg w-44 z-50">
           <a href="profile.html" class="block px-4 py-2 text-sm hover:bg-gray-700">Edit Profile</a>
+          <a href="watchlist.html" class="block px-4 py-2 text-sm hover:bg-gray-700">My Watchlist</a>
+          <a href="watchlater.html" class="block px-4 py-2 text-sm hover:bg-gray-700">My Watch Later</a>
           <button id="mobile-logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700">Logout</button>
         </div>
       </div>
@@ -73,27 +87,24 @@
       <a href="hindi.html" class="hover:text-red-500">Best Hindi Series</a>
       <a href="korean.html" class="hover:text-red-500">Best K-Dramas</a>
       <a href="chinise.html" class="hover:text-red-500">Best C-Dramas</a>
-      <a href="watchlist.html" class="hover:text-red-500">Krish's Watchlist</a>
-      <a href="watch&download.html" class="hover:text-red-500">Watch & Download</a>
+      <a href="watchlist.html" class="hover:text-red-500">My Watchlist</a>
+      <a href="watchlater.html" class="hover:text-red-500">My Watch Later</a>
       <a href="community.html" class="hover:text-red-500">Community Chat</a>
       <button id="close-menu" class="text-red-400 mt-5">Close ✖</button>
     </div>
   </header>
 
-  <!-- Search Bar -->
+  <!-- Search -->
   <div class="p-4">
-    <input id="search-input" type="text" placeholder="Search for movies or series..."
-      class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+    <input id="search-input" type="text" placeholder="Search for movies or series..." class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
   </div>
 
   <!-- Pages -->
   <main class="p-4">
-    <!-- Home Page -->
     <section id="page-home" class="spa-page space-y-10">
       <div id="sections-container" class="space-y-10"></div>
     </section>
 
-    <!-- All Results Page -->
     <section id="page-all" class="spa-page hidden">
       <div class="flex justify-between items-center mb-3">
         <h2 id="all-title" class="text-xl font-semibold"></h2>
@@ -102,72 +113,86 @@
       <div id="all-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
     </section>
 
-    <!-- Search Results Page -->
     <section id="page-search" class="spa-page hidden">
       <h2 class="text-xl font-semibold mb-3">🔎 Search Results</h2>
       <div id="search-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
     </section>
   </main>
 
-  <!-- Movie Detail Modal -->
+  <!-- Modal -->
   <div id="detail-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
-    <div class="bg-gray-900 rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-1/2 overflow-y-auto max-h-[90vh] relative">
+    <div class="bg-gray-900 rounded-lg shadow-lg w-11/12 md:w-3/4 lg:w-2/3 overflow-y-auto max-h-[90vh] relative">
       <button id="close-modal" class="absolute top-4 right-6 text-2xl text-white hover:text-red-500">✖</button>
       <div id="modal-content" class="p-4"></div>
     </div>
   </div>
 
-  <!-- JS Scripts -->
-  <script src="prototype.js"></script>
   <script>
-    // Mobile Menu
-    const menuBtn = document.getElementById("menu-btn");
-    const closeMenu = document.getElementById("close-menu");
-    const mobileMenu = document.getElementById("mobile-menu");
-    menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
-    closeMenu.addEventListener("click", () => mobileMenu.classList.add("hidden"));
-
-    // Profile dropdowns
-    const profileBtn = document.getElementById("profile-btn");
-    const profileDropdown = document.getElementById("profile-dropdown");
-    const mobileProfileBtn = document.getElementById("mobile-profile-btn");
-    const mobileProfileDropdown = document.getElementById("mobile-profile-dropdown");
-
-    if (profileBtn) {
-      profileBtn.addEventListener("click", () => profileDropdown.classList.toggle("hidden"));
-    }
-    if (mobileProfileBtn) {
-      mobileProfileBtn.addEventListener("click", () => mobileProfileDropdown.classList.toggle("hidden"));
-    }
-
-    document.addEventListener("click", (e) => {
-      if (
-        !profileBtn?.contains(e.target) &&
-        !profileDropdown?.contains(e.target) &&
-        !mobileProfileBtn?.contains(e.target) &&
-        !mobileProfileDropdown?.contains(e.target)
-      ) {
-        profileDropdown?.classList.add("hidden");
-        mobileProfileDropdown?.classList.add("hidden");
-      }
-    });
+    // Firebase config and init (same as used by prototype.js and profile.html)
+    const firebaseConfig = {
+      apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
+      authDomain: "krishs-watchlist-vault.firebaseapp.com",
+      projectId: "krishs-watchlist-vault",
+      storageBucket: "krishs-watchlist-vault.appspot.com",
+      messagingSenderId: "1085194969409",
+      appId: "1:1085194969409:web:45becd2ef6afe86e0741c0",
+      measurementId: "G-C8VJHYRDTQ"
+    };
+    if (!window.firebase.apps?.length) firebase.initializeApp(firebaseConfig);
   </script>
+
+  <!-- app logic -->
+  <script src="prototype.js"></script>
+
+  <!-- header UI small handlers -->
   <script>
-  // Load saved profile data from localStorage
-  const savedUser = JSON.parse(localStorage.getItem("ourshow_user"));
+    (function headerUI(){
+      const menuBtn = document.getElementById("menu-btn");
+      const closeMenu = document.getElementById("close-menu");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const profileBtn = document.getElementById("profile-btn");
+      const profileDropdown = document.getElementById("profile-dropdown");
+      const mobileProfileBtn = document.getElementById("mobile-profile-btn");
+      const mobileProfileDropdown = document.getElementById("mobile-profile-dropdown");
 
-  if (savedUser) {
-    // Update desktop profile
-    const profilePic = document.getElementById("profile-pic");
-    const profileName = document.getElementById("profile-name");
-    if (profilePic) profilePic.src = savedUser.photo || "https://via.placeholder.com/32";
-    if (profileName) profileName.textContent = savedUser.name || "User";
+      menuBtn?.addEventListener("click", ()=> mobileMenu.classList.toggle("hidden"));
+      closeMenu?.addEventListener("click", ()=> mobileMenu.classList.add("hidden"));
 
-    // Update mobile profile
-    const mobilePic = document.getElementById("mobile-profile-pic");
-    if (mobilePic) mobilePic.src = savedUser.photo || "https://via.placeholder.com/32";
-  }
-</script>
+      profileBtn?.addEventListener("click", ()=> profileDropdown.classList.toggle("hidden"));
+      mobileProfileBtn?.addEventListener("click", ()=> mobileProfileDropdown.classList.toggle("hidden"));
 
+      document.addEventListener("click", (e)=>{
+        if (!profileBtn?.contains(e.target)) profileDropdown?.classList.add("hidden");
+        if (!mobileProfileBtn?.contains(e.target)) mobileProfileDropdown?.classList.add("hidden");
+      });
+
+      // update header from localStorage (profile.html writes it)
+      function applyProfile(){
+        const saved = JSON.parse(localStorage.getItem('ourshow_user') || 'null');
+        if(saved){
+          document.getElementById('profile-name').textContent = saved.name || saved.email || 'User';
+          document.getElementById('profile-pic').src = saved.photo || 'https://via.placeholder.com/32';
+          document.getElementById('mobile-profile-pic').src = saved.photo || 'https://via.placeholder.com/32';
+        }
+      }
+      applyProfile();
+
+      // logout handlers (works with firebase if used)
+      document.getElementById("logout-btn")?.addEventListener("click", ()=>{
+        localStorage.removeItem("ourshow_user");
+        localStorage.removeItem("ourshow_username");
+        localStorage.removeItem("ourshow_uid");
+        if(window.firebase && firebase.auth) firebase.auth().signOut().catch(()=>{});
+        window.location.href = "login.html";
+      });
+      document.getElementById("mobile-logout-btn")?.addEventListener("click", ()=>{
+        localStorage.removeItem("ourshow_user");
+        localStorage.removeItem("ourshow_username");
+        localStorage.removeItem("ourshow_uid");
+        if(window.firebase && firebase.auth) firebase.auth().signOut().catch(()=>{});
+        window.location.href = "login.html";
+      });
+    })();
+  </script>
 </body>
 </html>
