@@ -2,7 +2,7 @@
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const TMDB_KEY = "fa75c4832cd40cf2bf75307fd4abe736";
 
-// ===== FIREBASE INIT (use config from your project) =====
+// ===== FIREBASE INIT =====
 if (!firebase.apps.length) {
   firebase.initializeApp({
     apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
@@ -19,11 +19,7 @@ const db = firebase.database();
 // ===== HELPER FUNCTION =====
 function esc(str) {
   return String(str || "").replace(/[&<>"']/g, (m) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   }[m]));
 }
 
@@ -41,7 +37,7 @@ async function fetchData(endpoint) {
   }
 }
 
-// ===== MAKE CARD =====
+// ===== CARD TEMPLATE =====
 function makeCard(item, type = "movie") {
   const title = item.title || item.name || "Untitled";
   const year = (item.release_date || item.first_air_date || "N/A").split("-")[0];
@@ -78,6 +74,7 @@ async function renderHome() {
 
   const container = document.getElementById("sections-container");
   container.innerHTML = "";
+
   for (const s of sections) {
     container.insertAdjacentHTML("beforeend", `
       <div>
@@ -131,6 +128,7 @@ async function openDetailModal(id, type) {
   try {
     const res = await fetch(`${TMDB_BASE_URL}/${type}/${id}?append_to_response=videos,credits,similar&api_key=${TMDB_KEY}`);
     const data = await res.json();
+
     const title = data.title || data.name;
     const year = (data.release_date || data.first_air_date || "").split("-")[0];
     const rating = data.vote_average?.toFixed(1) || "N/A";
@@ -147,7 +145,6 @@ async function openDetailModal(id, type) {
     modalContent.innerHTML = `
       <div class="flex flex-col md:flex-row gap-4">
         <img src="${poster}" class="w-full md:w-1/3 rounded-lg object-cover" alt="${esc(title)}">
-
         <div class="flex-1">
           <h2 class="text-2xl font-bold mb-2">${esc(title)}</h2>
           <p class="text-gray-300 leading-relaxed mb-3">${esc(overview)}</p>
@@ -198,8 +195,12 @@ async function openDetailModal(id, type) {
       <div class="flex overflow-x-auto gap-3">
         ${similar.map(s => makeCard(s, s.media_type || "movie")).join("")}
       </div>
+
+      <div id="reviews-section" class="mt-6"></div>
     `;
     modal.classList.remove("hidden");
+
+    showReviews(id); // Load reviews
   } catch (err) {
     console.error("Modal error:", err);
   }
@@ -222,15 +223,25 @@ function submitReview(id, title) {
   if (!value) return alert("Please select a rating.");
   db.ref("ourshow/reviews/" + id).push({ title, review: value, time: Date.now() });
   alert("✅ Review added!");
+  showReviews(id);
 }
 
 function showReviews(id) {
   const ref = db.ref("ourshow/reviews/" + id);
   ref.once("value", (snap) => {
     const reviews = snap.val();
-    if (!reviews) return alert("No reviews yet!");
-    const all = Object.values(reviews).map(r => `• ${r.review}`).join("\n");
-    alert(`User Reviews:\n\n${all}`);
+    const section = document.getElementById("reviews-section");
+    if (!section) return;
+    if (!reviews) {
+      section.innerHTML = `<p class="text-gray-400 text-sm">No reviews yet.</p>`;
+      return;
+    }
+    section.innerHTML = `
+      <h4 class="text-md font-semibold mb-2">User Reviews:</h4>
+      <div class="bg-gray-800 p-3 rounded space-y-2">
+        ${Object.values(reviews).map(r => `<p class="text-sm border-b border-gray-700 pb-1">${esc(r.review)}</p>`).join("")}
+      </div>
+    `;
   });
 }
 
