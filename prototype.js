@@ -16,28 +16,13 @@ if (!firebase.apps.length) {
 }
 const db = firebase.database();
 
-// ===== HELPER FUNCTION =====
+// ===== HELPERS =====
 function esc(str) {
   return String(str || "").replace(/[&<>"']/g, (m) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   }[m]));
 }
 
-// ===== FETCH DATA =====
-async function fetchData(endpoint) {
-  try {
-    const url = `${TMDB_BASE_URL}${endpoint}${endpoint.includes("?") ? "&" : "?"}api_key=${TMDB_KEY}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    return data.results || [];
-  } catch (err) {
-    console.error("Fetch error:", err);
-    return [];
-  }
-}
-
-// ===== CARD TEMPLATE =====
 function makeCard(item, type = "movie") {
   const title = item.title || item.name || "Untitled";
   const year = (item.release_date || item.first_air_date || "N/A").split("-")[0];
@@ -54,6 +39,19 @@ function makeCard(item, type = "movie") {
       <p class="text-gray-400 text-xs">${esc(year)} • ⭐ ${esc(rating)} • 🔥 ${esc(popularity)}</p>
     </div>
   `;
+}
+
+// ===== FETCH DATA =====
+async function fetchData(endpoint) {
+  try {
+    const res = await fetch(`${TMDB_BASE_URL}${endpoint}${endpoint.includes("?") ? "&" : "?"}api_key=${TMDB_KEY}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.results || [];
+  } catch (err) {
+    console.error("Fetch error:", err);
+    return [];
+  }
 }
 
 // ===== RENDER HOME =====
@@ -74,7 +72,6 @@ async function renderHome() {
 
   const container = document.getElementById("sections-container");
   container.innerHTML = "";
-
   for (const s of sections) {
     container.insertAdjacentHTML("beforeend", `
       <div>
@@ -88,12 +85,6 @@ async function renderHome() {
     const data = await fetchData(s.endpoint);
     document.getElementById(`${s.id}-row`).innerHTML = data.map(item => makeCard(item, s.type)).join("");
   }
-}
-
-// ===== PAGE SWITCH =====
-function showPage(pageId) {
-  document.querySelectorAll(".spa-page").forEach(p => p.classList.add("hidden"));
-  document.getElementById(pageId).classList.remove("hidden");
 }
 
 // ===== SEARCH =====
@@ -110,144 +101,125 @@ searchInput.addEventListener("keypress", async (e) => {
   }
 });
 
+// ===== PAGE SWITCH =====
+function showPage(pageId) {
+  document.querySelectorAll(".spa-page").forEach(p => p.classList.add("hidden"));
+  document.getElementById(pageId).classList.remove("hidden");
+}
+
 // ===== MODAL =====
 const modal = document.getElementById("detail-modal");
 const modalContent = document.getElementById("modal-content");
 document.getElementById("close-modal").addEventListener("click", () => modal.classList.add("hidden"));
 
-// ===== OPEN MODAL =====
 document.body.addEventListener("click", async (e) => {
   const card = e.target.closest("[data-id]");
   if (!card) return;
-  const id = card.dataset.id;
-  const type = card.dataset.type || "movie";
-  await openDetailModal(id, type);
+  await openDetailModal(card.dataset.id, card.dataset.type || "movie");
 });
 
 async function openDetailModal(id, type) {
-  try {
-    const res = await fetch(`${TMDB_BASE_URL}/${type}/${id}?append_to_response=videos,credits,similar&api_key=${TMDB_KEY}`);
-    const data = await res.json();
+  const res = await fetch(`${TMDB_BASE_URL}/${type}/${id}?append_to_response=videos,credits,similar&api_key=${TMDB_KEY}`);
+  const data = await res.json();
+  const title = data.title || data.name;
+  const year = (data.release_date || data.first_air_date || "").split("-")[0];
+  const rating = data.vote_average?.toFixed(1) || "N/A";
+  const popularity = Math.round(data.popularity || 0);
+  const overview = data.overview || "No description available.";
+  const runtime = data.runtime || data.episode_run_time?.[0] || "N/A";
+  const genres = (data.genres || []).map(g => g.name).join(", ");
+  const poster = data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : "";
+  const trailer = (data.videos.results || []).find(v => v.type === "Trailer" && v.site === "YouTube");
+  const trailerUrl = trailer ? `https://www.youtube.com/embed/${trailer.key}` : "";
+  const cast = (data.credits.cast || []).slice(0, 6);
+  const similar = (data.similar.results || []).slice(0, 10);
 
-    const title = data.title || data.name;
-    const year = (data.release_date || data.first_air_date || "").split("-")[0];
-    const rating = data.vote_average?.toFixed(1) || "N/A";
-    const popularity = Math.round(data.popularity || 0);
-    const overview = data.overview || "No description available.";
-    const runtime = data.runtime || data.episode_run_time?.[0] || "N/A";
-    const genres = (data.genres || []).map(g => g.name).join(", ");
-    const poster = data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : "";
-    const trailer = (data.videos.results || []).find(v => v.type === "Trailer" && v.site === "YouTube");
-    const trailerUrl = trailer ? `https://www.youtube.com/embed/${trailer.key}` : "";
-    const cast = (data.credits.cast || []).slice(0, 6);
-    const similar = (data.similar.results || []).slice(0, 10);
+  modalContent.innerHTML = `
+    <div class="flex flex-col md:flex-row gap-4">
+      <img src="${poster || 'https://via.placeholder.com/300x450?text=No+Image'}"
+           class="w-full md:w-1/3 rounded-lg object-cover" alt="${esc(title)}">
 
-    modalContent.innerHTML = `
-      <div class="flex flex-col md:flex-row gap-4">
-        <img src="${poster}" class="w-full md:w-1/3 rounded-lg object-cover" alt="${esc(title)}">
-        <div class="flex-1">
-          <h2 class="text-2xl font-bold mb-2">${esc(title)}</h2>
-          <p class="text-gray-300 leading-relaxed mb-3">${esc(overview)}</p>
+      <div class="flex-1">
+        <h2 class="text-2xl font-bold mb-2">${esc(title)}</h2>
+        <p class="text-gray-300 leading-relaxed mb-3">${esc(overview)}</p>
 
-          <div class="text-sm text-gray-400 space-y-1">
-            <p><strong>Release Year:</strong> ${esc(year)}</p>
-            <p><strong>IMDb:</strong> ⭐ ${esc(rating)}</p>
-            <p><strong>Popularity:</strong> 🔥 ${esc(popularity)}</p>
-            <p><strong>Runtime:</strong> ${esc(runtime)} min</p>
-            <p><strong>Genres:</strong> ${esc(genres)}</p>
-          </div>
-
-          <div class="flex gap-2 mt-4 flex-wrap">
-            <button onclick="addToWatchlist('${id}','${esc(title)}')" class="bg-red-600 px-3 py-1 rounded">➕ Add to Watchlist</button>
-            <button onclick="addToWatchLater('${id}','${esc(title)}')" class="bg-blue-600 px-3 py-1 rounded">🕒 Watch Later</button>
-            <button onclick="showReviews('${id}')" class="bg-green-600 px-3 py-1 rounded">💬 Reviews</button>
-          </div>
-
-          <div class="mt-4">
-            <label class="block text-sm mb-1">Add Your Review:</label>
-            <select id="review-select" class="bg-gray-800 text-white p-2 rounded">
-              <option value="">Select Rating</option>
-              <option>👎 Bad</option>
-              <option>👌 One-time Watch</option>
-              <option>🙂 Satisfactory</option>
-              <option>👍 Good</option>
-              <option>🔥 Perfection</option>
-            </select>
-            <button onclick="submitReview('${id}','${esc(title)}')" class="bg-red-600 px-3 py-1 rounded ml-2">Submit</button>
-          </div>
-
-          ${trailerUrl ? `<iframe class="mt-4 w-full h-48 rounded" src="${trailerUrl}" frameborder="0" allowfullscreen></iframe>` : ""}
+        <div class="text-sm text-gray-400 space-y-1">
+          <p><strong>Release Year:</strong> ${esc(year)}</p>
+          <p><strong>IMDb:</strong> ⭐ ${esc(rating)}</p>
+          <p><strong>Popularity:</strong> 🔥 ${esc(popularity)}</p>
+          <p><strong>Runtime:</strong> ${esc(runtime)} min</p>
+          <p><strong>Genres:</strong> ${esc(genres)}</p>
         </div>
+
+        <div class="flex gap-2 mt-4 flex-wrap">
+          <button onclick="addToWatchlist('${id}','${esc(title)}')" class="bg-red-600 px-3 py-1 rounded">➕ Watchlist</button>
+          <button onclick="addToWatchLater('${id}','${esc(title)}')" class="bg-blue-600 px-3 py-1 rounded">🕒 Watch Later</button>
+          <button onclick="showReviews('${id}')" class="bg-green-600 px-3 py-1 rounded">💬 Reviews</button>
+        </div>
+
+        <div class="mt-4">
+          <label class="block text-sm mb-1">Add Your Review:</label>
+          <select id="review-select" class="bg-gray-800 text-white p-2 rounded">
+            <option value="">Select Rating</option>
+            <option>👎 Bad</option>
+            <option>👌 One-time Watch</option>
+            <option>🙂 Satisfactory</option>
+            <option>👍 Good</option>
+            <option>🔥 Perfection</option>
+          </select>
+          <button onclick="submitReview('${id}','${esc(title)}')" class="bg-red-600 px-3 py-1 rounded ml-2">Submit</button>
+        </div>
+
+        ${trailerUrl ? `<iframe class="mt-4 w-full h-48 rounded" src="${trailerUrl}" frameborder="0" allowfullscreen></iframe>` : ""}
       </div>
+    </div>
 
-      <h3 class="text-lg font-semibold mt-6 mb-2">Top Cast</h3>
-      <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-        ${cast.map(c => `
-          <div class="flex flex-col items-center w-20">
-            <img src="${c.profile_path ? `https://image.tmdb.org/t/p/w300${c.profile_path}` : "https://via.placeholder.com/100"}"
-                 class="rounded-full w-16 h-16 object-cover" alt="${esc(c.name)}">
-            <p class="text-xs mt-1 text-center">${esc(c.name)}</p>
-          </div>
-        `).join("")}
-      </div>
+    <h3 class="text-lg font-semibold mt-6 mb-2">Top Cast</h3>
+    <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+      ${cast.map(c => `
+        <div class="flex flex-col items-center w-20">
+          <img src="${c.profile_path ? `https://image.tmdb.org/t/p/w300${c.profile_path}` : "https://via.placeholder.com/100"}"
+               class="rounded-full w-16 h-16 object-cover" alt="${esc(c.name)}">
+          <p class="text-xs mt-1 text-center">${esc(c.name)}</p>
+        </div>
+      `).join("")}
+    </div>
 
-      <h3 class="text-lg font-semibold mt-6 mb-2">Similar Titles</h3>
-      <div class="flex overflow-x-auto gap-3">
-        ${similar.map(s => makeCard(s, s.media_type || "movie")).join("")}
-      </div>
-
-      <div id="reviews-section" class="mt-6"></div>
-    `;
-    modal.classList.remove("hidden");
-
-    showReviews(id); // Load reviews
-  } catch (err) {
-    console.error("Modal error:", err);
-  }
+    <h3 class="text-lg font-semibold mt-6 mb-2">Similar Titles</h3>
+    <div class="flex overflow-x-auto gap-3">
+      ${similar.map(s => makeCard(s, s.media_type || "movie")).join("")}
+    </div>
+  `;
+  modal.classList.remove("hidden");
 }
 
-// ===== FIREBASE FEATURES =====
+// ===== FIREBASE ACTIONS =====
 function addToWatchlist(id, title) {
   db.ref("ourshow/watchlist/" + id).set({ title });
   alert(`✅ Added "${title}" to Watchlist`);
 }
-
 function addToWatchLater(id, title) {
   db.ref("ourshow/watchlater/" + id).set({ title });
   alert(`🕒 Added "${title}" to Watch Later`);
 }
-
 function submitReview(id, title) {
   const select = document.getElementById("review-select");
   const value = select.value;
   if (!value) return alert("Please select a rating.");
   db.ref("ourshow/reviews/" + id).push({ title, review: value, time: Date.now() });
   alert("✅ Review added!");
-  showReviews(id);
 }
-
 function showReviews(id) {
   const ref = db.ref("ourshow/reviews/" + id);
   ref.once("value", (snap) => {
     const reviews = snap.val();
-    const section = document.getElementById("reviews-section");
-    if (!section) return;
-    if (!reviews) {
-      section.innerHTML = `<p class="text-gray-400 text-sm">No reviews yet.</p>`;
-      return;
-    }
-    section.innerHTML = `
-      <h4 class="text-md font-semibold mb-2">User Reviews:</h4>
-      <div class="bg-gray-800 p-3 rounded space-y-2">
-        ${Object.values(reviews).map(r => `<p class="text-sm border-b border-gray-700 pb-1">${esc(r.review)}</p>`).join("")}
-      </div>
-    `;
+    if (!reviews) return alert("No reviews yet!");
+    const all = Object.values(reviews).map(r => `• ${r.review}`).join("\n");
+    alert(`User Reviews:\n\n${all}`);
   });
 }
 
-// ===== BACK HOME =====
+// ===== INITIAL =====
 document.getElementById("back-home").addEventListener("click", () => showPage("page-home"));
-
-// ===== INITIAL LOAD =====
 renderHome();
 showPage("page-home");
