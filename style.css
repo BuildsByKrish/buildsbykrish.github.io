@@ -1,40 +1,17 @@
-/* style.css - small custom styles for OurShow */
-
-/* classy logo badge */
+/* style.css small custom styles */
 .logo-badge{
-  width:44px;
-  height:44px;
+  width:44px; height:44px;
   background:linear-gradient(135deg,#ef4444,#f97316);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:8px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+  display:flex; align-items:center; justify-content:center; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.4);
 }
 .logo-badge.small{ width:36px; height:36px; }
-
-/* improve horizontal row scroll look */
-#sections-container .flex::-webkit-scrollbar { height:8px; }
-#sections-container .flex::-webkit-scrollbar-thumb { background:#374151; border-radius:999px; }
-
-/* modal body fix for small screens to avoid poster overlapping text */
+.badge{ font-size:12px; background:#ef4444; padding:2px 8px; border-radius:999px; }
+.btn-small{ background:#374151; padding:6px 10px; border-radius:6px; display:inline-flex; align-items:center; gap:6px; }
 .modal-body img { max-width:100%; }
 @media (max-width:420px){
   .modal-body { display:block; }
   .modal-body img { width:38%; float:left; margin-right:8px; }
   .modal-body .flex-1 { overflow:auto; }
 }
-
-/* small card spacing */
-.min-w-\[150px\] { min-width:150px; }
-
-/* utility tweak for no-selection on logo */
-#site-logo, .logo-badge { user-select:none; }
-
-/* make page background slightly nicer */
-body { background: linear-gradient(180deg,#0b1220 0%, #0f1723 100%); }
-
-/* small responsive tweaks */
-@media (max-width:768px){
-  .nav-link { font-size:14px; padding:6px 8px; }
-}
+.min-w-\[150px\]{ min-width:150px; }
+body{ background: linear-gradient(180deg,#0b1220 0%, #0f1723 100%); }
