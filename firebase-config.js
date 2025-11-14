@@ -54,67 +54,19 @@ function createFirebaseStub() {
 
 // Attempt to dynamically load Firebase SDKs (compat build). If loading fails
 // within the timeout, fall back to a safe stub so the app doesn't crash.
-async function loadScript(url, timeout = 8000) {
-  return new Promise((resolve, reject) => {
-    const s = document.createElement('script');
-    s.src = url;
-    s.async = true;
-    const t = setTimeout(() => {
-      s.onerror = s.onload = null;
-      reject(new Error('Timeout loading ' + url));
-    }, timeout);
-    s.onload = () => { clearTimeout(t); resolve(); };
-    s.onerror = (e) => { clearTimeout(t); reject(e || new Error('Failed to load ' + url)); };
-    document.head.appendChild(s);
-  });
-}
+// NOTE: Currently DISABLED due to Firebase CDN 503 errors.
+// We will use the stub immediately to let the app load without waiting for Firebase.
 
-async function initFirebaseWithDynamicLoad() {
-  if (typeof window.firebase !== 'undefined' && window.firebase && window.firebase.initializeApp) {
-    // already available
-    try { firebase.initializeApp(FIREBASE_CONFIG); } catch (e) {}
-    window.FIREBASE_AVAILABLE = true;
-    window.db = firebase.database ? firebase.database() : null;
-    window.auth = firebase.auth ? firebase.auth() : null;
-    return;
-  }
+// Skip Firebase CDN loading; create stub immediately
+window.firebase = createFirebaseStub();
+window.FIREBASE_AVAILABLE = false;
+window.db = window.firebase.database ? window.firebase.database() : null;
+window.auth = window.firebase.auth ? window.firebase.auth() : null;
 
-  const urls = [
-    'https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js',
-    'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js',
-    'https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js'
-  ];
+console.warn('Firebase SDK unavailable (CDN disabled). Using safe stub. Auth/watchlist features disabled.');
 
-  try {
-    for (const u of urls) await loadScript(u, 7000);
-    // initialize
-    if (firebase && (!firebase.apps || firebase.apps.length === 0)) {
-      firebase.initializeApp(FIREBASE_CONFIG);
-    }
-    window.FIREBASE_AVAILABLE = true;
-    window.db = firebase.database ? firebase.database() : null;
-    window.auth = firebase.auth ? firebase.auth() : null;
-    console.log('Firebase SDK loaded and initialized');
-    // notify any listeners waiting for firebase
-    try { (window._onFirebaseReady || []).forEach(cb => { try { cb(); } catch(e){} }); } catch(e){}
-  } catch (e) {
-    console.warn('Firebase SDK failed to load from CDN. Falling back to safe stub.', e);
-    window.firebase = createFirebaseStub();
-    window.FIREBASE_AVAILABLE = false;
-    window.db = firebase.database ? firebase.database() : null;
-    window.auth = firebase.auth ? firebase.auth() : null;
-  }
-}
-
-// Start initialization immediately
-initFirebaseWithDynamicLoad();
-
-// Simple callback registry for code that needs to run after Firebase is ready.
-window._onFirebaseReady = window._onFirebaseReady || [];
+// Stub callback registry for compatibility
+window._onFirebaseReady = [];
 window.onFirebaseReady = function(cb){
-  if (window.FIREBASE_AVAILABLE) {
-    try { cb(); } catch(e){}
-  } else {
-    window._onFirebaseReady.push(cb);
-  }
+  try { cb(); } catch(e){}
 };
