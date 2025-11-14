@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Recommender | OurShow</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Firebase (shared config) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+</head>
+<body class="bg-gray-900 text-white">
+
+  <!-- Header -->
+  <header class="bg-gray-800 p-4 flex justify-between items-center shadow-md">
+    <h1 onclick="location.href='index.html'" class="cursor-pointer text-3xl font-bold">
+      <span class="bg-white text-black px-2 py-1 rounded">Our</span>
+      <span class="text-red-500">Show</span>
+    </h1>
+
+    <button onclick="location.href='index.html'" 
+      class="bg-red-600 px-4 py-2 text-sm rounded hover:bg-red-700">
+      ← Back to Home
+    </button>
+  </header>
+
+  <!-- MAIN -->
+  <main class="p-6 space-y-10">
+
+    <!-- Title -->
+    <h2 class="text-3xl font-bold text-center">🎬 AI Movie & Series Recommender</h2>
+
+    <!-- Mood Recommender -->
+    <section class="bg-gray-800 p-5 rounded-xl shadow-lg">
+      <h3 class="text-xl font-semibold mb-3">💛 Mood Based Recommendation</h3>
+
+      <select id="mood-select" class="w-full bg-gray-700 p-3 rounded">
+        <option value="">Select your mood</option>
+        <option>Happy</option>
+        <option>Sad</option>
+        <option>Romantic</option>
+        <option>Thrilling</option>
+        <option>Dark</option>
+        <option>Funny</option>
+        <option>Motivational</option>
+      </select>
+
+      <button onclick="aiMood()" class="mt-4 bg-red-600 px-4 py-2 rounded hover:bg-red-700">
+        Recommend 🎯
+      </button>
+
+      <p id="mood-result" class="mt-3 text-gray-300"></p>
+    </section>
+
+    <!-- Genre -->
+    <section class="bg-gray-800 p-5 rounded-xl shadow-lg">
+      <h3 class="text-xl font-semibold mb-3">🎭 Genre Based Recommendation</h3>
+
+      <input id="genre-input" type="text" placeholder="e.g. horror, sci-fi, crime thriller..."
+             class="w-full bg-gray-700 p-3 rounded">
+
+      <button onclick="aiGenre()" class="mt-4 bg-red-600 px-4 py-2 rounded hover:bg-red-700">
+        Recommend 🎬
+      </button>
+
+      <p id="genre-result" class="mt-3 text-gray-300"></p>
+    </section>
+
+    <!-- Full AI chat -->
+    <section class="bg-gray-800 p-5 rounded-xl shadow-lg">
+      <h3 class="text-xl font-semibold mb-3">🤖 Ask AI Anything</h3>
+
+      <textarea id="ai-query" class="w-full bg-gray-700 p-3 rounded h-24"
+        placeholder="Recommend a dark psychological thriller like Shutter Island"></textarea>
+
+      <button onclick="aiFreeSearch()" class="mt-4 bg-red-600 px-4 py-2 rounded hover:bg-red-700">
+        Generate 🔥
+      </button>
+
+      <p class="mt-3 text-gray-300">AI Output:</p>
+      <div id="ai-output" class="mt-3 bg-gray-700 p-4 rounded text-sm whitespace-pre-wrap"></div>
+    </section>
+
+
+    <!-- TMDB Results -->
+    <section>
+      <h3 class="text-xl font-semibold mb-3">🔎 Recommended Titles</h3>
+      <div id="recommend-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        <!-- cards injected here -->
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- Shared Firebase Config -->
+  <script src="firebase-config.js"></script>
+
+  <!-- Shared TMDB + card logic -->
+  <script src="prototype.js"></script>
+
+  <!-- Gemini AI Logic -->
+  <script>
+    const GEMINI_API_KEY = "AIzaSyATdHM8g689rEeFkpShnFTBOfv7jH_RgxA";
+
+    async function gemini(prompt) {
+      try {
+        const res = await fetch(
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + GEMINI_API_KEY,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }]}],
+            })
+          }
+        );
+
+        const json = await res.json();
+        return json?.candidates?.[0]?.content?.parts?.[0]?.text || "AI didn't return anything.";
+      } catch (err) {
+        return "⚠ Gemini API error: " + err.message;
+      }
+    }
+
+    // Mood Recommendation
+    async function aiMood() {
+      const mood = document.getElementById("mood-select").value;
+      if (!mood) return alert("Select a mood!");
+
+      document.getElementById("mood-result").textContent = "⏳ AI thinking...";
+
+      const reply = await gemini(
+        `Recommend 10 movies or series for someone who is feeling "${mood}". Provide only TMDB searchable titles in a clean list.`
+      );
+
+      document.getElementById("mood-result").textContent = reply;
+      parseAIResults(reply);
+    }
+
+    // Genre Recommendation
+    async function aiGenre() {
+      const genre = document.getElementById("genre-input").value.trim();
+      if (!genre) return alert("Enter a genre!");
+
+      document.getElementById("genre-result").textContent = "⏳ AI thinking...";
+
+      const reply = await gemini(
+        `Recommend 10 "${genre}" movies or series. Provide only TMDB searchable titles in a clean list.`
+      );
+
+      document.getElementById("genre-result").textContent = reply;
+      parseAIResults(reply);
+    }
+
+    // Free Text Query
+    async function aiFreeSearch() {
+      const q = document.getElementById("ai-query").value.trim();
+      if (!q) return alert("Ask something!");
+
+      document.getElementById("ai-output").textContent = "⏳ AI thinking...";
+
+      const reply = await gemini(
+        `${q}. Provide only TMDB searchable titles in a clean list.`
+      );
+
+      document.getElementById("ai-output").textContent = reply;
+      parseAIResults(reply);
+    }
+
+    /** Extract movie names from AI response and search TMDB */
+    async function parseAIResults(aiText) {
+      const lines = aiText.split("\n").filter(x =>
+        x.trim() &&
+        isNaN(x.trim()) &&
+        x.length > 2
+      );
+
+      document.getElementById("recommend-container").innerHTML = "";
+
+      for (let line of lines) {
+        const name = line.replace(/^\d+\.\s*/, "").trim();
+        if (name.length < 2) continue;
+        searchTMDB(name);
+      }
+    }
+
+    /** TMDB search + card display */
+    async function searchTMDB(query) {
+      try {
+        const url = `${TMDB_BASE_URL}/search/multi?api_key=${TMDB_KEY}&query=${encodeURIComponent(query)}`;
+        const res = await fetch(url);
+        const json = await res.json();
+        const item = json.results?.[0];
+        if (!item) return;
+
+        const container = document.getElementById("recommend-container");
+        container.insertAdjacentHTML("beforeend", makeCard(item, item.media_type || "movie"));
+      } catch (err) {
+        console.log("TMDB search error:", err);
+      }
+    }
+  </script>
+
+</body>
+</html>
