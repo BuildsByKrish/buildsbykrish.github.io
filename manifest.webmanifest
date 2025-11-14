@@ -1,0 +1,49 @@
+{
+  "name": "OurShow - Movie & Series Vault",
+  "short_name": "OurShow",
+  "description": "Discover, track, and enjoy movies and series with personalized recommendations",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#ef4444",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23111827' width='192' height='192'/><text x='50%' y='50%' font-size='100' fill='%23fff' dominant-baseline='middle' text-anchor='middle' font-weight='bold'>OS</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23111827' width='512' height='512'/><text x='50%' y='50%' font-size='280' fill='%23fff' dominant-baseline='middle' text-anchor='middle' font-weight='bold'>OS</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23111827' width='540' height='720'/><text x='50%' y='50%' font-size='80' fill='%23fff' dominant-baseline='middle' text-anchor='middle'>OurShow</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["entertainment"],
+  "shortcuts": [
+    {
+      "name": "Search Movies",
+      "short_name": "Search",
+      "description": "Search for your favorite movies",
+      "url": "/index.html?mode=search",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text x='50%' y='50%' font-size='50' fill='%23ef4444' dominant-baseline='middle' text-anchor='middle'>🔍</text></svg>",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}

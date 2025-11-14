@@ -3,53 +3,168 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Watch Later | OurShow</title>
+  <title>Watch Later - OurShow</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- Firebase (compat) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <link rel="icon" href="favicon.ico" />
 </head>
-<body class="bg-gray-900 text-white p-6">
-  <div class="flex justify-between items-center mb-6">
-    <h1 class="text-2xl font-bold">Watch Later</h1>
-    <div>
-      <button onclick="location.href='index.html'" class="bg-gray-700 px-3 py-1 rounded">Home</button>
-      <button id="logout" class="bg-red-600 px-3 py-1 rounded">Logout</button>
+<body class="bg-gray-900 text-white font-sans">
+
+  <!-- Header -->
+  <header class="bg-gray-800 shadow-md p-4">
+    <div class="flex items-center justify-between">
+      <h1 class="text-3xl font-bold select-none cursor-pointer" id="site-logo" onclick="location.href='index.html'">
+        <span class="bg-white text-black px-2 py-1 rounded">Our</span>
+        <span class="text-red-500">Show</span>
+      </h1>
+      <a href="index.html" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">← Back to Home</a>
     </div>
+  </header>
+
+  <main class="p-4 max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold mb-6">Watch Later</h1>
+    
+    <div id="watchlater-container" class="space-y-4 min-h-96">
+      <p class="text-gray-400">Loading your watch later list...</p>
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div id="item-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+    <!-- Content filled by JavaScript -->
   </div>
 
-  <div id="later-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-
   <script src="firebase-config.js"></script>
-  <script>
-    auth.onAuthStateChanged(async user=>{
-      if (!user) { window.location.href = "login.html"; return; }
-      const uid = user.uid;
-      const container = document.getElementById("later-container");
-      const snap = await db.ref(`ourshow/users/${uid}/watchlater`).once("value");
-      const data = snap.val() || {};
-      const arr = Object.values(data);
-      if (!arr.length) { container.innerHTML = "<p class='text-gray-400'>No items in Watch Later.</p>"; return; }
-      container.innerHTML = arr.map(it=>`
-        <div class="bg-gray-800 p-3 rounded flex gap-3">
-          <img src="${it.poster ? (it.poster.startsWith("http")?it.poster:`https://image.tmdb.org/t/p/w200${it.poster}`) : 'https://via.placeholder.com/120x180'}" class="w-28 h-40 object-cover rounded" />
-          <div class="flex-1">
-            <div class="font-semibold">${esc(it.title)}</div>
-            <div class="text-xs text-gray-400">Added: ${new Date(it.addedAt||0).toLocaleString()}</div>
-          </div>
-          <div>
-            <button class="remove-btn bg-red-600 px-2 py-1 rounded" data-key="${it.key||it.id}">Remove</button>
-          </div>
-        </div>
-      `).join("");
-      container.querySelectorAll(".remove-btn").forEach(b => b.addEventListener("click", async e=>{
-        const key = e.target.dataset.key;
-        await db.ref(`ourshow/users/${uid}/watchlater/${key}`).remove();
-        location.reload();
-      }));
-    });
+  <script src="data.js"></script>
+  <script src="movie.js"></script>
+  <script src="korean.js"></script>
+  <script src="englishrecommendations.js"></script>
+  <script src="hindirecommendations.js"></script>
+  <script src="chineserecommendations.js"></script>
 
-    document.getElementById("logout").addEventListener("click", ()=> auth.signOut().then(()=> window.location.href = "index.html"));
+  <script>
+    const esc = (s) => String(s || "").replace(/[&<>"']/g, (m) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]));
+    const fmtTime = (ts) => { try { return new Date(ts).toLocaleString(); } catch(e){ return String(ts); }};
+
+    // Check auth and load watch later list
+    firebase.auth().onAuthStateChanged(async (user) => {
+      const container = document.getElementById('watchlater-container');
+      
+      if (!user) {
+        container.innerHTML = '<p class="text-center text-gray-400">Please <a href="login.html" class="text-red-500 underline">log in</a> to view your watch later list.</p>';
+        return;
+      }
+
+      try {
+        const ref = firebase.database().ref(`ourshow/users/${user.uid}/watchlater`);
+        const snapshot = await ref.get();
+        const data = snapshot.exists() ? snapshot.val() : {};
+        const items = Object.values(data);
+
+        if (!items.length) {
+          container.innerHTML = '<p class="text-center text-gray-400 py-8">Your watch later list is empty. <a href="index.html" class="text-red-500 underline">Browse and add items</a></p>';
+          return;
+        }
+
+        container.innerHTML = items.map(item => `
+          <div class="bg-gray-800 rounded-lg p-4 flex gap-4 hover:bg-gray-750 transition">
+            <img src="${item.posterUrl || 'https://via.placeholder.com/100x150'}" alt="${esc(item.title)}" class="w-24 h-32 object-cover rounded cursor-pointer" onclick="openItemModal('${item.id}')">
+            
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold mb-1 cursor-pointer hover:text-red-500" onclick="openItemModal('${item.id}')">${esc(item.title)}</h3>
+              <p class="text-gray-400 mb-2">${esc(item.year || 'N/A')} | ${esc(item.platform || 'N/A')}</p>
+              <p class="text-sm text-gray-400 mb-3 line-clamp-2">${esc(item.description || 'No description')}</p>
+              ${item.genre ? `<p class="text-xs text-gray-500 mb-2"><span class="font-semibold">Genre:</span> ${esc(item.genre)}</p>` : ''}
+              <p class="text-xs text-gray-500 mb-3">Added: ${fmtTime(item.addedAt || 0)}</p>
+              <div class="flex gap-2">
+                <button class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm" onclick="moveToWatchlist('${item.id}', '${user.uid}')">Move to Watchlist</button>
+                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm" onclick="removeFromWatchLater('${item.id}', '${user.uid}')">Remove</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        // Make functions globally available
+        window.moveToWatchlist = async (itemId, uid) => {
+          try {
+            const watchlaterRef = firebase.database().ref(`ourshow/users/${uid}/watchlater/${itemId}`);
+            const snapshot = await watchlaterRef.get();
+            const item = snapshot.val();
+            if (item) {
+              await firebase.database().ref(`ourshow/users/${uid}/watchlist/${itemId}`).set({...item, addedAt: firebase.database.ServerValue.TIMESTAMP});
+              await watchlaterRef.remove();
+              alert('Moved to watchlist!');
+              location.reload();
+            }
+          } catch (err) {
+            alert('Error moving item');
+            console.error(err);
+          }
+        };
+
+        window.removeFromWatchLater = async (itemId, uid) => {
+          if (confirm('Remove from watch later?')) {
+            try {
+              await firebase.database().ref(`ourshow/users/${uid}/watchlater/${itemId}`).remove();
+              location.reload();
+            } catch (err) {
+              alert('Error removing item');
+              console.error(err);
+            }
+          }
+        };
+
+        window.openItemModal = (itemId) => {
+          const allData = [
+            ...(window.myWatchlist || []),
+            ...(window.movieRecommendations || []),
+            ...(window.koreanWatchlist || []),
+            ...(window.englishRecommendations || []),
+            ...(window.englishWatchlist || []),
+            ...(window.hindiWatchlist || []),
+            ...(window.chineseRecommendations || [])
+          ];
+          const item = allData.find(it => it.id == itemId);
+          if (item) {
+            const modal = document.getElementById('item-modal');
+            modal.innerHTML = `
+              <div class="bg-gray-900 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+                <button onclick="document.getElementById('item-modal').style.display='none'" class="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white p-2 rounded z-50">✕</button>
+                
+                <div class="flex gap-6 p-6">
+                  <img src="${item.posterUrl || 'https://via.placeholder.com/150x225'}" alt="${esc(item.title)}" class="w-32 h-48 object-cover rounded flex-shrink-0">
+                  
+                  <div class="flex-1">
+                    <h2 class="text-2xl font-bold text-white mb-2">${esc(item.title)}</h2>
+                    <p class="text-gray-300 mb-4">${esc(item.year || 'N/A')} | ${esc(item.platform || 'N/A')}</p>
+                    
+                    <p class="text-gray-400 mb-4">${esc(item.description || 'No description available')}</p>
+                    
+                    ${item.genre ? `<p class="text-gray-400 mb-2"><span class="font-semibold">Genre:</span> ${esc(item.genre)}</p>` : ''}
+                    ${item.language ? `<p class="text-gray-400 mb-2"><span class="font-semibold">Language:</span> ${esc(item.language)}</p>` : ''}
+                    ${item.imdbRating ? `<p class="text-gray-400 mb-4"><span class="font-semibold">Rating:</span> ⭐ ${esc(item.imdbRating)}</p>` : ''}
+                  </div>
+                </div>
+              </div>
+            `;
+            modal.style.display = 'flex';
+            modal.addEventListener('click', (e) => {
+              if (e.target === modal) modal.style.display = 'none';
+            });
+          }
+        };
+
+      } catch (error) {
+        console.error('Error loading watch later list:', error);
+        container.innerHTML = '<p class="text-center text-red-400">Error loading list. Please try again.</p>';
+      }
+    });
   </script>
 </body>
 </html>
