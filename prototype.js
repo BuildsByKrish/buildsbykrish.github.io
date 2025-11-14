@@ -12,10 +12,13 @@
     div.dataset.type = item.type || 'movie';
 
     const img = document.createElement('img');
-    img.src = item.posterUrl || 'https://via.placeholder.com/300x450?text=No+Poster';
+    const posterUrl = item.posterUrl || (item.poster_path ? `${IMAGE_BASE}${item.poster_path}` : null);
+    img.src = posterUrl || 'https://via.placeholder.com/300x450?text=No+Poster';
     img.alt = item.title || 'Poster';
-    img.className = 'w-full h-64 object-cover';
-    img.onerror = () => { img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450"><rect width="100%" height="100%" fill="%23ddd"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23666" font-family="Arial" font-size="20">No Image</text></svg>'; };
+    img.className = 'w-full h-64 object-cover bg-gray-800';
+    img.onerror = function() { 
+      this.src = 'https://via.placeholder.com/300x450?text=No+Image'; 
+    };
 
     const content = document.createElement('div');
     content.className = 'p-2';
@@ -44,7 +47,25 @@
     const sec = document.createElement('section');
     sec.className = 'space-y-3';
     sec.id = section.id;
-    sec.innerHTML = `<h2 class="text-xl font-semibold">${esc(section.title)}</h2>`;
+    
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'flex items-center justify-between';
+    
+    const title = document.createElement('h2');
+    title.className = 'text-xl font-semibold';
+    title.textContent = section.title;
+    
+    const moreBtn = document.createElement('button');
+    moreBtn.className = 'text-red-500 hover:text-red-400 text-sm font-semibold transition';
+    moreBtn.textContent = 'More ➜';
+    moreBtn.dataset.sectionId = section.id;
+    moreBtn.dataset.endpoint = section.endpoint;
+    moreBtn.dataset.type = section.type;
+    moreBtn.dataset.title = section.title;
+    
+    titleDiv.appendChild(title);
+    titleDiv.appendChild(moreBtn);
+    sec.appendChild(titleDiv);
 
     const wrapper = document.createElement('div');
     wrapper.className = 'flex gap-4 overflow-x-auto pb-4 carousel-wrapper';
@@ -57,6 +78,26 @@
 
     sec.appendChild(wrapper);
     container.appendChild(sec);
+    
+    // Wire the "More" button to open a view-all page
+    moreBtn.addEventListener('click', () => {
+      const allItems = wrapper.querySelectorAll('.card-item');
+      const items = Array.from(allItems).map(el => ({
+        id: el.dataset.id,
+        type: el.dataset.type
+      }));
+      
+      // Store current section data in sessionStorage for the all-items view
+      sessionStorage.setItem('currentSection', JSON.stringify({
+        title: section.title,
+        endpoint: section.endpoint,
+        type: section.type
+      }));
+      
+      // Navigate to a view-all page or show expanded grid
+      openViewAllModal(section.title, section.endpoint, section.type);
+    });
+    
     return wrapper;
   }
 
@@ -150,9 +191,29 @@
       html.push(`<h2 class="text-2xl font-bold">${esc(title)} <span class="text-gray-400 text-sm">(${esc(year)})</span></h2>`);
       html.push(`<p class="text-gray-300 mt-2">${esc(overview)}</p>`);
       html.push('<div class="mt-3 text-sm text-gray-300 space-y-1">');
-      html.push(`<div><strong>Rating:</strong> ⭐ ${esc(rating)} &nbsp; <strong>Popularity:</strong> ${esc(popularity)}</div>`);
+      html.push(`<div><strong>Release Year:</strong> ${esc(year)}</div>`);
+      html.push(`<div><strong>TMDB Rating:</strong> ⭐ ${esc(rating.toFixed(1))}</div>`);
+      html.push(`<div><strong>Popularity Score:</strong> ${esc(popularity.toFixed(1))}</div>`);
       if (runtime) html.push(`<div><strong>Runtime:</strong> ${esc(runtime)} minutes</div>`);
       if (imdbId) html.push(`<div><a target="_blank" rel="noopener" class="text-red-400 hover:underline" href="https://www.imdb.com/title/${imdbId}">View on IMDB</a></div>`);
+      html.push('</div>');
+
+      // Action buttons
+      html.push('<div class="mt-4 flex gap-2 flex-wrap">');
+      html.push(`<button id="add-watchlist-btn" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded text-sm font-semibold">➕ Add to Watchlist</button>`);
+      html.push(`<button id="add-watchlater-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-semibold">⏰ Watch Later</button>`);
+      html.push(`<button id="write-review-btn" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-semibold">✍️ Write Review</button>`);
+      html.push('</div>');
+
+      // Review section (initially hidden)
+      html.push('<div id="review-section" class="mt-4 hidden bg-gray-800 p-4 rounded">');
+      html.push('<h3 class="text-lg font-semibold mb-3">Write a Review</h3>');
+      html.push('<textarea id="review-textarea" placeholder="Share your thoughts about this movie/series..." class="w-full bg-gray-700 text-white p-3 rounded mb-3 h-20 text-sm"></textarea>');
+      html.push('<div class="flex gap-2">');
+      html.push(`<button id="submit-review-btn" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Submit Review</button>`);
+      html.push(`<button id="cancel-review-btn" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm">Cancel</button>`);
+      html.push('</div>');
+      html.push('<div id="reviews-list" class="mt-4 space-y-2"></div>');
       html.push('</div>');
 
       // Trailer
@@ -194,6 +255,48 @@
       // Wire close button
       document.getElementById('close-modal')?.addEventListener('click', closeModal);
 
+      // Wire action buttons
+      const itemData = {
+        id: id,
+        title: title,
+        year: year,
+        posterUrl: poster,
+        overview: overview,
+        rating: rating,
+        popularity: popularity,
+        type: type,
+        imdbId: imdbId
+      };
+
+      document.getElementById('add-watchlist-btn')?.addEventListener('click', () => {
+        addItemToWatchlist(itemData);
+      });
+
+      document.getElementById('add-watchlater-btn')?.addEventListener('click', () => {
+        addItemToWatchLater(itemData);
+      });
+
+      document.getElementById('write-review-btn')?.addEventListener('click', () => {
+        document.getElementById('review-section')?.classList.toggle('hidden');
+      });
+
+      document.getElementById('cancel-review-btn')?.addEventListener('click', () => {
+        document.getElementById('review-section')?.classList.add('hidden');
+        document.getElementById('review-textarea').value = '';
+      });
+
+      document.getElementById('submit-review-btn')?.addEventListener('click', () => {
+        const reviewText = document.getElementById('review-textarea').value.trim();
+        if (reviewText) {
+          submitItemReview(itemData, reviewText);
+        } else {
+          alert('Please enter a review');
+        }
+      });
+
+      // Load and display existing reviews
+      loadAndDisplayReviews(id);
+
       // Wire similar item clicks to open their details
       modal.querySelectorAll('.similar-item').forEach(el => {
         el.addEventListener('click', () => {
@@ -209,9 +312,134 @@
     }
   }
 
+  // Helper functions for modal actions
+  function addItemToWatchlist(item) {
+    const stored = JSON.parse(localStorage.getItem('ourshow_watchlist') || '[]');
+    if (!stored.find(i => i.id === item.id)) {
+      stored.push(item);
+      localStorage.setItem('ourshow_watchlist', JSON.stringify(stored));
+      alert('✅ Added to Watchlist!');
+      setTimeout(() => window.location.href = 'watchlist.html', 500);
+    } else {
+      alert('Already in your Watchlist');
+    }
+  }
+
+  function addItemToWatchLater(item) {
+    const stored = JSON.parse(localStorage.getItem('ourshow_watchlater') || '[]');
+    if (!stored.find(i => i.id === item.id)) {
+      stored.push(item);
+      localStorage.setItem('ourshow_watchlater', JSON.stringify(stored));
+      alert('✅ Added to Watch Later!');
+      setTimeout(() => window.location.href = 'watchlater.html', 500);
+    } else {
+      alert('Already in your Watch Later list');
+    }
+  }
+
+  function submitItemReview(item, reviewText) {
+    const reviews = JSON.parse(localStorage.getItem('ourshow_reviews') || '{}');
+    if (!reviews[item.id]) reviews[item.id] = [];
+    reviews[item.id].push({
+      text: reviewText,
+      date: new Date().toLocaleString(),
+      rating: 5
+    });
+    localStorage.setItem('ourshow_reviews', JSON.stringify(reviews));
+    alert('✅ Review submitted!');
+    document.getElementById('review-section')?.classList.add('hidden');
+    document.getElementById('review-textarea').value = '';
+    loadAndDisplayReviews(item.id);
+  }
+
+  function loadAndDisplayReviews(itemId) {
+    const reviews = JSON.parse(localStorage.getItem('ourshow_reviews') || '{}');
+    const itemReviews = reviews[itemId] || [];
+    const reviewsList = document.getElementById('reviews-list');
+    if (reviewsList) {
+      if (itemReviews.length > 0) {
+        reviewsList.innerHTML = itemReviews.map(r => `
+          <div class="bg-gray-700 p-3 rounded text-sm">
+            <p class="text-gray-300">${esc(r.text)}</p>
+            <p class="text-gray-500 text-xs mt-1">${r.date}</p>
+          </div>
+        `).join('');
+      } else {
+        reviewsList.innerHTML = '<p class="text-gray-400 text-sm italic">No reviews yet. Be the first to review!</p>';
+      }
+    }
+  }
+
   function closeModal() {
     const modal = document.getElementById('item-modal');
     if (modal) modal.style.display = 'none';
+  }
+
+  async function openViewAllModal(title, endpoint, type) {
+    const modal = document.getElementById('item-modal');
+    if (!modal) return;
+    
+    modal.innerHTML = `<div class="bg-gray-900 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto relative p-4 text-white">
+      <button id="close-modal" class="absolute right-2 top-2 bg-red-600 text-white px-3 py-1 rounded z-50">✕</button>
+      <h2 class="text-2xl font-bold mb-4">${esc(title)}</h2>
+      <div id="view-all-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <p class="col-span-full text-gray-400">Loading all items...</p>
+      </div>
+    </div>`;
+    modal.style.display = 'flex';
+    
+    try {
+      // Load multiple pages to get more content
+      const allItems = [];
+      for (let page = 1; page <= 3; page++) {
+        const sep = endpoint.includes('?') ? '&' : '?';
+        const ep = `${endpoint}${sep}page=${page}`;
+        const data = await tmdbFetch(ep);
+        if (data && data.results) {
+          const items = data.results.map(m => ({
+            id: m.id,
+            title: m.title || m.name,
+            year: (m.release_date || m.first_air_date || '').split('-')[0],
+            posterUrl: m.poster_path ? `${IMAGE_BASE}${m.poster_path}` : null,
+            overview: m.overview,
+            type: type,
+            rating: m.vote_average,
+            popularity: m.popularity
+          }));
+          allItems.push(...items);
+        }
+      }
+      
+      const grid = document.getElementById('view-all-grid');
+      if (grid && allItems.length > 0) {
+        grid.innerHTML = allItems.map(item => `
+          <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer view-all-item" data-id="${item.id}" data-type="${item.type}">
+            <img src="${item.posterUrl || 'https://via.placeholder.com/300x450'}" alt="${esc(item.title)}" class="w-full h-64 object-cover" onerror="this.src='https://via.placeholder.com/300x450'">
+            <div class="p-3">
+              <h3 class="text-white font-semibold text-sm truncate">${esc(item.title)}</h3>
+              <p class="text-gray-400 text-xs mb-2">${esc(item.year || 'N/A')}</p>
+              <p class="text-gray-300 text-xs mb-1">⭐ ${item.rating?.toFixed(1) || 'N/A'}</p>
+              <p class="text-gray-400 text-xs">📊 ${item.popularity?.toFixed(0) || 'N/A'}</p>
+            </div>
+          </div>
+        `).join('');
+        
+        // Wire click handlers
+        grid.querySelectorAll('.view-all-item').forEach(el => {
+          el.addEventListener('click', () => {
+            const iid = el.dataset.id;
+            const t = el.dataset.type;
+            loadDetails(iid, t);
+          });
+        });
+      }
+    } catch (e) {
+      console.error('View all error:', e);
+      document.getElementById('view-all-grid').innerHTML = '<p class="text-red-400">Failed to load items</p>';
+    }
+    
+    // Wire close button
+    document.getElementById('close-modal')?.addEventListener('click', closeModal);
   }
 
   // PWA install handling
