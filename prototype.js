@@ -1,12 +1,15 @@
-// Lightweight app script: load TMDB trending movies & series and enable PWA install
+// Enhanced app script: multiple sections, infinite horizontal scroll, and rich detail modal
 (function(){
-  // Simple DOM helpers for rendering
   const esc = s => String(s||'').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
-  const makeCard = (item) => {
+  const IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
+
+  function makeCard(item) {
     const div = document.createElement('div');
-    div.className = 'bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex-shrink-0 cursor-pointer m-1';
+    div.className = 'bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex-shrink-0 cursor-pointer m-1 card-item';
     div.style.width = '150px';
+    div.dataset.id = item.id;
+    div.dataset.type = item.type || 'movie';
 
     const img = document.createElement('img');
     img.src = item.posterUrl || 'https://via.placeholder.com/300x450?text=No+Poster';
@@ -20,101 +23,217 @@
 
     div.appendChild(img);
     div.appendChild(content);
-    div.addEventListener('click', ()=> alert(item.title || 'No title'));
-    return div;
-  };
 
-  const renderCarousel = (title, items) => {
+    div.addEventListener('click', () => loadDetails(item.id, item.type || 'movie'));
+    return div;
+  }
+
+  const sections = [
+    { id: 'trending-movies', title: 'Trending Movies', endpoint: '/trending/movie/week', type: 'movie', page: 1, loading: false },
+    { id: 'trending-tv', title: 'Trending Series', endpoint: '/trending/tv/week', type: 'tv', page: 1, loading: false },
+    { id: 'popular-movies', title: 'Popular Movies', endpoint: '/movie/popular', type: 'movie', page: 1, loading: false },
+    { id: 'popular-tv', title: 'Popular Series', endpoint: '/tv/popular', type: 'tv', page: 1, loading: false },
+    { id: 'now-playing', title: 'Now Playing', endpoint: '/movie/now_playing', type: 'movie', page: 1, loading: false },
+    { id: 'upcoming', title: 'Upcoming Movies', endpoint: '/movie/upcoming', type: 'movie', page: 1, loading: false },
+    { id: 'top-rated', title: 'Top Rated', endpoint: '/movie/top_rated', type: 'movie', page: 1, loading: false },
+    { id: 'kdramas', title: 'K-Dramas (Korea)', endpoint: '/discover/tv?with_original_language=ko&sort_by=popularity.desc', type: 'tv', page: 1, loading: false }
+  ];
+
+  function createSectionEl(section) {
     const container = document.getElementById('sections-container');
-    if (!container) return;
-    const section = document.createElement('section');
-    section.className = 'space-y-3';
-    section.innerHTML = `<h2 class="text-xl font-semibold">${esc(title)}</h2>`;
+    const sec = document.createElement('section');
+    sec.className = 'space-y-3';
+    sec.id = section.id;
+    sec.innerHTML = `<h2 class="text-xl font-semibold">${esc(section.title)}</h2>`;
+
     const wrapper = document.createElement('div');
     wrapper.className = 'flex gap-4 overflow-x-auto pb-4 carousel-wrapper';
     wrapper.style.scrollBehavior = 'smooth';
-    items.forEach(i=> wrapper.appendChild(makeCard(i)));
-    section.appendChild(wrapper);
-    container.appendChild(section);
-  };
+    wrapper.dataset.endpoint = section.endpoint;
+    wrapper.dataset.type = section.type;
+    wrapper.dataset.page = section.page;
+    wrapper.dataset.loading = 'false';
+    wrapper.addEventListener('scroll', onCarouselScroll);
 
-  // Load TMDB data using tmdbFetch from config.js
-  async function loadTMDB() {
-    if (typeof tmdbFetch !== 'function') {
-      console.error('tmdbFetch not available. Make sure config.js is loaded.');
-      const container = document.getElementById('sections-container');
-      if (container) container.innerHTML = '<p class="text-red-400">TMDB helper missing. Check `config.js`</p>';
-      return;
-    }
+    sec.appendChild(wrapper);
+    container.appendChild(sec);
+    return wrapper;
+  }
 
-    try {
-      const movies = await tmdbFetch('/trending/movie/week');
-      const series = await tmdbFetch('/trending/tv/week');
-
-      const mapItems = (arr, isTv=false) => (arr||[]).map(m => ({
-        id: m.id,
-        title: m.title || m.name,
-        year: (m.release_date||m.first_air_date||'').split('-')[0],
-        posterUrl: m.poster_path ? `https://image.tmdb.org/t/p/w500${m.poster_path}` : null,
-        overview: m.overview,
-        type: isTv ? 'tv' : 'movie'
-      }));
-
-      const movieItems = mapItems(movies && movies.results ? movies.results : [], false);
-      const seriesItems = mapItems(series && series.results ? series.results : [], true);
-
-      const container = document.getElementById('sections-container');
-      if (container) container.innerHTML = '';
-
-      if (movieItems.length) renderCarousel('Trending Movies', movieItems.slice(0, 20));
-      if (seriesItems.length) renderCarousel('Trending Series', seriesItems.slice(0, 20));
-
-      if ((!movieItems.length) && (!seriesItems.length)) {
-        const c = document.getElementById('sections-container');
-        if (c) c.innerHTML = '<p class="text-gray-400">No TMDB data available. Check network or API keys.</p>';
-      }
-    } catch (e) {
-      console.error('Error loading TMDB:', e);
-      const c = document.getElementById('sections-container');
-      if (c) c.innerHTML = '<p class="text-red-400">Failed to load TMDB data.</p>';
+  function onCarouselScroll(e) {
+    const w = e.currentTarget;
+    // If near right edge, load next page
+    if (w.dataset.loading === 'true') return;
+    const threshold = 200;
+    if (w.scrollLeft + w.clientWidth >= w.scrollWidth - threshold) {
+      // load next page
+      const endpoint = w.dataset.endpoint;
+      const type = w.dataset.type;
+      let page = Number(w.dataset.page || 1) + 1;
+      loadSectionPage(w, endpoint, type, page);
+      w.dataset.page = String(page);
     }
   }
 
-  // PWA install prompt handling
+  async function loadSectionPage(wrapper, endpoint, type, page=1) {
+    try {
+      wrapper.dataset.loading = 'true';
+      const sep = endpoint.includes('?') ? '&' : '?';
+      const ep = `${endpoint}${sep}page=${page}`;
+      const data = await tmdbFetch(ep);
+      const results = data && data.results ? data.results : [];
+      const items = results.map(m => ({
+        id: m.id,
+        title: m.title || m.name,
+        year: (m.release_date || m.first_air_date || '').split('-')[0],
+        posterUrl: m.poster_path ? `${IMAGE_BASE}${m.poster_path}` : null,
+        overview: m.overview,
+        type: type
+      }));
+      items.forEach(i => wrapper.appendChild(makeCard(i)));
+    } catch (e) {
+      console.error('Section load error:', e);
+    } finally {
+      wrapper.dataset.loading = 'false';
+    }
+  }
+
+  async function initSections() {
+    const container = document.getElementById('sections-container');
+    if (!container) return;
+    container.innerHTML = '';
+    for (const s of sections) {
+      const wrapper = createSectionEl(s);
+      // load first page
+      await loadSectionPage(wrapper, s.endpoint, s.type, 1);
+    }
+  }
+
+  // Details modal
+  async function loadDetails(id, type='movie') {
+    const modal = document.getElementById('item-modal');
+    if (!modal) return;
+    modal.innerHTML = `<div class="bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-4 text-white">Loading...</div>`;
+    modal.style.display = 'flex';
+
+    try {
+      const ep = `/${type}/${id}?append_to_response=credits,videos,similar,external_ids`;
+      const data = await tmdbFetch(ep);
+      if (!data) throw new Error('No data');
+
+      const title = data.title || data.name || 'Untitled';
+      const year = (data.release_date || data.first_air_date || '').split('-')[0] || '';
+      const poster = data.poster_path ? `${IMAGE_BASE}${data.poster_path}` : 'https://via.placeholder.com/300x450?text=No+Poster';
+      const overview = data.overview || '';
+      const rating = data.vote_average || 0;
+      const popularity = data.popularity || 0;
+      const runtime = data.runtime || (data.episode_run_time && data.episode_run_time[0]) || null;
+      const imdbId = data.external_ids && data.external_ids.imdb_id ? data.external_ids.imdb_id : null;
+
+      // top cast
+      const cast = (data.credits && data.credits.cast) ? data.credits.cast.slice(0,8) : [];
+
+      // trailer (YouTube)
+      const videos = (data.videos && data.videos.results) ? data.videos.results : [];
+      const trailer = videos.find(v => v.type === 'Trailer' && v.site === 'YouTube') || videos.find(v => v.site === 'YouTube') || null;
+
+      // similar
+      const similar = (data.similar && data.similar.results) ? data.similar.results.slice(0,12) : [];
+
+      // Build modal HTML
+      const html = [];
+      html.push('<div class="relative">');
+      html.push('<button id="close-modal" class="absolute right-2 top-2 bg-red-600 text-white px-3 py-1 rounded">✕</button>');
+      html.push('<div class="flex gap-6">');
+      html.push(`<img src="${poster}" class="w-40 h-60 object-cover rounded" alt="poster">`);
+      html.push('<div class="flex-1">');
+      html.push(`<h2 class="text-2xl font-bold">${esc(title)} <span class="text-gray-400 text-sm">(${esc(year)})</span></h2>`);
+      html.push(`<p class="text-gray-300 mt-2">${esc(overview)}</p>`);
+      html.push('<div class="mt-3 text-sm text-gray-300 space-y-1">');
+      html.push(`<div><strong>Rating:</strong> ⭐ ${esc(rating)} &nbsp; <strong>Popularity:</strong> ${esc(popularity)}</div>`);
+      if (runtime) html.push(`<div><strong>Runtime:</strong> ${esc(runtime)} minutes</div>`);
+      if (imdbId) html.push(`<div><a target="_blank" rel="noopener" class="text-red-400 hover:underline" href="https://www.imdb.com/title/${imdbId}">View on IMDB</a></div>`);
+      html.push('</div>');
+
+      // Trailer
+      if (trailer) {
+        const key = trailer.key;
+        html.push('<div class="mt-4">');
+        html.push(`<iframe width="560" height="315" src="https://www.youtube.com/embed/${key}" title="Trailer" frameborder="0" allowfullscreen class="w-full h-64"></iframe>`);
+        html.push('</div>');
+      }
+
+      // Cast
+      if (cast.length) {
+        html.push('<div class="mt-4">');
+        html.push('<h3 class="text-lg font-semibold">Top Cast</h3>');
+        html.push('<div class="flex gap-2 mt-2 overflow-x-auto pb-2">');
+        cast.forEach(c => {
+          const pic = c.profile_path ? `${IMAGE_BASE}${c.profile_path}` : 'https://via.placeholder.com/64';
+          html.push(`<div class="w-24 text-center"><img src="${pic}" class="w-20 h-28 object-cover rounded" alt="${esc(c.name)}"><div class="text-xs text-gray-300">${esc(c.name)}</div><div class="text-xs text-gray-500">as ${esc(c.character || '')}</div></div>`);
+        });
+        html.push('</div></div>');
+      }
+
+      // Similar
+      if (similar.length) {
+        html.push('<div class="mt-4">');
+        html.push('<h3 class="text-lg font-semibold">Similar</h3>');
+        html.push('<div class="flex gap-2 mt-2 overflow-x-auto pb-2">');
+        similar.forEach(s => {
+          const p = s.poster_path ? `${IMAGE_BASE}${s.poster_path}` : 'https://via.placeholder.com/100x150';
+          html.push(`<div class="w-24 text-center cursor-pointer similar-item" data-id="${s.id}" data-type="${type}"><img src="${p}" class="w-20 h-28 object-cover rounded"><div class="text-xs text-gray-300">${esc(s.title || s.name)}</div></div>`);
+        });
+        html.push('</div></div>');
+      }
+
+      html.push('</div></div>'); // close flex and relative
+
+      modal.innerHTML = `<div class="bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-4 text-white">${html.join('')}</div>`;
+
+      // Wire close button
+      document.getElementById('close-modal')?.addEventListener('click', closeModal);
+
+      // Wire similar item clicks to open their details
+      modal.querySelectorAll('.similar-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const iid = el.dataset.id;
+          const t = el.dataset.type || type;
+          loadDetails(iid, t);
+        });
+      });
+
+    } catch (e) {
+      console.error('Detail load error:', e);
+      modal.innerHTML = `<div class="bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-4 text-white">Failed to load details.</div>`;
+    }
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('item-modal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  // PWA install handling
   let deferredPrompt = null;
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
     const installBtn = document.getElementById('install-btn');
-    if (installBtn) {
-      installBtn.style.display = 'inline-block';
-      installBtn.addEventListener('click', async () => {
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        const choice = await deferredPrompt.userChoice;
-        console.log('PWA install choice:', choice);
-        deferredPrompt = null;
-        installBtn.style.display = 'none';
-      });
-    }
+    if (installBtn) installBtn.style.display = 'inline-block';
   });
 
-  // Register service worker if available
+  // Register service worker
   async function registerSW() {
     if ('serviceWorker' in navigator) {
-      try {
-        const reg = await navigator.serviceWorker.register('/sw.js');
-        console.log('Service worker registered:', reg.scope);
-      } catch (e) {
-        console.warn('Service worker registration failed:', e);
-      }
+      try { const reg = await navigator.serviceWorker.register('/sw.js'); console.log('Service worker registered:', reg.scope); } catch(e) { console.warn('Service worker registration failed:', e); }
     }
   }
 
-  // Initialize
+  // Init
   document.addEventListener('DOMContentLoaded', async () => {
     await registerSW();
-    await loadTMDB();
+    await initSections();
   });
 
 })();
