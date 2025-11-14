@@ -1,29 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Watchlist</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Watch Later | OurShow</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-  <script src="firebase-config.js"></script>
 </head>
 <body class="bg-gray-900 text-white p-6">
-  <h1 class="text-2xl font-bold mb-4">📺 My Watchlist</h1>
-  <div id="list" class="space-y-2"></div>
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Watch Later</h1>
+    <div>
+      <button onclick="location.href='index.html'" class="bg-gray-700 px-3 py-1 rounded">Home</button>
+      <button id="logout" class="bg-red-600 px-3 py-1 rounded">Logout</button>
+    </div>
+  </div>
 
+  <div id="later-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+  <script src="firebase-config.js"></script>
   <script>
-    const list = document.getElementById("list");
-    db.ref("ourshow/watchlater").on("value", ...
-
-      const data = snap.val();
-      list.innerHTML = "";
-      if (!data) return list.innerHTML = "<p class='text-gray-400'>Empty watchlist.</p>";
-      Object.entries(data).forEach(([id, item]) => {
-        list.insertAdjacentHTML("beforeend",
-          `<div class="bg-gray-800 p-3 rounded">${item.title}</div>`);
-      });
+    auth.onAuthStateChanged(async user=>{
+      if (!user) { window.location.href = "login.html"; return; }
+      const uid = user.uid;
+      const container = document.getElementById("later-container");
+      const snap = await db.ref(`ourshow/users/${uid}/watchlater`).once("value");
+      const data = snap.val() || {};
+      const arr = Object.values(data);
+      if (!arr.length) { container.innerHTML = "<p class='text-gray-400'>No items in Watch Later.</p>"; return; }
+      container.innerHTML = arr.map(it=>`
+        <div class="bg-gray-800 p-3 rounded flex gap-3">
+          <img src="${it.poster ? (it.poster.startsWith("http")?it.poster:`https://image.tmdb.org/t/p/w200${it.poster}`) : 'https://via.placeholder.com/120x180'}" class="w-28 h-40 object-cover rounded" />
+          <div class="flex-1">
+            <div class="font-semibold">${esc(it.title)}</div>
+            <div class="text-xs text-gray-400">Added: ${new Date(it.addedAt||0).toLocaleString()}</div>
+          </div>
+          <div>
+            <button class="remove-btn bg-red-600 px-2 py-1 rounded" data-key="${it.key||it.id}">Remove</button>
+          </div>
+        </div>
+      `).join("");
+      container.querySelectorAll(".remove-btn").forEach(b => b.addEventListener("click", async e=>{
+        const key = e.target.dataset.key;
+        await db.ref(`ourshow/users/${uid}/watchlater/${key}`).remove();
+        location.reload();
+      }));
     });
+
+    document.getElementById("logout").addEventListener("click", ()=> auth.signOut().then(()=> window.location.href = "index.html"));
   </script>
 </body>
 </html>
