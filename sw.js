@@ -1,5 +1,6 @@
 // Service Worker for OurShow PWA
-const CACHE_NAME = 'ourshow-v1';
+// Bump cache names when updating core assets to force clients to refresh
+const CACHE_NAME = 'ourshow-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -17,8 +18,8 @@ const STATIC_ASSETS = [
   '/chinese.html'
 ];
 
-const TMDB_CACHE = 'ourshow-tmdb-v1';
-const IMAGE_CACHE = 'ourshow-images-v1';
+const TMDB_CACHE = 'ourshow-tmdb-v2';
+const IMAGE_CACHE = 'ourshow-images-v2';
 
 // Install event
 self.addEventListener('install', (event) => {
@@ -88,6 +89,22 @@ self.addEventListener('fetch', (event) => {
       }
       const index = await caches.match('/index.html');
       return index || new Response('Offline', { status: 503 });
+    })()));
+    return;
+  }
+
+  // Navigation requests (HTML page loads) - always try network first, fallback to cached index.html
+  const acceptHeader = request.headers.get('accept') || '';
+  if (request.mode === 'navigate' || acceptHeader.includes('text/html')) {
+    event.respondWith(safeRespond((async () => {
+      try {
+        const net = await fetch(request);
+        if (net && net.ok) return net;
+      } catch (e) {
+        // network failed
+      }
+      const cachedIndex = await caches.match('/index.html');
+      return cachedIndex || new Response('Offline', { status: 503 });
     })()));
     return;
   }

@@ -52,33 +52,69 @@ function createFirebaseStub() {
   return firebaseStub;
 }
 
-// If the real firebase object is not present (CDN failed), create a stub so
-// the rest of the code can run without throwing ReferenceError.
-if (typeof window.firebase === 'undefined') {
-  console.warn('Firebase SDK not loaded (CDN failed). Creating safe stub for development.');
-  window.firebase = createFirebaseStub();
-  window.FIREBASE_AVAILABLE = false;
-} else {
-  window.FIREBASE_AVAILABLE = true;
+// Attempt to dynamically load Firebase SDKs (compat build). If loading fails
+// within the timeout, fall back to a safe stub so the app doesn't crash.
+async function loadScript(url, timeout = 8000) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = url;
+    s.async = true;
+    const t = setTimeout(() => {
+      s.onerror = s.onload = null;
+      reject(new Error('Timeout loading ' + url));
+    }, timeout);
+    s.onload = () => { clearTimeout(t); resolve(); };
+    s.onerror = (e) => { clearTimeout(t); reject(e || new Error('Failed to load ' + url)); };
+    document.head.appendChild(s);
+  });
 }
 
-// Initialize real Firebase if available; otherwise the stub will no-op.
-try {
-  if (window.FIREBASE_AVAILABLE && (!firebase.apps || firebase.apps.length === 0)) {
-    firebase.initializeApp(FIREBASE_CONFIG);
+async function initFirebaseWithDynamicLoad() {
+  if (typeof window.firebase !== 'undefined' && window.firebase && window.firebase.initializeApp) {
+    // already available
+    try { firebase.initializeApp(FIREBASE_CONFIG); } catch (e) {}
+    window.FIREBASE_AVAILABLE = true;
+    window.db = firebase.database ? firebase.database() : null;
+    window.auth = firebase.auth ? firebase.auth() : null;
+    return;
   }
-} catch (e) {
-  console.error('Error initializing Firebase (this may be expected in offline/dev):', e);
-  // Ensure we still have a stub to avoid runtime errors
-  if (!window.firebase) window.firebase = createFirebaseStub();
-  window.FIREBASE_AVAILABLE = false;
+
+  const urls = [
+    'https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js',
+    'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js',
+    'https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js'
+  ];
+
+  try {
+    for (const u of urls) await loadScript(u, 7000);
+    // initialize
+    if (firebase && (!firebase.apps || firebase.apps.length === 0)) {
+      firebase.initializeApp(FIREBASE_CONFIG);
+    }
+    window.FIREBASE_AVAILABLE = true;
+    window.db = firebase.database ? firebase.database() : null;
+    window.auth = firebase.auth ? firebase.auth() : null;
+    console.log('Firebase SDK loaded and initialized');
+    // notify any listeners waiting for firebase
+    try { (window._onFirebaseReady || []).forEach(cb => { try { cb(); } catch(e){} }); } catch(e){}
+  } catch (e) {
+    console.warn('Firebase SDK failed to load from CDN. Falling back to safe stub.', e);
+    window.firebase = createFirebaseStub();
+    window.FIREBASE_AVAILABLE = false;
+    window.db = firebase.database ? firebase.database() : null;
+    window.auth = firebase.auth ? firebase.auth() : null;
+  }
 }
 
-// Expose convenient aliases used by the app
-try {
-  window.db = firebase.database ? firebase.database() : null;
-  window.auth = firebase.auth ? firebase.auth() : null;
-} catch (e) {
-  window.db = null;
-  window.auth = null;
-}
+// Start initialization immediately
+initFirebaseWithDynamicLoad();
+
+// Simple callback registry for code that needs to run after Firebase is ready.
+window._onFirebaseReady = window._onFirebaseReady || [];
+window.onFirebaseReady = function(cb){
+  if (window.FIREBASE_AVAILABLE) {
+    try { cb(); } catch(e){}
+  } else {
+    window._onFirebaseReady.push(cb);
+  }
+};
