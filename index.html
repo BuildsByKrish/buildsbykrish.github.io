@@ -10,6 +10,9 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <!-- Optional favicon -->
+  <link rel="icon" href="favicon.ico" />
 </head>
 <body class="bg-gray-900 text-white font-sans">
 
@@ -40,6 +43,7 @@
         </a>
 
         <a href="community.html" class="hover:text-red-500 transition">Community Chat</a>
+        <a href="ai.html" class="hover:text-red-500 transition">AI Recommender</a>
       </nav>
 
       <!-- Profile (Desktop) -->
@@ -81,7 +85,7 @@
       </div>
     </div>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu (full screen overlay) -->
     <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-900 bg-opacity-90 backdrop-blur-md flex flex-col items-center justify-center space-y-5 text-lg font-medium z-40">
       <a href="english.html" class="hover:text-red-500">Best English Series</a>
       <a href="hindi.html" class="hover:text-red-500">Best Hindi Series</a>
@@ -90,22 +94,25 @@
       <a href="watchlist.html" class="hover:text-red-500">My Watchlist</a>
       <a href="watchlater.html" class="hover:text-red-500">My Watch Later</a>
       <a href="community.html" class="hover:text-red-500">Community Chat</a>
-       <a href="watch&download.html" class="hover:text-red-500">Watch & Download</a>
+      <a href="ai.html" class="hover:text-red-500">AI Recommender</a>
+      <a href="watch&download.html" class="hover:text-red-500">Watch & Download</a>
       <button id="close-menu" class="text-red-400 mt-5">Close ✖</button>
     </div>
   </header>
 
   <!-- Search -->
   <div class="p-4">
-    <input id="search-input" type="text" placeholder="Search for movies or series..." class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
+    <input id="search-input" type="text" placeholder="Search for movies, series or genre..." class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-red-500">
   </div>
 
   <!-- Pages -->
   <main class="p-4">
+    <!-- Home Page -->
     <section id="page-home" class="spa-page space-y-10">
       <div id="sections-container" class="space-y-10"></div>
     </section>
 
+    <!-- All Results -->
     <section id="page-all" class="spa-page hidden">
       <div class="flex justify-between items-center mb-3">
         <h2 id="all-title" class="text-xl font-semibold"></h2>
@@ -114,6 +121,7 @@
       <div id="all-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
     </section>
 
+    <!-- Search Results -->
     <section id="page-search" class="spa-page hidden">
       <h2 class="text-xl font-semibold mb-3">🔎 Search Results</h2>
       <div id="search-content" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
@@ -128,21 +136,10 @@
     </div>
   </div>
 
-  <script>
-    // Firebase config and init (same as used by prototype.js and profile.html)
-    const firebaseConfig = {
-      apiKey: "AIzaSyD8AkvBgMIX6071ZJz_pbG5pwv_MEzauSk",
-      authDomain: "krishs-watchlist-vault.firebaseapp.com",
-      projectId: "krishs-watchlist-vault",
-      storageBucket: "krishs-watchlist-vault.appspot.com",
-      messagingSenderId: "1085194969409",
-      appId: "1:1085194969409:web:45becd2ef6afe86e0741c0",
-      measurementId: "G-C8VJHYRDTQ"
-    };
-    if (!window.firebase.apps?.length) firebase.initializeApp(firebaseConfig);
-  </script>
+  <!-- Load shared Firebase config (single source) -->
+  <script src="firebase-config.js"></script>
 
-  <!-- app logic -->
+  <!-- App logic (prototype.js must rely on firebase-config.js) -->
   <script src="prototype.js"></script>
 
   <!-- header UI small handlers -->
@@ -162,36 +159,45 @@
       profileBtn?.addEventListener("click", ()=> profileDropdown.classList.toggle("hidden"));
       mobileProfileBtn?.addEventListener("click", ()=> mobileProfileDropdown.classList.toggle("hidden"));
 
-      document.addEventListener("click", (e)=>{
-        if (!profileBtn?.contains(e.target)) profileDropdown?.classList.add("hidden");
-        if (!mobileProfileBtn?.contains(e.target)) mobileProfileDropdown?.classList.add("hidden");
+      document.addEventListener("click", (e)=> {
+        if (profileDropdown && !profileBtn.contains(e.target)) profileDropdown.classList.add("hidden");
+        if (mobileProfileDropdown && !mobileProfileBtn.contains(e.target)) mobileProfileDropdown.classList.add("hidden");
       });
 
-      // update header from localStorage (profile.html writes it)
+      // apply profile from localStorage if exists (profile.html sets it)
       function applyProfile(){
-        const saved = JSON.parse(localStorage.getItem('ourshow_user') || 'null');
-        if(saved){
-          document.getElementById('profile-name').textContent = saved.name || saved.email || 'User';
-          document.getElementById('profile-pic').src = saved.photo || 'https://via.placeholder.com/32';
-          document.getElementById('mobile-profile-pic').src = saved.photo || 'https://via.placeholder.com/32';
-        }
+        try {
+          const saved = JSON.parse(localStorage.getItem('ourshow_user') || 'null');
+          if (saved) {
+            const name = saved.name || saved.email || '';
+            document.getElementById('profile-name').textContent = name;
+            document.getElementById('profile-pic').src = saved.photo || 'https://via.placeholder.com/32';
+            document.getElementById('mobile-profile-pic').src = saved.photo || 'https://via.placeholder.com/32';
+          }
+        } catch(e){}
       }
       applyProfile();
 
-      // logout handlers (works with firebase if used)
-      document.getElementById("logout-btn")?.addEventListener("click", ()=>{
+      // logout handlers
+      document.getElementById("logout-btn")?.addEventListener("click", ()=> {
         localStorage.removeItem("ourshow_user");
         localStorage.removeItem("ourshow_username");
         localStorage.removeItem("ourshow_uid");
-        if(window.firebase && firebase.auth) firebase.auth().signOut().catch(()=>{});
+        if (window.firebase && firebase.auth) firebase.auth().signOut().catch(()=>{});
         window.location.href = "login.html";
       });
-      document.getElementById("mobile-logout-btn")?.addEventListener("click", ()=>{
+      document.getElementById("mobile-logout-btn")?.addEventListener("click", ()=> {
         localStorage.removeItem("ourshow_user");
         localStorage.removeItem("ourshow_username");
         localStorage.removeItem("ourshow_uid");
-        if(window.firebase && firebase.auth) firebase.auth().signOut().catch(()=>{});
+        if (window.firebase && firebase.auth) firebase.auth().signOut().catch(()=>{});
         window.location.href = "login.html";
+      });
+
+      // Back to home button
+      document.getElementById("back-home")?.addEventListener("click", ()=>{
+        document.querySelectorAll(".spa-page").forEach(p=>p.classList.add("hidden"));
+        document.getElementById("page-home").classList.remove("hidden");
       });
     })();
   </script>
