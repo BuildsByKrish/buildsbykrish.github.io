@@ -139,6 +139,24 @@
   <script src="config.js"></script>
 
   <!-- App logic (prototype.js must rely on firebase-config.js and config.js) -->
+  <script>
+    (function(){
+      try {
+        // run only once per browser (persist across reloads)
+        if ('serviceWorker' in navigator && !localStorage.getItem('ourshow_sw_reset_v2')) {
+          navigator.serviceWorker.getRegistrations().then(regs => {
+            regs.forEach(r => {
+              try { r.unregister(); } catch(e) {}
+            });
+            // mark done so we don't loop reloads
+            localStorage.setItem('ourshow_sw_reset_v2', '1');
+            // reload so new (or no) service worker is in effect
+            setTimeout(() => location.reload(true), 250);
+          }).catch(()=>{});
+        }
+      } catch(e){}
+    })();
+  </script>
   <script src="prototype.js"></script>
 
   <!-- header UI small handlers -->

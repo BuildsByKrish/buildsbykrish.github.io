@@ -1,45 +1,33 @@
 // Service Worker for OurShow PWA
-// Bump cache names when updating core assets to force clients to refresh
-const CACHE_NAME = 'ourshow-v2';
-const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/prototype.js',
-  '/manifest.webmanifest',
-  '/login.html',
-  '/profile.html',
-  '/watchlist.html',
-  '/watch&download.html',
-  '/submit.html',
-  '/ai.html',
-  '/korean.html',
-  '/hindi.html',
-  '/english.html',
-  '/chinese.html'
+// IMPORTANT: HTML and JS files are NOT cached to avoid serving stale/broken code on refresh.
+// Only images and API responses are cached for performance.
+
+const TMDB_CACHE = 'ourshow-tmdb-v3';
+const IMAGE_CACHE = 'ourshow-images-v3';
+
+// List of HTML/JS files that should NEVER be cached (always fetch fresh)
+const NOCACHE_PATTERNS = [
+  'index.html',
+  'prototype.js',
+  'config.js',
+  'firebase-config.js',
+  'main.js',
+  'script.js'
 ];
 
-const TMDB_CACHE = 'ourshow-tmdb-v2';
-const IMAGE_CACHE = 'ourshow-images-v2';
-
-// Install event
+// Install event - no pre-caching of static assets (avoid stale HTML/JS)
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS).catch(() => {
-        // Non-fatal if some assets don't exist
-        return Promise.resolve();
-      });
-    }).then(() => self.skipWaiting())
-  );
+  event.waitUntil(self.skipWaiting());
 });
 
-// Activate event
+// Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME && cacheName !== TMDB_CACHE && cacheName !== IMAGE_CACHE) {
+          // Delete caches that don't match current version
+          if (cacheName !== TMDB_CACHE && cacheName !== IMAGE_CACHE) {
             return caches.delete(cacheName);
           }
         })
@@ -64,47 +52,24 @@ self.addEventListener('fetch', (event) => {
     try {
       const res = await promise;
       if (res instanceof Response) return res;
-      // if nothing matched, return a generic 503 response for non-image requests
       return new Response('Service Unavailable', { status: 503, statusText: 'Service Unavailable' });
     } catch (e) {
-      // On any unexpected error return a generic response
       return new Response('Service Unavailable', { status: 503, statusText: 'Service Unavailable' });
     }
   };
 
-  // Cache static assets (cache-first)
-  if (url.origin === location.origin && STATIC_ASSETS.some(asset => request.url.includes(asset))) {
-    event.respondWith(safeRespond((async () => {
-      const cached = await caches.match(request);
-      if (cached) return cached;
-      try {
-        const fetchResponse = await fetch(request);
-        if (fetchResponse && fetchResponse.ok) {
-          const cache = await caches.open(CACHE_NAME);
-          cache.put(request, fetchResponse.clone()).catch(() => {});
-          return fetchResponse;
-        }
-      } catch (e) {
-        // fallthrough to index.html
-      }
-      const index = await caches.match('/index.html');
-      return index || new Response('Offline', { status: 503 });
-    })()));
-    return;
-  }
+  // Check if this is a request for an HTML/JS file that should never be cached
+  const isNocacheFile = NOCACHE_PATTERNS.some(pattern => request.url.includes(pattern));
 
-  // Navigation requests (HTML page loads) - always try network first, fallback to cached index.html
-  const acceptHeader = request.headers.get('accept') || '';
-  if (request.mode === 'navigate' || acceptHeader.includes('text/html')) {
+  // HTML and core JS files: ALWAYS fetch fresh from network
+  if (isNocacheFile) {
     event.respondWith(safeRespond((async () => {
       try {
         const net = await fetch(request);
         if (net && net.ok) return net;
       } catch (e) {
-        // network failed
+        return new Response('Offline - Please check your connection', { status: 503 });
       }
-      const cachedIndex = await caches.match('/index.html');
-      return cachedIndex || new Response('Offline', { status: 503 });
     })()));
     return;
   }
