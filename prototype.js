@@ -1,3 +1,123 @@
+// Lightweight app script: load TMDB trending movies & series and enable PWA install
+(function(){
+  // Simple DOM helpers for rendering
+  const esc = s => String(s||'').replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+
+  const makeCard = (item) => {
+    const div = document.createElement('div');
+    div.className = 'bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex-shrink-0 cursor-pointer m-1';
+    div.style.width = '150px';
+
+    const img = document.createElement('img');
+    img.src = item.posterUrl || 'https://via.placeholder.com/300x450?text=No+Poster';
+    img.alt = item.title || 'Poster';
+    img.className = 'w-full h-64 object-cover';
+    img.onerror = () => { img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450"><rect width="100%" height="100%" fill="%23ddd"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23666" font-family="Arial" font-size="20">No Image</text></svg>'; };
+
+    const content = document.createElement('div');
+    content.className = 'p-2';
+    content.innerHTML = `<h3 class="text-white font-semibold text-sm truncate">${esc(item.title)}</h3><p class="text-gray-400 text-xs">${esc(item.year||'')}</p>`;
+
+    div.appendChild(img);
+    div.appendChild(content);
+    div.addEventListener('click', ()=> alert(item.title || 'No title'));
+    return div;
+  };
+
+  const renderCarousel = (title, items) => {
+    const container = document.getElementById('sections-container');
+    if (!container) return;
+    const section = document.createElement('section');
+    section.className = 'space-y-3';
+    section.innerHTML = `<h2 class="text-xl font-semibold">${esc(title)}</h2>`;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'flex gap-4 overflow-x-auto pb-4 carousel-wrapper';
+    wrapper.style.scrollBehavior = 'smooth';
+    items.forEach(i=> wrapper.appendChild(makeCard(i)));
+    section.appendChild(wrapper);
+    container.appendChild(section);
+  };
+
+  // Load TMDB data using tmdbFetch from config.js
+  async function loadTMDB() {
+    if (typeof tmdbFetch !== 'function') {
+      console.error('tmdbFetch not available. Make sure config.js is loaded.');
+      const container = document.getElementById('sections-container');
+      if (container) container.innerHTML = '<p class="text-red-400">TMDB helper missing. Check `config.js`</p>';
+      return;
+    }
+
+    try {
+      const movies = await tmdbFetch('/trending/movie/week');
+      const series = await tmdbFetch('/trending/tv/week');
+
+      const mapItems = (arr, isTv=false) => (arr||[]).map(m => ({
+        id: m.id,
+        title: m.title || m.name,
+        year: (m.release_date||m.first_air_date||'').split('-')[0],
+        posterUrl: m.poster_path ? `https://image.tmdb.org/t/p/w500${m.poster_path}` : null,
+        overview: m.overview,
+        type: isTv ? 'tv' : 'movie'
+      }));
+
+      const movieItems = mapItems(movies && movies.results ? movies.results : [], false);
+      const seriesItems = mapItems(series && series.results ? series.results : [], true);
+
+      const container = document.getElementById('sections-container');
+      if (container) container.innerHTML = '';
+
+      if (movieItems.length) renderCarousel('Trending Movies', movieItems.slice(0, 20));
+      if (seriesItems.length) renderCarousel('Trending Series', seriesItems.slice(0, 20));
+
+      if ((!movieItems.length) && (!seriesItems.length)) {
+        const c = document.getElementById('sections-container');
+        if (c) c.innerHTML = '<p class="text-gray-400">No TMDB data available. Check network or API keys.</p>';
+      }
+    } catch (e) {
+      console.error('Error loading TMDB:', e);
+      const c = document.getElementById('sections-container');
+      if (c) c.innerHTML = '<p class="text-red-400">Failed to load TMDB data.</p>';
+    }
+  }
+
+  // PWA install prompt handling
+  let deferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const installBtn = document.getElementById('install-btn');
+    if (installBtn) {
+      installBtn.style.display = 'inline-block';
+      installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
+        console.log('PWA install choice:', choice);
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      });
+    }
+  });
+
+  // Register service worker if available
+  async function registerSW() {
+    if ('serviceWorker' in navigator) {
+      try {
+        const reg = await navigator.serviceWorker.register('/sw.js');
+        console.log('Service worker registered:', reg.scope);
+      } catch (e) {
+        console.warn('Service worker registration failed:', e);
+      }
+    }
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', async () => {
+    await registerSW();
+    await loadTMDB();
+  });
+
+})();
 // OurShow Main Application Logic
 let currentUser = null;
 let deferredPrompt = null;
